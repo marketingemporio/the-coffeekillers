@@ -73,7 +73,7 @@ const MEMBERS = [
   name: "Michele Frosio",
   role: "Guitars & Lead Voice",
   img: "images/Michi 1.jpeg",
-  bio: "Carisma ed energia. Frontman spiccato, il country è per lui il palcoscenico ideale per unire tecnica e grande passione. Commerciale, esuberante, anima jazz.",
+  bio: "Carisma ed energia. Frontman spiccato, il country è per lui il palcoscenico ideale per unire tecnica e grande passione. Esuberante, esagerato, e mai abbastanza.",
   quote: "“Cos'ho dimenticato oggi?”"
 },
 {
