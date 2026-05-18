@@ -308,19 +308,19 @@ function HeroCinematic() {
       <div style={{ position: "relative", minHeight: "min(820px, 92vh)", overflow: "hidden", background: "#000" }}>
         <img src="images/Palco.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 42%", opacity: 1, filter: "contrast(1.05) saturate(1.05)" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.6))" }}></div>
-        
-        <div style={{ position: "absolute", top: "15%", right: "3%", zIndex: 10 }}>
-          <img src="images/HJCK_Logo2.svg" alt="Logo The Coffeekillers" style={{ width: "min(65vw, 750px)", opacity: 0.9, objectFit: "contain", filter: "invert(1)" }} />
+
+        <div className="hero-cinematic-logo" style={{ position: "absolute", top: "15%", right: "3%", zIndex: 10 }}>
+          <img src="images/HJCK_Logo2.svg" alt="Logo The Coffeekillers" style={{ width: "min(55vw, 750px)", opacity: 0.9, objectFit: "contain", filter: "invert(1)" }} />
         </div>
 
-        <div className="wrap" style={{ position: "relative", minHeight: "min(820px, 92vh)", display: "flex", flexDirection: "column", justifyContent: "flex-end", paddingTop: "clamp(60px, 9vw, 120px)", paddingBottom: "clamp(56px, 7vw, 96px)", color: "var(--ck-on-dark)", padding: "100px 49.48px 86.59px" }}>
+        <div className="wrap hero-cinematic-content" style={{ position: "relative", minHeight: "min(820px, 92vh)", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "var(--ck-on-dark)", padding: "clamp(200px,30vw,280px) clamp(20px,4vw,50px) clamp(48px,7vw,87px)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
             <span className="eyebrow" style={{ color: "rgba(243,232,210,0.7)", fontSize: "15px" }}>Country Live Band — Nord Italia</span>
           </div>
-          <h1 className="hero-title" style={{ maxWidth: "15ch", fontSize: "70px" }}>
+          <h1 className="hero-title hero-cinematic-title" style={{ maxWidth: "15ch", fontSize: "clamp(30px, 5.5vw, 70px)" }}>
             Vivi l'energia <span className="it" style={{ color: "var(--ck-gold)" }}>travolgente</span> del Country.
           </h1>
-          <p style={{ maxWidth: "50ch", marginTop: 24, opacity: .92, fontSize: "20px" }}>
+          <p style={{ maxWidth: "50ch", marginTop: 24, opacity: .92, fontSize: "clamp(16px, 2vw, 20px)" }}>
             Una band bresciana dall'anima internazionale, pronta a regalarti eventi country indimenticabili.
           </p>
           <div style={{ display: "flex", gap: 14, marginTop: 28, flexWrap: "wrap" }}>
@@ -344,10 +344,10 @@ function StyleSection() {
 
         <div className="split fade-in">
           <div>
-            <h2 className="lead" style={{ fontSize: "50px" }}>
+            <h2 className="lead section-title-50">
               Cocktail e <span className="it">ballads</span>, oppure ballare sui tavoli con le <i style={{ color: "var(--ck-rust)" }}>party songs</i> più ritmate.
             </h2>
-            <p className="body" style={{ fontSize: "20px" }}>
+            <p className="body" style={{ fontSize: "clamp(16px, 2vw, 20px)" }}>
               Desideri ascoltare qualche <b>classico intramontabile</b> o alcune ballads romantiche country chic per accompagnare i tuoi cocktail e rilassarti? Preferisci ballare sui tavoli con le party songs più ritmate? Sei nel posto giusto. Creiamo l'<b>atmosfera perfetta</b> per il tuo evento con un repertorio di inediti e cover di icone come Blake Shelton, Chris Stapleton, Brad Paisley, Carrie Underwood, The Chicks e molti altri. Ogni nota, un pezzo di autentica atmosfera americana!
             </p>
             <div className="tag-strip">
@@ -373,10 +373,10 @@ function StyleSection() {
             <img src="images/Michi e Miglio.jpeg" alt="Stile country" />
           </div>
           <div>
-            <h2 className="lead" style={{ fontSize: "50px" }}>
+            <h2 className="lead section-title-50">
               Un mix irresistibile di <span className="it" style={{ color: "rgb(200, 151, 59)" }}>energia</span> e autenticità.
             </h2>
-            <p className="body" style={{ fontSize: "20px" }}>
+            <p className="body" style={{ fontSize: "clamp(16px, 2vw, 20px)" }}>
               <b>Sound deciso</b>, solide basi ritmiche, intrecci di strumenti a corda e tante armonie vocali che evocano l'atmosfera magica dei live show di Nashville — con il nostro carattere coffee-killer. Sonorità rustiche ma raffinate, capaci di trasformare ogni performance in un viaggio nel cuore del country moderno.
             </p>
             <div className="tag-strip">
@@ -394,10 +394,10 @@ function StyleSection() {
 
         <div className="split fade-in">
           <div>
-            <h2 className="lead" style={{ fontSize: "50px" }}>
+            <h2 className="lead section-title-50">
               Dove c'è <span className="it">birra</span>, lì c'è anche il country.
             </h2>
-            <p className="body" style={{ fontSize: "20px" }}>
+            <p className="body" style={{ fontSize: "clamp(16px, 2vw, 20px)" }}>
               Siamo adatti a diverse situazioni: <b>locali, festival, party ed eventi privati, matrimoni</b> e qualunque altra occasione dove lo spirito del country (e la birra) non manchino. Per rendere la serata indimenticabile.
             </p>
             <div style={{ display: "flex", gap: 12, marginTop: 28, flexWrap: "wrap" }}>
@@ -425,10 +425,10 @@ function Socials() {
 
         <div className="split fade-in">
           <div>
-            <h2 className="lead" style={{ fontSize: "50px" }}>
+            <h2 className="lead section-title-50">
               Un assaggio del nostro <span className="it" style={{ color: "var(--ck-rust)" }}>live.</span>
             </h2>
-            <p className="body" style={{ fontSize: "20px", marginBottom: "32px" }}>
+            <p className="body" style={{ fontSize: "clamp(16px, 2vw, 20px)", marginBottom: "32px" }}>
               Guarda un estratto dei nostri spettacoli sul nostro canale YouTube. E per restare sempre aggiornati su tutte le nostre date, le novità e le follie del backstage, non c'è posto migliore di Instagram!
             </p>
             
@@ -452,14 +452,14 @@ function Socials() {
           </div>
 
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <div style={{ borderRadius: "24px", overflow: "hidden", width: "315px", height: "560px", background: "#000", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)" }}>
-              <iframe 
-                width="315" 
-                height="560" 
-                src="https://www.youtube.com/embed/yKFP1AAzxFM" 
-                title="YouTube Shorts player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            <div className="yt-wrapper" style={{ borderRadius: "24px", overflow: "hidden", width: "315px", height: "560px", background: "#000", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)" }}>
+              <iframe
+                width="315"
+                height="560"
+                src="https://www.youtube.com/embed/yKFP1AAzxFM"
+                title="YouTube Shorts player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen>
               </iframe>
             </div>
@@ -477,11 +477,11 @@ function Brands() {
           <span className="eyebrow" style={{ color: "rgb(243, 232, 210)", fontSize: "15px" }}>— Hanno ballato con noi</span>
           <span className="eyebrow" style={{ color: "rgb(243, 232, 210)" }}>Selected clients</span>
         </div>
-        <h3 style={{ color: "rgb(243, 232, 210)", fontSize: "50px" }}>Abbiamo fatto <span className="it" style={{ color: "rgb(200, 151, 59)" }}>ballare</span>.</h3>
+        <h3 className="section-title-50" style={{ color: "rgb(243, 232, 210)" }}>Abbiamo fatto <span className="it" style={{ color: "rgb(200, 151, 59)" }}>ballare</span>.</h3>
         <div className="brand-grid">
           {BRANDS.map((b, i) =>
-          <div className="brand-cell" key={b.name} style={{ backgroundColor: "rgb(21, 16, 11)", padding: "0px", borderWidth: "0px" }}>
-              <img src={b.img} alt={b.name} style={{ width: "10001px", height: "130px" }} />
+          <div className="brand-cell" key={b.name} style={{ backgroundColor: "rgb(21, 16, 11)" }}>
+              <img src={b.img} alt={b.name} style={{ maxWidth: "80%", maxHeight: "80px", width: "auto", height: "auto", objectFit: "contain" }} />
             </div>
           )}
         </div>
@@ -499,7 +499,7 @@ function Lineup() {
           <span className="eyebrow">CINQUE FACCE, UNA BAND</span>
         </div>
         <div className="lineup-head fade-in">
-          <h2 style={{ fontSize: "50px" }}>The <span className="it">faces</span> behind<br />the show.</h2>
+          <h2 className="section-title-50">The <span className="it">faces</span> behind<br />the show.</h2>
           <p style={{ maxWidth: "36ch", margin: 0, color: "var(--ck-mute)" }}>
             Ci conosci già, ma ti ricordiamo che faccia abbiamo. Tecnica, ironia e troppa caffeina.
           </p>
@@ -565,8 +565,8 @@ function FAQ() {
       <div className="wrap faq">
         <div>
           <span className="eyebrow" style={{ fontSize: "15px" }}>— Domande frequenti</span>
-          <h2 style={{ marginTop: 14, fontSize: "50px" }}>Di solito volete<br />sapere <span className="it">questo.</span></h2>
-          <p className="faq-intro" style={{ fontSize: "20px" }}>
+          <h2 className="section-title-50" style={{ marginTop: 14 }}>Di solito volete<br />sapere <span className="it">questo.</span></h2>
+          <p className="faq-intro" style={{ fontSize: "clamp(16px, 2vw, 20px)" }}>
             Risposte alle classiche domande. Se non trovi la tua, scrivici e ti rispondiamo nel giro di un caffè.
           </p>
           <a className="btn" href="#contact" style={{ marginTop: 28 }}>Scrivici <span className="arrow"><Arrow /></span></a>
@@ -793,7 +793,7 @@ function Newsletter() {
       <div className="wrap newsletter-grid">
         <div>
           <span className="eyebrow" style={{ fontSize: "15px" }}>— Newsletter</span>
-          <h3 style={{ fontFamily: "var(--ck-display)", lineHeight: ".95", letterSpacing: "-0.02em", margin: "12px 0 8px", fontSize: "50px" }}>
+          <h3 className="section-title-50" style={{ fontFamily: "var(--ck-display)", lineHeight: ".95", letterSpacing: "-0.02em", margin: "12px 0 8px" }}>
             Ti aggiorniamo sulle <span className="it" style={{ color: "var(--ck-rust)" }}>date.</span>
           </h3>
           <p style={{ margin: 0, color: "var(--ck-mute)", maxWidth: "42ch" }}>
@@ -823,7 +823,7 @@ function ContactCta() {
         <div className="cta-grid">
           <div>
             <span className="eyebrow" style={{ fontSize: "15px" }}>— Richiedi un preventivo</span>
-            <h2 style={{ fontSize: "50px" }}>Una serata<br/>con <span className="it">noi?</span></h2>
+            <h2 className="section-title-50">Una serata<br/>con <span className="it">noi?</span></h2>
             <p className="cta-lead">
               Raccontaci il tuo evento. Ti rispondiamo con proposta, scaletta tipo e cachet personalizzato.
             </p>
@@ -848,7 +848,7 @@ function Footer() {
         <div className="footer-grid">
           <div>
             <h5>Hot Joe & The CoffeeKillers</h5>
-            <div className="big" style={{ fontSize: "60px" }}>Country live<br /><span className="it" style={{ color: "var(--ck-gold)", fontSize: "60px" }}>since 2018.</span></div>
+            <div className="big">Country live<br /><span className="it" style={{ color: "var(--ck-gold)" }}>since 2018.</span></div>
             <div className="sm-row">
               <a className="ico" href="https://www.instagram.com/thecoffeekillers/" aria-label="Instagram"><IGIcon /></a>
               <a className="ico" href="https://m.facebook.com/hotjoeandthecoffeekillers" aria-label="Facebook"><FBIcon /></a>

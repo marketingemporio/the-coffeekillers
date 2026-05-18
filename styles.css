@@ -834,6 +834,124 @@ footer .ico{
 footer .ico:hover{ background: var(--ck-paper); color: var(--ck-ink); border-color: var(--ck-paper); }
 footer .copy{ display:flex; justify-content: space-between; padding-top: 24px; font-family: var(--ck-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(243,232,210,0.6); flex-wrap: wrap; gap: 12px; }
 
+/* ===== RESPONSIVE FIXES ===================================== */
+
+/* prevent horizontal scroll on all viewports */
+html, body { overflow-x: hidden; }
+
+/* titoli sezione responsivi (sostituisce fontSize: "50px" inline) */
+.section-title-50 {
+  font-size: clamp(26px, 5vw, 50px) !important;
+}
+
+/* --- hero cinematic mobile ---------------------------------- */
+@media (max-width: 900px) {
+  .hero-cinematic-logo {
+    width: min(80vw, 400px) !important;
+    top: 8% !important;
+    right: 50% !important;
+    transform: translateX(50%);
+  }
+  .hero-cinematic-content {
+    padding: clamp(160px, 28vw, 260px) clamp(20px, 5vw, 40px) clamp(40px, 6vw, 64px) !important;
+  }
+  .hero-cinematic-title {
+    font-size: clamp(28px, 8vw, 52px) !important;
+  }
+}
+
+/* --- show-row: disabilita hover shift su touch -------------- */
+@media (max-width: 900px) {
+  .show-row:hover { padding-left: 0; }
+}
+
+/* --- brand grid: fix border su 2 colonne ------------------- */
+@media (max-width: 800px) {
+  .brand-cell:nth-child(5n) { border-right: 1px solid var(--ck-line); }
+  .brand-cell:nth-child(2n) { border-right: 0; }
+  .brand-cell { aspect-ratio: 3/2; }
+}
+
+/* --- brand grid: 1 colonna sotto 400px --------------------- */
+@media (max-width: 400px) {
+  .brand-grid { grid-template-columns: 1fr; }
+  .brand-cell:nth-child(2n) { border-right: 1px solid var(--ck-line); }
+  .brand-cell:nth-child(1n) { border-right: 0; }
+}
+
+/* --- newsletter: stacked su mobile ------------------------- */
+@media (max-width: 600px) {
+  .newsletter {
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 16px;
+    gap: 12px;
+    align-items: stretch;
+    max-width: 100%;
+  }
+  .newsletter input { padding: 8px 0; }
+  .newsletter button { border-radius: 999px; padding: 14px; text-align: center; }
+}
+
+/* --- sezioni: font size titoli responsivi su tablet/mobile - */
+@media (max-width: 768px) {
+  .section-title-50 { font-size: clamp(26px, 6vw, 40px) !important; }
+  .lead { font-size: clamp(22px, 4.5vw, 36px) !important; }
+  .faq h2 { font-size: clamp(24px, 5vw, 36px) !important; }
+}
+
+/* --- socials: iframe YouTube responsive -------------------- */
+.yt-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 315px;
+}
+@media (max-width: 900px) {
+  .yt-wrapper {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 9/16;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .yt-wrapper iframe {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* --- member photo: non eccedere la larghezza su 1 col ------ */
+@media (max-width: 560px) {
+  .member .photo { width: 200px; height: 200px; }
+  .member h4 { font-size: 24px !important; }
+}
+
+/* --- cta-actions: stack su mobile -------------------------- */
+@media (max-width: 480px) {
+  .cta-actions { flex-direction: column; }
+  .cta-actions .btn { text-align: center; justify-content: center; }
+}
+
+/* --- tag-strip: no overflow -------------------------------- */
+.tag-strip { overflow-x: auto; }
+@media (max-width: 600px) {
+  .tag-strip { flex-wrap: wrap; overflow-x: visible; }
+}
+
+/* --- lineup-head: stack titolo su mobile ------------------- */
+@media (max-width: 600px) {
+  .lineup-head { flex-direction: column; gap: 16px; }
+  .lineup-head p { max-width: 100%; }
+}
+
+/* --- contact-cta: padding ridotto su mobile ---------------- */
+@media (max-width: 600px) {
+  .qf-chips { gap: 6px; }
+  .qf-chip { padding: 8px 10px; font-size: 10px; }
+  .qf-submit-row { flex-direction: column; align-items: stretch; }
+  .qf-submit-row .btn { justify-content: center; }
+}
+
 /* misc ------------------------------------------------------- */
 .tag-strip{
   display:flex; gap: 8px; flex-wrap: wrap; margin-top: 24px;
