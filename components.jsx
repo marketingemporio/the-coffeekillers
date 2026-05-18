@@ -1,6 +1,6 @@
 // === Coffeekillers — content, palettes, type sets, sections ===
 
-const CK_IMG = "https://thecoffeekillers.com/images/";
+const CK_IMG = "images/";
 
 // ---- palettes ------------------------------------------------
 const PALETTES = {
@@ -113,11 +113,11 @@ const SHOWS = [
 
 
 const BRANDS = [
-{ name: "Coca-Cola", img: CK_IMG + "Coca-Cola.avif" },
-{ name: "Ca' del Bosco", img: CK_IMG + "Ca-del-Bosco.avif" },
-{ name: "Porsche", img: CK_IMG + "Porsche.avif" },
-{ name: "Thun", img: CK_IMG + "Logo-Thun.avif" },
-{ name: "Lombarda Cer.", img: CK_IMG + "Lombarda-Ceramiche.avif" }];
+{ name: "Coca-Cola", img: CK_IMG + "Coca-Cola.svg" },
+{ name: "Ca' del Bosco", img: CK_IMG + "Ca-del-Bosco.svg" },
+{ name: "Porsche", img: CK_IMG + "Porsche.png" },
+{ name: "Thun", img: CK_IMG + "Logo-Thun.svg" },
+{ name: "Lombarda Ceramica", img: CK_IMG + "Lombarda-Ceramiche.svg" }];
 
 
 const FAQS = [
