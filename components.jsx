@@ -184,8 +184,8 @@ function Nav({ onTweaks }) {
   return (
     <nav className="nav">
       <a className="brand" href="index.html" aria-label="Hot Joe & The Coffeekillers — home">
-        <img className="logo logo-dark" src="images/HJCK_Logo2.svg" alt="Hot Joe & The Coffeekillers" style={{ width: "200px", height: "auto", objectFit: "contain" }} />
-        <img className="logo logo-light" src="images/HJCK_Logo2.svg" alt="Hot Joe & The Coffeekillers" style={{ width: "200px", height: "auto", objectFit: "contain", filter: "invert(1)" }} />
+        <img className="logo logo-dark" src="images/logo.svg" alt="Hot Joe & The Coffeekillers" style={{ width: "200px", height: "auto", objectFit: "contain" }} />
+        <img className="logo logo-light" src="images/logo.svg" alt="Hot Joe & The Coffeekillers" style={{ width: "200px", height: "auto", objectFit: "contain", filter: "invert(1)" }} />
       </a>
       
       <button className={"mobile-menu-btn" + (menuOpen ? " open" : "")} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
@@ -247,7 +247,7 @@ function HeroEditorial() {
         <div className="hero-grid" style={{ marginTop: "clamp(48px, 7vw, 96px)" }}>
           <div className="media tall hero-photo">
             <span className="badge">★ Live in Nashville mood</span>
-            <img src="images/Michi sul palco.JPG" alt="The Coffeekillers — live" />
+            <img src="images/Palco.jpg" alt="The Coffeekillers — live" />
           </div>
           <div>
             <div className="media wide hero-photo" style={{ aspectRatio: "5/4" }}>
@@ -291,7 +291,7 @@ function HeroPoster() {
         </div>
         <div className="hero-grid" style={{ marginTop: 48 }}>
           <div className="media tall hero-photo">
-            <img src="images/Michi sul palco.JPG" alt="" />
+            <img src="images/Palco.jpg" alt="" />
           </div>
           <div className="media wide hero-photo">
             <img src="images/Palco 2.jpeg" alt="" />
@@ -440,7 +440,7 @@ function Socials() {
               <p style={{ fontSize: "16px", marginBottom: "20px", opacity: 0.85 }}>I nostri ultimi scatti e aggiornamenti live:</p>
               
               <div style={{ display: "flex", gap: "12px", overflowX: "auto", paddingBottom: "16px", marginBottom: "16px", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
-                {["images/Michi sul palco.JPG", "images/Tutti in piedi.jpeg", "images/Palco 2.jpeg", "images/Strumenti palco.jpg"].map((src, i) => (
+                {["images/Palco.jpg", "images/Tutti in piedi.jpeg", "images/Palco 2.jpeg", "images/Palco 3.jpeg"].map((src, i) => (
                   <a href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noreferrer" key={i} style={{ flex: "0 0 140px", height: "140px", scrollSnapAlign: "start", borderRadius: "8px", overflow: "hidden", display: "block", position: "relative" }}>
                     <img src={src} alt="IG Post" style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
                   </a>
@@ -454,14 +454,17 @@ function Socials() {
           <div style={{ display: "flex", justifyContent: "center" }}>
             <div className="yt-wrapper" style={{ borderRadius: "24px", overflow: "hidden", width: "315px", height: "560px", background: "#000", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)" }}>
               <iframe
-                width="315"
-                height="560"
-                src="https://www.youtube.com/embed/yKFP1AAzxFM"
-                title="YouTube Shorts player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                src="https://www.youtube.com/embed/yKFP1AAzxFM?rel=0&modestbranding=1"
+                title="The Coffeekillers — YouTube"
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen>
               </iframe>
+              <a className="yt-fallback" href="https://www.youtube.com/@thecoffeekillers" target="_blank" rel="noopener" aria-label="Apri il canale YouTube">
+                <span className="yt-play">▶</span>
+                <span className="yt-label">Guarda su YouTube</span>
+              </a>
             </div>
           </div>
         </div>
@@ -480,8 +483,9 @@ function Brands() {
         <h3 className="section-title-50" style={{ color: "rgb(243, 232, 210)" }}>Abbiamo fatto <span className="it" style={{ color: "rgb(200, 151, 59)" }}>ballare</span>.</h3>
         <div className="brand-grid">
           {BRANDS.map((b, i) =>
-          <div className="brand-cell" key={b.name} style={{ backgroundColor: "rgb(21, 16, 11)" }}>
-              <img src={b.img} alt={b.name} style={{ maxWidth: "80%", maxHeight: "80px", width: "auto", height: "auto", objectFit: "contain" }} />
+          <div className="brand-cell" key={b.name}>
+              <span className="brand-mark">{b.name}</span>
+              <span className="brand-num">{String(i + 1).padStart(2, "0")}</span>
             </div>
           )}
         </div>

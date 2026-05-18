@@ -361,26 +361,39 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 }
 .brand-grid{
   display:grid; grid-template-columns: repeat(5, 1fr); gap: 0;
-  border-top: 1px solid var(--ck-line);
+  border-top: 1px solid rgba(243,232,210,0.12);
 }
 @media (max-width: 800px){ .brand-grid{ grid-template-columns: repeat(2, 1fr); } }
 .brand-cell{
   aspect-ratio: 5/3;
   display:grid; place-items:center;
-  border-bottom: 1px solid var(--ck-line);
-  border-right: 1px solid var(--ck-line);
+  border-bottom: 1px solid rgba(243,232,210,0.12);
+  border-right: 1px solid rgba(243,232,210,0.12);
   padding: 24px;
   position: relative;
   transition: background .3s;
+  background: rgb(21,16,11);
 }
-.brand-cell:hover{ background: var(--ck-paper); }
+.brand-mark{
+  font-family: var(--ck-display);
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 30px);
+  letter-spacing: -0.005em;
+  line-height: 1.05;
+  color: #f3e8d2;
+  text-align: center;
+  max-width: 100%;
+}
+.brand-num{
+  position: absolute;
+  top: 12px; left: 14px;
+  font-family: var(--ck-mono);
+  font-size: 10px; letter-spacing: 0.2em;
+  color: rgba(243,232,210,0.4);
+}
+.brand-cell:hover{ background: rgba(243,232,210,0.04); }
+.brand-cell:hover .brand-mark{ color: var(--ck-gold); }
 .brand-cell:nth-child(5n){ border-right: 0; }
-.brand-cell img{
-  max-height: 60%; max-width: 80%; width: auto; object-fit: contain;
-  filter: grayscale(1) contrast(.9);
-  opacity: .82; transition: filter .3s, opacity .3s;
-}
-.brand-cell:hover img{ filter: none; opacity: 1; }
 
 /* lineup ----------------------------------------------------- */
 .lineup-head{
@@ -867,7 +880,7 @@ html, body { overflow-x: hidden; }
 
 /* --- brand grid: fix border su 2 colonne ------------------- */
 @media (max-width: 800px) {
-  .brand-cell:nth-child(5n) { border-right: 1px solid var(--ck-line); }
+  .brand-cell:nth-child(5n) { border-right: 1px solid rgba(243,232,210,0.12); }
   .brand-cell:nth-child(2n) { border-right: 0; }
   .brand-cell { aspect-ratio: 3/2; }
 }
@@ -875,7 +888,7 @@ html, body { overflow-x: hidden; }
 /* --- brand grid: 1 colonna sotto 400px --------------------- */
 @media (max-width: 400px) {
   .brand-grid { grid-template-columns: 1fr; }
-  .brand-cell:nth-child(2n) { border-right: 1px solid var(--ck-line); }
+  .brand-cell:nth-child(2n) { border-right: 1px solid rgba(243,232,210,0.12); }
   .brand-cell:nth-child(1n) { border-right: 0; }
 }
 
