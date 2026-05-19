@@ -318,7 +318,7 @@ function HeroCinematic() {
             <span className="eyebrow" style={{ color: "rgba(243,232,210,0.7)", fontSize: "15px" }}>Country Live Band — Nord Italia</span>
           </div>
           <h1 className="hero-title hero-cinematic-title" style={{ maxWidth: "15ch", fontSize: "clamp(30px, 5.5vw, 70px)" }}>
-            Vivi l'energia <span className="it" style={{ color: "var(--ck-gold)" }}>travolgente</span> del Country.
+            Vivi l'energia <span className="it" style={{ color: "var(--ck-gold)" }}>travolgente</span> del Country live.
           </h1>
           <p style={{ maxWidth: "50ch", marginTop: 24, opacity: .92, fontSize: "clamp(16px, 2vw, 20px)" }}>
             Una band bresciana dall'anima internazionale, pronta a regalarti eventi country indimenticabili.
@@ -480,7 +480,7 @@ function Brands() {
           <span className="eyebrow" style={{ color: "rgb(243, 232, 210)", fontSize: "15px" }}>— Hanno ballato con noi</span>
           <span className="eyebrow" style={{ color: "rgb(243, 232, 210)" }}>Selected clients</span>
         </div>
-        <h3 className="section-title-50" style={{ color: "rgb(243, 232, 210)" }}>Abbiamo fatto <span className="it" style={{ color: "rgb(200, 151, 59)" }}>ballare</span>.</h3>
+        <h2 className="section-title-50" style={{ color: "rgb(243, 232, 210)" }}>Abbiamo fatto <span className="it" style={{ color: "rgb(200, 151, 59)" }}>ballare</span>.</h2>
         <div className="brand-grid">
           {BRANDS.map((b, i) =>
           <div className="brand-cell" key={b.name}>
@@ -502,7 +502,7 @@ function Lineup() {
           <span className="eyebrow">CINQUE FACCE, UNA BAND</span>
         </div>
         <div className="lineup-head fade-in">
-          <h2 className="section-title-50">The <span className="it">faces</span> behind<br />the show.</h2>
+          <h2 className="section-title-50">La <span className="it">band</span> country<br />di Brescia.</h2>
           <p style={{ maxWidth: "36ch", margin: 0, color: "var(--ck-mute)" }}>
             Ci conosci già, ma ti ricordiamo che faccia abbiamo. Tecnica, ironia e troppa caffeina.
           </p>
@@ -658,7 +658,7 @@ function Contact() {
         <div className="contact-head">
           <div>
             <span className="eyebrow" style={{ fontSize: "15px" }}>— Richiedi un preventivo</span>
-            <h2 style={{ fontSize: "50px" }}>Una serata con <span className="it" style={{ fontSize: "50px" }}>noi?</span></h2>
+            <h2 className="section-title-50">Una serata con <span className="it">noi?</span></h2>
             <p className="contact-lead">
               Raccontaci il tuo evento. Ti rispondiamo con proposta, scaletta tipo e cachet personalizzato.
             </p>

@@ -1106,7 +1106,7 @@ img, video, iframe, svg {
   .hero { padding: 56px 0 36px; }
   .hero-grid { grid-template-columns: 1fr; gap: 24px; }
   .hero-foot { grid-template-columns: 1fr; gap: 18px; padding-top: 18px; margin-top: 28px; }
-  .hero-title { font-size: clamp(34px, 10vw, 56px); line-height: 1; }
+  .hero-title { font-size: clamp(42px, 11vw, 60px); line-height: 1; }
   .hero-cinematic-logo img { width: 78vw !important; }
   .meta-row { flex-direction: column; align-items: flex-start; gap: 10px; }
 
@@ -1208,7 +1208,7 @@ img, video, iframe, svg {
 /* --- Very small phones: ≤380px ---------------------------- */
 @media (max-width: 380px) {
   .wrap { padding: 0 16px; }
-  .hero-title { font-size: 30px; }
+  .hero-title { font-size: 36px; }
   .split .lead { font-size: 22px; }
   .brand-grid { grid-template-columns: 1fr; }
   .tag-strip > span { font-size: 9.5px; padding: 5px 10px; }
