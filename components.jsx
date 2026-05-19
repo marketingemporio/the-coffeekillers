@@ -115,7 +115,7 @@ const SHOWS = [
 const BRANDS = [
 { name: "Coca-Cola", img: CK_IMG + "Coca-Cola.svg" },
 { name: "Ca' del Bosco", img: CK_IMG + "Ca-del-Bosco.svg" },
-{ name: "Porsche", img: CK_IMG + "Porsche.png" },
+{ name: "Porsche", img: CK_IMG + "Porsche.svg" },
 { name: "Thun", img: CK_IMG + "Logo-Thun.svg" },
 { name: "Lombarda Ceramica", img: CK_IMG + "Lombarda-Ceramiche.svg" }];
 
