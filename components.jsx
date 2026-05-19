@@ -184,8 +184,8 @@ function Nav({ onTweaks }) {
   return (
     <nav className="nav">
       <a className="brand" href="index.html" aria-label="Hot Joe & The Coffeekillers — home">
-        <img className="logo logo-dark" src="images/logo.svg" alt="Hot Joe & The Coffeekillers" style={{ width: "200px", height: "auto", objectFit: "contain" }} />
-        <img className="logo logo-light" src="images/logo.svg" alt="Hot Joe & The Coffeekillers" style={{ width: "200px", height: "auto", objectFit: "contain", filter: "invert(1)" }} />
+        <img className="logo logo-dark" src="images/HJCK_Logo2.svg" alt="Hot Joe & The Coffeekillers" style={{ width: "200px", height: "auto", objectFit: "contain" }} />
+        <img className="logo logo-light" src="images/HJCK_Logo2.svg" alt="Hot Joe & The Coffeekillers" style={{ width: "200px", height: "auto", objectFit: "contain", filter: "invert(1)" }} />
       </a>
       
       <button className={"mobile-menu-btn" + (menuOpen ? " open" : "")} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
