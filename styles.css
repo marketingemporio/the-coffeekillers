@@ -349,8 +349,8 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 .brands{
   background: var(--ck-paper-2);
   padding: clamp(48px, 7vw, 100px) 0;
-  border-top: 1px solid var(--ck-line);
-  border-bottom: 1px solid var(--ck-line);
+  border-top: 1px solid rgba(243,232,210,0.12);
+  border-bottom: 1px solid rgba(243,232,210,0.12);
 }
 .brands h3{
   font-family: var(--ck-display);
@@ -394,6 +394,34 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 .brand-cell:hover{ background: rgba(243,232,210,0.04); }
 .brand-cell:hover .brand-mark{ color: var(--ck-gold); }
 .brand-cell:nth-child(5n){ border-right: 0; }
+
+/* Brand logo treatment: monochrome cream → full color on hover */
+.brand-logo{
+  max-width: 65%;
+  max-height: 55%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.72;
+  transition: opacity .35s ease, filter .35s ease, transform .35s ease;
+}
+.brand-cell:hover .brand-logo{
+  filter: none;
+  opacity: 1;
+  transform: scale(1.04);
+}
+.brand-name-sr{
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-family: var(--ck-mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(243,232,210,0.35);
+  pointer-events: none;
+}
 
 /* lineup ----------------------------------------------------- */
 .lineup-head{
@@ -969,12 +997,219 @@ html, body { overflow-x: hidden; }
 .tag-strip{
   display:flex; gap: 8px; flex-wrap: wrap; margin-top: 24px;
 }
-.tag-strip span{
+.tag-strip > span{
   font-family: var(--ck-mono); font-size: 11px; letter-spacing: .15em; text-transform:uppercase;
   border: 1px solid var(--ck-line); padding: 8px 14px; border-radius: 999px;
   color: var(--ck-mute);
-  background: var(--ck-paper);
+  background: transparent;
 }
 
 .fade-in{ opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s ease; }
 .fade-in.in{ opacity: 1; transform: none; }
+
+/* YouTube wrapper — responsive Shorts ratio */
+.yt-wrapper{
+  position: relative;
+  width: 100%;
+  max-width: 315px;
+  aspect-ratio: 9 / 16;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+}
+.yt-wrapper iframe{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+  z-index: 2;
+}
+.yt-fallback{
+  position: absolute; inset: 0;
+  z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #15100b 0%, #2a1f15 100%);
+  color: var(--ck-paper);
+  text-decoration: none;
+  text-align: center;
+  padding: 24px;
+}
+.yt-fallback .yt-play{
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--ck-rust);
+  display: grid; place-items: center;
+  font-size: 22px;
+  padding-left: 4px;
+}
+.yt-fallback .yt-label{
+  font-family: var(--ck-mono);
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(243,232,210,0.85);
+}
+
+/* =========================================================
+   MOBILE FIXES — viewport, overflow, layout
+   ========================================================= */
+
+html, body {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Prevent any grid/flex child from forcing its parent wider than viewport */
+.split,
+.cta-grid,
+.faq,
+.hero-grid,
+.hero-foot,
+.newsletter-grid,
+.brand-grid,
+.lineup-grid,
+.stat-row {
+  min-width: 0;
+}
+.split > *,
+.cta-grid > *,
+.faq > *,
+.hero-grid > *,
+.hero-foot > *,
+.newsletter-grid > * {
+  min-width: 0;
+}
+
+/* Long words / URLs don't push layout */
+.body, p, h1, h2, h3, h4, .lead, .hero-title {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Media inside flex/grid never exceeds its column */
+img, video, iframe, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Mobile: ≤600px --------------------------------------- */
+@media (max-width: 600px) {
+  .wrap { padding: 0 20px; }
+
+  .section { padding: 56px 0; }
+
+  /* Hero — no side-by-side, smaller logo, less bleed */
+  .hero { padding: 56px 0 36px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+  .hero-foot { grid-template-columns: 1fr; gap: 18px; padding-top: 18px; margin-top: 28px; }
+  .hero-title { font-size: clamp(34px, 10vw, 56px); line-height: 1; }
+  .hero-cinematic-logo img { width: 78vw !important; }
+  .meta-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+  /* Split sections */
+  .split {
+    grid-template-columns: 1fr !important;
+    gap: 28px;
+  }
+  .split .lead { font-size: clamp(22px, 7vw, 30px); }
+  .split p.body { font-size: 15.5px; line-height: 1.55; }
+  /* Force inner media (with inline max-width) to be full width on mobile */
+  .split .media,
+  .split .media.tall,
+  .split .media.wide {
+    max-width: 100% !important;
+    width: 100%;
+    margin: 0 !important;
+    aspect-ratio: 4 / 3 !important;
+  }
+
+  /* Tag strip — smaller, cleaner spacing, no nested-box look */
+  .tag-strip { gap: 6px; margin-top: 18px; }
+  .tag-strip > span {
+    padding: 6px 11px;
+    font-size: 10px;
+    letter-spacing: .1em;
+    border-color: rgba(21,16,11,0.22);
+    background: transparent;
+  }
+
+  /* Section header eyebrow rows: stack tidy */
+  .section > .wrap > div[style*="space-between"] {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 6px !important;
+  }
+
+  /* Stats grid: 2-col on small */
+  .stat-row { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+  .stat .num { font-size: 32px; }
+
+  /* Brand grid: 2 cols, smaller cells */
+  .brand-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .brand-cell { aspect-ratio: 4/3; padding: 16px; }
+  .brand-cell img { max-height: 50%; max-width: 70%; }
+
+  /* Lineup */
+  .lineup-grid { grid-template-columns: 1fr !important; gap: 28px; }
+  .lineup-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .member .photo { width: 220px; height: 220px; }
+
+  /* FAQ */
+  .faq { gap: 28px; }
+  .faq h2 { font-size: clamp(26px, 8vw, 36px); }
+  .faq-q { font-size: 17px; padding: 18px 0; }
+  .faq-a { font-size: 16px; }
+
+  /* Contact CTA */
+  .contact-cta h2 { font-size: clamp(34px, 10vw, 54px); }
+  .cta-actions { width: 100%; }
+  .cta-actions .btn { flex: 1 1 100%; justify-content: center; }
+
+  /* Newsletter */
+  .newsletter {
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 14px;
+    gap: 10px;
+    align-items: stretch;
+    background: transparent;
+    border: 0;
+  }
+  .newsletter input {
+    width: 100%;
+    padding: 14px 18px !important;
+    background: var(--ck-paper-2);
+    border: 1px solid var(--ck-line) !important;
+    border-radius: 999px;
+    font-size: 14px;
+  }
+  .newsletter input:focus {
+    border-color: var(--ck-ink) !important;
+    background: var(--ck-paper);
+  }
+  .newsletter button { width: 100%; padding: 14px; }
+
+  /* Footer copy: stack */
+  footer .copy { flex-direction: column; gap: 10px; }
+
+  /* Buttons: tap-friendly */
+  .btn { padding: 13px 18px; font-size: 11px; }
+
+  /* Nav: tighter padding */
+  .nav { padding: 14px 20px; }
+  .nav .brand .logo,
+  .nav .brand img { height: 48px !important; width: auto !important; }
+}
+
+/* --- Very small phones: ≤380px ---------------------------- */
+@media (max-width: 380px) {
+  .wrap { padding: 0 16px; }
+  .hero-title { font-size: 30px; }
+  .split .lead { font-size: 22px; }
+  .brand-grid { grid-template-columns: 1fr; }
+  .tag-strip > span { font-size: 9.5px; padding: 5px 10px; }
+}

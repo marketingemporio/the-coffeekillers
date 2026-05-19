@@ -452,7 +452,7 @@ function Socials() {
           </div>
 
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <div className="yt-wrapper" style={{ borderRadius: "24px", overflow: "hidden", width: "315px", height: "560px", background: "#000", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)" }}>
+            <div className="yt-wrapper">
               <iframe
                 src="https://www.youtube.com/embed/yKFP1AAzxFM?rel=0&modestbranding=1"
                 title="The Coffeekillers — YouTube"
@@ -484,8 +484,8 @@ function Brands() {
         <div className="brand-grid">
           {BRANDS.map((b, i) =>
           <div className="brand-cell" key={b.name}>
-              <span className="brand-mark">{b.name}</span>
-              <span className="brand-num">{String(i + 1).padStart(2, "0")}</span>
+              <img src={b.img} alt={b.name} loading="lazy" className="brand-logo" />
+              <span className="brand-name-sr" aria-hidden="true">{b.name}</span>
             </div>
           )}
         </div>
@@ -563,7 +563,7 @@ function UpcomingShows() {
 }
 
 function FAQ() {
-  const [open, setOpen] = React.useState(0);
+  const [open, setOpen] = React.useState(-1);
   return (
     <section className="section faq-section" id="faq" style={{ padding: "100px 0px" }}>
       <div className="wrap faq">
