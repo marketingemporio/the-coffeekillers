@@ -484,8 +484,7 @@ function Brands() {
         <div className="brand-grid">
           {BRANDS.map((b, i) =>
           <div className="brand-cell" key={b.name}>
-              <img src={b.img} alt={b.name} loading="lazy" className="brand-logo" />
-              <span className="brand-name-sr" aria-hidden="true">{b.name}</span>
+              <img src={b.img} alt={b.name} style={{ maxWidth: "80%", maxHeight: "80px", width: "auto", height: "auto", objectFit: "contain" }} />
             </div>
           )}
         </div>
