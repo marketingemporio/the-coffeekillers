@@ -106,10 +106,26 @@ const MEMBERS = [
 }];
 
 
+// Date confermate 2026 — solo info pubbliche: data, nome serata, provincia.
+// (cachet, acconti e note interne NON vanno qui: restano nel foglio privato)
 const SHOWS = [
-{ day: "06", month: "Set", year: "2024", time: "20:00", venue: "L'Ortica", place: "Borghetto sul Mincio (MN)", desc: "Ristorante tipico — set acustico" },
-{ day: "13", month: "Set", year: "2024", time: "21:00", venue: "Festa Pubblica", place: "Via S. Giovanni Bosco — Gardone V.T.", desc: "Open air, full-band — ingresso libero" },
-{ day: "21", month: "Set", year: "2024", time: "20:00", venue: "Cascinetto", place: "Via Ca' del Facco — Salvirola", desc: "Ristorante in frutteto — atmosfera intima" }];
+{ day: "23", month: "Mag", year: "2026", name: "Serata in locale (duo)", prov: "Cremona (CR)", iso: "2026-05-23" },
+{ day: "30", month: "Mag", year: "2026", name: "Festa della Comunità", prov: "Brescia (BS)", iso: "2026-05-30" },
+{ day: "06", month: "Giu", year: "2026", name: "Serata in Meleto", prov: "Cremona (CR)", iso: "2026-06-06" },
+{ day: "04", month: "Lug", year: "2026", name: "Serata in Meleto", prov: "Cremona (CR)", iso: "2026-07-04" },
+{ day: "11", month: "Lug", year: "2026", name: "Festa Country Village", prov: "da confermare", iso: "2026-07-11" },
+{ day: "17", month: "Lug", year: "2026", name: "Festa al Picol Bar", prov: "Brescia (BS)", iso: "2026-07-17" },
+{ day: "19", month: "Lug", year: "2026", name: "Serata Country", prov: "da confermare", iso: "2026-07-19" },
+{ day: "24", month: "Lug", year: "2026", name: "Serata in Ostaria", prov: "Brescia (BS)", iso: "2026-07-24" },
+{ day: "25", month: "Lug", year: "2026", name: "Serata al Maneggio", prov: "Brescia (BS)", iso: "2026-07-25" },
+{ day: "01", month: "Ago", year: "2026", name: "Serata in Meleto", prov: "Cremona (CR)", iso: "2026-08-01" },
+{ day: "08", month: "Ago", year: "2026", name: "Festa al Southern Pub", prov: "Belluno (BL)", iso: "2026-08-08" },
+{ day: "09", month: "Ago", year: "2026", name: "Serata in Locanda", prov: "Vicenza (VI)", iso: "2026-08-09" },
+{ day: "23", month: "Ago", year: "2026", name: "Evento Country — B Wild Ranch", prov: "Belluno (BL)", iso: "2026-08-23" },
+{ day: "28", month: "Ago", year: "2026", name: "Evento Country", prov: "Modena (MO)", iso: "2026-08-28" },
+{ day: "29", month: "Ago", year: "2026", name: "Serata in montagna", prov: "Aosta (AO)", iso: "2026-08-29" },
+{ day: "05", month: "Set", year: "2026", name: "Matrimonio", prov: "Siena (SI)", iso: "2026-09-05" },
+{ day: "12", month: "Set", year: "2026", name: "Inaugurazione Beach Fly", prov: "Brescia (BS)", iso: "2026-09-12" }];
 
 
 const BRANDS = [
@@ -531,30 +547,27 @@ function UpcomingShows() {
       <div className="wrap">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 12, marginBottom: 24 }}>
           <span className="eyebrow" style={{ fontSize: "15px" }}>— Calendario</span>
-          <span className="eyebrow">Tre date, tre atmosfere</span>
+          <span className="eyebrow">Live 2026</span>
         </div>
         <div className="shows-head fade-in">
-          <h2>Prossimi <span className="it">live.</span></h2>
+          <h2>Dove ci trovi nel <span className="it">2026.</span></h2>
           <p style={{ maxWidth: "34ch", margin: 0, color: "var(--ck-mute)" }}>
-            Vieni a cantare e a ballare con noi. Posti gratuiti, birra calda assicurata.
+            Le serate confermate di quest'anno. Scorri la finestra e vieni a trovarci.
           </p>
         </div>
-        <div className="shows-list">
-          {SHOWS.map((s, i) =>
-          <a className="show-row fade-in" key={i} href="#contact">
-              <div>
-                <div className="date">{s.day}</div>
-                <span className="month">{s.month} {s.year}</span>
+        <div className="dates-window fade-in">
+          <div className="dates-scroll">
+            {SHOWS.map((s, i) =>
+            <div className="date-row" key={i}>
+                <div className="date-cell">
+                  <span className="dr-day">{s.day}</span>
+                  <span className="dr-month">{s.month} {s.year}</span>
+                </div>
+                <div className="date-name">{s.name}</div>
+                <div className="date-prov">{s.prov}</div>
               </div>
-              <div>
-                <div className="venue">{s.venue}</div>
-                <div className="place">{s.place}</div>
-              </div>
-              <div className="desc">{s.desc}</div>
-              <div className="time">↳ {s.time}</div>
-              <div className="arr"><Arrow size={14} /></div>
-            </a>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </section>);
@@ -846,7 +859,7 @@ function ContactCta() {
 
 function Footer() {
   return (
-    <footer style={{ padding: "100px 0px 140px" }}>
+    <footer style={{ padding: "56px 0px 64px" }}>
       <div className="wrap">
         <div className="footer-grid">
           <div>
@@ -876,7 +889,7 @@ function Footer() {
           </div>
         </div>
         <div className="copy">
-          <span>© 2025 Hot Joe & The CoffeeKillers — All rights reserved.</span>
+          <span>© 2025 Hot Joe & The CoffeeKillers — All rights reserved. · Sviluppato con <a href="https://emporionelbosco.it" target="_blank" rel="noopener" style={{ color: "var(--ck-gold)" }}>Emporio nel Bosco</a></span>
         </div>
       </div>
     </footer>);

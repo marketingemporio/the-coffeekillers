@@ -520,6 +520,39 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
   .show-row .venue{ font-size: 22px; }
 }
 
+/* Date 2026 — finestra scorrevole (data / nome serata / provincia) --- */
+.dates-window{
+  border: 1px solid var(--ck-line);
+  border-radius: 16px;
+  background: var(--ck-paper);
+  overflow: hidden;
+}
+.dates-scroll{
+  max-height: 460px;
+  overflow-y: auto;
+  padding: 4px 24px;
+  -webkit-overflow-scrolling: touch;
+}
+.date-row{
+  display: grid;
+  grid-template-columns: 104px 1fr auto;
+  gap: 24px; align-items: center;
+  padding: 20px 0;
+  border-top: 1px solid var(--ck-line);
+}
+.date-row:first-child{ border-top: none; }
+.date-cell .dr-day{ font-family: var(--ck-display); font-size: 32px; line-height: 1; letter-spacing: -0.01em; }
+.date-cell .dr-month{ display:block; font-family: var(--ck-mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--ck-mute); margin-top: 4px; }
+.date-name{ font-family: var(--ck-display); font-size: 24px; line-height: 1.1; }
+.date-prov{ font-family: var(--ck-mono); font-size: 13px; letter-spacing: .06em; color: var(--ck-mute); text-align: right; white-space: nowrap; }
+@media (max-width: 720px){
+  .date-row{ grid-template-columns: 60px 1fr; gap: 12px; padding: 16px 0; }
+  .dates-scroll{ padding: 4px 16px; }
+  .date-cell .dr-day{ font-size: 24px; }
+  .date-name{ font-size: 18px; }
+  .date-prov{ grid-column: 2; text-align: left; margin-top: 2px; }
+}
+
 /* FAQ ---- DARK SECTION ------------------------------------- */
 .faq-section{
   background: var(--ck-ink); color: var(--ck-on-dark);

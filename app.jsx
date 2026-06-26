@@ -30,6 +30,7 @@ function App() {
       <Socials/>
       <Brands/>
       <Lineup/>
+      <UpcomingShows/>
       <FAQ/>
       <ContactCta/>
       <Newsletter/>
