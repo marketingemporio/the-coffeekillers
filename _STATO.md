@@ -2,32 +2,27 @@
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
 > **Ultimo aggiornamento:** 2026-06-26
-> **Stato in una riga:** sito **ONLINE** su https://thecoffeekillers.com (statico, nessun build) **+ un WIP non ancora pubblicato** (vedi sotto).
+> **Stato in una riga:** sito **ONLINE** su https://thecoffeekillers.com (statico, nessun build). Footer + blocco "Live 2026" **pubblicati il 2026-06-26**.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
 
 ## ⚠️ Deploy automatico = produzione immediata
 - Branch **`main`** → **Netlify** (publish `.`, nessun build): **ogni `git push` su `main` pubblica online.**
 
-## 🚧 WIP in corso — COMMITTATO in locale, NON ancora pushato
-⚠️ **Non fare `git push` finché non sono sciolte le 4 decisioni qui sotto**: il branch
-`main` è in deploy automatico Netlify (`publish="."`), quindi un push pubblicherebbe
-anche il blocco "Live 2026" non deciso **e** questo `_STATO.md` (note private, es.
-matrimonio di Siena) sul sito pubblico.
-
-**Fatto e committato in locale il 2026-06-26 (commit non pushato):**
-- Footer: nota credito "Sviluppato con **Emporio nel Bosco**" (link dofollow a
+## ✅ PUBBLICATO il 2026-06-26 (online)
+Pushato su `main` → online su https://thecoffeekillers.com. È andato live tutto:
+- **Footer**: nota credito "Sviluppato con **Emporio nel Bosco**" (link **dofollow** a
   `emporionelbosco.it`, nuova scheda) inline sulla riga del copyright in `components.jsx`.
-- Footer accorciato: padding `100px 0 140px` → `56px 0 64px` (~120px in meno di altezza).
+- **Footer accorciato**: padding `100px 0 140px` → `56px 0 64px` (~120px in meno di altezza).
+- Blocco home **"Live 2026"** (`id="live"`, componente `UpcomingShows`, array `SHOWS`): finestra scrollabile con **data · nome serata · provincia**.
+- **`_redirects`**: `/_STATO.md` e `/README.md` reindirizzati alla home → i doc interni **non** sono pubblici.
 
-Nel working tree (ora committato) c'è anche il blocco home **"Live 2026"**: una finestra scrollabile (`id="live"`, componente `UpcomingShows`, array `SHOWS`) che mostra **solo data · nome serata · provincia**.
-**Prima del push servono 4 decisioni di Michele:**
-1. **Matrimonio 05/09 (Siena)** — evento privato di un cliente: lasciare pubblico / rinominare "Evento privato" / togliere?
-2. **Province da confermare** — 11/07 "Festa Country Village" (Montebello) e 19/07 "Serata Country" (Ortica).
-3. **Date già passate** (23/05, 30/05, 06/06) — tenerle o mostrare solo le prossime (filtro automatico)?
-4. **Nomi serate** — ripuliti dai nomi interni, eventuali ritocchi.
-- Opzione offerta: voce **"Date"** nel menu nav.
+**Rifiniture possibili a sito già online (le vecchie "4 decisioni", pubblicate così come sono):**
+1. **Matrimonio 05/09 (Siena)** — online come `Matrimonio` / `Siena (SI)` (neutro, **nessun nome cliente**). Eventualmente rinominare "Evento privato".
+2. **Province "da confermare"** — 11/07 "Festa Country Village" e 19/07 "Serata Country" mostrano `da confermare`: sostituire quando confermate.
+3. **Date già passate** (23/05, 30/05, 06/06) — ora visibili; valutare un filtro automatico "solo prossime".
+4. **Nomi serate** — già ripuliti dai nomi interni; eventuali ritocchi.
+- Opzione non implementata: voce **"Date"** nel menu nav.
 - ⚠️ **Mai pubblicare cachet/acconti/note interne**: restano solo nel PDF privato nel Brain (vedi sotto).
-- **Quando si riprende:** applicare le risposte alle 4 decisioni → commit + **push** (a quel punto va online tutto: footer + Live 2026).
 
 ## 🎯 Cos'è
 Sito vetrina della band **Hot Joe & The Coffeekillers** (country live, Brescia).
