@@ -24,6 +24,11 @@ Pushato su `main` → online su https://thecoffeekillers.com. È andato live tut
 - Opzione non implementata: voce **"Date"** nel menu nav.
 - ⚠️ **Mai pubblicare cachet/acconti/note interne**: restano solo nel PDF privato nel Brain (vedi sotto).
 
+## 🔎 SEO (2026-06-28)
+- Aggiunti **`robots.txt`** e **`sitemap.xml`** (home + `preventivo.html`). Quando si aggiungono/rimuovono pagine, aggiornare la sitemap.
+- `index.html` (home) aveva già un on-page SEO completo (title, description, keywords, Open Graph, Twitter Card, canonical, JSON-LD `MusicGroup`).
+- `preventivo.html` integrato con meta description, favicon, canonical, Open Graph e Twitter Card (prima aveva solo il `<title>`).
+
 ## 🎯 Cos'è
 Sito vetrina della band **Hot Joe & The Coffeekillers** (country live, Brescia).
 
