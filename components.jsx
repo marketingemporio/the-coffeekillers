@@ -307,10 +307,10 @@ function HeroPoster() {
         </div>
         <div className="hero-grid" style={{ marginTop: 48 }}>
           <div className="media tall hero-photo">
-            <img src="images/Palco.jpg" alt="" />
+            <img src="images/Palco.jpg" alt="The Coffeekillers — live" />
           </div>
           <div className="media wide hero-photo">
-            <img src="images/Palco 2.jpeg" alt="" />
+            <img src="images/Palco 2.jpeg" alt="The Coffeekillers — backstage" />
           </div>
         </div>
       </div>
