@@ -483,12 +483,12 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 
 /* live shows (tickets) --------------------------------------- */
 .shows-head{ display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 40px; flex-wrap:wrap; }
-.shows-head h2{
+.shows-head h2, .shows-head h1{
   font-family: var(--ck-display);
   font-size: clamp(40px, 6vw, 96px);
   margin: 0; line-height: .92; letter-spacing: -0.02em;
 }
-.shows-head h2 .it{ font-style: italic; color: var(--ck-rust); }
+.shows-head h2 .it, .shows-head h1 .it{ font-style: italic; color: var(--ck-rust); }
 .shows-list{ display:flex; flex-direction: column; }
 .show-row{
   display:grid; grid-template-columns: 80px 1.4fr 1.6fr 1fr 56px;

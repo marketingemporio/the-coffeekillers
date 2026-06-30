@@ -214,6 +214,7 @@ function Nav({ onTweaks }) {
         <li><a className="nav-link" href="index.html#stile" onClick={() => setMenuOpen(false)}>Stile</a></li>
         <li><a className="nav-link" href="index.html#socials" onClick={() => setMenuOpen(false)}>Social</a></li>
         <li><a className="nav-link" href="index.html#lineup" onClick={() => setMenuOpen(false)}>Lineup</a></li>
+        <li><a className="nav-link" href="date.html" onClick={() => setMenuOpen(false)}>Date</a></li>
         <li><a className="nav-link" href="index.html#faq" onClick={() => setMenuOpen(false)}>FAQ</a></li>
         <li><a className="cta" href="preventivo.html" onClick={() => setMenuOpen(false)}>Una serata con noi?</a></li>
       </ul>
@@ -222,7 +223,7 @@ function Nav({ onTweaks }) {
 }
 
 function Marquee() {
-  const items = ["Country Live Band", "Brescia → Nashville", "Eventi · Matrimoni · Festival", "Country Live Band", "Brescia → Nashville", "Eventi · Matrimoni · Festival", "Country Live Band", "Brescia → Nashville"];
+  const items = ["Country Live Band", "Brescia → Nashville", "Locali · Feste & Sagre · Matrimoni", "Country Live Band", "Brescia → Nashville", "Locali · Feste & Sagre · Matrimoni", "Country Live Band", "Brescia → Nashville"];
   return (
     <div className="marquee" aria-hidden="true">
       <div className="marquee-track" style={{ gap: "100px", padding: "14px 0px" }}>
@@ -256,7 +257,7 @@ function HeroEditorial() {
             <a className="btn" href="#contact">Sentiamoci! <span className="arrow"><Arrow /></span></a>
           </div>
           <div className="tag-strip" style={{ marginTop: 0 }}>
-            <span>Matrimoni</span><span>Festival</span><span>Corporate</span><span>Locali</span>
+            <span>Locali</span><span>Feste &amp; Sagre</span><span>Festival</span><span>Corporate</span><span>Matrimoni</span>
           </div>
         </div>
 
@@ -405,7 +406,7 @@ function StyleSection() {
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 36, flexWrap: "wrap", gap: 12 }}>
           <span className="eyebrow" style={{ fontSize: "15px" }}>— DOVE DIAMO IL MEGLIO</span>
-          <span className="eyebrow">Locali · Festival · Eventi privati · Matrimoni</span>
+          <span className="eyebrow">Locali · Feste &amp; Sagre · Festival · Eventi privati · Matrimoni</span>
         </div>
 
         <div className="split fade-in">
@@ -414,7 +415,7 @@ function StyleSection() {
               Dove c'è <span className="it">birra</span>, lì c'è anche il country.
             </h2>
             <p className="body" style={{ fontSize: "clamp(16px, 2vw, 20px)" }}>
-              Siamo adatti a diverse situazioni: <b>locali, festival, party ed eventi privati, matrimoni</b> e qualunque altra occasione dove lo spirito del country (e la birra) non manchino. Per rendere la serata indimenticabile.
+              Siamo adatti a diverse situazioni: <b>locali, feste e sagre di paese, festival, party ed eventi privati, matrimoni</b> e qualunque altra occasione dove lo spirito del country (e la birra) non manchino. Per rendere la serata indimenticabile.
             </p>
             <div style={{ display: "flex", gap: 12, marginTop: 28, flexWrap: "wrap" }}>
               <a className="btn" href="#faq">Mi date altre info? <span className="arrow"><Arrow /></span></a>
@@ -541,7 +542,11 @@ function Lineup() {
 
 }
 
-function UpcomingShows() {
+function UpcomingShows({ full = false }) {
+  const today = new Date().toISOString().slice(0, 10);
+  const upcoming = SHOWS.filter((s) => s.iso >= today);
+  const list = full ? SHOWS : upcoming.slice(0, 4);
+
   return (
     <section className="section" id="live" style={{ paddingTop: 0 }}>
       <div className="wrap">
@@ -550,14 +555,18 @@ function UpcomingShows() {
           <span className="eyebrow">Live 2026</span>
         </div>
         <div className="shows-head fade-in">
+          {full ?
+          <h1>Tutte le date del <span className="it">2026.</span></h1> :
+
           <h2>Dove ci trovi nel <span className="it">2026.</span></h2>
+          }
           <p style={{ maxWidth: "34ch", margin: 0, color: "var(--ck-mute)" }}>
-            Le serate confermate di quest'anno. Scorri la finestra e vieni a trovarci.
+            {full ? "Il calendario completo delle serate, confermate e passate." : "Le prossime serate confermate. Scorri la finestra e vieni a trovarci."}
           </p>
         </div>
         <div className="dates-window fade-in">
           <div className="dates-scroll">
-            {SHOWS.map((s, i) =>
+            {list.map((s, i) =>
             <div className="date-row" key={i}>
                 <div className="date-cell">
                   <span className="dr-day">{s.day}</span>
@@ -569,6 +578,11 @@ function UpcomingShows() {
             )}
           </div>
         </div>
+        {!full &&
+        <div style={{ marginTop: 28 }}>
+            <a className="btn" href="date.html">Vedi tutte le date <span className="arrow"><Arrow /></span></a>
+          </div>
+        }
       </div>
     </section>);
 
@@ -605,7 +619,7 @@ function FAQ() {
 function Contact() {
   const [sent, setSent] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const [evt, setEvt] = React.useState("Matrimonio");
+  const [evt, setEvt] = React.useState("Locale");
   const [setting, setSetting] = React.useState("Outdoor");
   const [headcount, setHeadcount] = React.useState(120);
   const [duration, setDuration] = React.useState(2);
@@ -619,7 +633,7 @@ function Contact() {
   const [phone, setPhone] = React.useState("");
   const [notes, setNotes] = React.useState("");
 
-  const eventTypes = ["Matrimonio", "Festival", "Locale", "Privato", "Corporate", "Altro"];
+  const eventTypes = ["Locale", "Feste & Sagre", "Festival", "Privato", "Corporate", "Altro", "Matrimonio"];
   const settings = ["Indoor", "Outdoor", "Sala", "Cascina", "Da definire"];
   const budgets = ["< 1.000 €", "1k–1.5k", "1.5k–2k", "2k–2.5k", "> 2.500 €"];
 
