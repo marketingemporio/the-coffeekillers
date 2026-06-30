@@ -64,8 +64,9 @@
 </head>
 <body style="font-size: 15px">
   <div id="root">
-    <!-- Contenuto statico di partenza per i motori di ricerca: viene sostituito
-         istantaneamente dalla versione interattiva appena React si avvia. -->
+    <!-- Contenuto statico per crawler senza JS. display:none nasconde il blocco
+         agli utenti (niente flash); i crawler che leggono solo HTML lo trovano. -->
+    <div style="display:none">
     <header>
       <nav>
         <a href="index.html">Hot Joe &amp; The Coffeekillers</a>
@@ -83,10 +84,8 @@
       <section>
         <h1>Tutte le date del 2026</h1>
         <p>Il calendario completo dei live di Hot Joe &amp; The Coffeekillers: locali, feste e sagre di paese, festival ed eventi in giro per il Nord Italia.</p>
+        <h2>Prossime date</h2>
         <ul>
-          <li>23 Mag 2026 — Serata in locale (duo) — Cremona (CR)</li>
-          <li>30 Mag 2026 — Festa della Comunità — Brescia (BS)</li>
-          <li>06 Giu 2026 — Serata in Meleto — Cremona (CR)</li>
           <li>04 Lug 2026 — Serata in Meleto — Cremona (CR)</li>
           <li>11 Lug 2026 — Festa Country Village — da confermare</li>
           <li>17 Lug 2026 — Festa al Picol Bar — Brescia (BS)</li>
@@ -102,18 +101,25 @@
           <li>05 Set 2026 — Matrimonio — Siena (SI)</li>
           <li>12 Set 2026 — Inaugurazione Beach Fly — Brescia (BS)</li>
         </ul>
+        <h2>Date passate</h2>
+        <ul>
+          <li>06 Giu 2026 — Serata in Meleto — Cremona (CR)</li>
+          <li>30 Mag 2026 — Festa della Comunità — Brescia (BS)</li>
+          <li>23 Mag 2026 — Serata in locale (duo) — Cremona (CR)</li>
+        </ul>
         <p><a href="preventivo.html">Vuoi una serata con noi? Richiedi un preventivo</a></p>
       </section>
     </main>
 
     <footer>
-      <p>Hot Joe &amp; The Coffeekillers — Band Country Live, Brescia. <a href="https://www.instagram.com/thecoffeekillers/">Instagram</a> · <a href="https://m.facebook.com/hotjoeandthecoffeekillers">Facebook</a> · <a href="https://www.youtube.com/@thecoffeekillers">YouTube</a></p>
+      <p>Hot Joe &amp; The Coffeekillers — Band Country Live, Brescia. <a href="https://www.instagram.com/thecoffeekillers/">Instagram</a></p>
     </footer>
+    </div>
   </div>
 
   <script>
     window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-      "palette": "saloon",
+      "palette": "midnight",
       "type": "editorial",
       "hero": "cinematic"
     }/*EDITMODE-END*/;

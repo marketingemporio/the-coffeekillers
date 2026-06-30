@@ -211,10 +211,10 @@ function Nav({ onTweaks }) {
       </button>
 
       <ul className={"nav-links" + (menuOpen ? " open" : "")} style={{ fontSize: "18px", fontWeight: "500" }}>
-        <li><a className="nav-link" href="index.html#stile" onClick={() => setMenuOpen(false)}>Stile</a></li>
-        <li><a className="nav-link" href="index.html#socials" onClick={() => setMenuOpen(false)}>Social</a></li>
-        <li><a className="nav-link" href="index.html#lineup" onClick={() => setMenuOpen(false)}>Lineup</a></li>
+        <li><a className="nav-link" href="chi-siamo.html" onClick={() => setMenuOpen(false)}>Chi siamo</a></li>
+        <li><a className="nav-link" href="gallery.html" onClick={() => setMenuOpen(false)}>Gallery</a></li>
         <li><a className="nav-link" href="date.html" onClick={() => setMenuOpen(false)}>Date</a></li>
+        <li><a className="nav-link" href="country.html" onClick={() => setMenuOpen(false)}>Il country</a></li>
         <li><a className="nav-link" href="index.html#faq" onClick={() => setMenuOpen(false)}>FAQ</a></li>
         <li><a className="cta" href="preventivo.html" onClick={() => setMenuOpen(false)}>Una serata con noi?</a></li>
       </ul>
@@ -542,10 +542,24 @@ function Lineup() {
 
 }
 
+function ShowRow({ s }) {
+  return (
+    <div className="date-row">
+      <div className="date-cell">
+        <span className="dr-day">{s.day}</span>
+        <span className="dr-month">{s.month} {s.year}</span>
+      </div>
+      <div className="date-name">{s.name}</div>
+      <div className="date-prov">{s.prov}</div>
+    </div>
+  );
+}
+
 function UpcomingShows({ full = false }) {
   const today = new Date().toISOString().slice(0, 10);
   const upcoming = SHOWS.filter((s) => s.iso >= today);
-  const list = full ? SHOWS : upcoming.slice(0, 4);
+  const past = SHOWS.filter((s) => s.iso < today).reverse();
+  const list = full ? upcoming : upcoming.slice(0, 4);
 
   return (
     <section className="section" id="live" style={{ paddingTop: 0 }}>
@@ -556,36 +570,45 @@ function UpcomingShows({ full = false }) {
         </div>
         <div className="shows-head fade-in">
           {full ?
-          <h1>Tutte le date del <span className="it">2026.</span></h1> :
-
-          <h2>Dove ci trovi nel <span className="it">2026.</span></h2>
+            <h1>Tutte le date del <span className="it">2026.</span></h1> :
+            <h2>Dove ci trovi nel <span className="it">2026.</span></h2>
           }
           <p style={{ maxWidth: "34ch", margin: 0, color: "var(--ck-mute)" }}>
-            {full ? "Il calendario completo delle serate, confermate e passate." : "Le prossime serate confermate. Scorri la finestra e vieni a trovarci."}
+            {full ? "Le prossime serate e il calendario delle date già suonate." : "Le prossime serate confermate. Scorri la finestra e vieni a trovarci."}
           </p>
         </div>
+
         <div className="dates-window fade-in">
           <div className="dates-scroll">
-            {list.map((s, i) =>
-            <div className="date-row" key={i}>
-                <div className="date-cell">
-                  <span className="dr-day">{s.day}</span>
-                  <span className="dr-month">{s.month} {s.year}</span>
-                </div>
-                <div className="date-name">{s.name}</div>
-                <div className="date-prov">{s.prov}</div>
-              </div>
-            )}
+            {list.length > 0
+              ? list.map((s, i) => <ShowRow key={i} s={s} />)
+              : <p style={{ padding: "24px 0", color: "var(--ck-mute)", fontFamily: "var(--ck-mono)" }}>Nessuna data in programma al momento — torna presto!</p>
+            }
           </div>
         </div>
+
+        {full && past.length > 0 && (
+          <div style={{ marginTop: 48 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
+              <span className="eyebrow" style={{ fontSize: "13px", opacity: 0.5 }}>— Date passate</span>
+              <div style={{ flex: 1, height: 1, background: "var(--ck-line)" }} />
+            </div>
+            <div className="dates-window" style={{ opacity: 0.45 }}>
+              <div className="dates-scroll">
+                {past.map((s, i) => <ShowRow key={i} s={s} />)}
+              </div>
+            </div>
+          </div>
+        )}
+
         {!full &&
-        <div style={{ marginTop: 28 }}>
+          <div style={{ marginTop: 28 }}>
             <a className="btn" href="date.html">Vedi tutte le date <span className="arrow"><Arrow /></span></a>
           </div>
         }
       </div>
-    </section>);
-
+    </section>
+  );
 }
 
 function FAQ() {
@@ -895,9 +918,11 @@ function Footer() {
           <div>
             <h5>Naviga</h5>
             <ul>
-              <li><a href="#stile">Stile</a></li>
-              <li><a href="#lineup">Lineup</a></li>
-              <li><a href="#faq">FAQ</a></li>
+              <li><a href="chi-siamo.html">Chi siamo</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="date.html">Date</a></li>
+              <li><a href="country.html">Il country</a></li>
+              <li><a href="index.html#faq">FAQ</a></li>
               <li><a href="preventivo.html">Richiedi preventivo</a></li>
             </ul>
           </div>

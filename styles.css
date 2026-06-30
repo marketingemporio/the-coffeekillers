@@ -1246,3 +1246,160 @@ img, video, iframe, svg {
   .brand-grid { grid-template-columns: 1fr; }
   .tag-strip > span { font-size: 9.5px; padding: 5px 10px; }
 }
+/* ============================================================
+   GALLERY — griglia foto + placeholder
+   ============================================================ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.gallery-item {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--ck-paper-2);
+}
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.gallery-item img:hover { transform: scale(1.04); }
+.gallery-placeholder {
+  border: 2px dashed var(--ck-line);
+  background: transparent;
+}
+.gallery-placeholder-inner {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+}
+.gallery-ph-icon { font-size: 28px; opacity: 0.35; }
+.gallery-ph-label {
+  font-family: var(--ck-mono);
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--ck-mute);
+}
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+}
+
+/* ============================================================
+   VIDEO GRID — griglia video YouTube
+   ============================================================ */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.video-item { width: 100%; }
+.video-placeholder {
+  aspect-ratio: 16/9;
+  border: 2px dashed var(--ck-line);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 720px) {
+  .video-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   CHI SIAMO — member cards
+   ============================================================ */
+.members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.member-card {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 28px;
+  background: var(--ck-paper);
+  border: 1px solid var(--ck-line);
+  border-radius: 16px;
+}
+.member-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--ck-ink);
+  color: var(--ck-on-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ck-display);
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+.member-name {
+  font-family: var(--ck-display);
+  font-size: 22px;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.member-role {
+  font-family: var(--ck-mono);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ck-rust);
+  margin-bottom: 12px;
+}
+.member-bio {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ck-mute);
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .member-card { grid-template-columns: 1fr; }
+  .member-avatar { width: 56px; height: 56px; font-size: 18px; }
+}
+
+/* ============================================================
+   CHI SIAMO — inspiration cards
+   ============================================================ */
+.inspirations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.inspiration-card {
+  padding: 24px;
+  background: var(--ck-paper-2);
+  border-radius: 14px;
+  border: 1px solid var(--ck-line);
+}
+.inspiration-name {
+  font-family: var(--ck-display);
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--ck-ink);
+}
+.inspiration-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ck-mute);
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .inspirations-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .inspirations-grid { grid-template-columns: 1fr; }
+}

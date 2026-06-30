@@ -93,9 +93,10 @@
 </head>
 <body style="font-size: 15px">
   <div id="root">
-    <!-- Contenuto statico di partenza: visibile solo a chi legge il codice sorgente
-         senza eseguire JavaScript (motori di ricerca, AI, alcuni crawler). Appena
-         React si avvia, questo blocco viene sostituito dalla versione interattiva. -->
+    <!-- Contenuto statico per crawler senza JS (Google Googlebot usa JS e vede React).
+         display:none nasconde il blocco agli utenti (niente flash); i crawler che
+         leggono solo HTML ignorano il CSS e trovano il testo comunque. -->
+    <div style="display:none">
     <header>
       <nav>
         <a href="index.html">Hot Joe &amp; The Coffeekillers</a>
@@ -173,6 +174,7 @@
     <footer>
       <p>Hot Joe &amp; The Coffeekillers — Band Country Live, Brescia, Nord Italia. <a href="https://www.instagram.com/thecoffeekillers/">Instagram</a> · <a href="https://m.facebook.com/hotjoeandthecoffeekillers">Facebook</a> · <a href="https://www.youtube.com/@thecoffeekillers">YouTube</a></p>
     </footer>
+    </div>
   </div>
 
   <script>
