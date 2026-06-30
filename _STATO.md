@@ -2,8 +2,36 @@
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
 > **Ultimo aggiornamento:** 2026-06-30
-> **Stato in una riga:** sito **ONLINE** su https://thecoffeekillers.com (statico, nessun build). Lavoro **SEO fase 2 pubblicato il 2026-06-30** (contenuto per i crawler + pagina Date dedicata + posizionamento target).
+> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com). Branch **`nuove-pagine-seo`** in attesa di merge: 3 nuove pagine (gallery, chi siamo, country) + fix flash + fix date.html scura + date passate/future separate. Non ancora in produzione.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+## 🔀 Branch in corso — `nuove-pagine-seo` (NON ancora su main/produzione)
+
+Commit: `e1d401d` — pushato su GitHub il 2026-06-30.
+
+### Fix su pagine esistenti
+- **Flash blocco statico** (`index.html` + `date.html`): il blocco HTML per i crawler è ora avvolto in `<div style="display:none">` → gli utenti non vedono più il testo grezzo per un microsecondo prima che React parta. I crawler senza JS lo leggono comunque (ignorano il CSS).
+- **`date.html` non più beige**: palette cambiata da `saloon` a `midnight` → sfondo scuro, testo leggibile.
+- **Date passate/future separate** (`UpcomingShows` in `components.jsx`): in `date.html` le date future compaiono in cima normali; le passate compaiono sotto in una sezione "Date passate" a 45% opacity, con divisore. **Automatico**: ogni giorno che passa le date scadute si spostano sotto da sole.
+
+### Nuove pagine create
+| File | Contenuto |
+|---|---|
+| `gallery.html` + `app-gallery.jsx` | Griglia foto (4 reali + 8 placeholder pronti) + sezione video YouTube |
+| `chi-siamo.html` + `app-chi-siamo.jsx` | Storia band, ispirazioni artistiche (Zach Top, ZBB, Luke Combs, Kruise Brothers, Stapleton, Paisley), schede 5 membri |
+| `country.html` + `app-country.jsx` | Guida al country: origini, suono, evoluzione, Italia, perché funziona agli eventi |
+
+### Da fare prima del merge su main
+- [ ] **Aggiungere le foto** nella gallery: aprire `app-gallery.jsx`, aggiungere i file nell'array `PHOTOS` in testa (es. `{ src: "images/NOME.jpg", alt: "descrizione" }`)
+- [ ] **Eventuali video YouTube aggiuntivi**: stesso file, array `VIDEOS`, aggiungere `{ id: "ID_YT", title: "Titolo" }`
+- [ ] **Rivedere i testi** di chi-siamo e country se vuoi toccare qualcosa
+- [ ] **Merge su main** → va live su Netlify
+
+### Nota tecnica
+- Nav e footer aggiornati con i link alle nuove pagine
+- Sitemap aggiornata (6 pagine indicizzate)
+- CSS nuovi in fondo a `styles.css`: `.gallery-grid`, `.member-card`, `.inspiration-card`, `.video-grid`
+- Server locale: `python3 -m http.server 8910` dalla cartella del progetto
 
 ## ⚠️ Deploy automatico = produzione immediata
 - Branch **`main`** → **Netlify** (publish `.`, nessun build): **ogni `git push` su `main` pubblica online.**
