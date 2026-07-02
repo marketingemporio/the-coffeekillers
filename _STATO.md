@@ -1,9 +1,60 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-07-02
-> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com). Branch **`nuove-pagine-seo`** in attesa di merge: 3 nuove pagine (gallery, chi siamo, country) + **pagina FAQ dedicata** + foto reali (membri, artisti, Nashville) + country rilavorata con angolo SEO. Non ancora in produzione.
+> **Ultimo aggiornamento:** 2026-07-03
+> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com). Branch **`restyling-2026-07`** (che include `nuove-pagine-seo`) in attesa di revisione di Michele: **restyling completo di tutto il sito** — design system esteso, tutte le pagine riprogettate, foto Nashville sostituita, React in produzione. Non ancora live.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+## 🆕 RESTYLING COMPLETO 2026-07-03 (branch `restyling-2026-07`) — DA RIVEDERE
+Riprogettazione grafica di tutto il sito, fatta in autonomia su richiesta di Michele
+("dare una spinta a design, movimenti, colori; pagine nuove povere da rendere fighe").
+Identità confermata (palette Saloon + font della home), tutto il resto elevato.
+
+### Cosa c'è di nuovo
+- **Design system esteso** (in fondo a `styles.css`, sezione "RESTYLING 2026-07"):
+  sistema di reveal direzionali (`.rv`, `.stagger`), Ken Burns sui hero, ornamenti western
+  (stelle + righe), hero standard per le pagine interne (`PageHero`), contatori animati
+  (`CountUp`), focus ring e `prefers-reduced-motion` per l'accessibilità.
+- **Nav**: link attivo evidenziato, ombra allo scroll, menu mobile con voci sfalsate.
+- **Footer**: riga CTA "Il country alla tua serata?" + icona YouTube.
+- **Chi siamo**: hero con foto di gruppo + statistiche animate; storia a timeline su fondo
+  scuro con pull-quote; ispirazioni con tag genere; **schede membri editoriali alternate**
+  con **cambio foto al passaggio del mouse** (foto seria → foto scherzosa).
+- **Il country**: hero fotografico su Broadway coi neon + indice capitoli; 5 capitoli
+  numerati (01–05) alternando chiaro/scuro; griglia dei 6 strumenti del suono country;
+  timeline delle ere; barra di lettura in alto. Testi SEO invariati (già approvati).
+- **Gallery**: masonry con **14 foto reali** (spariti i placeholder "in arrivo"),
+  didascalie al hover, **lightbox** con frecce e tastiera; sezione video su fondo scuro.
+- **Date**: hero dedicato, card "**Prossima data**" con conto alla rovescia automatico,
+  date raggruppate per mese in stile **biglietto** (fori + strappo), archivio date passate.
+- **FAQ**: domande numerate, contatti rapidi (email/WhatsApp) nella colonna sinistra.
+- **Preventivo**: hero + percorso "come funziona" in 3 passi + rassicurazioni, poi il form.
+- **Home**: hero cinematic con Ken Burns e ingressi sfalsati, scroll cue, reveal
+  direzionali su tutte le sezioni, date in stile biglietto.
+- **Performance/SEO**: React passato alle **build di produzione** (prima erano quelle di
+  sviluppo: più pesanti e lente), preload dell'immagine hero in home, blocco statico SEO
+  aggiunto a `preventivo.html` (mancava), nav statiche allineate su tutte le pagine,
+  sitemap con lastmod 2026-07-03.
+
+### Immagini
+- **`images/nashville-broadway.jpg`** (NUOVA): Lower Broadway di notte coi neon dei
+  honky-tonk — sostituisce la vecchia `nashville-skyline.jpg` (grattacieli anonimi,
+  richiesta di Michele: "foto che c'entri con la musica"). Fonte: Wikimedia Commons,
+  autore **dconvertini**, licenza **CC BY-SA 2.0**
+  (https://commons.wikimedia.org/wiki/File:Broadway_(Nashville)_lights.jpg).
+  ⚠️ Stessa situazione delle foto artisti: attribuzione da valutare prima del live.
+  La vecchia skyline è ancora in `images/` (non usata, non eliminata).
+- **`images/strumenti-fila.jpg`** (NUOVA): copia raddrizzata di `Strumenti.jpg`
+  (l'originale è salvato ruotato di 90° e nel browser si vedeva storto; non toccato).
+
+### Verifica fatta
+Screenshot Playwright di tutte e 7 le pagine, desktop (1440px) e mobile (390px):
+zero errori JS (resta solo il beacon Cloudflare bloccato su localhost, normale),
+zero overflow orizzontale, tutti i reveal funzionanti.
+
+### Per rivedere il lavoro
+`git checkout restyling-2026-07` + `python3 -m http.server 8910` → http://localhost:8910
+Il merge su `main` (= produzione) porta live **anche** il lavoro di `nuove-pagine-seo`.
 
 ## 🆕 Lavoro 2026-07-02 (branch `nuove-pagine-seo`, NON committato) — da rivedere con Michele
 Rifiniture su Chi siamo, nuova pagina FAQ e rework Country (revisione visiva fatta con screenshot Playwright, nessun errore JS):

@@ -180,11 +180,18 @@ function IGIcon() {return (
 function FBIcon() {return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.6 1.6-1.6h1.6V4.2C16.4 4.1 15.4 4 14.3 4c-2.3 0-3.8 1.4-3.8 3.9v2.9H8v3.2h2.5V22h3z" /></svg>);
 }
+function YTIcon() {return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+    <rect x="2.5" y="6" width="19" height="12" rx="3.5" /><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none" />
+  </svg>);
+}
 
 // fade-in on scroll observer ----------------------------------
+// Osserva .fade-in (legacy), .rv (varianti direzionali) e .stagger
+// (i figli entrano sfalsati via CSS). Ogni elemento entra una volta sola.
 function useReveal() {
   React.useEffect(() => {
-    const els = document.querySelectorAll(".fade-in");
+    const els = document.querySelectorAll(".fade-in, .rv, .stagger");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {if (e.isIntersecting) {e.target.classList.add("in");io.unobserve(e.target);}});
     }, { threshold: 0.12 });
@@ -193,41 +200,168 @@ function useReveal() {
   }, []);
 }
 
+// barra di lettura (usata dalla pagina "Il country")
+function useReadbar() {
+  React.useEffect(() => {
+    const bar = document.createElement("div");
+    bar.className = "readbar";
+    document.body.appendChild(bar);
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => { window.removeEventListener("scroll", onScroll); bar.remove(); };
+  }, []);
+}
+
+// hook comune alle pagine: applica palette + typeset alle CSS var di :root
+function usePageTheme(t) {
+  React.useEffect(() => {
+    const pal = PALETTES[t.palette] || PALETTES.saloon;
+    const typ = TYPESETS[t.type] || TYPESETS.editorial;
+    const root = document.documentElement;
+    Object.entries({ ...pal, ...typ }).forEach(([k, v]) => {
+      if (k.startsWith("--")) root.style.setProperty(k, v);
+    });
+    root.setAttribute("data-palette", t.palette);
+  }, [t.palette, t.type]);
+}
+
+// contatore animato per le statistiche (parte quando entra in viewport)
+function CountUp({ to, prefix = "", suffix = "", duration = 1400 }) {
+  const ref = React.useRef(null);
+  const [val, setVal] = React.useState(0);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVal(to);
+      return;
+    }
+    let raf;
+    const io = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      const t0 = performance.now();
+      const tick = (now) => {
+        const p = Math.min(1, (now - t0) / duration);
+        setVal(Math.round(to * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => { io.disconnect(); if (raf) cancelAnimationFrame(raf); };
+  }, [to, duration]);
+  return <span ref={ref}>{prefix}{val}{suffix}</span>;
+}
+
+// riga eyebrow doppia (sx — titoletto / dx nota), usata in testa alle sezioni
+function SectionHead({ left, right, dark = false }) {
+  const col = dark ? { color: "rgba(243,232,210,0.7)" } : undefined;
+  return (
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 36, flexWrap: "wrap", gap: 12 }}>
+      <span className="eyebrow" style={{ fontSize: "15px", ...col }}>— {left}</span>
+      {right && <span className="eyebrow" style={col}>{right}</span>}
+    </div>
+  );
+}
+
+// apertura standard delle pagine interne.
+// photo: {src, alt, badge} opzionale (colonna destra) · bg: foto a tutto sfondo (variante scura)
+function PageHero({ eyebrow, title, lead, photo, bg, ornaments, children }) {
+  const cls = "page-hero" + (bg ? " page-hero--photo" : "");
+  return (
+    <section className={cls}>
+      {bg &&
+        <div className="ph-bg kb">
+          <img src={bg.src} alt={bg.alt || ""} fetchpriority="high" />
+        </div>
+      }
+      <div className="wrap">
+        <div className={photo ? "ph-grid" : undefined}>
+          <div>
+            <div className="orna-row rise">
+              <span className="star"><Star size={11} /></span>
+              <span>{eyebrow}</span>
+              <span className="line"></span>
+              {ornaments && <span>{ornaments}</span>}
+            </div>
+            <h1 className="ph-title rise" style={{ animationDelay: ".12s" }}>{title}</h1>
+            {lead && <p className="ph-lead rise" style={{ animationDelay: ".24s" }}>{lead}</p>}
+          </div>
+          {photo &&
+            <div className="ph-media rise" style={{ animationDelay: ".2s", aspectRatio: photo.ratio || "4/3" }}>
+              {photo.badge && <span className="badge">{photo.badge}</span>}
+              <img src={photo.src} alt={photo.alt} />
+            </div>
+          }
+        </div>
+        {children}
+      </div>
+    </section>
+  );
+}
+
 // === Sections ================================================
+
+const NAV_LINKS = [
+  { href: "chi-siamo.html", label: "Chi siamo" },
+  { href: "gallery.html", label: "Gallery" },
+  { href: "date.html", label: "Date" },
+  { href: "country.html", label: "Il country" },
+  { href: "faq.html", label: "FAQ" }];
+
 
 function Nav({ onTweaks }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+  const current = (window.location.pathname.split("/").pop() || "index.html");
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <nav className="nav">
+    <nav className={"nav" + (scrolled ? " scrolled" : "")}>
       <a className="brand" href="index.html" aria-label="Hot Joe & The Coffeekillers — home">
         <img className="logo logo-dark" src="images/HJCK_Logo2.svg" alt="Hot Joe & The Coffeekillers" style={{ width: "200px", height: "auto", objectFit: "contain" }} />
         <img className="logo logo-light" src="images/HJCK_Logo2.svg" alt="Hot Joe & The Coffeekillers" style={{ width: "200px", height: "auto", objectFit: "contain", filter: "invert(1)" }} />
       </a>
-      
-      <button className={"mobile-menu-btn" + (menuOpen ? " open" : "")} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+
+      <button className={"mobile-menu-btn" + (menuOpen ? " open" : "")} onClick={() => setMenuOpen(!menuOpen)} aria-label="Apri o chiudi il menu" aria-expanded={menuOpen}>
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>
       </button>
 
       <ul className={"nav-links" + (menuOpen ? " open" : "")} style={{ fontSize: "18px", fontWeight: "500" }}>
-        <li><a className="nav-link" href="chi-siamo.html" onClick={() => setMenuOpen(false)}>Chi siamo</a></li>
-        <li><a className="nav-link" href="gallery.html" onClick={() => setMenuOpen(false)}>Gallery</a></li>
-        <li><a className="nav-link" href="date.html" onClick={() => setMenuOpen(false)}>Date</a></li>
-        <li><a className="nav-link" href="country.html" onClick={() => setMenuOpen(false)}>Il country</a></li>
-        <li><a className="nav-link" href="faq.html" onClick={() => setMenuOpen(false)}>FAQ</a></li>
+        {NAV_LINKS.map((l) =>
+        <li key={l.href}>
+            <a className={"nav-link" + (current === l.href ? " active" : "")}
+          href={l.href}
+          aria-current={current === l.href ? "page" : undefined}
+          onClick={() => setMenuOpen(false)}>{l.label}</a>
+          </li>
+        )}
         <li><a className="cta" href="preventivo.html" onClick={() => setMenuOpen(false)}>Una serata con noi?</a></li>
       </ul>
     </nav>);
 
 }
 
-function Marquee() {
-  const items = ["Country Live Band", "Brescia → Nashville", "Locali · Feste & Sagre · Matrimoni", "Country Live Band", "Brescia → Nashville", "Locali · Feste & Sagre · Matrimoni", "Country Live Band", "Brescia → Nashville"];
+function Marquee({ items }) {
+  const base = items || ["Country Live Band", "Brescia → Nashville", "Locali · Feste & Sagre · Festival", "Country Live Band", "Brescia → Nashville", "Locali · Feste & Sagre · Festival", "Country Live Band", "Brescia → Nashville"];
   return (
     <div className="marquee" aria-hidden="true">
       <div className="marquee-track" style={{ gap: "100px", padding: "14px 0px" }}>
-        {items.concat(items).map((t, i) =>
+        {base.concat(base).map((t, i) =>
         <React.Fragment key={i}>
             <span className="marquee-item it">{t}</span>
             <span className="marquee-dot"></span>
@@ -322,29 +456,30 @@ function HeroPoster() {
 function HeroCinematic() {
   return (
     <section className="hero" id="top" style={{ padding: 0 }}>
-      <div style={{ position: "relative", minHeight: "min(820px, 92vh)", overflow: "hidden", background: "#000" }}>
-        <img src="images/Palco.jpg" alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 42%", opacity: 1, filter: "contrast(1.05) saturate(1.05)" }} />
+      <div className="kb" style={{ position: "relative", minHeight: "min(820px, 92vh)", overflow: "hidden", background: "#000" }}>
+        <img src="images/Palco.jpg" alt="" fetchpriority="high" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 42%", opacity: 1, filter: "contrast(1.05) saturate(1.05)" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.6))" }}></div>
 
-        <div className="hero-cinematic-logo" style={{ position: "absolute", top: "15%", right: "3%", zIndex: 10 }}>
+        <div className="hero-cinematic-logo rise" style={{ position: "absolute", top: "15%", right: "3%", zIndex: 10 }}>
           <img src="images/HJCK_Logo2.svg" alt="Logo The Coffeekillers" style={{ width: "min(55vw, 750px)", opacity: 0.9, objectFit: "contain", filter: "invert(1)" }} />
         </div>
 
         <div className="wrap hero-cinematic-content" style={{ position: "relative", minHeight: "min(820px, 92vh)", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "var(--ck-on-dark)", padding: "clamp(200px,30vw,280px) clamp(20px,4vw,50px) clamp(48px,7vw,87px)" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
+          <div className="rise" style={{ display: "flex", justifyContent: "space-between", marginBottom: 20, animationDelay: ".1s" }}>
             <span className="eyebrow" style={{ color: "rgba(243,232,210,0.7)", fontSize: "15px" }}>Country Live Band — Nord Italia</span>
           </div>
-          <h1 className="hero-title hero-cinematic-title" style={{ maxWidth: "15ch", fontSize: "clamp(30px, 5.5vw, 70px)" }}>
+          <h1 className="hero-title hero-cinematic-title rise" style={{ maxWidth: "15ch", fontSize: "clamp(30px, 5.5vw, 70px)", animationDelay: ".2s" }}>
             Vivi l'energia <span className="it" style={{ color: "var(--ck-gold)" }}>travolgente</span> del Country live.
           </h1>
-          <p style={{ maxWidth: "50ch", marginTop: 24, opacity: .92, fontSize: "clamp(16px, 2vw, 20px)" }}>
+          <p className="rise" style={{ maxWidth: "50ch", marginTop: 24, opacity: .92, fontSize: "clamp(16px, 2vw, 20px)", animationDelay: ".32s" }}>
             Una band bresciana dall'anima internazionale, pronta a regalarti eventi country indimenticabili.
           </p>
-          <div style={{ display: "flex", gap: 14, marginTop: 28, flexWrap: "wrap" }}>
+          <div className="rise" style={{ display: "flex", gap: 14, marginTop: 28, flexWrap: "wrap", animationDelay: ".44s" }}>
             <a className="btn" href="#contact" style={{ background: "var(--ck-paper)", color: "var(--ck-ink)", borderColor: "var(--ck-paper)" }}>Sentiamoci! <span className="arrow"><Arrow /></span></a>
             <a className="btn btn-ghost" href="#lineup" style={{ borderColor: "rgba(243,232,210,0.4)", color: "var(--ck-on-dark)" }}>Scopri la band</a>
           </div>
         </div>
+        <div className="scroll-cue" aria-hidden="true"></div>
       </div>
     </section>);
 
@@ -359,8 +494,8 @@ function StyleSection() {
           <span className="eyebrow">STILE · REPERTORIO · AMBIENTE</span>
         </div>
 
-        <div className="split fade-in">
-          <div>
+        <div className="split">
+          <div className="rv">
             <h2 className="lead section-title-50">
               Cocktail e <span className="it">ballads</span>, oppure ballare sui tavoli con le <i style={{ color: "var(--ck-rust)" }}>party songs</i> più ritmate.
             </h2>
@@ -371,7 +506,7 @@ function StyleSection() {
               <span>Blake Shelton</span><span>Chris Stapleton</span><span>Brad Paisley</span><span>Carrie Underwood</span><span>The Chicks</span><span>+ inediti</span>
             </div>
           </div>
-          <div>
+          <div className="rv rv--right">
             <div className="media wide">
               <img src="images/Palco 3.jpeg" alt="Live show" />
             </div>
@@ -385,11 +520,11 @@ function StyleSection() {
           <span className="eyebrow">Sound · Ritmo · Armonie</span>
         </div>
 
-        <div className="split fade-in" style={{ gridTemplateColumns: "1fr 1.3fr", alignItems: "center" }}>
-          <div className="media tall" style={{ aspectRatio: "3/4", maxWidth: "340px", margin: "0 auto" }}>
+        <div className="split" style={{ gridTemplateColumns: "1fr 1.3fr", alignItems: "center" }}>
+          <div className="media tall rv rv--left" style={{ aspectRatio: "3/4", maxWidth: "340px", margin: "0 auto" }}>
             <img src="images/Michi e Miglio.jpeg" alt="Stile country" />
           </div>
-          <div>
+          <div className="rv">
             <h2 className="lead section-title-50">
               Un mix irresistibile di <span className="it" style={{ color: "rgb(200, 151, 59)" }}>energia</span> e autenticità.
             </h2>
@@ -409,8 +544,8 @@ function StyleSection() {
           <span className="eyebrow">Locali · Feste &amp; Sagre · Festival · Eventi privati · Matrimoni</span>
         </div>
 
-        <div className="split fade-in">
-          <div>
+        <div className="split">
+          <div className="rv">
             <h2 className="lead section-title-50">
               Dove c'è <span className="it">birra</span>, lì c'è anche il country.
             </h2>
@@ -422,7 +557,7 @@ function StyleSection() {
               <a className="btn btn-ghost" href="preventivo.html">Richiedi un preventivo</a>
             </div>
           </div>
-          <div className="media wide">
+          <div className="media wide rv rv--right">
             <img src="images/Tutti in piedi.jpeg" alt="Pubblico e live" />
           </div>
         </div>
@@ -440,8 +575,8 @@ function Socials() {
           <span className="eyebrow">YOUTUBE · INSTAGRAM</span>
         </div>
 
-        <div className="split fade-in">
-          <div>
+        <div className="split">
+          <div className="rv">
             <h2 className="lead section-title-50">
               Un assaggio del nostro <span className="it" style={{ color: "var(--ck-rust)" }}>live.</span>
             </h2>
@@ -468,7 +603,7 @@ function Socials() {
             </div>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div className="rv rv--right" style={{ display: "flex", justifyContent: "center" }}>
             <div className="yt-wrapper">
               <iframe
                 src="https://www.youtube.com/embed/yKFP1AAzxFM?rel=0&modestbranding=1"
@@ -498,7 +633,7 @@ function Brands() {
           <span className="eyebrow" style={{ color: "rgb(243, 232, 210)" }}>Selected clients</span>
         </div>
         <h2 className="section-title-50" style={{ color: "rgb(243, 232, 210)" }}>Abbiamo fatto <span className="it" style={{ color: "rgb(200, 151, 59)" }}>ballare</span>.</h2>
-        <div className="brand-grid">
+        <div className="brand-grid stagger">
           {BRANDS.map((b, i) =>
           <div className="brand-cell" key={b.name}>
               <img src={b.img} alt={b.name} style={{ maxWidth: "80%", maxHeight: "80px", width: "auto", height: "auto", objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }} />
@@ -524,9 +659,9 @@ function Lineup() {
             Ci conosci già, ma ti ricordiamo che faccia abbiamo. Tecnica, ironia e troppa caffeina.
           </p>
         </div>
-        <div className="lineup-grid">
+        <div className="lineup-grid stagger">
           {MEMBERS.map((m, i) =>
-          <article className="member fade-in" key={m.name}>
+          <article className="member" key={m.name}>
               <div className="photo">
                 <img src={m.img} alt={m.name} loading="lazy" />
               </div>
@@ -542,67 +677,117 @@ function Lineup() {
 
 }
 
-function ShowRow({ s }) {
+function Ticket({ s, past = false }) {
   return (
-    <div className="date-row">
-      <div className="date-cell">
-        <span className="dr-day">{s.day}</span>
-        <span className="dr-month">{s.month} {s.year}</span>
+    <div className={"ticket" + (past ? " ticket--past" : "")}>
+      <div className="t-date">
+        <span className="t-day">{s.day}</span>
+        <span className="t-month">{s.month} {s.year}</span>
       </div>
-      <div className="date-name">{s.name}</div>
-      <div className="date-prov">{s.prov}</div>
+      <div className="t-name">{s.name}</div>
+      <div className="t-prov">{s.prov}</div>
     </div>
   );
 }
 
-function UpcomingShows({ full = false }) {
+const MONTH_FULL = { Gen: "Gennaio", Feb: "Febbraio", Mar: "Marzo", Apr: "Aprile", Mag: "Maggio", Giu: "Giugno", Lug: "Luglio", Ago: "Agosto", Set: "Settembre", Ott: "Ottobre", Nov: "Novembre", Dic: "Dicembre" };
+
+// conto alla rovescia alla prossima data (si aggiorna da solo)
+function NextShowCard({ s }) {
+  const target = new Date(s.iso + "T21:00:00");
+  const calc = () => Math.max(0, target - new Date());
+  const [ms, setMs] = React.useState(calc);
+  React.useEffect(() => {
+    const id = setInterval(() => setMs(calc()), 30000);
+    return () => clearInterval(id);
+  }, [s.iso]);
+  const days = Math.floor(ms / 86400000);
+  const hours = Math.floor(ms % 86400000 / 3600000);
+  const mins = Math.floor(ms % 3600000 / 60000);
+  return (
+    <div className="next-card rv">
+      <div>
+        <span className="nx-tag">★ Prossima data</span>
+        <h2 className="nx-name">{s.name}</h2>
+        <div className="nx-meta">{s.day} {MONTH_FULL[s.month] || s.month} {s.year} · {s.prov}</div>
+      </div>
+      <div className="cd-row" aria-label="Conto alla rovescia alla prossima data">
+        <div className="cd-cell"><div className="cd-num">{days}</div><div className="cd-lbl">{days === 1 ? "giorno" : "giorni"}</div></div>
+        <div className="cd-cell"><div className="cd-num">{hours}</div><div className="cd-lbl">{hours === 1 ? "ora" : "ore"}</div></div>
+        <div className="cd-cell"><div className="cd-num">{mins}</div><div className="cd-lbl">{mins === 1 ? "minuto" : "minuti"}</div></div>
+      </div>
+    </div>
+  );
+}
+
+function UpcomingShows({ full = false, bare = false }) {
   const today = new Date().toISOString().slice(0, 10);
   const upcoming = SHOWS.filter((s) => s.iso >= today);
   const past = SHOWS.filter((s) => s.iso < today).reverse();
   const list = full ? upcoming : upcoming.slice(0, 4);
 
-  return (
-    <section className="section" id="live" style={{ paddingTop: 0 }}>
-      <div className="wrap">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 12, marginBottom: 24 }}>
-          <span className="eyebrow" style={{ fontSize: "15px" }}>— Calendario</span>
-          <span className="eyebrow">Live 2026</span>
-        </div>
-        <div className="shows-head fade-in">
-          {full ?
-            <h1>Tutte le date del <span className="it">2026.</span></h1> :
-            <h2>Dove ci trovi nel <span className="it">2026.</span></h2>
-          }
-          <p style={{ maxWidth: "34ch", margin: 0, color: "var(--ck-mute)" }}>
-            {full ? "Le prossime serate e il calendario delle date già suonate." : "Le prossime serate confermate. Scorri la finestra e vieni a trovarci."}
-          </p>
-        </div>
+  // raggruppa per mese (solo vista completa)
+  const groups = [];
+  list.forEach((s) => {
+    const key = s.month + " " + s.year;
+    const g = groups[groups.length - 1];
+    if (g && g.key === key) g.shows.push(s);
+    else groups.push({ key, month: MONTH_FULL[s.month] || s.month, year: s.year, shows: [s] });
+  });
 
-        <div className="dates-window fade-in">
-          <div className="dates-scroll">
+  return (
+    <section className="section" id="live" style={full ? { background: "var(--ck-paper-2)" } : { "--ck-hole": "var(--ck-paper)" }}>
+      <div className="wrap">
+        {!bare &&
+          <>
+            <SectionHead left="Calendario" right="Live 2026" />
+            <div className="shows-head fade-in">
+              {full ?
+                <h1>Tutte le date del <span className="it">2026.</span></h1> :
+                <h2>Dove ci trovi nel <span className="it">2026.</span></h2>
+              }
+              <p style={{ maxWidth: "34ch", margin: 0, color: "var(--ck-mute)" }}>
+                {full ? "Le prossime serate confermate e l'archivio delle date già suonate." : "Le prossime quattro serate confermate. Vieni a trovarci."}
+              </p>
+            </div>
+          </>
+        }
+
+        {full && upcoming.length > 0 && <NextShowCard s={upcoming[0]} />}
+
+        {full ?
+          groups.map((g) =>
+            <div key={g.key}>
+              <div className="month-head">
+                <span className="m-name">{g.month} {g.year}</span>
+                <span className="m-line"></span>
+                <span className="m-count">{g.shows.length} {g.shows.length === 1 ? "data" : "date"}</span>
+              </div>
+              <div className="stagger">
+                {g.shows.map((s, i) => <Ticket key={s.iso + i} s={s} />)}
+              </div>
+            </div>
+          ) :
+          <div className="stagger" style={{ marginTop: 8 }}>
             {list.length > 0
-              ? list.map((s, i) => <ShowRow key={i} s={s} />)
+              ? list.map((s, i) => <Ticket key={s.iso + i} s={s} />)
               : <p style={{ padding: "24px 0", color: "var(--ck-mute)", fontFamily: "var(--ck-mono)" }}>Nessuna data in programma al momento — torna presto!</p>
             }
           </div>
-        </div>
+        }
 
         {full && past.length > 0 && (
-          <div style={{ marginTop: 48 }}>
+          <div style={{ marginTop: 56 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
-              <span className="eyebrow" style={{ fontSize: "13px", opacity: 0.5 }}>— Date passate</span>
+              <span className="eyebrow" style={{ fontSize: "13px", opacity: 0.6 }}>— Già suonate</span>
               <div style={{ flex: 1, height: 1, background: "var(--ck-line)" }} />
             </div>
-            <div className="dates-window" style={{ opacity: 0.45 }}>
-              <div className="dates-scroll">
-                {past.map((s, i) => <ShowRow key={i} s={s} />)}
-              </div>
-            </div>
+            {past.map((s, i) => <Ticket key={s.iso + i} s={s} past />)}
           </div>
         )}
 
         {!full &&
-          <div style={{ marginTop: 28 }}>
+          <div style={{ marginTop: 32 }}>
             <a className="btn" href="date.html">Vedi tutte le date <span className="arrow"><Arrow /></span></a>
           </div>
         }
@@ -707,10 +892,10 @@ function Contact() {
       <div className="wrap">
         <div className="contact-head">
           <div>
-            <span className="eyebrow" style={{ fontSize: "15px" }}>— Richiedi un preventivo</span>
-            <h2 className="section-title-50">Una serata con <span className="it">noi?</span></h2>
+            <span className="eyebrow" style={{ fontSize: "15px" }}>— Il modulo</span>
+            <h2 className="section-title-50">Raccontaci la tua <span className="it">serata.</span></h2>
             <p className="contact-lead">
-              Raccontaci il tuo evento. Ti rispondiamo con proposta, scaletta tipo e cachet personalizzato.
+              Due minuti, niente impegno: ti rispondiamo con proposta, scaletta tipo e cachet personalizzato.
             </p>
           </div>
           <ul className="contact-meta">
@@ -874,7 +1059,7 @@ function ContactCta() {
     <section className="contact-cta section" id="contact">
       <div className="wrap">
         <div className="cta-grid">
-          <div>
+          <div className="rv">
             <span className="eyebrow" style={{ fontSize: "15px" }}>— Richiedi un preventivo</span>
             <h2 className="section-title-50">Una serata<br/>con <span className="it">noi?</span></h2>
             <p className="cta-lead">
@@ -884,7 +1069,7 @@ function ContactCta() {
               <a className="btn" href="preventivo.html">Richiedi un preventivo <span className="arrow"><Arrow/></span></a>
             </div>
           </div>
-          <ul className="cta-meta">
+          <ul className="cta-meta rv rv--right">
             <li><span className="ck">Cachet</span><b>1.000 € — 2.500 € circa</b></li>
             <li><span className="ck">Email</span><b><a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a></b></li>
             <li><span className="ck">WhatsApp</span><b><a href="tel:+393937011409">+39 393 7011409</a></b></li>
@@ -898,13 +1083,18 @@ function Footer() {
   return (
     <footer style={{ padding: "56px 0px 64px" }}>
       <div className="wrap">
+        <div className="footer-cta">
+          <p className="fc-title">Il country alla tua serata?<br />Parliamone.</p>
+          <a className="btn" href="preventivo.html">Richiedi un preventivo <span className="arrow"><Arrow /></span></a>
+        </div>
         <div className="footer-grid">
           <div>
             <h5>Hot Joe & The CoffeeKillers</h5>
             <div className="big">Country live<br /><span className="it" style={{ color: "var(--ck-gold)" }}>since 2018.</span></div>
             <div className="sm-row">
-              <a className="ico" href="https://www.instagram.com/thecoffeekillers/" aria-label="Instagram"><IGIcon /></a>
-              <a className="ico" href="https://m.facebook.com/hotjoeandthecoffeekillers" aria-label="Facebook"><FBIcon /></a>
+              <a className="ico" href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noopener" aria-label="Instagram"><IGIcon /></a>
+              <a className="ico" href="https://m.facebook.com/hotjoeandthecoffeekillers" target="_blank" rel="noopener" aria-label="Facebook"><FBIcon /></a>
+              <a className="ico" href="https://www.youtube.com/@thecoffeekillers" target="_blank" rel="noopener" aria-label="YouTube"><YTIcon /></a>
             </div>
           </div>
           <div>
@@ -937,8 +1127,11 @@ function Footer() {
 
 // === expose to window =========================================
 Object.assign(window, {
-  PALETTES, TYPESETS,
+  PALETTES, TYPESETS, SHOWS, FAQS, MEMBERS, MONTH_FULL,
   Nav, Marquee, HeroEditorial, HeroPoster, HeroCinematic,
-  StyleSection, Socials, Brands, Lineup, UpcomingShows, FAQ, Contact, ContactCta, Newsletter, Footer,
-  useReveal, Star, Arrow, ArrowUR, IGIcon, FBIcon
+  StyleSection, Socials, Brands, Lineup, UpcomingShows, Ticket, NextShowCard,
+  FAQ, Contact, ContactCta, Newsletter, Footer,
+  PageHero, SectionHead, CountUp,
+  useReveal, useReadbar, usePageTheme,
+  Star, Arrow, ArrowUR, IGIcon, FBIcon, YTIcon
 });
