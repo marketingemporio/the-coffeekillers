@@ -215,7 +215,7 @@ function Nav({ onTweaks }) {
         <li><a className="nav-link" href="gallery.html" onClick={() => setMenuOpen(false)}>Gallery</a></li>
         <li><a className="nav-link" href="date.html" onClick={() => setMenuOpen(false)}>Date</a></li>
         <li><a className="nav-link" href="country.html" onClick={() => setMenuOpen(false)}>Il country</a></li>
-        <li><a className="nav-link" href="index.html#faq" onClick={() => setMenuOpen(false)}>FAQ</a></li>
+        <li><a className="nav-link" href="faq.html" onClick={() => setMenuOpen(false)}>FAQ</a></li>
         <li><a className="cta" href="preventivo.html" onClick={() => setMenuOpen(false)}>Una serata con noi?</a></li>
       </ul>
     </nav>);
@@ -418,7 +418,7 @@ function StyleSection() {
               Siamo adatti a diverse situazioni: <b>locali, feste e sagre di paese, festival, party ed eventi privati, matrimoni</b> e qualunque altra occasione dove lo spirito del country (e la birra) non manchino. Per rendere la serata indimenticabile.
             </p>
             <div style={{ display: "flex", gap: 12, marginTop: 28, flexWrap: "wrap" }}>
-              <a className="btn" href="#faq">Mi date altre info? <span className="arrow"><Arrow /></span></a>
+              <a className="btn" href="faq.html">Mi date altre info? <span className="arrow"><Arrow /></span></a>
               <a className="btn btn-ghost" href="preventivo.html">Richiedi un preventivo</a>
             </div>
           </div>
@@ -922,7 +922,7 @@ function Footer() {
               <li><a href="gallery.html">Gallery</a></li>
               <li><a href="date.html">Date</a></li>
               <li><a href="country.html">Il country</a></li>
-              <li><a href="index.html#faq">FAQ</a></li>
+              <li><a href="faq.html">FAQ</a></li>
               <li><a href="preventivo.html">Richiedi preventivo</a></li>
             </ul>
           </div>

@@ -6,26 +6,31 @@ const MEMBERS = [
   {
     name: "Michele Frosio",
     role: "Guitars & Lead Voice",
+    img: "images/Michi 1.jpeg",
     bio: "La voce e la chitarra principale della band. Porta sul palco l'anima del country americano con un fraseggio vocale che richiama i grandi cantautori di Nashville, senza mai dimenticare le radici bresciane.",
   },
   {
     name: "Davide Miglietti",
     role: "Drums & Vocals",
+    img: "images/Miglio 1.jpeg",
     bio: "Il cuore ritmico dei Coffeekillers. Le sue bacchette tengono unito tutto lo show, con groove solidi che sanno essere tanto delicati nelle ballads quanto esplosivi nelle party songs.",
   },
   {
     name: "Lorenzo Marini",
     role: "Keys & Harmonica",
+    img: "images/Larry 1.jpeg",
     bio: "Tastiere e armonica: il tocco che allarga il suono della band verso le grandi produzioni di Nashville. La sua armonica è il dettaglio che trasforma una serata in un'esperienza country autentica.",
   },
   {
     name: "Stefano Martinelli",
     role: "Guitars & Lap Steel",
+    img: "images/Ste 1.jpeg",
     bio: "La chitarra solista e la lap steel che firmano il sound distintivo dei Coffeekillers. Il suo stile spazia dal picking country al twang elettrico, con influenze che vanno da Brad Paisley a Chris Stapleton.",
   },
   {
     name: "Riccardo Loda",
     role: "Bass & DoubleBass",
+    img: "images/Richi 1.jpeg",
     bio: "Il basso e il contrabbasso che danno profondità e calore a ogni serata. Riccardo porta la tradizione del country acustico e del rockabilly direttamente sul palco, con un groove che muove i piedi.",
   },
 ];
@@ -33,26 +38,32 @@ const MEMBERS = [
 const INSPIRATIONS = [
   {
     name: "Zach Top",
+    img: "images/zach-top.png",
     desc: "Il country neo-tradizionale più autentico degli ultimi anni. Twang, steel guitar, canzoni vere: esattamente l'estetica che i Coffeekillers portano dal vivo.",
   },
   {
     name: "Zac Brown Band",
+    img: "images/zac-brown-band.jpg",
     desc: "Il riferimento per eccellenza di una band country da show: strumentisti straordinari, arrangiamenti ricchi, la capacità di suonare tanto in un piccolo locale quanto in un festival da 50.000 persone.",
   },
   {
     name: "Luke Combs",
+    img: "images/luke-combs.jpg",
     desc: "Melodie immediate, testi che parlano di vita vera, un'energia live che trasforma qualsiasi platea in un'unica grande famiglia. Il modello per costruire un rapporto autentico con il pubblico.",
   },
   {
-    name: "Kruise Brothers",
-    desc: "Il country europeo che dimostra come il genere possa attecchire fuori dagli USA senza perdere autenticità. Un'ispirazione diretta per la nostra strada in Italia.",
+    name: "Kruse Brothers",
+    img: "images/kruse-brothers.jpg",
+    desc: "Il duo dei fratelli Kruse dall'Arizona: due voci, armonie strette e un country che tiene insieme honky-tonk classico e suono moderno. La prova che bastano poche cose fatte bene per riempire un palco.",
   },
   {
     name: "Chris Stapleton",
+    img: "images/chris-stapleton.jpg",
     desc: "La voce più potente del country moderno. Il suo approccio — soul, blues, country fusi insieme — è il punto di riferimento per chi vuole andare oltre la superficie del genere.",
   },
   {
     name: "Brad Paisley",
+    img: "images/brad-paisley.jpg",
     desc: "Il chitarrista country per eccellenza: virtuosismo che non toglie mai nulla alla canzone. Il suo stile di picking è nel DNA delle chitarre dei Coffeekillers.",
   },
 ];
@@ -60,8 +71,8 @@ const INSPIRATIONS = [
 function MemberCard({ m }) {
   return (
     <div className="member-card">
-      <div className="member-avatar">
-        {m.name.split(" ").map(w => w[0]).join("")}
+      <div className="member-photo">
+        <img src={m.img} alt={m.name} loading="lazy" />
       </div>
       <div className="member-info">
         <div className="member-name">{m.name}</div>
@@ -75,8 +86,13 @@ function MemberCard({ m }) {
 function InspirationCard({ ins }) {
   return (
     <div className="inspiration-card">
-      <div className="inspiration-name">{ins.name}</div>
-      <p className="inspiration-desc">{ins.desc}</p>
+      <div className="inspiration-photo">
+        <img src={ins.img} alt={ins.name} loading="lazy" />
+      </div>
+      <div className="inspiration-body">
+        <div className="inspiration-name">{ins.name}</div>
+        <p className="inspiration-desc">{ins.desc}</p>
+      </div>
     </div>
   );
 }
@@ -134,6 +150,10 @@ function ChiSiamoApp() {
               </p>
             </div>
           </div>
+          <figure className="story-photo fade-in">
+            <img src="images/nashville-skyline.jpg" alt="Nashville, Tennessee — la capitale del country" loading="lazy" />
+            <figcaption>Nashville, Tennessee — la capitale mondiale del country. Il nostro punto di riferimento, a 8.000 km da Brescia.</figcaption>
+          </figure>
         </div>
       </section>
 

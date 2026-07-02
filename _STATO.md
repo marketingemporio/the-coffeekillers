@@ -1,13 +1,22 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-06-30
-> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com). Branch **`nuove-pagine-seo`** in attesa di merge: 3 nuove pagine (gallery, chi siamo, country) + fix flash + fix date.html scura + date passate/future separate. Non ancora in produzione.
+> **Ultimo aggiornamento:** 2026-07-02
+> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com). Branch **`nuove-pagine-seo`** in attesa di merge: 3 nuove pagine (gallery, chi siamo, country) + **pagina FAQ dedicata** + foto reali (membri, artisti, Nashville) + country rilavorata con angolo SEO. Non ancora in produzione.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+## 🆕 Lavoro 2026-07-02 (branch `nuove-pagine-seo`, NON committato) — da rivedere con Michele
+Rifiniture su Chi siamo, nuova pagina FAQ e rework Country (revisione visiva fatta con screenshot Playwright, nessun errore JS):
+- **Chi siamo**: i 5 membri ora hanno le **foto singole reali** (stesse della home) al posto delle iniziali; le 6 schede **ispirazioni** hanno la foto dell'artista; banner **skyline di Nashville** nella sezione storia. Corretto "Kruise" → **"Kruse Brothers"**.
+  - ⚠️ **Kruse Brothers**: la vecchia descrizione ("country europeo") era **sbagliata** — sono un duo di **Phoenix, Arizona**. Riscritta con i fatti giusti.
+- **FAQ**: nuova pagina dedicata **`faq.html`** + **`app-faq.jsx`** (accordion, h1, JSON-LD `FAQPage`). Le FAQ sono state **tolte dalla home** (niente contenuto duplicato); la home ora rimanda a `faq.html`. Nav, footer e sitemap aggiornati.
+- **Il country**: layout **alternati immagine/testo** (non più muro di testo), foto vostre (`Strumenti palco.jpg`, `Palco 2/3.jpeg`) + Nashville, **voce personale** (prima persona), e sezione SEO potenziata **"In Italia il country sta esplodendo"** (keyword: band country, feste, sagre, matrimoni, eventi aziendali, Nord Italia). Aggiornati title/description/blocco statico.
+- **⚠️ COPYRIGHT IMMAGINI (da valutare prima del merge/live)**: le foto artisti + Nashville vengono da **Wikimedia Commons** (licenza libera, ma richiederebbero **attribuzione**); la foto **Kruse Brothers** è presa dal loro store (nessuna licenza). Michele ha scelto consapevolmente di prenderle dal web. Valutare attribuzioni o sostituzioni prima di andare online.
+- **File toccati**: `app-chi-siamo.jsx`, `app-country.jsx`, `app-faq.jsx` (nuovo), `faq.html` (nuovo), `chi-siamo.html`, `country.html`, `index.html`, `app.jsx`, `components.jsx`, `styles.css`, `sitemap.xml`, + immagini nuove in `images/` (zach-top.png, zac-brown-band.jpg, luke-combs.jpg, kruse-brothers.jpg, chris-stapleton.jpg, brad-paisley.jpg, nashville-skyline.jpg).
 
 ## 🔀 Branch in corso — `nuove-pagine-seo` (NON ancora su main/produzione)
 
-Commit: `e1d401d` — pushato su GitHub il 2026-06-30.
+Commit: `e1d401d` — pushato su GitHub il 2026-06-30. **Il lavoro del 02/07 (sopra) NON è ancora committato.**
 
 ### Fix su pagine esistenti
 - **Flash blocco statico** (`index.html` + `date.html`): il blocco HTML per i crawler è ora avvolto in `<div style="display:none">` → gli utenti non vedono più il testo grezzo per un microsecondo prima che React parta. I crawler senza JS lo leggono comunque (ignorano il CSS).
