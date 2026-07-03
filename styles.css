@@ -915,6 +915,7 @@ html, body { overflow-x: hidden; }
 
 /* titoli sezione responsivi (sostituisce fontSize: "50px" inline) */
 .section-title-50 {
+  font-family: var(--ck-display); /* h1 senza selettore-contenitore (es. FAQ) cadeva sul font body */
   font-size: clamp(26px, 5vw, 50px) !important;
 }
 
