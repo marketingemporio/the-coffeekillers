@@ -15,7 +15,8 @@
   (ridondante ma innocuo sugli `<h2>`). Verificato in locale con Chrome/CDP.
 - **Audit SEO** (tutte le pagine): lang=it, viewport, title/description unici, canonical, OG,
   **1 solo h1 per pagina**, og-image online (HTTP 200), sitemap completa (7 URL), robots ok.
-  Lacuna minore: `gallery.html` e `preventivo.html` **non hanno JSON-LD** (opzionale, non un errore).
+  Aggiunto JSON-LD dove mancava: `gallery.html` (`ImageGallery`) e `preventivo.html` (`ContactPage`),
+  entrambi con `about` → MusicGroup. Ora tutte le 7 pagine hanno dati strutturati.
 - **Viewport mobile**: audit CDP con emulazione mobile reale su tutte e 7 le pagine →
   `scrollWidth == innerWidth` (390px), **nessuno scroll orizzontale**, email/testi non tagliati.
 
