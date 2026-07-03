@@ -58,22 +58,24 @@
 
   <link rel="stylesheet" href="styles.css" />
 
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body style="font-size: 15px">
   <div id="root">
-    <!-- Contenuto statico di partenza per i motori di ricerca: viene sostituito
-         istantaneamente dalla versione interattiva appena React si avvia. -->
+    <!-- Contenuto statico per crawler senza JS. display:none nasconde il blocco
+         agli utenti (niente flash); i crawler che leggono solo HTML lo trovano. -->
+    <div style="display:none">
     <header>
       <nav>
         <a href="index.html">Hot Joe &amp; The Coffeekillers</a>
         <ul>
-          <li><a href="index.html#stile">Stile</a></li>
-          <li><a href="index.html#lineup">Lineup</a></li>
+          <li><a href="chi-siamo.html">Chi siamo</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
           <li><a href="date.html">Date</a></li>
-          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="country.html">Il country</a></li>
+          <li><a href="faq.html">FAQ</a></li>
           <li><a href="preventivo.html">Richiedi un preventivo</a></li>
         </ul>
       </nav>
@@ -83,10 +85,8 @@
       <section>
         <h1>Tutte le date del 2026</h1>
         <p>Il calendario completo dei live di Hot Joe &amp; The Coffeekillers: locali, feste e sagre di paese, festival ed eventi in giro per il Nord Italia.</p>
+        <h2>Prossime date</h2>
         <ul>
-          <li>23 Mag 2026 — Serata in locale (duo) — Cremona (CR)</li>
-          <li>30 Mag 2026 — Festa della Comunità — Brescia (BS)</li>
-          <li>06 Giu 2026 — Serata in Meleto — Cremona (CR)</li>
           <li>04 Lug 2026 — Serata in Meleto — Cremona (CR)</li>
           <li>11 Lug 2026 — Festa Country Village — da confermare</li>
           <li>17 Lug 2026 — Festa al Picol Bar — Brescia (BS)</li>
@@ -102,18 +102,25 @@
           <li>05 Set 2026 — Matrimonio — Siena (SI)</li>
           <li>12 Set 2026 — Inaugurazione Beach Fly — Brescia (BS)</li>
         </ul>
+        <h2>Date passate</h2>
+        <ul>
+          <li>06 Giu 2026 — Serata in Meleto — Cremona (CR)</li>
+          <li>30 Mag 2026 — Festa della Comunità — Brescia (BS)</li>
+          <li>23 Mag 2026 — Serata in locale (duo) — Cremona (CR)</li>
+        </ul>
         <p><a href="preventivo.html">Vuoi una serata con noi? Richiedi un preventivo</a></p>
       </section>
     </main>
 
     <footer>
-      <p>Hot Joe &amp; The Coffeekillers — Band Country Live, Brescia. <a href="https://www.instagram.com/thecoffeekillers/">Instagram</a> · <a href="https://m.facebook.com/hotjoeandthecoffeekillers">Facebook</a> · <a href="https://www.youtube.com/@thecoffeekillers">YouTube</a></p>
+      <p>Hot Joe &amp; The Coffeekillers — Band Country Live, Brescia. <a href="https://www.instagram.com/thecoffeekillers/">Instagram</a></p>
     </footer>
+    </div>
   </div>
 
   <script>
     window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-      "palette": "saloon",
+      "palette": "midnight",
       "type": "editorial",
       "hero": "cinematic"
     }/*EDITMODE-END*/;

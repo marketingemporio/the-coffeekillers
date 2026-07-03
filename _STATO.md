@@ -1,9 +1,97 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-06-30
-> **Stato in una riga:** sito **ONLINE** su https://thecoffeekillers.com (statico, nessun build). Lavoro **SEO fase 2 pubblicato il 2026-06-30** (contenuto per i crawler + pagina Date dedicata + posizionamento target).
+> **Ultimo aggiornamento:** 2026-07-03
+> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com). Branch **`restyling-2026-07`** (che include `nuove-pagine-seo`) in attesa di revisione di Michele: **restyling completo di tutto il sito** — design system esteso, tutte le pagine riprogettate, foto Nashville sostituita, React in produzione. Non ancora live.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+## 🆕 RESTYLING COMPLETO 2026-07-03 (branch `restyling-2026-07`) — DA RIVEDERE
+Riprogettazione grafica di tutto il sito, fatta in autonomia su richiesta di Michele
+("dare una spinta a design, movimenti, colori; pagine nuove povere da rendere fighe").
+Identità confermata (palette Saloon + font della home), tutto il resto elevato.
+
+### Cosa c'è di nuovo
+- **Design system esteso** (in fondo a `styles.css`, sezione "RESTYLING 2026-07"):
+  sistema di reveal direzionali (`.rv`, `.stagger`), Ken Burns sui hero, ornamenti western
+  (stelle + righe), hero standard per le pagine interne (`PageHero`), contatori animati
+  (`CountUp`), focus ring e `prefers-reduced-motion` per l'accessibilità.
+- **Nav**: link attivo evidenziato, ombra allo scroll, menu mobile con voci sfalsate.
+- **Footer**: riga CTA "Il country alla tua serata?" + icona YouTube.
+- **Chi siamo**: hero con foto di gruppo + statistiche animate; storia a timeline su fondo
+  scuro con pull-quote; ispirazioni con tag genere; **schede membri editoriali alternate**
+  con **cambio foto al passaggio del mouse** (foto seria → foto scherzosa).
+- **Il country**: hero fotografico su Broadway coi neon + indice capitoli; 5 capitoli
+  numerati (01–05) alternando chiaro/scuro; griglia dei 6 strumenti del suono country;
+  timeline delle ere; barra di lettura in alto. Testi SEO invariati (già approvati).
+- **Gallery**: masonry con **14 foto reali** (spariti i placeholder "in arrivo"),
+  didascalie al hover, **lightbox** con frecce e tastiera; sezione video su fondo scuro.
+- **Date**: hero dedicato, card "**Prossima data**" con conto alla rovescia automatico,
+  date raggruppate per mese in stile **biglietto** (fori + strappo), archivio date passate.
+- **FAQ**: domande numerate, contatti rapidi (email/WhatsApp) nella colonna sinistra.
+- **Preventivo**: hero + percorso "come funziona" in 3 passi + rassicurazioni, poi il form.
+- **Home**: hero cinematic con Ken Burns e ingressi sfalsati, scroll cue, reveal
+  direzionali su tutte le sezioni, date in stile biglietto.
+- **Performance/SEO**: React passato alle **build di produzione** (prima erano quelle di
+  sviluppo: più pesanti e lente), preload dell'immagine hero in home, blocco statico SEO
+  aggiunto a `preventivo.html` (mancava), nav statiche allineate su tutte le pagine,
+  sitemap con lastmod 2026-07-03.
+
+### Immagini
+- **`images/nashville-broadway.jpg`** (NUOVA): Lower Broadway di notte coi neon dei
+  honky-tonk — sostituisce la vecchia `nashville-skyline.jpg` (grattacieli anonimi,
+  richiesta di Michele: "foto che c'entri con la musica"). Fonte: Wikimedia Commons,
+  autore **dconvertini**, licenza **CC BY-SA 2.0**
+  (https://commons.wikimedia.org/wiki/File:Broadway_(Nashville)_lights.jpg).
+  ⚠️ Stessa situazione delle foto artisti: attribuzione da valutare prima del live.
+  La vecchia skyline è ancora in `images/` (non usata, non eliminata).
+- **`images/strumenti-fila.jpg`** (NUOVA): copia raddrizzata di `Strumenti.jpg`
+  (l'originale è salvato ruotato di 90° e nel browser si vedeva storto; non toccato).
+
+### Verifica fatta
+Screenshot Playwright di tutte e 7 le pagine, desktop (1440px) e mobile (390px):
+zero errori JS (resta solo il beacon Cloudflare bloccato su localhost, normale),
+zero overflow orizzontale, tutti i reveal funzionanti.
+
+### Per rivedere il lavoro
+`git checkout restyling-2026-07` + `python3 -m http.server 8910` → http://localhost:8910
+Il merge su `main` (= produzione) porta live **anche** il lavoro di `nuove-pagine-seo`.
+
+## 🆕 Lavoro 2026-07-02 (branch `nuove-pagine-seo`, NON committato) — da rivedere con Michele
+Rifiniture su Chi siamo, nuova pagina FAQ e rework Country (revisione visiva fatta con screenshot Playwright, nessun errore JS):
+- **Chi siamo**: i 5 membri ora hanno le **foto singole reali** (stesse della home) al posto delle iniziali; le 6 schede **ispirazioni** hanno la foto dell'artista; banner **skyline di Nashville** nella sezione storia. Corretto "Kruise" → **"Kruse Brothers"**.
+  - ⚠️ **Kruse Brothers**: la vecchia descrizione ("country europeo") era **sbagliata** — sono un duo di **Phoenix, Arizona**. Riscritta con i fatti giusti.
+- **FAQ**: nuova pagina dedicata **`faq.html`** + **`app-faq.jsx`** (accordion, h1, JSON-LD `FAQPage`). Le FAQ sono state **tolte dalla home** (niente contenuto duplicato); la home ora rimanda a `faq.html`. Nav, footer e sitemap aggiornati.
+- **Il country**: layout **alternati immagine/testo** (non più muro di testo), foto vostre (`Strumenti palco.jpg`, `Palco 2/3.jpeg`) + Nashville, **voce personale** (prima persona), e sezione SEO potenziata **"In Italia il country sta esplodendo"** (keyword: band country, feste, sagre, matrimoni, eventi aziendali, Nord Italia). Aggiornati title/description/blocco statico.
+- **⚠️ COPYRIGHT IMMAGINI (da valutare prima del merge/live)**: le foto artisti + Nashville vengono da **Wikimedia Commons** (licenza libera, ma richiederebbero **attribuzione**); la foto **Kruse Brothers** è presa dal loro store (nessuna licenza). Michele ha scelto consapevolmente di prenderle dal web. Valutare attribuzioni o sostituzioni prima di andare online.
+- **File toccati**: `app-chi-siamo.jsx`, `app-country.jsx`, `app-faq.jsx` (nuovo), `faq.html` (nuovo), `chi-siamo.html`, `country.html`, `index.html`, `app.jsx`, `components.jsx`, `styles.css`, `sitemap.xml`, + immagini nuove in `images/` (zach-top.png, zac-brown-band.jpg, luke-combs.jpg, kruse-brothers.jpg, chris-stapleton.jpg, brad-paisley.jpg, nashville-skyline.jpg).
+
+## 🔀 Branch in corso — `nuove-pagine-seo` (NON ancora su main/produzione)
+
+Commit: `e1d401d` — pushato su GitHub il 2026-06-30. **Il lavoro del 02/07 (sopra) NON è ancora committato.**
+
+### Fix su pagine esistenti
+- **Flash blocco statico** (`index.html` + `date.html`): il blocco HTML per i crawler è ora avvolto in `<div style="display:none">` → gli utenti non vedono più il testo grezzo per un microsecondo prima che React parta. I crawler senza JS lo leggono comunque (ignorano il CSS).
+- **`date.html` non più beige**: palette cambiata da `saloon` a `midnight` → sfondo scuro, testo leggibile.
+- **Date passate/future separate** (`UpcomingShows` in `components.jsx`): in `date.html` le date future compaiono in cima normali; le passate compaiono sotto in una sezione "Date passate" a 45% opacity, con divisore. **Automatico**: ogni giorno che passa le date scadute si spostano sotto da sole.
+
+### Nuove pagine create
+| File | Contenuto |
+|---|---|
+| `gallery.html` + `app-gallery.jsx` | Griglia foto (4 reali + 8 placeholder pronti) + sezione video YouTube |
+| `chi-siamo.html` + `app-chi-siamo.jsx` | Storia band, ispirazioni artistiche (Zach Top, ZBB, Luke Combs, Kruise Brothers, Stapleton, Paisley), schede 5 membri |
+| `country.html` + `app-country.jsx` | Guida al country: origini, suono, evoluzione, Italia, perché funziona agli eventi |
+
+### Da fare prima del merge su main
+- [ ] **Aggiungere le foto** nella gallery: aprire `app-gallery.jsx`, aggiungere i file nell'array `PHOTOS` in testa (es. `{ src: "images/NOME.jpg", alt: "descrizione" }`)
+- [ ] **Eventuali video YouTube aggiuntivi**: stesso file, array `VIDEOS`, aggiungere `{ id: "ID_YT", title: "Titolo" }`
+- [ ] **Rivedere i testi** di chi-siamo e country se vuoi toccare qualcosa
+- [ ] **Merge su main** → va live su Netlify
+
+### Nota tecnica
+- Nav e footer aggiornati con i link alle nuove pagine
+- Sitemap aggiornata (6 pagine indicizzate)
+- CSS nuovi in fondo a `styles.css`: `.gallery-grid`, `.member-card`, `.inspiration-card`, `.video-grid`
+- Server locale: `python3 -m http.server 8910` dalla cartella del progetto
 
 ## ⚠️ Deploy automatico = produzione immediata
 - Branch **`main`** → **Netlify** (publish `.`, nessun build): **ogni `git push` su `main` pubblica online.**

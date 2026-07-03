@@ -31,7 +31,6 @@ function App() {
       <Brands/>
       <Lineup/>
       <UpcomingShows/>
-      <FAQ/>
       <ContactCta/>
       <Newsletter/>
       <Footer/>
