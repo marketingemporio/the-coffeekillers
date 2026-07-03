@@ -2,10 +2,12 @@
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
 > **Ultimo aggiornamento:** 2026-07-03
-> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com) con il **restyling completo pubblicato** — design system esteso, tutte le pagine riprogettate, foto Nashville sostituita, React in produzione. Verificato live con Playwright (chi-siamo, gallery, styles.css, react.production.min.js tutti confermati in produzione).
+> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com), restyling completo pubblicato + **fix font FAQ e audit SEO/mobile pubblicati il 03/07** (commit `43d9822` e `43f6648`) — verificato live. Titolo FAQ ora in serif, tutte le 7 pagine con dati strutturati, nessuno scroll orizzontale su mobile.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
 
-## 🔧 Fix font FAQ + audit SEO/mobile — 2026-07-03 (COMMIT LOCALE, da pubblicare)
+## ✅ Fix font FAQ + audit SEO/mobile — PUBBLICATO il 2026-07-03 (online)
+Pushato su `main` (commit `43d9822` fix font, `43f6648` JSON-LD) → deploy Netlify verificato
+live (`styles.css` aggiornato online, JSON-LD presenti, screenshot FAQ live = titolo in serif).
 - **Bug font**: il titolo grande della **FAQ** (`<h1 class="section-title-50">`) rendeva in
   **DM Sans** invece del serif (DM Serif Display) — sembrava un font di sistema. Causa: non
   esiste una regola generica `h1{font-family}`, il serif arriva solo da selettori-contenitore
