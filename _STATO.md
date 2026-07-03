@@ -2,13 +2,16 @@
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
 > **Ultimo aggiornamento:** 2026-07-03
-> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com). Branch **`restyling-2026-07`** (che include `nuove-pagine-seo`) in attesa di revisione di Michele: **restyling completo di tutto il sito** — design system esteso, tutte le pagine riprogettate, foto Nashville sostituita, React in produzione. Non ancora live.
+> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com) con il **restyling completo pubblicato** — design system esteso, tutte le pagine riprogettate, foto Nashville sostituita, React in produzione. Verificato live con Playwright (chi-siamo, gallery, styles.css, react.production.min.js tutti confermati in produzione).
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
 
-## 🆕 RESTYLING COMPLETO 2026-07-03 (branch `restyling-2026-07`) — DA RIVEDERE
+## ✅ RESTYLING COMPLETO — PUBBLICATO il 2026-07-03 (online)
 Riprogettazione grafica di tutto il sito, fatta in autonomia su richiesta di Michele
 ("dare una spinta a design, movimenti, colori; pagine nuove povere da rendere fighe").
 Identità confermata (palette Saloon + font della home), tutto il resto elevato.
+Lavorato su branch `restyling-2026-07` (commit `b61a806`), poi **merge su `main`**
+(merge commit `e7008ff`, no-fast-forward) e **push** → pubblicato live su Netlify.
+Include anche tutto il lavoro precedente del branch `nuove-pagine-seo` (vedi sotto).
 
 ### Cosa c'è di nuovo
 - **Design system esteso** (in fondo a `styles.css`, sezione "RESTYLING 2026-07"):
@@ -48,15 +51,18 @@ Identità confermata (palette Saloon + font della home), tutto il resto elevato.
   (l'originale è salvato ruotato di 90° e nel browser si vedeva storto; non toccato).
 
 ### Verifica fatta
-Screenshot Playwright di tutte e 7 le pagine, desktop (1440px) e mobile (390px):
-zero errori JS (resta solo il beacon Cloudflare bloccato su localhost, normale),
-zero overflow orizzontale, tutti i reveal funzionanti.
+- **Prima del merge**: screenshot Playwright di tutte e 7 le pagine, desktop (1440px) e
+  mobile (390px): zero errori JS (a parte il beacon Cloudflare bloccato su localhost,
+  normale), zero overflow orizzontale, tutti i reveal funzionanti.
+- **Dopo il push su main**: verifica diretta su https://thecoffeekillers.com (curl +
+  Playwright in produzione) — `chi-siamo.html` monta e mostra le nuove schede membri
+  (`.bandrow`), `gallery.html` ha la masonry nuova (`.gal-masonry`), `styles.css` ha il
+  design system nuovo, `index.html` carica React in build di produzione, la foto
+  `nashville-broadway.jpg` risponde 200. Zero errori JS in un browser reale.
 
-### Per rivedere il lavoro
-`git checkout restyling-2026-07` + `python3 -m http.server 8910` → http://localhost:8910
-Il merge su `main` (= produzione) porta live **anche** il lavoro di `nuove-pagine-seo`.
+## 🕰️ Cronologia — lavoro pre-restyling (ora tutto live, mantenuto come riferimento)
 
-## 🆕 Lavoro 2026-07-02 (branch `nuove-pagine-seo`, NON committato) — da rivedere con Michele
+### Lavoro 2026-07-02 (branch `nuove-pagine-seo`) — ora incluso nel restyling ed è live
 Rifiniture su Chi siamo, nuova pagina FAQ e rework Country (revisione visiva fatta con screenshot Playwright, nessun errore JS):
 - **Chi siamo**: i 5 membri ora hanno le **foto singole reali** (stesse della home) al posto delle iniziali; le 6 schede **ispirazioni** hanno la foto dell'artista; banner **skyline di Nashville** nella sezione storia. Corretto "Kruise" → **"Kruse Brothers"**.
   - ⚠️ **Kruse Brothers**: la vecchia descrizione ("country europeo") era **sbagliata** — sono un duo di **Phoenix, Arizona**. Riscritta con i fatti giusti.
@@ -65,9 +71,9 @@ Rifiniture su Chi siamo, nuova pagina FAQ e rework Country (revisione visiva fat
 - **⚠️ COPYRIGHT IMMAGINI (da valutare prima del merge/live)**: le foto artisti + Nashville vengono da **Wikimedia Commons** (licenza libera, ma richiederebbero **attribuzione**); la foto **Kruse Brothers** è presa dal loro store (nessuna licenza). Michele ha scelto consapevolmente di prenderle dal web. Valutare attribuzioni o sostituzioni prima di andare online.
 - **File toccati**: `app-chi-siamo.jsx`, `app-country.jsx`, `app-faq.jsx` (nuovo), `faq.html` (nuovo), `chi-siamo.html`, `country.html`, `index.html`, `app.jsx`, `components.jsx`, `styles.css`, `sitemap.xml`, + immagini nuove in `images/` (zach-top.png, zac-brown-band.jpg, luke-combs.jpg, kruse-brothers.jpg, chris-stapleton.jpg, brad-paisley.jpg, nashville-skyline.jpg).
 
-## 🔀 Branch in corso — `nuove-pagine-seo` (NON ancora su main/produzione)
+### Branch `nuove-pagine-seo` (merged, ora su main/produzione)
 
-Commit: `e1d401d` — pushato su GitHub il 2026-06-30. **Il lavoro del 02/07 (sopra) NON è ancora committato.**
+Commit: `e1d401d` — pushato su GitHub il 2026-06-30, poi confluito nel restyling.
 
 ### Fix su pagine esistenti
 - **Flash blocco statico** (`index.html` + `date.html`): il blocco HTML per i crawler è ora avvolto in `<div style="display:none">` → gli utenti non vedono più il testo grezzo per un microsecondo prima che React parta. I crawler senza JS lo leggono comunque (ignorano il CSS).
@@ -81,11 +87,11 @@ Commit: `e1d401d` — pushato su GitHub il 2026-06-30. **Il lavoro del 02/07 (so
 | `chi-siamo.html` + `app-chi-siamo.jsx` | Storia band, ispirazioni artistiche (Zach Top, ZBB, Luke Combs, Kruise Brothers, Stapleton, Paisley), schede 5 membri |
 | `country.html` + `app-country.jsx` | Guida al country: origini, suono, evoluzione, Italia, perché funziona agli eventi |
 
-### Da fare prima del merge su main
-- [ ] **Aggiungere le foto** nella gallery: aprire `app-gallery.jsx`, aggiungere i file nell'array `PHOTOS` in testa (es. `{ src: "images/NOME.jpg", alt: "descrizione" }`)
-- [ ] **Eventuali video YouTube aggiuntivi**: stesso file, array `VIDEOS`, aggiungere `{ id: "ID_YT", title: "Titolo" }`
-- [ ] **Rivedere i testi** di chi-siamo e country se vuoi toccare qualcosa
-- [ ] **Merge su main** → va live su Netlify
+### Checklist originale (tutta chiusa col restyling del 03/07)
+- [x] **Foto nella gallery**: il restyling ha portato `PHOTOS` a 14 foto reali (era 4 + placeholder)
+- [ ] **Eventuali video YouTube aggiuntivi**: `app-gallery.jsx`, array `VIDEOS` — ancora aperto, aggiungere `{ id: "ID_YT", title: "Titolo" }` quando ci sono altri video
+- [x] **Testi** di chi-siamo e country: rivisti nel restyling (layout nuovo, testi SEO invariati)
+- [x] **Merge su main** → live su Netlify dal 2026-07-03
 
 ### Nota tecnica
 - Nav e footer aggiornati con i link alle nuove pagine
