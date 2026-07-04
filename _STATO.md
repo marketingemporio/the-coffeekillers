@@ -2,10 +2,17 @@
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
 > **Ultimo aggiornamento:** 2026-07-04
-> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com), restyling completo pubblicato + **fix font FAQ e audit SEO/mobile pubblicati il 03/07** (commit `43d9822` e `43f6648`) — verificato live. In più c'è un **esperimento NON pubblicato** sul branch `fusione-webflow-2026-07` (vedi sotto).
+> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com), restyling completo pubblicato + **fix font FAQ e audit SEO/mobile pubblicati il 03/07** (commit `43d9822` e `43f6648`) — verificato live. In più esiste una **Versione B sperimentale NON pubblicata**, salvata apposta per un confronto futuro (vedi sotto).
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
 
-## 🧪 ESPERIMENTO "fusione col vecchio sito Webflow" — branch `fusione-webflow-2026-07` (NON pubblicato)
+## 🅰️🅱️ Versione A (online) vs Versione B (esperimento) — confronto salvato, decisione aperta
+Per scegliere con calma, quando vuoi, tra due strade:
+- **Versione A = quella online oggi** (`main`): restyling beige/carta "Saloon", quello che i visitatori vedono ora su thecoffeekillers.com.
+- **Versione B = l'esperimento** (branch `fusione-webflow-2026-07`, dettagli sotto): stessa struttura e contenuti, ma vestita col branding del vecchio sito Webflow (font Silverstone, nero/oro/arancio).
+- **Come confrontarle**: apri `_stato-a-b-coffeekillers.md` per le istruzioni passo-passo (nessun comando git a memoria, solo copia-incolla).
+- **Le tre strade possibili quando deciderai**: 1) tenere la Versione A così com'è; 2) sostituirla del tutto con la B (merge su `main`); 3) prendere solo alcuni pezzi della B (es. solo il font, o solo i colori) e portarli sulla A. Nessuna fretta: sono entrambe salvate, nessuna sovrascrive l'altra finché non lo chiedi tu.
+
+## 🧪 ESPERIMENTO "fusione col vecchio sito Webflow" — branch `fusione-webflow-2026-07` (NON pubblicato) = Versione B
 Richiesta di Michele del 04/07: recuperare dal vecchio sito Webflow (zip `band-4fbbf0.webflow.zip`,
 lasciato in radice, non versionato) le cose belle "fatte da essere umano" — soprattutto il **font
 Silverstone** e il branding originale — e allontanarsi dal look "cappuccino" del restyling.
