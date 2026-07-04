@@ -4,6 +4,33 @@ const CK_IMG = "images/";
 
 // ---- palettes ------------------------------------------------
 const PALETTES = {
+  // Roadhouse: i colori del vecchio sito Webflow (oro #fcb900, arancio #fb9200,
+  // scuro #141414, bianco pulito) portati sul sito nuovo.
+  roadhouse: {
+    label: "Roadhouse",
+    "--ck-ink": "#141414",
+    "--ck-paper": "#fefefe",
+    "--ck-paper-2": "#f4f2ee",
+    "--ck-rust": "#fb9200",
+    "--ck-gold": "#fcb900",
+    "--ck-sage": "#6b6b6b",
+    "--ck-mute": "rgba(20,20,20,0.6)",
+    "--ck-line": "rgba(20,20,20,0.14)",
+    "--ck-on-dark": "#ffffff"
+  },
+  // Honkytonk: la stessa identità ma scura (per pagine a fondo nero, es. date)
+  honkytonk: {
+    label: "Honkytonk",
+    "--ck-ink": "#ffffff",
+    "--ck-paper": "#141414",
+    "--ck-paper-2": "#1d1d1d",
+    "--ck-rust": "#fb9200",
+    "--ck-gold": "#fcb900",
+    "--ck-sage": "#979797",
+    "--ck-mute": "rgba(255,255,255,0.55)",
+    "--ck-line": "rgba(255,255,255,0.16)",
+    "--ck-on-dark": "#141414"
+  },
   saloon: {
     label: "Saloon",
     "--ck-ink": "#15100b",
@@ -44,6 +71,14 @@ const PALETTES = {
 
 // ---- type sets -----------------------------------------------
 const TYPESETS = {
+  // Silverstone: il font titoli del vecchio sito (self-hosted in fonts/) + Poppins
+  silverstone: {
+    label: "Silverstone",
+    "--ck-display": '"Silverstone Webfont", "DM Serif Display", serif',
+    "--ck-body": '"Poppins", ui-sans-serif, system-ui, sans-serif',
+    "--ck-mono": '"Poppins", ui-sans-serif, sans-serif',
+    "--ck-poster": '"Silverstone Webfont", "DM Serif Display", serif'
+  },
   editorial: {
     label: "Editorial",
     "--ck-display": '"DM Serif Display", "Times New Roman", serif',
@@ -261,7 +296,7 @@ function CountUp({ to, prefix = "", suffix = "", duration = 1400 }) {
 
 // riga eyebrow doppia (sx — titoletto / dx nota), usata in testa alle sezioni
 function SectionHead({ left, right, dark = false }) {
-  const col = dark ? { color: "rgba(243,232,210,0.7)" } : undefined;
+  const col = dark ? { color: "rgba(255,255,255,0.7)" } : undefined;
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 36, flexWrap: "wrap", gap: 12 }}>
       <span className="eyebrow" style={{ fontSize: "15px", ...col }}>— {left}</span>
@@ -466,7 +501,7 @@ function HeroCinematic() {
 
         <div className="wrap hero-cinematic-content" style={{ position: "relative", minHeight: "min(820px, 92vh)", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "var(--ck-on-dark)", padding: "clamp(200px,30vw,280px) clamp(20px,4vw,50px) clamp(48px,7vw,87px)" }}>
           <div className="rise" style={{ display: "flex", justifyContent: "space-between", marginBottom: 20, animationDelay: ".1s" }}>
-            <span className="eyebrow" style={{ color: "rgba(243,232,210,0.7)", fontSize: "15px" }}>Country Live Band — Nord Italia</span>
+            <span className="eyebrow" style={{ color: "rgba(255,255,255,0.7)", fontSize: "15px" }}>Country Live Band — Nord Italia</span>
           </div>
           <h1 className="hero-title hero-cinematic-title rise" style={{ maxWidth: "15ch", fontSize: "clamp(30px, 5.5vw, 70px)", animationDelay: ".2s" }}>
             Vivi l'energia <span className="it" style={{ color: "var(--ck-gold)" }}>travolgente</span> del Country live.
@@ -476,7 +511,7 @@ function HeroCinematic() {
           </p>
           <div className="rise" style={{ display: "flex", gap: 14, marginTop: 28, flexWrap: "wrap", animationDelay: ".44s" }}>
             <a className="btn" href="#contact" style={{ background: "var(--ck-paper)", color: "var(--ck-ink)", borderColor: "var(--ck-paper)" }}>Sentiamoci! <span className="arrow"><Arrow /></span></a>
-            <a className="btn btn-ghost" href="#lineup" style={{ borderColor: "rgba(243,232,210,0.4)", color: "var(--ck-on-dark)" }}>Scopri la band</a>
+            <a className="btn btn-ghost" href="#lineup" style={{ borderColor: "rgba(255,255,255,0.4)", color: "var(--ck-on-dark)" }}>Scopri la band</a>
           </div>
         </div>
         <div className="scroll-cue" aria-hidden="true"></div>
@@ -584,7 +619,7 @@ function Socials() {
               Guarda un estratto dei nostri spettacoli sul nostro canale YouTube. E per restare sempre aggiornati su tutte le nostre date, le novità e le follie del backstage, non c'è posto migliore di Instagram!
             </p>
             
-            <div style={{ padding: "32px", background: "var(--ck-paper)", borderRadius: "16px", border: "1px solid rgba(21,16,11,0.1)" }}>
+            <div style={{ padding: "32px", background: "var(--ck-paper)", borderRadius: "16px", border: "1px solid rgba(20,20,20,0.1)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px", color: "var(--ck-rust)" }}>
                 <IGIcon />
                 <h3 style={{ margin: 0, fontSize: "24px", color: "var(--ck-ink)" }}>@thecoffeekillers</h3>

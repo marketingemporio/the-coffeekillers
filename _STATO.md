@@ -1,9 +1,34 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-07-03
-> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com), restyling completo pubblicato + **fix font FAQ e audit SEO/mobile pubblicati il 03/07** (commit `43d9822` e `43f6648`) — verificato live. Titolo FAQ ora in serif, tutte le 7 pagine con dati strutturati, nessuno scroll orizzontale su mobile.
+> **Ultimo aggiornamento:** 2026-07-04
+> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com), restyling completo pubblicato + **fix font FAQ e audit SEO/mobile pubblicati il 03/07** (commit `43d9822` e `43f6648`) — verificato live. In più c'è un **esperimento NON pubblicato** sul branch `fusione-webflow-2026-07` (vedi sotto).
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+## 🧪 ESPERIMENTO "fusione col vecchio sito Webflow" — branch `fusione-webflow-2026-07` (NON pubblicato)
+Richiesta di Michele del 04/07: recuperare dal vecchio sito Webflow (zip `band-4fbbf0.webflow.zip`,
+lasciato in radice, non versionato) le cose belle "fatte da essere umano" — soprattutto il **font
+Silverstone** e il branding originale — e allontanarsi dal look "cappuccino" del restyling.
+Logo invariato. Struttura e contenuti del sito nuovo invariati: è cambiata solo la pelle.
+
+- **Font Silverstone** self-hosted in `fonts/` (woff2+woff, presi dallo zip) + `@font-face` in
+  `styles.css`; preload in tutte le pagine. È il font titoli ovunque (`--ck-display`/`--ck-poster`).
+  ⚠️ Licenza da verificare prima di pubblicare (era già in uso sul vecchio sito pubblico della band,
+  quindi presumibilmente ok, ma controllare — stesso discorso del font Pussycat per Beach Fly).
+- **Palette nuove** in `components.jsx`: `roadhouse` (bianco #fefefe / nero #141414 / oro #fcb900 /
+  arancio #fb9200 — i colori esatti del vecchio sito) e `honkytonk` (variante scura, usata da
+  `date.html`). Le vecchie palette (saloon/midnight/wildflower) restano disponibili nel tweaks panel.
+- **Typeset nuovo** `silverstone` (titoli Silverstone + testi Poppins 300, come il vecchio sito);
+  Poppins aggiunto al link Google Fonts di tutte le pagine.
+- **Bottoni** in stile vecchio sito: oro pieno, angoli 5px, hover che sfuma all'arancio in ~mezzo
+  secondo (`transition: all .5s`), uniformati OVUNQUE (nav, footer, FAQ, form, CTA).
+- **Pulizia**: tolti tutti i colori crema/marrone hardcoded (styles.css + inline negli app-*.jsx),
+  tolta la texture "grana di carta" del body, leggibilità form/contatti riportata a Poppins
+  (il display resta solo su titoli e accenti).
+- **Verificato**: screenshot Playwright di tutte e 7 le pagine desktop (1440) + mobile (390),
+  zero overflow orizzontale, zero errori JS reali (solo beacon Cloudflare bloccato in locale).
+- **Come vederlo**: `git checkout fusione-webflow-2026-07` + `python3 -m http.server 8910`.
+- **NON è in produzione**: merge su `main` solo con ok esplicito di Michele (push su main = deploy!).
 
 ## ✅ Fix font FAQ + audit SEO/mobile — PUBBLICATO il 2026-07-03 (online)
 Pushato su `main` (commit `43d9822` fix font, `43f6648` JSON-LD) → deploy Netlify verificato
