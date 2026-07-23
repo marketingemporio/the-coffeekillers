@@ -3,6 +3,22 @@
 // { src: "images/NOME.jpg", alt: "descrizione", cap: "didascalia breve" }
 
 const PHOTOS = [
+  // — Scatti nuovi 2026 —
+  { src: "images/band-fiume-o3.webp", alt: "Hot Joe & The Coffeekillers in riva al fiume al tramonto, tutti e cinque i musicisti", cap: "Al tramonto, in riva al fiume" },
+  { src: "images/live-voce.webp", alt: "Il cantante con cappello country e camicia a fiori canta con la chitarra acustica durante un live", cap: "Voce e chitarra, dal vivo" },
+  { src: "images/band-muro-a.webp", alt: "Ritratto della band country Hot Joe & The Coffeekillers al completo, con gli strumenti, davanti a un muro color terracotta", cap: "La band al completo · 2026" },
+  { src: "images/band-fiume-v2.webp", alt: "I cinque musicisti della band posano in riva al fiume prima del concerto", cap: "Prima del concerto, sul fiume" },
+  { src: "images/live-tastiere.webp", alt: "Il tastierista alla sua tastiera Nord rossa durante un concerto al tramonto", cap: "Alle tastiere, al tramonto" },
+  { src: "images/band-giardino-a.webp", alt: "La band country al completo in giardino, tra sole e alberi", cap: "Tra un live e l'altro" },
+  { src: "images/band-fiume-o1.webp", alt: "La band al completo in riva al fiume con il tramonto alle spalle", cap: "Cinque amici, un fiume, un tramonto" },
+  { src: "images/live-basso.webp", alt: "Il bassista con cappello suona il basso sul palco di una sagra", cap: "Il basso, sul palco" },
+  { src: "images/band-muro-b.webp", alt: "La band Hot Joe & The Coffeekillers sorridente con gli strumenti davanti al muro color terracotta", cap: "Sorrisi tra amici" },
+  { src: "images/band-fiume-v3.webp", alt: "I musicisti della band in riva al fiume durante una serata d'estate", cap: "Serata sul fiume" },
+  { src: "images/live-batteria.webp", alt: "Il batterista dietro la batteria Gretsch durante un live all'aperto", cap: "Dietro i tamburi" },
+  { src: "images/band-giardino-b.webp", alt: "La band country al completo in giardino, prima di partire per il live", cap: "In giardino, prima di partire" },
+  { src: "images/band-fiume-o2.webp", alt: "Risate e country in riva al fiume con la band al completo", cap: "Country e risate in riva al fiume" },
+  { src: "images/live-notte.webp", alt: "La band di sera in una piazza, luci viola da concerto", cap: "Serata live" },
+  // — Scatti precedenti —
   { src: "images/Palco.jpg", alt: "The Coffeekillers sul palco, luci calde e cappelli country", cap: "Serata live · sul palco" },
   { src: "images/Tutti.jpeg", alt: "La band al completo con gli strumenti", cap: "La band al completo" },
   { src: "images/Michi sul palco.JPG", alt: "Il frontman con cappello country e Telecaster durante un live", cap: "Voce e Telecaster" },

@@ -1,9 +1,40 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-07-03
-> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com), restyling completo pubblicato + **fix font FAQ e audit SEO/mobile pubblicati il 03/07** (commit `43d9822` e `43f6648`) — verificato live. Titolo FAQ ora in serif, tutte le 7 pagine con dati strutturati, nessuno scroll orizzontale su mobile.
+> **Ultimo aggiornamento:** 2026-07-23
+> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com), restyling completo pubblicato + **fix font FAQ e audit SEO/mobile pubblicati il 03/07** (commit `43d9822` e `43f6648`) — verificato live. **⚠️ Dal 23/07 c'è un commit su `main` NON ancora pushato** (foto fresche 2026 — vedi prima sezione qui sotto): non è ancora online, attende l'ok di Michele per il push (push su `main` = deploy immediato!).
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+## 📸 Foto fresche 2026 — su `main` NON ANCORA PUSHATO (2026-07-23)
+Richiesta di Michele: prendere le foto in `Foto x sito nuovo/` (rinnovate quest'anno),
+convertirle in **webp** e usarle per "rimpolpare e dare varietà". Sono **foto della band
+(di proprietà)** → nessun problema di copyright (diverso dalle foto artisti Wikimedia).
+- **Conversione** (17 foto uniche; erano 20 file ma 3 coppie erano doppioni byte-identici):
+  → tutte in `images/*.webp`. Gallery/Chi siamo max **2000px** q86–88; **hero a 2560px** q84
+  (⚠️ prima era a 1600px e Michele l'ha vista **sgranata** a tutto schermo: rifatta più grande).
+  - ⚠️ **Lezione tecnica**: le HEIC `IMG_2374`–`2380` avevano una **rotazione interna (irot)**
+    che **`sips` IGNORA** (le esportava coricate; il tag EXIF veniva perso da `cwebp -metadata none`).
+    Risolto convertendole con **`qlmanage -t -s 1600`** (stesso motore del Finder, rispetta la
+    rotazione) → PNG dritto → `cwebp`. Le `.jpg/.JPG/.png` invece andavano bene con `sips`.
+  - Nomi: `band-muro-a/b` (promo muro terracotta), `band-giardino-a/b`, `band-fiume-v1/v2/v3`
+    (verticali) + `band-fiume-o1/o2/o3/o4` (orizzontali), `band-logo-promo`, e i live
+    `live-voce / live-basso / live-batteria / live-tastiere / live-notte`. Committati tutti e 17.
+- **Gallery** (`app-gallery.jsx`): aggiunti **14 scatti** in cima (da 14 a **28**), alternati per
+  varietà (gruppo fiume ×5, muro terracotta ×2, giardino ×2, + i 5 live). Il conteggio "scatti" è
+  automatico. Fuori dalla griglia solo `band-logo-promo` (ha il logo sovrimpresso → sembra locandina).
+- **Foto chiave rinfrescate** (scelte da Michele: "scena al fiume"):
+  - **Hero Home** (`components.jsx`, `HeroCinematic`): `Palco.jpg` → **`band-fiume-o4.webp`**.
+    Scrim rinforzato (gradiente .48→.28→.8) + **`textShadow`** sul contenuto per tenere testo
+    bianco e logo leggibili sulla foto luminosa. `Palco.jpg` resta comunque nella gallery.
+  - **Foto gruppo Chi siamo** (`app-chi-siamo.jsx`, PageHero `photo`): `Tutti.jpeg` →
+    **`band-fiume-v1.webp`** (verticale). Nota: `Tutti.jpeg` era **lo stesso scatto** del muro
+    terracotta `band-muro-a`, solo dell'anno scorso.
+- **Verificato** (Playwright, reduce-motion): gallery 22 foto **0 rotte 0 errori JS reali**;
+  hero Home desktop+mobile e Chi siamo → testo/logo leggibili, orientamenti corretti.
+- **NON toccato** il branch B (`fusione-webflow-2026-07`): non ha queste foto. Se un giorno si
+  sceglie la B, le stesse modifiche andranno riportate lì.
+- 🔜 **Prossimo passo**: `git push` su `main` per pubblicare (solo con ok esplicito). In uso ora
+  16 delle 17 webp; resta libera solo `band-logo-promo` (asset promo con logo), pronta all'uso.
 
 ## ✅ Fix font FAQ + audit SEO/mobile — PUBBLICATO il 2026-07-03 (online)
 Pushato su `main` (commit `43d9822` fix font, `43f6648` JSON-LD) → deploy Netlify verificato

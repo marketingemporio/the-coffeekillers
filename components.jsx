@@ -457,14 +457,14 @@ function HeroCinematic() {
   return (
     <section className="hero" id="top" style={{ padding: 0 }}>
       <div className="kb" style={{ position: "relative", minHeight: "min(820px, 92vh)", overflow: "hidden", background: "#000" }}>
-        <img src="images/Palco.jpg" alt="" fetchpriority="high" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 42%", opacity: 1, filter: "contrast(1.05) saturate(1.05)" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.6))" }}></div>
+        <img src="images/band-fiume-o4.webp" alt="" fetchpriority="high" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 45%", opacity: 1, filter: "contrast(1.04) saturate(1.05)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(0,0,0,.48) 0%, rgba(0,0,0,.28) 34%, rgba(0,0,0,.8) 100%)" }}></div>
 
         <div className="hero-cinematic-logo rise" style={{ position: "absolute", top: "15%", right: "3%", zIndex: 10 }}>
           <img src="images/HJCK_Logo2.svg" alt="Logo The Coffeekillers" style={{ width: "min(55vw, 750px)", opacity: 0.9, objectFit: "contain", filter: "invert(1)" }} />
         </div>
 
-        <div className="wrap hero-cinematic-content" style={{ position: "relative", minHeight: "min(820px, 92vh)", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "var(--ck-on-dark)", padding: "clamp(200px,30vw,280px) clamp(20px,4vw,50px) clamp(48px,7vw,87px)" }}>
+        <div className="wrap hero-cinematic-content" style={{ position: "relative", minHeight: "min(820px, 92vh)", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "var(--ck-on-dark)", padding: "clamp(200px,30vw,280px) clamp(20px,4vw,50px) clamp(48px,7vw,87px)", textShadow: "0 2px 10px rgba(0,0,0,.45)" }}>
           <div className="rise" style={{ display: "flex", justifyContent: "space-between", marginBottom: 20, animationDelay: ".1s" }}>
             <span className="eyebrow" style={{ color: "rgba(243,232,210,0.7)", fontSize: "15px" }}>Country Live Band — Nord Italia</span>
           </div>

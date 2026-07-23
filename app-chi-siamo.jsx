@@ -131,7 +131,7 @@ function ChiSiamoApp() {
         ornaments="Since 2018"
         title={<>Hot Joe &amp; The <span className="it">Coffeekillers.</span></>}
         lead="Una band country live nata a Brescia, cresciuta sul palco. Più di 200 live all'attivo, musicisti con storie diverse, un unico filo rosso: il country americano suonato con la testa e con il cuore."
-        photo={{ src: "images/Tutti.jpeg", alt: "Hot Joe & The Coffeekillers al completo, con strumenti", badge: "★ La band al completo", ratio: "4/4.6" }}
+        photo={{ src: "images/band-fiume-v1.webp", alt: "Hot Joe & The Coffeekillers al completo in riva al fiume, al tramonto", badge: "★ La band al completo", ratio: "4/4.6" }}
       >
         <div className="ph-foot">
           <div className="stat-row stagger" style={{ borderTop: 0, paddingTop: 0, marginTop: 0 }}>
