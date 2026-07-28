@@ -2,42 +2,47 @@
 
 const CS_MEMBERS = [
   {
-    name: "Michele Frosio",
+    name: "Michele \u201cMike\u201d Frosio",
     role: "Guitars & Lead Voice",
-    img: "images/Michi 1.jpeg",
-    imgAlt: "images/Michi 4.jpeg",
+    imgAltText: "Mike con la chitarra acustica e il cappello country, davanti a un muro color terracotta",
+    img: "images/mike-chitarra-acustica.webp",
+    imgAlt: "images/mike-ritratto-simpatico.webp",
     bio: "La voce e la chitarra principale della band. Porta sul palco l'anima del country americano con un fraseggio vocale che richiama i grandi cantautori di Nashville, senza mai dimenticare le radici bresciane.",
     quote: "Cos'ho dimenticato oggi?",
   },
   {
-    name: "Davide Miglietti",
+    name: "Davide \u201cMiglio\u201d Miglietti",
     role: "Drums & Vocals",
-    img: "images/Miglio 1.jpeg",
-    imgAlt: "images/Miglio 2.jpeg",
+    imgAltText: "Miglio con una bacchetta della batteria in mano, camicia a quadri e cappellino",
+    img: "images/miglio-bacchetta.webp",
+    imgAlt: "images/miglio-batteria.webp",
     bio: "Il cuore ritmico dei Coffeekillers. Le sue bacchette tengono unito tutto lo show, con groove solidi che sanno essere tanto delicati nelle ballads quanto esplosivi nelle party songs.",
     quote: "Potevamo fare di meglio.",
   },
   {
-    name: "Lorenzo Marini",
+    name: "Lorenzo \u201cLarry\u201d Marini",
     role: "Keys & Harmonica",
-    img: "images/Larry 1.jpeg",
-    imgAlt: "images/Larry 2.jpeg",
+    imgAltText: "Larry con occhiali da sole appoggiato alla sua tastiera Nord rossa",
+    img: "images/larry-tastiera.webp",
+    imgAlt: "images/larry-ritratto-simpatico.webp",
     bio: "Tastiere e armonica: il tocco che allarga il suono della band verso le grandi produzioni di Nashville. La sua armonica è il dettaglio che trasforma una serata in un'esperienza country autentica.",
     quote: "Raga questo è troppo country!",
   },
   {
-    name: "Stefano Martinelli",
+    name: "Stefano \u201cSte\u201d Martinelli",
     role: "Guitars & Lap Steel",
-    img: "images/Ste 1.jpeg",
-    imgAlt: "images/Ste 2.jpeg",
+    imgAltText: "Ste con la Telecaster bianca e la salopette di jeans, sorridente",
+    img: "images/ste-telecaster.webp",
+    imgAlt: "images/ste-ritratto-simpatico.webp",
     bio: "La chitarra solista e la lap steel che firmano il sound distintivo dei Coffeekillers. Il suo stile spazia dal picking country al twang elettrico, con influenze che vanno da Brad Paisley a Chris Stapleton.",
     quote: "Lo facciamo ancora una volta?",
   },
   {
-    name: "Riccardo Loda",
+    name: "Riccardo \u201cRichi\u201d Loda",
     role: "Bass & DoubleBass",
-    img: "images/Richi 1.jpeg",
-    imgAlt: "images/Richi 3.jpeg",
+    imgAltText: "Richi che imbraccia il basso come se fosse un fucile, con occhiali da sole",
+    img: "images/richi-basso.webp",
+    imgAlt: "images/richi-ritratto-simpatico.webp",
     bio: "Il basso e il contrabbasso che danno profondità e calore a ogni serata. Riccardo porta la tradizione del country acustico e del rockabilly direttamente sul palco, con un groove che muove i piedi.",
     quote: "Birretta?",
   },
@@ -46,38 +51,44 @@ const CS_MEMBERS = [
 const INSPIRATIONS = [
   {
     name: "Zach Top",
+    imgAltText: "Zach Top, cantante country statunitense, con la chitarra acustica e il cappello da cowboy",
     tag: "Neo-tradizionale",
-    img: "images/zach-top.png",
+    img: "images/zach-top.webp",
     desc: "Il country neo-tradizionale più autentico degli ultimi anni. Twang, steel guitar, canzoni vere: esattamente l'estetica che i Coffeekillers portano dal vivo.",
   },
   {
     name: "Zac Brown Band",
+    imgAltText: "La Zac Brown Band dal vivo sul palco, band country statunitense",
     tag: "Band da show",
-    img: "images/zac-brown-band.jpg",
+    img: "images/zac-brown-band.webp",
     desc: "Il riferimento per eccellenza di una band country da show: strumentisti straordinari, arrangiamenti ricchi, la capacità di suonare tanto in un piccolo locale quanto in un festival da 50.000 persone.",
   },
   {
     name: "Luke Combs",
+    imgAltText: "Luke Combs, cantautore country statunitense, canta al microfono",
     tag: "Country moderno",
-    img: "images/luke-combs.jpg",
+    img: "images/luke-combs.webp",
     desc: "Melodie immediate, testi che parlano di vita vera, un'energia live che trasforma qualsiasi platea in un'unica grande famiglia. Il modello per costruire un rapporto autentico con il pubblico.",
   },
   {
     name: "Kruse Brothers",
+    imgAltText: "I Kruse Brothers, duo country dell'Arizona, con le chitarre",
     tag: "Honky-tonk a due voci",
-    img: "images/kruse-brothers.jpg",
+    img: "images/kruse-brothers.webp",
     desc: "Il duo dei fratelli Kruse dall'Arizona: due voci, armonie strette e un country che tiene insieme honky-tonk classico e suono moderno. La prova che bastano poche cose fatte bene per riempire un palco.",
   },
   {
     name: "Chris Stapleton",
+    imgAltText: "Chris Stapleton, cantante country e soul, con la chitarra e il cappello a falda larga",
     tag: "Country soul",
-    img: "images/chris-stapleton.jpg",
+    img: "images/chris-stapleton.webp",
     desc: "La voce più potente del country moderno. Il suo approccio — soul, blues, country fusi insieme — è il punto di riferimento per chi vuole andare oltre la superficie del genere.",
   },
   {
     name: "Brad Paisley",
+    imgAltText: "Brad Paisley, chitarrista country, con la sua Telecaster",
     tag: "Telecaster country",
-    img: "images/brad-paisley.jpg",
+    img: "images/brad-paisley.webp",
     desc: "Il chitarrista country per eccellenza: virtuosismo che non toglie mai nulla alla canzone. Il suo stile di picking è nel DNA delle chitarre dei Coffeekillers.",
   },
 ];
@@ -87,7 +98,7 @@ function BandRow({ m, i }) {
     <article className={"bandrow rv" + (i % 2 === 1 ? " flip" : "")}>
       <div className="b-photo-wrap">
         <div className="b-photo">
-          <img src={m.img} alt={m.name + " — " + m.role} loading="lazy" />
+          <img src={m.img} alt={(m.imgAltText || m.name) + " \u2014 " + m.role + ", Hot Joe & The Coffeekillers"} loading="lazy" />
           <img className="ph-b" src={m.imgAlt} alt="" aria-hidden="true" loading="lazy" />
         </div>
       </div>
@@ -106,7 +117,7 @@ function InspirationCard({ ins }) {
   return (
     <div className="inspiration-card">
       <div className="inspiration-photo">
-        <img src={ins.img} alt={ins.name} loading="lazy" />
+        <img src={ins.img} alt={ins.imgAltText} loading="lazy" />
       </div>
       <div className="inspiration-body">
         <span className="inspiration-tag">{ins.tag}</span>
@@ -181,7 +192,7 @@ function ChiSiamoApp() {
             </div>
           </div>
           <figure className="story-photo rv">
-            <img src="images/nashville-broadway.jpg" alt="Lower Broadway a Nashville di notte, con le insegne al neon dei locali di musica country" loading="lazy" style={{ objectPosition: "center 55%" }} />
+            <img src="images/nashville-broadway.webp" alt="Lower Broadway a Nashville di notte, con le insegne al neon dei locali di musica country" loading="lazy" style={{ objectPosition: "center 55%" }} />
             <figcaption>Lower Broadway, Nashville — la strada dove il country suona dal vivo ogni sera. Il nostro punto di riferimento, a 8.000 km da Brescia.</figcaption>
           </figure>
         </div>

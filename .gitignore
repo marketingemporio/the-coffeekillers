@@ -2,3 +2,9 @@
 !.env.example
 .netlify/
 .DS_Store
+
+# Foto originali (pesanti: ~211 MB). Restano solo sul Mac di Michele.
+# ⚠️ Netlify pubblica la radice del repo: se venissero committate finirebbero ONLINE.
+# Sul sito vanno solo le versioni compresse in images/*.webp
+Foto Nuovo sito/
+Foto x sito nuovo/

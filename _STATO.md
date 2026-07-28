@@ -1,11 +1,103 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-07-23
-> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com), restyling completo pubblicato + **fix font FAQ e audit SEO/mobile pubblicati il 03/07** (commit `43d9822` e `43f6648`) — verificato live. **⚠️ Dal 23/07 c'è un commit su `main` NON ancora pushato** (foto fresche 2026 — vedi prima sezione qui sotto): non è ancora online, attende l'ok di Michele per il push (push su `main` = deploy immediato!).
+> **Ultimo aggiornamento:** 2026-07-28
+> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com) e allineato: le **foto fresche 2026** del 23/07 sono state pushate (commit `d4645a0`, `main` = `origin/main`) → sono live. **⚠️ Dal 28/07 ci sono modifiche NON committate** in locale (38 foto dei servizi 2022–2023 in webp + gallery a 61 scatti — vedi prima sezione): attendono l'ok di Michele (push su `main` = deploy immediato!).
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
 
-## 📸 Foto fresche 2026 — su `main` NON ANCORA PUSHATO (2026-07-23)
+## 📸 Servizi 2022–2023 + sito tutto in webp + SEO foto (2026-07-28)
+Richiesta di Michele: "ho caricato una cartella con nuove foto, comprimile in webp e aggiungile",
+poi: mettere **Eli** in gallery (non in home), **eliminare le foto in vecchio formato**,
+**alt text e SEO sulle foto**, e usare i **soprannomi** della band.
+La cartella nuova era **`Foto Nuovo sito/`** (38 file, 153 MB) — da non confondere con
+`Foto x sito nuovo/`, che era **già lavorata** il 23/07.
+
+### 🎸 Chi c'è nelle foto (chiarito da Michele + [[Identità e Formazione]] nel Brain)
+I cinque si chiamano tra loro **Mike, Miglio, Larry, Richi, Ste** (usati nelle didascalie;
+le schede membri mostrano nome completo + soprannome, es. Michele "Mike" Frosio).
+Negli scatti **2022–2023** ci sono **due ex membri**:
+- **Eli** (Elisa Turra) — voce e chitarra acustica, **2017 → set 2025**
+- **Matteo** (Matteo Maghini) — banjo e chitarra elettrica, **2022 → set 2025**
+
+**Decisione di Michele**: restano **nella gallery** con nome e anno ("è comunque storia
+Coffeekillers"), **mai nella home**. La gallery ha un cappello introduttivo che spiega chi sono.
+
+⚠️ **Lap steel — non è un errore di didascalia**: fino a **gennaio 2026** la lap era di **Larry**
+(piano + lap). Con l'arrivo di **Ste** (chitarre + lap steel) **Larry è tornato al solo piano**.
+Quindi in `vigna-lapsteel.webp` / `studio-lapsteel.webp` (2022–23) la lap è **giustamente**
+in mano a Larry. → Corretto anche il Brain, che riportava per Ste "ott 2026" (sbagliato) e
+"strumento da precisare".
+
+### 🖼️ Tutto il sito è passato a webp
+Convertite anche le **30 foto rimaste in vecchio formato** e **rinominate** con nomi
+descrittivi minuscoli-con-trattini (contano per la SEO immagini; i vecchi avevano gli **spazi**:
+`Michi 1.jpeg`, `Palco 2.jpeg`…). Tutti i riferimenti nel codice aggiornati (**53 sostituzioni**
+in `components.jsx`, `index.html`, `app-chi-siamo.jsx`, `app-country.jsx`, `app-gallery.jsx`).
+- Esempi: `Michi 1.jpeg` → `mike-chitarra-acustica.webp` · `Palco.jpg` → `live-palco-luci-calde.webp`
+  · `Tutti.jpeg` → `band-completo-strumenti.webp` · `Michi sul palco.JPG` → `mike-telecaster-live.webp`
+- **Eliminati** (con `git rm`, quindi recuperabili dalla cronologia): **37 file** in `images/`,
+  compresi 7 mai usati da nessuna pagina (`Michi 5`, `Miglio 3/4`, `Richi 2/5`, `Strumenti.jpg`,
+  `nashville-skyline.jpg`). Più i **4 file sparsi in radice** (`IMG_1545/1553/1600.jpg`,
+  `IMG_1963.png`): prima verificato che avessero **copie byte-identiche** in `Foto x sito nuovo/`.
+- **Restano non-webp solo**: loghi `.svg`, favicon `.png` e **`og-image.jpg`** — quest'ultima
+  **deve** restare jpg (Facebook/WhatsApp gestiscono male il webp nelle anteprime social).
+- `images/` da ~40 MB a **29 MB** con 61 foto in gallery (prima erano 28).
+
+### 🔎 SEO sulle foto
+- **Alt text riscritti**: ora descrivono la **scena**, non solo il nome. Erano generici in home
+  ("The Coffeekillers — live", "Live show", "Stile country", "Pubblico e live") e nella
+  mini-galleria Instagram **4 foto diverse avevano lo stesso alt "IG Post"** (ora uno per foto).
+  Le schede membri hanno un `imgAltText` dedicato; le 6 ispirazioni avevano come alt il solo
+  nome dell'artista.
+- **Hero home**: aveva `alt=""` → ora ha un alt descrittivo (è la foto principale della band).
+- 🐛 **Bug trovato e risolto**: il `<link rel="preload">` in `index.html` precaricava
+  **`Palco.jpg`**, che dal 23/07 **non è più l'hero** (ora è `band-fiume-o4.webp`) → ogni
+  visita scaricava in alta priorità un'immagine mai mostrata. Ora punta all'hero vero, con
+  un commento che ricorda di tenerlo allineato a `HeroCinematic` in `components.jsx`.
+- Le foto puramente decorative (la seconda foto delle schede membri, quella del hover) tengono
+  `alt=""` + `aria-hidden="true"`: **è corretto**, non va "riempito".
+- **Conversione**: tutte e **38 → `images/*.webp`**, max lato lungo **2000px, q87** (`sips -Z 2000
+  -s format png` → `cwebp`). Da 153 MB a **8,4 MB** totali (media ~220 KB per foto).
+  Orientamenti verificati: erano `.jpg`/`.JPG` da reflex, `sips` li gestisce bene (il problema
+  `irot` del 23/07 riguardava solo le HEIC da iPhone).
+- **Nomi per gruppo/scena**: `vigna-*` (ritratti e live in vigna al tramonto, 2022) ·
+  `vigna-live-*` (concerto serale sotto le lucine) · `live-blu-*` / `live-sera-*` /
+  `live-controluce-*` / `live-telecaster-*` (live notturni) · `prato-*` + `targa-band`,
+  `strumenti-prato`, `telecaster-dettaglio` (servizio 2023 sul prato) · `studio-*` (ritratti in
+  studio su fondo chiaro, feb 2023) · `acustico-cortile`.
+- **Gallery** (`app-gallery.jsx`): aggiunti **33 scatti** in un blocco nuovo in mezzo
+  ("Servizi fotografici 2022–2023"), da 28 a **61**. Il contatore "scatti" è automatico.
+  **5 tenute da parte** perché quasi identiche ad altre già inserite (pronte all'uso se servono):
+  `live-blu-contrabbasso-b`, `vigna-contrabbasso-b`, `vigna-contrabbasso-live-b`,
+  `studio-contrabbasso-b`, `studio-contrabbasso-c`.
+- ⚠️ **FORMAZIONE DIVERSA — da far decidere a Michele**: sono scatti del **2022–2023**, e in
+  diversi (`vigna-live-voce`, `live-controluce-voce`, `live-telecaster-notte`,
+  `prato-palco-pubblico`) c'è una **cantante** che **non è** tra i 5 membri attuali del sito.
+  Per questo le didascalie sono **per strumento/scena, senza nomi di persona**, e le **schede
+  membri di Chi siamo NON sono state toccate** (lì servirebbe la certezza di chi è chi).
+  → Se qualcuno non fa più parte della band, valutare se togliere quegli scatti.
+- 💡 **Non ancora sfruttate**: i **ritratti in studio su fondo chiaro** (`studio-*`) e quelli
+  **in vigna** (`vigna-chitarra/basso/contrabbasso/ritratto`) sono ottimi per le schede membri
+  di Chi siamo, molto meglio degli attuali `Michi 1.jpeg` ecc. — da fare **solo dopo** aver
+  chiarito con Michele chi è chi.
+- **`.gitignore`**: aggiunte `Foto Nuovo sito/` e `Foto x sito nuovo/`. ⚠️ Netlify pubblica la
+  **radice** del repo: senza questa protezione un `git add .` distratto pubblicherebbe online
+  211 MB di originali.
+- ⚠️ **Da sistemare a mano**: in radice ci sono 4 file sparsi lasciati da un giro precedente —
+  `IMG_1545.jpg`, `IMG_1553.jpg`, `IMG_1600.jpg`, `IMG_1963.png` (sono doppioni di foto già
+  convertite il 23/07). Non toccati: da spostare in una cartella o cancellare, decide Michele.
+- **Verificato** (Chrome headless + CDP, reduce-motion, `python3 -m http.server 8911`):
+  gallery **61 foto, 0 rotte, 0 non caricate**, **0 errori JS**; nessuno scroll orizzontale
+  (`scrollWidth == innerWidth`) né a **1440px** né a **390px** con emulazione mobile vera;
+  contatore = "61 scatti". Le sole 2 richieste fallite sono beacon/font esterni bloccati su
+  localhost (normale, come da nota storica).
+  - 📝 Nota di metodo: Playwright **non è installato** su questo Mac. Chrome headless con
+    `--window-size=390` **senza** emulazione mobile mostra la pagina tagliata a destra: è un
+    **artefatto**, non overflow (verificato: identico sul sito online, e CDP con
+    `Emulation.setDeviceMetricsOverride` conferma `scrollWidth == innerWidth`).
+- 🔜 **Prossimo passo**: `git commit` + `git push` su `main` per pubblicare (solo con ok esplicito).
+
+## ✅ Foto fresche 2026 — PUBBLICATO (commit `d4645a0`, pushato; era in attesa il 23/07)
 Richiesta di Michele: prendere le foto in `Foto x sito nuovo/` (rinnovate quest'anno),
 convertirle in **webp** e usarle per "rimpolpare e dare varietà". Sono **foto della band
 (di proprietà)** → nessun problema di copyright (diverso dalle foto artisti Wikimedia).
@@ -33,8 +125,8 @@ convertirle in **webp** e usarle per "rimpolpare e dare varietà". Sono **foto d
   hero Home desktop+mobile e Chi siamo → testo/logo leggibili, orientamenti corretti.
 - **NON toccato** il branch B (`fusione-webflow-2026-07`): non ha queste foto. Se un giorno si
   sceglie la B, le stesse modifiche andranno riportate lì.
-- 🔜 **Prossimo passo**: `git push` su `main` per pubblicare (solo con ok esplicito). In uso ora
-  16 delle 17 webp; resta libera solo `band-logo-promo` (asset promo con logo), pronta all'uso.
+- ✅ **Pubblicato**: il push è stato fatto, queste 17 foto sono **online**. In uso 16 delle 17 webp;
+  resta libera solo `band-logo-promo` (asset promo con logo), pronta all'uso.
 
 ## ✅ Fix font FAQ + audit SEO/mobile — PUBBLICATO il 2026-07-03 (online)
 Pushato su `main` (commit `43d9822` fix font, `43f6648` JSON-LD) → deploy Netlify verificato

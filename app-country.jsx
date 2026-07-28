@@ -61,7 +61,7 @@ function CountryApp() {
         ornaments="Guida al country"
         title={<>Il country: musica, <span className="it">radici, vita.</span></>}
         lead="Dalle verande degli Appalachi ai grandi festival internazionali: cos'è il country, da dove viene, e perché oggi riempie i palchi anche in Italia — feste, sagre, locali e matrimoni."
-        bg={{ src: "images/nashville-broadway.jpg", alt: "Lower Broadway a Nashville di notte, i neon dei locali di musica country" }}
+        bg={{ src: "images/nashville-broadway.webp", alt: "Lower Broadway a Nashville di notte, i neon dei locali di musica country" }}
       >
         <nav className="toc-chips rise" style={{ animationDelay: ".36s" }} aria-label="Capitoli della pagina">
           {CO_CHAPTERS.map((c) => <a key={c.id} href={"#" + c.id}><span className="n">{c.n}</span>{c.label}</a>)}
@@ -78,7 +78,7 @@ function CountryApp() {
               <p style={pStyle(false)}>Nashville, Tennessee, diventa la capitale mondiale del country negli anni '40 con la nascita del Grand Ole Opry, il programma radiofonico che porta la musica country nelle case di tutta l'America. Da lì in poi, Nashville diventa sinonimo di country: le sue sale di registrazione, i suoi produttori e la sua scena live costruiranno il genere così come lo conosciamo oggi.</p>
             </div>
             <figure className="co-media rv rv--right">
-              <img src="images/strumenti-fila.jpg" alt="Chitarre acustiche e mandolino su un prato, sotto gli alberi" loading="lazy" />
+              <img src="images/strumenti-fila-alberi.webp" alt="Chitarre acustiche e mandolino su un prato, sotto gli alberi" loading="lazy" />
               <figcaption>Musica nata all'aperto, con poco: lo spirito è ancora quello.</figcaption>
             </figure>
           </div>
@@ -91,7 +91,7 @@ function CountryApp() {
           <ChapterHead n="02" eyebrow="Il suono" title="Cosa rende il country unico." dark />
           <div className="co-split">
             <figure className="co-media rv rv--left">
-              <img src="images/Strumenti palco.jpg" alt="Gli strumenti dei Coffeekillers pronti sul palco, immersi nel verde" loading="lazy" />
+              <img src="images/strumenti-palco-verde.webp" alt="Gli strumenti dei Coffeekillers pronti sul palco, immersi nel verde" loading="lazy" />
               <figcaption style={{ color: "var(--ck-on-dark)" }}>Chitarre, lap steel, armonica: il nostro palco.</figcaption>
             </figure>
             <div className="co-text rv">
@@ -148,7 +148,7 @@ function CountryApp() {
               </div>
             </div>
             <figure className="co-media rv rv--right">
-              <img src="images/Palco 3.jpeg" alt="Hot Joe & The Coffeekillers dal vivo in Italia, palco illuminato e pubblico" loading="lazy" />
+              <img src="images/live-sera-pubblico.webp" alt="Hot Joe & The Coffeekillers dal vivo in Italia, palco illuminato e pubblico" loading="lazy" />
               <figcaption style={{ color: "var(--ck-on-dark)" }}>Una nostra serata: il country funziona anche qui.</figcaption>
             </figure>
           </div>
@@ -161,7 +161,7 @@ function CountryApp() {
           <ChapterHead n="05" eyebrow="Perché funziona agli eventi" title="La musica che muove tutti." />
           <div className="co-split">
             <figure className="co-media rv rv--left">
-              <img src="images/Palco 2.jpeg" alt="Il pubblico a una serata country dei Coffeekillers, all'aperto" loading="lazy" />
+              <img src="images/live-allaperto-pomeriggio.webp" alt="Il pubblico a una serata country dei Coffeekillers, all'aperto" loading="lazy" />
               <figcaption>Non musica di sottofondo: musica da vivere.</figcaption>
             </figure>
             <div className="co-text rv">
