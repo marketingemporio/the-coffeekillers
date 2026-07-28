@@ -2,10 +2,10 @@
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
 > **Ultimo aggiornamento:** 2026-07-28
-> **Stato in una riga:** sito **ONLINE** su `main` (https://thecoffeekillers.com) e allineato: le **foto fresche 2026** del 23/07 sono state pushate (commit `d4645a0`, `main` = `origin/main`) → sono live. **⚠️ Dal 28/07 ci sono modifiche NON committate** in locale (38 foto dei servizi 2022–2023 in webp + gallery a 61 scatti — vedi prima sezione): attendono l'ok di Michele (push su `main` = deploy immediato!).
+> **Stato in una riga:** sito **ONLINE** e allineato (`main` = `origin/main` = `fe6ba01`). Pubblicato il 28/07: **gallery a 61 scatti** con i servizi 2022–2023, **tutto il sito in webp**, alt text e SEO immagini rifatti (vedi prima sezione). Verificato in produzione.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
 
-## 📸 Servizi 2022–2023 + sito tutto in webp + SEO foto (2026-07-28)
+## ✅ Servizi 2022–2023 + sito tutto in webp + SEO foto — PUBBLICATO il 2026-07-28
 Richiesta di Michele: "ho caricato una cartella con nuove foto, comprimile in webp e aggiungile",
 poi: mettere **Eli** in gallery (non in home), **eliminare le foto in vecchio formato**,
 **alt text e SEO sulle foto**, e usare i **soprannomi** della band.
@@ -70,22 +70,17 @@ in `components.jsx`, `index.html`, `app-chi-siamo.jsx`, `app-country.jsx`, `app-
   **5 tenute da parte** perché quasi identiche ad altre già inserite (pronte all'uso se servono):
   `live-blu-contrabbasso-b`, `vigna-contrabbasso-b`, `vigna-contrabbasso-live-b`,
   `studio-contrabbasso-b`, `studio-contrabbasso-c`.
-- ⚠️ **FORMAZIONE DIVERSA — da far decidere a Michele**: sono scatti del **2022–2023**, e in
-  diversi (`vigna-live-voce`, `live-controluce-voce`, `live-telecaster-notte`,
-  `prato-palco-pubblico`) c'è una **cantante** che **non è** tra i 5 membri attuali del sito.
-  Per questo le didascalie sono **per strumento/scena, senza nomi di persona**, e le **schede
-  membri di Chi siamo NON sono state toccate** (lì servirebbe la certezza di chi è chi).
-  → Se qualcuno non fa più parte della band, valutare se togliere quegli scatti.
-- 💡 **Non ancora sfruttate**: i **ritratti in studio su fondo chiaro** (`studio-*`) e quelli
-  **in vigna** (`vigna-chitarra/basso/contrabbasso/ritratto`) sono ottimi per le schede membri
-  di Chi siamo, molto meglio degli attuali `Michi 1.jpeg` ecc. — da fare **solo dopo** aver
-  chiarito con Michele chi è chi.
+- ✅ **Formazione risolta**: chi è chi è stato chiarito da Michele (vedi la sezione "Chi c'è nelle
+  foto" qui sopra) → le didascalie ora usano i **soprannomi**, e **Eli** e **Matteo** sono
+  nominati negli scatti in cui compaiono. Le schede membri di Chi siamo mostrano la **formazione
+  attuale** e non sono state mescolate con le foto d'epoca.
+- ⚠️ **Nota per chi rinomina le foto**: `studio-basso` / `vigna-basso` (nomi della prima passata)
+  erano **sbagliati** — lo strumento portato in spalla è una **lap steel**, non un basso.
+  Rinominati in `studio-lapsteel` / `vigna-lapsteel`. Se serve verificare uno strumento in una
+  foto, conviene ritagliare e ingrandire (`dwebp` + `sips -c`) prima di dare un nome.
 - **`.gitignore`**: aggiunte `Foto Nuovo sito/` e `Foto x sito nuovo/`. ⚠️ Netlify pubblica la
   **radice** del repo: senza questa protezione un `git add .` distratto pubblicherebbe online
   211 MB di originali.
-- ⚠️ **Da sistemare a mano**: in radice ci sono 4 file sparsi lasciati da un giro precedente —
-  `IMG_1545.jpg`, `IMG_1553.jpg`, `IMG_1600.jpg`, `IMG_1963.png` (sono doppioni di foto già
-  convertite il 23/07). Non toccati: da spostare in una cartella o cancellare, decide Michele.
 - **Verificato** (Chrome headless + CDP, reduce-motion, `python3 -m http.server 8911`):
   gallery **61 foto, 0 rotte, 0 non caricate**, **0 errori JS**; nessuno scroll orizzontale
   (`scrollWidth == innerWidth`) né a **1440px** né a **390px** con emulazione mobile vera;
@@ -95,7 +90,15 @@ in `components.jsx`, `index.html`, `app-chi-siamo.jsx`, `app-country.jsx`, `app-
     `--window-size=390` **senza** emulazione mobile mostra la pagina tagliata a destra: è un
     **artefatto**, non overflow (verificato: identico sul sito online, e CDP con
     `Emulation.setDeviceMetricsOverride` conferma `scrollWidth == innerWidth`).
-- 🔜 **Prossimo passo**: `git commit` + `git push` su `main` per pubblicare (solo con ok esplicito).
+- ✅ **Pubblicato** (commit `fe6ba01`, pushato il 28/07 su ok esplicito di Michele). Verificato in
+  produzione: le webp nuove rispondono **200 `image/webp`**, i vecchi file danno **404** (nessun
+  riferimento rimasto), `og-image.jpg` è ancora **jpeg** come deve, il preload della home punta
+  a `band-fiume-o4.webp`.
+- 🔜 **Restano da sfruttare** (facoltativo): le **5 webp di riserva** (`*-b`, `*-c`: quasi
+  identiche ad altre già in gallery) e `band-logo-promo.webp`. Idea aperta: usare i ritratti
+  **`studio-*`** su fondo chiaro per le schede membri di Chi siamo — ma coprono solo Mike,
+  Miglio, Larry e Richi (**Ste non c'era** nel 2023), quindi servirebbe uno scatto di Ste in
+  studio per non mischiare le epoche.
 
 ## ✅ Foto fresche 2026 — PUBBLICATO (commit `d4645a0`, pushato; era in attesa il 23/07)
 Richiesta di Michele: prendere le foto in `Foto x sito nuovo/` (rinnovate quest'anno),
