@@ -22,6 +22,26 @@ Negli scatti **2022–2023** ci sono **due ex membri**:
 **Decisione di Michele**: restano **nella gallery** con nome e anno ("è comunque storia
 Coffeekillers"), **mai nella home**. La gallery ha un cappello introduttivo che spiega chi sono.
 
+### 🧹 Eli togliata dalla home (2026-07-28, seconda passata)
+Michele ha notato Eli nella foto del blocco **"Cocktail e ballads"** e ha chiesto di cambiarla.
+Cercando, le foto con Eli nella home erano **due**, in **quattro punti**:
+| Foto | Dove | Fatto |
+|---|---|---|
+| `live-sera-pubblico` (Eli in primo piano al centro) | blocco "Cocktail e ballads" | → **`prato-palco-pubblico`** (band di spalle, nessun volto: scelta suggerita da Michele) |
+| `live-sera-pubblico` | striscia **Instagram** in fondo alla home | → **`band-fiume-o2`** (2026) |
+| `live-palco-luci-calde` (Eli al microfono) | striscia **Instagram** | → **`live-notte`** (2026) |
+| `live-palco-luci-calde` | hero **`editorial`** e **`poster`** | → **`live-voce`** (Mike, 2026) |
+- Gli hero `editorial`/`poster` **non sono attivi** (la home usa `cinematic`, vedi
+  `TWEAK_DEFAULTS` in `index.html`) ma sono selezionabili dal pannello tweaks: sistemati
+  comunque, così Eli non ricompare se un giorno si cambia hero.
+- Entrambe le foto **restano in gallery**, dove c'erano già: aggiornate le didascalie per
+  citare Eli come le altre d'epoca ("Eli alla chitarra · live di sera").
+- **Verificato**: nel DOM della home renderizzata **0 occorrenze** delle due foto.
+- ⚠️ **Resta un punto da decidere**: `live-sera-pubblico` (con Eli) è ancora usata in
+  **`app-country.jsx`** (pagina "Il country", sezione sul country in Italia). Non è la home,
+  quindi rientra nella regola — ma se Michele la vuole cambiare, un sostituto pronto è
+  `vigna-live-panoramica` o `prato-palco-pubblico`.
+
 ⚠️ **Lap steel — non è un errore di didascalia**: fino a **gennaio 2026** la lap era di **Larry**
 (piano + lap). Con l'arrivo di **Ste** (chitarre + lap steel) **Larry è tornato al solo piano**.
 Quindi in `vigna-lapsteel.webp` / `studio-lapsteel.webp` (2022–23) la lap è **giustamente**
@@ -95,10 +115,11 @@ in `components.jsx`, `index.html`, `app-chi-siamo.jsx`, `app-country.jsx`, `app-
   riferimento rimasto), `og-image.jpg` è ancora **jpeg** come deve, il preload della home punta
   a `band-fiume-o4.webp`.
 - 🔜 **Restano da sfruttare** (facoltativo): le **5 webp di riserva** (`*-b`, `*-c`: quasi
-  identiche ad altre già in gallery) e `band-logo-promo.webp`. Idea aperta: usare i ritratti
-  **`studio-*`** su fondo chiaro per le schede membri di Chi siamo — ma coprono solo Mike,
-  Miglio, Larry e Richi (**Ste non c'era** nel 2023), quindi servirebbe uno scatto di Ste in
-  studio per non mischiare le epoche.
+  identiche ad altre già in gallery) e `band-logo-promo.webp`.
+- ❌ **Ritratti studio per le schede membri — RINVIATO** (deciso da Michele il 28/07): i
+  `studio-*` coprono solo Mike, Miglio, Larry e Richi (**Ste non c'era** nel 2023). Michele:
+  "per le epoche sono d'accordo, aspettiamo un prossimo shooting per uniformare i ritratti in
+  studio". → **Non mischiare le epoche**: si rifà tutto insieme al prossimo servizio fotografico.
 
 ## ✅ Foto fresche 2026 — PUBBLICATO (commit `d4645a0`, pushato; era in attesa il 23/07)
 Richiesta di Michele: prendere le foto in `Foto x sito nuovo/` (rinnovate quest'anno),

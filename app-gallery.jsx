@@ -59,12 +59,12 @@ const PHOTOS = [
   { src: "images/live-blu-contrabbasso.webp", alt: "Richi suona il contrabbasso nel buio, illuminato da un faretto e da luci verdi", cap: "Richi · contrabbasso nel buio" },
 
   // — Scatti precedenti —
-  { src: "images/live-palco-luci-calde.webp", alt: "The Coffeekillers sul palco con luci calde e cappelli country", cap: "Serata live · sul palco" },
+  { src: "images/live-palco-luci-calde.webp", alt: "The Coffeekillers dal vivo con luci calde, Eli e Mike ai microfoni e il pubblico sotto il palco", cap: "Eli e Mike ai microfoni · serata live" },
   { src: "images/band-completo-strumenti.webp", alt: "La band country Hot Joe & The Coffeekillers al completo con gli strumenti", cap: "La band al completo" },
   { src: "images/mike-telecaster-live.webp", alt: "Mike, frontman dei Coffeekillers, con cappello country e Telecaster durante un live", cap: "Mike · voce e Telecaster" },
   { src: "images/strumenti-fila-alberi.webp", alt: "Chitarre acustiche e mandolino in fila sotto gli alberi, prima di un concerto country", cap: "Gli strumenti, prima del live" },
   { src: "images/band-giardino-salopette.webp", alt: "La band in piedi in giardino, tra salopette e sorrisi", cap: "Fuori dal palco" },
-  { src: "images/live-sera-pubblico.webp", alt: "The Coffeekillers dal vivo di sera, palco illuminato e pubblico davanti", cap: "Live di sera" },
+  { src: "images/live-sera-pubblico.webp", alt: "The Coffeekillers dal vivo di sera su un palco illuminato, Eli alla chitarra acustica al centro", cap: "Eli alla chitarra · live di sera" },
   { src: "images/mike-miglio-banjo.webp", alt: "Mike e Miglio col banjo all'aperto, nella formazione in duo", cap: "Mike & Miglio · col banjo" },
   { src: "images/live-allaperto-pomeriggio.webp", alt: "Live country pomeridiano all'aperto, con tastiere e batteria", cap: "Live all'aperto" },
   { src: "images/mike-acustica-live.webp", alt: "Mike con la chitarra acustica", cap: "Mike · guitars & lead voice" },

@@ -398,7 +398,7 @@ function HeroEditorial() {
         <div className="hero-grid" style={{ marginTop: "clamp(48px, 7vw, 96px)" }}>
           <div className="media tall hero-photo">
             <span className="badge">★ Live in Nashville mood</span>
-            <img src="images/live-palco-luci-calde.webp" alt="The Coffeekillers dal vivo sul palco, luci calde e cappelli country" />
+            <img src="images/live-voce.webp" alt="Mike canta con la chitarra acustica e il cappello country durante un live" />
           </div>
           <div>
             <div className="media wide hero-photo" style={{ aspectRatio: "5/4" }}>
@@ -442,7 +442,7 @@ function HeroPoster() {
         </div>
         <div className="hero-grid" style={{ marginTop: 48 }}>
           <div className="media tall hero-photo">
-            <img src="images/live-palco-luci-calde.webp" alt="The Coffeekillers dal vivo sul palco, luci calde e cappelli country" />
+            <img src="images/live-voce.webp" alt="Mike canta con la chitarra acustica e il cappello country durante un live" />
           </div>
           <div className="media wide hero-photo">
             <img src="images/live-allaperto-pomeriggio.webp" alt="Live country all'aperto dei Coffeekillers, di pomeriggio" />
@@ -508,7 +508,7 @@ function StyleSection() {
           </div>
           <div className="rv rv--right">
             <div className="media wide">
-              <img src="images/live-sera-pubblico.webp" alt="Concerto country serale dei Coffeekillers, palco illuminato e pubblico davanti" loading="lazy" />
+              <img src="images/prato-palco-pubblico.webp" alt="Hot Joe &amp; The Coffeekillers dal vivo visti dal palco, davanti al pubblico di una serata all'aperto" loading="lazy" />
             </div>
           </div>
         </div>
@@ -592,7 +592,7 @@ function Socials() {
               <p style={{ fontSize: "16px", marginBottom: "20px", opacity: 0.85 }}>I nostri ultimi scatti e aggiornamenti live:</p>
               
               <div style={{ display: "flex", gap: "12px", overflowX: "auto", paddingBottom: "16px", marginBottom: "16px", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
-                {[["images/live-palco-luci-calde.webp", "The Coffeekillers sul palco, luci calde"], ["images/band-giardino-salopette.webp", "La band in giardino, prima del live"], ["images/live-allaperto-pomeriggio.webp", "Live country all'aperto, di pomeriggio"], ["images/live-sera-pubblico.webp", "Concerto serale col pubblico davanti al palco"]].map(([src, imgAlt], i) => (
+                {[["images/live-notte.webp", "The Coffeekillers dopo un live serale in piazza"], ["images/band-giardino-salopette.webp", "La band in giardino, prima del live"], ["images/live-allaperto-pomeriggio.webp", "Live country all'aperto, di pomeriggio"], ["images/band-fiume-o2.webp", "Risate tra i cinque musicisti in riva al fiume"]].map(([src, imgAlt], i) => (
                   <a href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noreferrer" key={i} style={{ flex: "0 0 140px", height: "140px", scrollSnapAlign: "start", borderRadius: "8px", overflow: "hidden", display: "block", position: "relative" }}>
                     <img src={src} alt={imgAlt} style={{ width: "100%", height: "100%", objectFit: "cover" }} loading="lazy" />
                   </a>
