@@ -119,6 +119,7 @@ const SHOWS = [
 { day: "24", month: "Lug", year: "2026", name: "Serata in Ostaria", prov: "Brescia (BS)", iso: "2026-07-24" },
 { day: "25", month: "Lug", year: "2026", name: "Serata al Maneggio", prov: "Brescia (BS)", iso: "2026-07-25" },
 { day: "01", month: "Ago", year: "2026", name: "Serata in Meleto", prov: "Cremona (CR)", iso: "2026-08-01" },
+{ day: "07", month: "Ago", year: "2026", name: "Serata al Villaggio Costa Verde Natura", prov: "Clusane d'Iseo (BS)", iso: "2026-08-07" },
 { day: "08", month: "Ago", year: "2026", name: "Festa al Southern Pub", prov: "Belluno (BL)", iso: "2026-08-08" },
 { day: "09", month: "Ago", year: "2026", name: "Serata in Locanda", prov: "Vicenza (VI)", iso: "2026-08-09" },
 { day: "23", month: "Ago", year: "2026", name: "Evento Country — B Wild Ranch", prov: "Belluno (BL)", iso: "2026-08-23" },
