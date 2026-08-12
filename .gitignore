@@ -22,4 +22,16 @@ HJCK brand*.pdf
 # devono finire online (Netlify pubblica la radice del repo).
 _titoli.html
 _diag*.html
-_font.html
+# `_font*` copre anche il PDF da mostrare alla band: dentro c'è il font
+# personal use incorporato, quindi non va pubblicato sul dominio del sito.
+_font*
+
+# ⚠️⚠️ FONT — NON COMMITTARE, È UNA QUESTIONE DI LICENZA, NON DI PESO.
+# Qui dentro c'è "bronco-valley-personal-use.ttf": la versione PERSONAL USE di
+# Bronco Valley, gratis ma valida SOLO per prove private. Non copre l'uso su un
+# sito pubblico. Netlify pubblica la radice del repo: committarlo = distribuire
+# online un font senza licenza, dal dominio della band.
+# Serve SOLO a guardare i titoli in locale e decidere se comprare la Webfont
+# ($31, vedi _STATO.md). Quando la licenza vera è comprata, il .woff2 acquistato
+# va messo qui e questa riga va TOLTA di proposito.
+fonts/

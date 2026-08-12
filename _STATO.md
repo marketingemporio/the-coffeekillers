@@ -10,7 +10,98 @@
 
 ---
 
+# 🔬 PROVA IN CORSO — Bronco Valley + il colore (branch `prova-bronco-e-colore`)
+
+> ⚠️ **Questo lavoro NON è su `main` e NON è online.** Vive sul branch
+> `prova-bronco-e-colore`. Su `main` non è cambiato niente: il sito pubblicato è sempre
+> quello di prima, con **Rye**. Serve una decisione della band prima di portarlo avanti.
+
+Il 12/08/2026 Michele ha scaricato la **versione personal use** di Bronco Valley
+(`bronco-personal-use.zip` nei Download) e l'abbiamo montata sul sito **in locale** per
+guardarla. Poi Paola ha sollevato il problema del colore: *"non mi piace che nel sito è tutto
+troppo monotono, tutto su marrone, beige, arancio, non c'è contrasto"*.
+
+**📄 Il PDF per decidere con la band**: `Desktop/Coffeekillers - carattere e colore del sito.pdf`
+— 13 pagine A4, generato da `_font-scelta-titoli.html`. ⚠️ **Non è nel repo**: incorpora il font
+personal use, quindi è in `.gitignore` (regola `_font*`). Se serve rigenerarlo:
+`python -m http.server 8910` nella cartella, poi Chrome `--headless --print-to-pdf`.
+
+### ⚠️ Due scoperte che cambiano la decisione
+
+**1. Bronco Valley non ha le minuscole.** La tabella dei caratteri dice "26/26 minuscole", ma è
+fuorviante: nelle caselle delle minuscole c'è **un secondo alfabeto di maiuscole** — 11 lettere
+su 26 hanno il disegno *byte-identico* alla maiuscola, le altre 15 sono ridisegnate appena, e
+**tutte sono alte quanto le maiuscole** (672 unità). Verificato confrontando i glifi nel file,
+non a occhio.
+👉 **Se si sceglie Bronco, i titoli sono tutti maiuscoli per sempre** — la "proposta mista"
+qui sotto non è realizzabile. Con Rye la scelta resta aperta.
+
+**2. Al font personal use mancano gli accenti.** Ha **89 caratteri** in tutto: niente
+`à è é ì ò ù`, niente **`&`** (che è nel nome della band), niente trattino lungo. Sul sito
+quelle lettere ripiegano su Rye → **due caratteri dentro la stessa parola** ("autenticit**à**",
+"dove c'**è** birra"). Su 7 titoli veri della home, **3** hanno il problema.
+👉 **Prima di comprare la Webfont da $31, scrivere a Variatype e chiedere se la versione
+completa ha gli accenti.** Se non li ha nemmeno quella, per un sito in italiano non è usabile.
+
+### 🎨 Perché il sito sembra piatto — misurato, non a impressione
+
+Rapporti di contrasto WCAG dei colori del brand (sotto 3 non stacca, da 4,5 si legge bene):
+
+| Cosa, su cosa | Stacca | Nota |
+|---|---|---|
+| testo caffè su beige | **10,1** | ok |
+| beige su fondo notte | **12,9** | ok |
+| ruggine su beige — gli **occhielli** | **3,1** | debole |
+| **ocra su beige** — le parole "evidenziate" nei titoli | **1,8** | ⚠️ quasi invisibili |
+| azzurro su beige | **1,8** | ⚠️ mai usare l'azzurro come testo sul beige |
+| testo caffè **sopra** l'azzurro | **5,7** | ✅ così funziona |
+| azzurro **sopra** un fondo scuro | **7,3** | ✅ il massimo che la palette permette |
+| ocra **sopra** un fondo scuro | **7,1** | ✅ gli accenti caldi vanno sullo scuro |
+
+👉 **Il problema non è che manca colore: è che gli accenti non accentuano.** Le parole in
+corsivo ocra dentro i titoli — il punto in cui l'occhio dovrebbe fermarsi — su fondo beige
+staccano 1,8. E **quattro dei sei colori del brand sono caldi**: l'azzurro vintage `#8CAFA5`
+è l'unico freddo, ed è quello che non stiamo usando.
+
+**Quattro proposte** (tutte nel PDF, con blocchi veri del sito):
+| | Proposta | Lavoro |
+|---|---|---|
+| **A** | sezioni a **fondo azzurro pieno**, alternate al beige → ritmo a bande | 1 giorno |
+| **B** | azzurro come **accento** al posto del ruggine (occhielli, bordi biglietti, pulsanti) | ½ giornata |
+| **C** | **fondo notte blu-verde + azzurro luminoso** → contrasto massimo | 1 giorno |
+| **D** | **staccare** le sezioni: occhielli in etichetta piena, righe di stacco, più aria | ½ giornata |
+
+💡 **Consiglio: B + D.** Mezza giornata a testa, nessun layout da rifare, e risolvono proprio
+il problema degli accenti che non staccano. La **A** è quella che si vede di più.
+
+### 🔧 Cosa c'è nel branch, in concreto
+- `styles.css` + `components.jsx`: **Bronco Valley messo davanti a Rye** in `--ck-display`
+  (nel `:root` **e** in `TYPESETS.brand`), con `@font-face` in cima a `styles.css`.
+  Ogni punto ha il commento con la riga originale da rimettere.
+- `.gitignore`: aggiunte le regole **`fonts/`** e **`_font*`**.
+  ⚠️ **`fonts/` è ignorato per una questione di licenza, non di peso**: contiene il font
+  personal use, e Netlify pubblica la radice del repo. Committarlo = distribuire online un font
+  senza licenza, dal dominio della band. Quando si compra la Webfont, quella regola va tolta
+  **di proposito**.
+- **Non nel repo** (in `.gitignore`, restano solo sul PC): `fonts/` (Bronco + i font Google
+  scaricati per la stampa), `_font.html` (confronto rapido), `_font-scelta-titoli.html` e il PDF.
+
+### ▶️ Come si va avanti
+- **Se la band sceglie Rye** (opzione più sensata oggi: gratis, accentate complete, piace a
+  Michele): il branch si può **buttare**, basta ripristinare le due righe `--ck-display`.
+- **Se sceglie Bronco**: prima la mail a Variatype sugli accenti, poi la licenza **Webfont
+  $31** (⚠️ **non** la Desktop da $21, non copre i siti), poi si rifà il controllo sulle
+  larghezze dei titoli — Bronco è più stretto e alto di Rye, le righe si spezzano altrove.
+- **Il colore si decide a parte dal carattere**: B e D si possono fare comunque, anche
+  restando su Rye.
+
+---
+
 # ⏳ DA DECIDERE — titoli maiuscoli o minuscoli (con la band)
+
+⚠️ **Aggiornamento 12/08/2026: questa decisione si può prendere solo se si resta su Rye.**
+Bronco Valley non ha le minuscole (vedi la sezione qui sopra) — con Bronco i titoli sono
+per forza tutti maiuscoli.
 
 Al momento è attiva una **proposta mista**, decisa il 12/08/2026:
 - **MAIUSCOLO** → titoli brevi e dichiarativi, "da manifesto"
@@ -40,6 +131,11 @@ Bronco Valley è **volutamente fuori** dalla lista dei font dei titoli (`--ck-di
 `@font-face` non deve bastare a cambiare l'aspetto del sito da solo. L'attivazione è un passo
 esplicito (istruzioni sotto), così si può caricare il font, guardarlo e decidere con calma.
 
+⚠️ **Fatto il 12/08 sul branch `prova-bronco-e-colore`, con la versione personal use.** Il
+risultato è nel PDF sul Desktop, e ha fatto emergere due problemi seri (accenti e minuscole
+mancanti): **leggere la sezione "PROVA IN CORSO" in cima a questo file prima di comprare
+qualsiasi cosa.** Su `main` non è cambiato niente.
+
 ⚠️ **Rye ha un solo peso**: niente grassetto sui titoli. Vedi la regola su `h1`–`h6` in
 `styles.css` — c'è scritto lì perché.
 
@@ -49,7 +145,7 @@ Il brand book rev.2 usa **quattro** font. Due sono gratis e sono già sul sito. 
 |---|---|---|---|
 | **Manrope** | tutti i testi | ✅ **attivo** | Google Fonts, gratis |
 | **Smokum** | date, pulsanti, dettagli | ✅ **attivo** | Google Fonts, gratis |
-| **Bronco Valley** | i titoli, secondo il brand book | ⏸️ **in sospeso** — per ora i titoli sono in **Rye**, per scelta | [variatype.com/bronco-valley-vintage-serif](https://variatype.com/bronco-valley-vintage-serif/) — servirebbe la **"Webfont License 100K Views", $31** (verificato il 12/08/2026) |
+| **Bronco Valley** | i titoli, secondo il brand book | ⚠️ **provato il 12/08 e ci sono due problemi** (accenti mancanti + niente minuscole): vedi la sezione "PROVA IN CORSO" in cima. Per ora i titoli restano in **Rye** | [variatype.com/bronco-valley-vintage-serif](https://variatype.com/bronco-valley-vintage-serif/) — servirebbe la **"Webfont License 100K Views", $31** (verificato il 12/08/2026). ⚠️ **Prima chiedere se la versione completa ha le lettere accentate** |
 | **LT Cushion** | sottotitoli | ❌ **manca** → al suo posto c'è DM Serif Display | [dafont.com/lt-cushion.font](https://www.dafont.com/lt-cushion.font) — gratis (nel brand book: "100% free") |
 
 ⚠️ **Attenzione a quale licenza compri**: la **Desktop ($21)** serve per Illustrator/Canva, **non**

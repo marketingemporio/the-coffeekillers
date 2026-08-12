@@ -1,5 +1,24 @@
 /* === Coffeekillers — base styles ============================ */
 
+/* ⚠️⚠️ PROVA LOCALE — BRONCO VALLEY (personal use). DA NON PUBBLICARE.
+   Il file è fonts/bronco-valley-personal-use.ttf, gratis ma con licenza
+   PERSONAL USE: non copre l'uso su un sito pubblico. `fonts/` è in .gitignore.
+   Serve solo a guardare i titoli in locale e decidere se comprare la Webfont
+   ($31 — vedi _STATO.md).
+   Prima di andare online: togliere questo blocco e rimettere Rye davanti in
+   --ck-display (qui sotto) E in TYPESETS.brand in components.jsx.
+   ⚠️ Il font PERSONAL USE non ha le lettere accentute (à è é ì ò ù), la "&"
+   né il trattino lungo: su quei caratteri il browser ripiega su Rye, quindi
+   dentro la stessa parola si vedono due font ("Perch" in Bronco + "é" in Rye).
+   Non è un bug del sito: è il font incompleto. La versione a pagamento va
+   verificata su questo punto PRIMA di comprarla. */
+@font-face{
+  font-family:"Bronco Valley";
+  src:url("fonts/bronco-valley-personal-use.ttf") format("truetype");
+  font-weight:400;
+  font-display:swap;
+}
+
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;padding:0}
 html{scroll-behavior:smooth; scroll-padding-top: 90px;}
@@ -28,8 +47,14 @@ html{scroll-behavior:smooth; scroll-padding-top: 90px;}
      tenere Rye ("come resa mi piace di più") e di decidere su Bronco più avanti.
      Per questo Bronco Valley NON è in questa lista: se un domani lo compriamo e
      mettiamo la @font-face, il sito NON deve cambiare aspetto da solo. Per
-     attivarlo servirà rimetterlo qui davanti, di proposito. Vedi _STATO.md. */
-  --ck-display: "Rye", "DM Serif Display", serif;
+     attivarlo servirà rimetterlo qui davanti, di proposito. Vedi _STATO.md.
+
+     🔬 12/08/2026 — PROVA LOCALE IN CORSO: Bronco Valley (personal use) è stato
+     messo davanti a Rye di proposito, per far vedere i titoli a Michele.
+     Rye resta subito dietro e copre i caratteri che a Bronco mancano.
+     Riga originale, da rimettere prima di pubblicare:
+     --ck-display: "Rye", "DM Serif Display", serif; */
+  --ck-display: "Bronco Valley", "Rye", "DM Serif Display", serif;
   --ck-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --ck-mono: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --ck-poster: "Smokum", "Rye", serif;

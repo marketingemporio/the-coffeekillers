@@ -82,12 +82,18 @@ const PALETTES = {
 // Bronco Valley è volutamente FUORI da questa lista: se un domani lo compriamo,
 // il sito non deve cambiare faccia da solo. Vedi _STATO.md.
 //
+// 🔬 12/08/2026 — PROVA LOCALE IN CORSO (da non pubblicare): Bronco Valley
+// personal use è stato messo davanti a Rye qui sotto, per far vedere i titoli a
+// Michele. Il font è in fonts/ (in .gitignore, licenza personal use = niente
+// web). Prima di andare online rimettere: '"Rye", "DM Serif Display", serif'
+// qui E in --ck-display nel :root di styles.css.
+//
 // ⚠️ Rye ha UN SOLO PESO: niente grassetto sui titoli, se no il browser se lo
 // inventa e le lettere si impastano (vedi la regola sugli h1-h6 in styles.css).
 const TYPESETS = {
   brand: {
     label: "Brand 26",
-    "--ck-display": '"Rye", "DM Serif Display", serif',
+    "--ck-display": '"Bronco Valley", "Rye", "DM Serif Display", serif',
     "--ck-body": '"Manrope", ui-sans-serif, system-ui, sans-serif',
     "--ck-mono": '"Manrope", ui-sans-serif, system-ui, sans-serif',
     "--ck-poster": '"Smokum", "Rye", serif'
