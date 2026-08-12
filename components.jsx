@@ -3,7 +3,37 @@
 const CK_IMG = "images/";
 
 // ---- palettes ------------------------------------------------
+// "brand" e "brand-night" vengono dal brand book HJCK rev.2 (08/2026): sono i
+// SEI colori ufficiali, campionati dal PDF. Non inventarne altri, non ritoccarli.
+//   #EEDBBE beige chiaro   · #FB8700 giallo/arancio ocra · #BE8C65 tan
+//   #8CAFA5 azzurro vintage · #CE5812 ruggine            · #49240A caffè tostato
+// Le altre tre palette (saloon/midnight/wildflower) sono quelle pre-rev.2:
+// restano selezionabili dal pannello tweaks, ma il default del sito è "brand".
 const PALETTES = {
+  brand: {
+    label: "Brand 26",
+    "--ck-ink": "#49240a",
+    "--ck-paper": "#eedbbe",
+    "--ck-paper-2": "#e2c7a8", // beige + un tocco di tan: superficie secondaria
+    "--ck-rust": "#ce5812",
+    "--ck-gold": "#fb8700",
+    "--ck-sage": "#8cafa5",
+    "--ck-mute": "rgba(73,36,10,0.62)",
+    "--ck-line": "rgba(73,36,10,0.18)",
+    "--ck-on-dark": "#eedbbe"
+  },
+  brandnight: {
+    label: "Brand 26 Night",
+    "--ck-ink": "#eedbbe",
+    "--ck-paper": "#351a07", // caffè tostato più profondo, come le pagine scure del brand book
+    "--ck-paper-2": "#49240a",
+    "--ck-rust": "#e56d24", // ruggine schiarita per reggere il contrasto sul bruno
+    "--ck-gold": "#fb8700",
+    "--ck-sage": "#8cafa5",
+    "--ck-mute": "rgba(238,219,190,0.55)",
+    "--ck-line": "rgba(238,219,190,0.18)",
+    "--ck-on-dark": "#351a07"
+  },
   saloon: {
     label: "Saloon",
     "--ck-ink": "#15100b",
@@ -43,7 +73,25 @@ const PALETTES = {
 };
 
 // ---- type sets -----------------------------------------------
+// "brand" = tipografia del brand book HJCK rev.2. Manrope e Smokum sono i font
+// veri del brand (gratis su Google Fonts, già caricati nelle pagine).
+//
+// ⚠️ TITOLI: "Rye" è una SCELTA, non un ripiego.
+// Il brand book prevede Bronco Valley, ma il 12/08/2026 Michele ha deciso di
+// tenere Rye ("come resa mi piace di più") e di rivedere Bronco più avanti.
+// Bronco Valley è volutamente FUORI da questa lista: se un domani lo compriamo,
+// il sito non deve cambiare faccia da solo. Vedi _STATO.md.
+//
+// ⚠️ Rye ha UN SOLO PESO: niente grassetto sui titoli, se no il browser se lo
+// inventa e le lettere si impastano (vedi la regola sugli h1-h6 in styles.css).
 const TYPESETS = {
+  brand: {
+    label: "Brand 26",
+    "--ck-display": '"Rye", "DM Serif Display", serif',
+    "--ck-body": '"Manrope", ui-sans-serif, system-ui, sans-serif',
+    "--ck-mono": '"Manrope", ui-sans-serif, system-ui, sans-serif',
+    "--ck-poster": '"Smokum", "Rye", serif'
+  },
   editorial: {
     label: "Editorial",
     "--ck-display": '"DM Serif Display", "Times New Roman", serif',
@@ -126,8 +174,36 @@ const SHOWS = [
 { day: "28", month: "Ago", year: "2026", name: "Evento Country", prov: "Modena (MO)", iso: "2026-08-28" },
 { day: "29", month: "Ago", year: "2026", name: "Serata in montagna", prov: "Aosta (AO)", iso: "2026-08-29" },
 { day: "05", month: "Set", year: "2026", name: "Matrimonio", prov: "Siena (SI)", iso: "2026-09-05" },
-{ day: "12", month: "Set", year: "2026", name: "Inaugurazione Beach Fly", prov: "Brescia (BS)", iso: "2026-09-12" }];
+{ day: "10", month: "Ott", year: "2026", name: "Inaugurazione Beach Fly", prov: "Brescia (BS)", iso: "2026-10-10" }];
 
+
+// Siti UFFICIALI degli artisti che citiamo, in un posto solo così non si
+// duplicano fra home e "Chi siamo". Sono stati aperti e verificati uno a uno:
+// linkare una fan page o un dominio scaduto è peggio che non linkare affatto.
+// ⚠️ Se un giorno un link non risponde più, toglilo: ArtistLink gestisce da
+// solo il caso "nessun sito" e stampa il nome senza link.
+// (krusebrothersmusic.com, non krusebrothers.com: quello ha il certificato rotto)
+const ARTIST_SITES = {
+  "Blake Shelton": "https://www.blakeshelton.com",
+  "Chris Stapleton": "https://chrisstapleton.com",
+  "Brad Paisley": "https://www.bradpaisley.com",
+  "Carrie Underwood": "https://www.carrieunderwoodofficial.com",
+  "The Chicks": "https://thechicks.com",
+  "Zac Brown Band": "https://zacbrownband.com",
+  "Luke Combs": "https://www.lukecombs.com",
+  "Kruse Brothers": "https://krusebrothersmusic.com",
+  "Zach Top": "https://zachtop.com"
+};
+
+function ArtistLink({ name, className, children }) {
+  const href = ARTIST_SITES[name];
+  const label = children || name;
+  if (!href) return <span className={className}>{label}</span>;
+  return (
+    <a className={className} href={href} target="_blank" rel="noopener"
+    title={"Vai al sito ufficiale di " + name}>{label}</a>);
+
+}
 
 const BRANDS = [
 { name: "Coca-Cola", img: CK_IMG + "Coca-Cola.svg" },
@@ -150,6 +226,31 @@ const FAQS = [
 { q: "Avete bisogno di cibo o bevande?", a: "Ci piace suonare a stomaco pieno e gomito alzato, if you know what we mean." },
 { q: "C'è qualcos'altro che dobbiamo sapere prima di ingaggiarvi?", a: "Siate pronti a entrare nel mondo del Country americano." }];
 
+
+// ---- icone del brand (rev.2) ---------------------------------
+// Le otto icone del "sistema visivo" del brand book HJCK rev.2, estratte in
+// vettoriale dal PDF: un file per icona in images/icone/.
+// Sono monocromatiche e il colore (ruggine #CE5812) è scritto dentro l'SVG,
+// così funzionano anche caricate con <img> — che è il modo giusto per una
+// grafica puramente decorativa: resta fuori dal DOM e il browser la mette in
+// cache una volta sola anche se la stessa icona compare dieci volte.
+const CK_ICON_NAMES = [
+  "teschio-longhorn", "cactus", "cappello-cowboy", "ferri-di-cavallo",
+  "stivale", "camaleonte", "stella-sceriffo", "chitarra"];
+
+
+// "size" è il lato del quadrato in cui l'icona si inscrive, non la sua altezza
+// reale: ci pensa object-fit (vedi .ck-ico in styles.css).
+function CkIcon({ name, size = 26, className = "", style }) {
+  return (
+    <img
+      className={"ck-ico" + (className ? " " + className : "")}
+      src={CK_IMG + "icone/" + name + ".svg"}
+      alt="" aria-hidden="true" loading="lazy" decoding="async"
+      width={size} height={size}
+      style={{ width: size, height: size, ...style }} />);
+
+}
 
 // ---- small helpers -------------------------------------------
 function Star({ size = 12 }) {
@@ -221,8 +322,8 @@ function useReadbar() {
 // hook comune alle pagine: applica palette + typeset alle CSS var di :root
 function usePageTheme(t) {
   React.useEffect(() => {
-    const pal = PALETTES[t.palette] || PALETTES.saloon;
-    const typ = TYPESETS[t.type] || TYPESETS.editorial;
+    const pal = PALETTES[t.palette] || PALETTES.brand;
+    const typ = TYPESETS[t.type] || TYPESETS.brand;
     const root = document.documentElement;
     Object.entries({ ...pal, ...typ }).forEach(([k, v]) => {
       if (k.startsWith("--")) root.style.setProperty(k, v);
@@ -262,7 +363,7 @@ function CountUp({ to, prefix = "", suffix = "", duration = 1400 }) {
 
 // riga eyebrow doppia (sx — titoletto / dx nota), usata in testa alle sezioni
 function SectionHead({ left, right, dark = false }) {
-  const col = dark ? { color: "rgba(243,232,210,0.7)" } : undefined;
+  const col = dark ? { color: "rgba(238,219,190,0.7)" } : undefined;
   return (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 36, flexWrap: "wrap", gap: 12 }}>
       <span className="eyebrow" style={{ fontSize: "15px", ...col }}>— {left}</span>
@@ -357,6 +458,10 @@ function Nav({ onTweaks }) {
 
 }
 
+// Fra una scritta e l'altra della striscia scorrevole giravano dei pallini:
+// ora ci girano le icone del brand rev.2, a rotazione.
+const MARQUEE_ICONS = ["stella-sceriffo", "cappello-cowboy", "chitarra", "ferri-di-cavallo", "cactus", "stivale"];
+
 function Marquee({ items }) {
   const base = items || ["Country Live Band", "Brescia → Nashville", "Locali · Feste & Sagre · Festival", "Country Live Band", "Brescia → Nashville", "Locali · Feste & Sagre · Festival", "Country Live Band", "Brescia → Nashville"];
   return (
@@ -365,7 +470,7 @@ function Marquee({ items }) {
         {base.concat(base).map((t, i) =>
         <React.Fragment key={i}>
             <span className="marquee-item it">{t}</span>
-            <span className="marquee-dot"></span>
+            <CkIcon name={MARQUEE_ICONS[i % MARQUEE_ICONS.length]} size={34} className="marquee-ico" />
           </React.Fragment>
         )}
       </div>
@@ -467,9 +572,11 @@ function HeroCinematic() {
 
         <div className="wrap hero-cinematic-content" style={{ position: "relative", minHeight: "min(820px, 92vh)", display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "var(--ck-on-dark)", padding: "clamp(200px,30vw,280px) clamp(20px,4vw,50px) clamp(48px,7vw,87px)", textShadow: "0 2px 10px rgba(0,0,0,.45)" }}>
           <div className="rise" style={{ display: "flex", justifyContent: "space-between", marginBottom: 20, animationDelay: ".1s" }}>
-            <span className="eyebrow" style={{ color: "rgba(243,232,210,0.7)", fontSize: "15px" }}>Country Live Band — Nord Italia</span>
+            <span className="eyebrow" style={{ color: "rgba(238,219,190,0.7)", fontSize: "15px" }}>Country Live Band — Nord Italia</span>
           </div>
-          <h1 className="hero-title hero-cinematic-title rise" style={{ maxWidth: "15ch", fontSize: "clamp(30px, 5.5vw, 70px)", animationDelay: ".2s" }}>
+          {/* la larghezza massima sta nel CSS, non qui: in maiuscolo il titolo
+              è più largo e andrebbe a finire sotto il logo (vedi .hero-cinematic-title) */}
+          <h1 className="t-caps hero-title hero-cinematic-title rise" style={{ fontSize: "clamp(30px, 5.5vw, 70px)", animationDelay: ".2s" }}>
             Vivi l'energia <span className="it" style={{ color: "var(--ck-gold)" }}>travolgente</span> del Country live.
           </h1>
           <p className="rise" style={{ maxWidth: "50ch", marginTop: 24, opacity: .92, fontSize: "clamp(16px, 2vw, 20px)", animationDelay: ".32s" }}>
@@ -477,10 +584,79 @@ function HeroCinematic() {
           </p>
           <div className="rise" style={{ display: "flex", gap: 14, marginTop: 28, flexWrap: "wrap", animationDelay: ".44s" }}>
             <a className="btn" href="#contact" style={{ background: "var(--ck-paper)", color: "var(--ck-ink)", borderColor: "var(--ck-paper)" }}>Sentiamoci! <span className="arrow"><Arrow /></span></a>
-            <a className="btn btn-ghost" href="#lineup" style={{ borderColor: "rgba(243,232,210,0.4)", color: "var(--ck-on-dark)" }}>Scopri la band</a>
+            <a className="btn btn-ghost" href="#lineup" style={{ borderColor: "rgba(238,219,190,0.4)", color: "var(--ck-on-dark)" }}>Scopri la band</a>
           </div>
         </div>
         <div className="scroll-cue" aria-hidden="true"></div>
+      </div>
+    </section>);
+
+}
+
+// ---- video in evidenza (home) --------------------------------
+// Il primo video di una canzone intera: sta in cima alla home, subito sotto
+// l'hero, perché è la cosa che convince di più chi ci sta valutando.
+// È una "facade": si vede una copertina locale in webp e l'iframe di YouTube
+// viene creato solo al click. Un embed YouTube si tira dietro quasi 1 MB di
+// script di terze parti: caricarlo a freddo in cima alla home lo farebbe
+// pagare a tutti, anche a chi il video non lo guarda.
+const FEATURED_VIDEO = {
+  id: "mwindsVYrmo",
+  song: "Guitar",
+  author: "Zach Top",
+  authorUrl: "https://zachtop.com",
+  cover: CK_IMG + "video-guitar-cover.webp",
+  coverAlt: "Hot Joe & The Coffeekillers dal vivo al tramonto in riva al fiume: Mike canta con la chitarra acustica, la band suona alle sue spalle"
+};
+
+function FeaturedVideo() {
+  const [playing, setPlaying] = React.useState(false);
+  const v = FEATURED_VIDEO;
+  const title = v.song + " (" + v.author + ") — Hot Joe & The Coffeekillers";
+
+  return (
+    <section className="section featured-video" id="video" style={{ backgroundColor: "var(--ck-ink)", color: "var(--ck-on-dark)", padding: "100px 0px" }}>
+      <div className="wrap">
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 28, flexWrap: "wrap", gap: 12 }}>
+          <span className="eyebrow eyebrow-ico" style={{ fontSize: "15px" }}><CkIcon name="chitarra" size={26} />— Nuovo</span>
+          <span className="eyebrow">Una canzone intera · dal vivo</span>
+        </div>
+
+        <div className="fv-head">
+          <h2 className="t-caps lead section-title-50" style={{ margin: 0 }}>
+            Adesso puoi <span className="it" style={{ color: "var(--ck-gold)" }}>sentirci per intero</span>.
+          </h2>
+          <p className="body fv-intro">
+            Niente più spezzoni da trenta secondi: questa è una canzone dall'inizio alla fine,
+            registrata dal vivo. <b>“{v.song}”</b> di <a href={v.authorUrl} target="_blank" rel="noopener">{v.author}</a>,
+            nella nostra versione. Cinque strumenti, le armonie vocali, il suono che senti alla tua serata.
+          </p>
+        </div>
+
+        <div className="fv-frame rv">
+          {playing ?
+          <iframe
+            src={"https://www.youtube.com/embed/" + v.id + "?autoplay=1&rel=0&modestbranding=1"}
+            title={title}
+            referrerPolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen>
+            </iframe> :
+
+          <button type="button" className="fv-cover" onClick={() => setPlaying(true)} aria-label={"Guarda il video: " + title}>
+              <img src={v.cover} alt={v.coverAlt} width="1280" height="720" />
+              <span className="fv-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor"><path d="M8 5.5v13l11-6.5z" /></svg></span>
+              <span className="fv-caption" aria-hidden="true">{v.song} · {v.author}</span>
+            </button>
+          }
+        </div>
+
+        <div className="fv-actions">
+          <a className="btn" href={"https://www.youtube.com/watch?v=" + v.id} target="_blank" rel="noopener" style={{ background: "var(--ck-on-dark)", color: "var(--ck-ink)", borderColor: "var(--ck-on-dark)" }}>
+            Guarda su YouTube <span className="arrow"><Arrow /></span>
+          </a>
+          <a className="btn btn-ghost" href="preventivo.html" style={{ borderColor: "var(--ck-line)", color: "var(--ck-on-dark)" }}>Ci vuoi alla tua serata?</a>
+        </div>
       </div>
     </section>);
 
@@ -491,7 +667,7 @@ function StyleSection() {
     <section className="section" id="stile" style={{ padding: "100px 0px 111.33px" }}>
       <div className="wrap">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 36, flexWrap: "wrap", gap: 12 }}>
-          <span className="eyebrow" style={{ fontSize: "15px" }}>— Live shows</span>
+          <span className="eyebrow eyebrow-ico" style={{ fontSize: "15px" }}><CkIcon name="stella-sceriffo" size={26} />— Live shows</span>
           <span className="eyebrow">STILE · REPERTORIO · AMBIENTE</span>
         </div>
 
@@ -504,7 +680,10 @@ function StyleSection() {
               Desideri ascoltare qualche <b>classico intramontabile</b> o alcune ballads romantiche country chic per accompagnare i tuoi cocktail e rilassarti? Preferisci ballare sui tavoli con le party songs più ritmate? Sei nel posto giusto. Creiamo l'<b>atmosfera perfetta</b> per il tuo evento con un repertorio di inediti e cover di icone come Blake Shelton, Chris Stapleton, Brad Paisley, Carrie Underwood, The Chicks e molti altri. Ogni nota, un pezzo di autentica atmosfera americana!
             </p>
             <div className="tag-strip">
-              <span>Blake Shelton</span><span>Chris Stapleton</span><span>Brad Paisley</span><span>Carrie Underwood</span><span>The Chicks</span><span>+ inediti</span>
+              {["Blake Shelton", "Chris Stapleton", "Brad Paisley", "Carrie Underwood", "The Chicks"].map((n) =>
+              <ArtistLink key={n} name={n} className="tag-link" />
+              )}
+              <span>+ inediti</span>
             </div>
           </div>
           <div className="rv rv--right">
@@ -517,7 +696,7 @@ function StyleSection() {
         <hr className="rule" style={{ margin: "clamp(56px,7vw,100px) 0" }} />
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 36, flexWrap: "wrap", gap: 12 }}>
-          <span className="eyebrow" style={{ fontSize: "15px" }}>— Il nostro stile</span>
+          <span className="eyebrow eyebrow-ico" style={{ fontSize: "15px" }}><CkIcon name="teschio-longhorn" size={26} />— Il nostro stile</span>
           <span className="eyebrow">Sound · Ritmo · Armonie</span>
         </div>
 
@@ -526,8 +705,8 @@ function StyleSection() {
             <img src="images/mike-miglio-banjo.webp" alt="Mike e Miglio in versione acustica col banjo, all'aperto" loading="lazy" />
           </div>
           <div className="rv">
-            <h2 className="lead section-title-50">
-              Un mix irresistibile di <span className="it" style={{ color: "rgb(200, 151, 59)" }}>energia</span> e autenticità.
+            <h2 className="t-caps lead section-title-50">
+              Un mix irresistibile di <span className="it" style={{ color: "rgb(251, 135, 0)" }}>energia</span> e autenticità.
             </h2>
             <p className="body" style={{ fontSize: "clamp(16px, 2vw, 20px)" }}>
               <b>Sound deciso</b>, solide basi ritmiche, intrecci di strumenti a corda e tante armonie vocali che evocano l'atmosfera magica dei live show di Nashville — con il nostro carattere coffee-killer. Sonorità rustiche ma raffinate, capaci di trasformare ogni performance in un viaggio nel cuore del country moderno.
@@ -541,7 +720,7 @@ function StyleSection() {
         <hr className="rule" style={{ margin: "clamp(56px,7vw,100px) 0" }} />
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 36, flexWrap: "wrap", gap: 12 }}>
-          <span className="eyebrow" style={{ fontSize: "15px" }}>— DOVE DIAMO IL MEGLIO</span>
+          <span className="eyebrow eyebrow-ico" style={{ fontSize: "15px" }}><CkIcon name="stivale" size={26} />— DOVE DIAMO IL MEGLIO</span>
           <span className="eyebrow">Locali · Feste &amp; Sagre · Festival · Eventi privati · Matrimoni</span>
         </div>
 
@@ -567,28 +746,155 @@ function StyleSection() {
 
 }
 
+// ---- il palco (home) -----------------------------------------
+// Ripresa col drone di un allestimento vero: parte dal palco e si allontana
+// scoprendo la villa, le file di sedie e i vigneti. Serve a rispondere senza
+// parole alla domanda che si fa chi ci sta valutando: "che palchi fanno?".
+// ⚠️ Il luogo viene dal nome del file girato da Michele (villa a Gussago):
+// se un domani il video cambia, cambia anche `place` — o togli la didascalia.
+const STAGE_VIDEO = {
+  src: CK_IMG + "palco-villa-gussago.mp4",
+  poster: CK_IMG + "palco-villa-gussago.webp",
+  place: "Villa a Gussago (BS)",
+  label: "Ripresa dall'alto del palco allestito dei Coffeekillers nel giardino di una villa a Gussago: batteria, tastiere, chitarre, casse e luci, con le file di sedie del pubblico e i vigneti sullo sfondo"
+};
+
+function StageShowcase() {
+  const ref = React.useRef(null);
+  // true quando il browser si rifiuta di far partire il video da solo:
+  // succede sugli iPhone in "risparmio energetico". In quel caso mostriamo un
+  // pulsante play, così il video resta comunque guardabile invece di restare
+  // una fotografia ferma senza spiegazione.
+  const [needsTap, setNeedsTap] = React.useState(false);
+
+  const startVideo = React.useCallback(() => {
+    const v = ref.current;
+    if (!v) return;
+    v.muted = true;
+    const p = v.play();
+    if (p && p.then) p.then(() => setNeedsTap(false)).catch(() => setNeedsTap(true));
+  }, []);
+
+  React.useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+
+    // ⚠️ Muto forzato via JS, non solo nel JSX: i browser fanno partire da soli
+    // soltanto i video muti, e React applica `muted` come proprietà (non finisce
+    // nell'HTML). Se per qualsiasi motivo non fosse già attiva, play() verrebbe
+    // rifiutato e la sezione resterebbe un'immagine ferma. Così è certo.
+    v.muted = true;
+    v.defaultMuted = true;
+
+    // Chi ha chiesto al sistema operativo di ridurre le animazioni si tiene la
+    // sola copertina, ferma.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      v.removeAttribute("autoplay");
+      v.pause();
+      return;
+    }
+
+    // La riproduzione la fa partire il browser da solo (autoplay+muted+preload
+    // "none": il file non viene scaricato finché non serve davvero).
+    // Questo qui sotto è solo un risparmio in più: quando la sezione esce dallo
+    // schermo il video si ferma, invece di girare a vuoto consumando batteria.
+    // ⚠️ Di proposito NON è lui a far partire il video: un primo tentativo così
+    // non partiva affatto, perché non si può contare sul fatto che l'osservatore
+    // scatti sempre. L'autoplay del browser è la strada affidabile.
+    if (!("IntersectionObserver" in window)) return;
+    let check = null;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          startVideo();
+          // se dopo un secondo e mezzo è ancora fermo, l'autoplay è stato
+          // bloccato: tiriamo fuori il pulsante play
+          clearTimeout(check);
+          check = setTimeout(() => setNeedsTap(v.paused), 1500);
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    io.observe(v);
+    return () => { clearTimeout(check); io.disconnect(); };
+  }, [startVideo]);
+
+  return (
+    <section className="section stage-showcase" id="palco" style={{ padding: "100px 0px" }}>
+      <div className="wrap">
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 36, flexWrap: "wrap", gap: 12 }}>
+          <span className="eyebrow eyebrow-ico" style={{ fontSize: "15px" }}><CkIcon name="chitarra" size={26} />— Il palco</span>
+          <span className="eyebrow">Allestimento · Audio · Luci</span>
+        </div>
+
+        <div className="stage-head">
+          <h2 className="lead section-title-50" style={{ margin: 0 }}>
+            Non arriviamo con due casse e <span className="it" style={{ color: "var(--ck-rust)" }}>un cavo</span>.
+          </h2>
+          <p className="body stage-intro">
+            Audio e luci sono <b>nostri</b>: montiamo, suoniamo e smontiamo senza che tu debba
+            pensarci. Fino a <b>250 persone</b> siamo autosufficienti; sopra, arriva il nostro
+            service di fiducia. Questo è un allestimento vero, in una serata vera.
+          </p>
+        </div>
+      </div>
+
+      <div className="stage-video rv">
+        {/* muto + playsInline sono obbligatori perché parta da solo sui telefoni;
+            preload="none" evita di scaricare i 2 MB a chi non arriva fin qui */}
+        <video
+          ref={ref}
+          src={STAGE_VIDEO.src}
+          poster={STAGE_VIDEO.poster}
+          autoPlay muted loop playsInline preload="none"
+          aria-label={STAGE_VIDEO.label}
+          width="1280" height="720"></video>
+        {needsTap &&
+        <button type="button" className="stage-play" onClick={startVideo} aria-label="Avvia il video del palco">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M8 5.5v13l11-6.5z" /></svg>
+          </button>
+        }
+        <span className="stage-place">
+          <CkIcon name="stella-sceriffo" size={18} />{STAGE_VIDEO.place}
+        </span>
+      </div>
+
+      <div className="wrap">
+        <div className="tag-strip stage-tags">
+          <span>Service audio &amp; luci nostro</span>
+          <span>Fino a 250 persone in autonomia</span>
+          <span>Montaggio e smontaggio inclusi</span>
+          <span>Spazio minimo 5 × 3 m</span>
+        </div>
+      </div>
+    </section>);
+
+}
+
 function Socials() {
   return (
     <section className="section" id="socials" style={{ padding: "100px 0px", backgroundColor: "var(--ck-paper-2)" }}>
       <div className="wrap">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 36, flexWrap: "wrap", gap: 12 }}>
-          <span className="eyebrow" style={{ fontSize: "15px" }}>— Seguiteci online</span>
+          <span className="eyebrow eyebrow-ico" style={{ fontSize: "15px" }}><CkIcon name="camaleonte" size={26} />— Seguiteci online</span>
           <span className="eyebrow">YOUTUBE · INSTAGRAM</span>
         </div>
 
         <div className="split">
           <div className="rv">
-            <h2 className="lead section-title-50">
+            <h2 className="t-caps lead section-title-50">
               Un assaggio del nostro <span className="it" style={{ color: "var(--ck-rust)" }}>live.</span>
             </h2>
             <p className="body" style={{ fontSize: "clamp(16px, 2vw, 20px)", marginBottom: "32px" }}>
               Guarda un estratto dei nostri spettacoli sul nostro canale YouTube. E per restare sempre aggiornati su tutte le nostre date, le novità e le follie del backstage, non c'è posto migliore di Instagram!
             </p>
             
-            <div style={{ padding: "32px", background: "var(--ck-paper)", borderRadius: "16px", border: "1px solid rgba(21,16,11,0.1)" }}>
+            <div style={{ padding: "32px", background: "var(--ck-paper)", borderRadius: "16px", border: "1px solid rgba(73,36,10,0.1)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px", color: "var(--ck-rust)" }}>
                 <IGIcon />
-                <h3 style={{ margin: 0, fontSize: "24px", color: "var(--ck-ink)" }}>@thecoffeekillers</h3>
+                <h3 className="ig-handle" style={{ margin: 0, fontSize: "24px", color: "var(--ck-ink)" }}>@thecoffeekillers</h3>
               </div>
               <p style={{ fontSize: "16px", marginBottom: "20px", opacity: 0.85 }}>I nostri ultimi scatti e aggiornamenti live:</p>
               
@@ -627,13 +933,13 @@ function Socials() {
 
 function Brands() {
   return (
-    <section className="brands" id="brands" style={{ backgroundColor: "rgb(21, 16, 11)", padding: "100px 0px" }}>
+    <section className="brands" id="brands" style={{ backgroundColor: "rgb(73, 36, 10)", padding: "100px 0px" }}>
       <div className="wrap">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 12, marginBottom: 24 }}>
-          <span className="eyebrow" style={{ color: "rgb(243, 232, 210)", fontSize: "15px" }}>— Hanno ballato con noi</span>
-          <span className="eyebrow" style={{ color: "rgb(243, 232, 210)" }}>Selected clients</span>
+          <span className="eyebrow" style={{ color: "rgb(238, 219, 190)", fontSize: "15px" }}>— Hanno ballato con noi</span>
+          <span className="eyebrow" style={{ color: "rgb(238, 219, 190)" }}>Selected clients</span>
         </div>
-        <h2 className="section-title-50" style={{ color: "rgb(243, 232, 210)" }}>Abbiamo fatto <span className="it" style={{ color: "rgb(200, 151, 59)" }}>ballare</span>.</h2>
+        <h2 className="t-caps section-title-50" style={{ color: "rgb(238, 219, 190)" }}>Abbiamo fatto <span className="it" style={{ color: "rgb(251, 135, 0)" }}>ballare</span>.</h2>
         <div className="brand-grid stagger">
           {BRANDS.map((b, i) =>
           <div className="brand-cell" key={b.name}>
@@ -651,11 +957,11 @@ function Lineup() {
     <section className="section" id="lineup" style={{ padding: "100px 0px" }}>
       <div className="wrap">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 12, marginBottom: 24 }}>
-          <span className="eyebrow" style={{ fontSize: "15px" }}>— Lineup</span>
+          <span className="eyebrow eyebrow-ico" style={{ fontSize: "15px" }}><CkIcon name="cappello-cowboy" size={26} />— Lineup</span>
           <span className="eyebrow">CINQUE FACCE, UNA BAND</span>
         </div>
         <div className="lineup-head fade-in">
-          <h2 className="section-title-50">La <span className="it">band</span> country<br />di Brescia.</h2>
+          <h2 className="t-caps section-title-50">La <span className="it">band</span> country<br />di Brescia.</h2>
           <p style={{ maxWidth: "36ch", margin: 0, color: "var(--ck-mute)" }}>
             Ci conosci già, ma ti ricordiamo che faccia abbiamo. Tecnica, ironia e troppa caffeina.
           </p>
@@ -744,8 +1050,8 @@ function UpcomingShows({ full = false, bare = false }) {
             <SectionHead left="Calendario" right="Live 2026" />
             <div className="shows-head fade-in">
               {full ?
-                <h1>Tutte le date del <span className="it">2026.</span></h1> :
-                <h2>Dove ci trovi nel <span className="it">2026.</span></h2>
+                <h1 className="t-caps">Tutte le date del <span className="it">2026.</span></h1> :
+                <h2 className="t-caps">Dove ci trovi nel <span className="it">2026.</span></h2>
               }
               <p style={{ maxWidth: "34ch", margin: 0, color: "var(--ck-mute)" }}>
                 {full ? "Le prossime serate confermate e l'archivio delle date già suonate." : "Le prossime quattro serate confermate. Vieni a trovarci."}
@@ -803,7 +1109,7 @@ function FAQ() {
     <section className="section faq-section" id="faq" style={{ padding: "100px 0px" }}>
       <div className="wrap faq">
         <div>
-          <span className="eyebrow" style={{ fontSize: "15px" }}>— Domande frequenti</span>
+          <span className="eyebrow eyebrow-ico" style={{ fontSize: "15px" }}><CkIcon name="ferri-di-cavallo" size={26} />— Domande frequenti</span>
           <h2 className="section-title-50" style={{ marginTop: 14 }}>Di solito volete<br />sapere <span className="it">questo.</span></h2>
           <p className="faq-intro" style={{ fontSize: "clamp(16px, 2vw, 20px)" }}>
             Risposte alle classiche domande. Se non trovi la tua, scrivici e ti rispondiamo nel giro di un caffè.
@@ -1031,7 +1337,7 @@ function Newsletter() {
     <section className="section" style={{ paddingTop: 0, paddingBottom: "clamp(48px,6vw,80px)", opacity: "1", padding: "100px 0px" }}>
       <div className="wrap newsletter-grid">
         <div>
-          <span className="eyebrow" style={{ fontSize: "15px" }}>— Newsletter</span>
+          <span className="eyebrow eyebrow-ico" style={{ fontSize: "15px" }}><CkIcon name="cactus" size={26} />— Newsletter</span>
           <h3 className="section-title-50" style={{ fontFamily: "var(--ck-display)", lineHeight: ".95", letterSpacing: "-0.02em", margin: "12px 0 8px" }}>
             Ti aggiorniamo sulle <span className="it" style={{ color: "var(--ck-rust)" }}>date.</span>
           </h3>
@@ -1062,7 +1368,7 @@ function ContactCta() {
         <div className="cta-grid">
           <div className="rv">
             <span className="eyebrow" style={{ fontSize: "15px" }}>— Richiedi un preventivo</span>
-            <h2 className="section-title-50">Una serata<br/>con <span className="it">noi?</span></h2>
+            <h2 className="t-caps section-title-50">Una serata<br/>con <span className="it">noi?</span></h2>
             <p className="cta-lead">
               Raccontaci il tuo evento. Ti rispondiamo con proposta, scaletta tipo e cachet personalizzato.
             </p>
@@ -1128,11 +1434,79 @@ function Footer() {
 
 // === expose to window =========================================
 Object.assign(window, {
-  PALETTES, TYPESETS, SHOWS, FAQS, MEMBERS, MONTH_FULL,
-  Nav, Marquee, HeroEditorial, HeroPoster, HeroCinematic,
+  PALETTES, TYPESETS, SHOWS, FAQS, MEMBERS, MONTH_FULL, ARTIST_SITES, CK_ICON_NAMES,
+  Nav, Marquee, HeroEditorial, HeroPoster, HeroCinematic, FeaturedVideo, StageShowcase,
   StyleSection, Socials, Brands, Lineup, UpcomingShows, Ticket, NextShowCard,
   FAQ, Contact, ContactCta, Newsletter, Footer,
   PageHero, SectionHead, CountUp,
   useReveal, useReadbar, usePageTheme,
-  Star, Arrow, ArrowUR, IGIcon, FBIcon, YTIcon
+  Star, Arrow, ArrowUR, IGIcon, FBIcon, YTIcon, CkIcon, ArtistLink
 });
+// === Prova titoli: MAIUSCOLO / minuscolo ======================
+// Interruttore in basso a destra per decidere con la band come stanno meglio i
+// titoli. ⚠️ Compare SOLO quando il sito gira in locale (localhost / 127.0.0.1
+// / anteprime Netlify): online non si vede e non viene nemmeno creato.
+// Quando la scelta è fatta: si fissano le classi .t-caps nel JSX e questo
+// blocco si può cancellare — insieme alle regole html[data-titoli=...] nel CSS.
+(function setupProvaTitoli() {
+  const host = location.hostname;
+  const inLocale = host === "localhost" || host === "127.0.0.1" || host === "" ||
+  host.endsWith(".local") || host.endsWith("netlify.app");
+  if (!inLocale) return;
+
+  const MODI = [
+  { k: "misto", lbl: "Proposta (misto)" },
+  { k: "caps", lbl: "TUTTO MAIUSCOLO" },
+  { k: "lower", lbl: "tutto minuscolo" }];
+
+
+  const applica = (k) => {
+    if (k === "misto") document.documentElement.removeAttribute("data-titoli");else
+    document.documentElement.setAttribute("data-titoli", k);
+    try {localStorage.setItem("ck-prova-titoli", k);} catch (e) {}
+  };
+
+  const start = () => {
+    let scelta = "misto";
+    try {scelta = localStorage.getItem("ck-prova-titoli") || "misto";} catch (e) {}
+    applica(scelta);
+
+    const box = document.createElement("div");
+    box.style.cssText =
+    "position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:6px;" +
+    "padding:8px;border-radius:12px;background:rgba(73,36,10,.92);" +
+    "box-shadow:0 8px 30px rgba(0,0,0,.3);font:600 11px/1 ui-sans-serif,system-ui,sans-serif;" +
+    "-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)";
+
+    const tag = document.createElement("span");
+    tag.textContent = "TITOLI";
+    tag.style.cssText = "color:rgba(238,219,190,.55);align-self:center;padding:0 6px;letter-spacing:.14em";
+    box.appendChild(tag);
+
+    const bottoni = MODI.map(({ k, lbl }) => {
+      const b = document.createElement("button");
+      b.textContent = lbl;
+      b.style.cssText =
+      "border:0;border-radius:8px;padding:9px 12px;cursor:pointer;" +
+      "font:inherit;transition:background .15s,color .15s";
+      b.onclick = () => {applica(k);dipingi(k);};
+      box.appendChild(b);
+      return { k, b };
+    });
+
+    const dipingi = (attiva) => bottoni.forEach(({ k, b }) => {
+      const on = k === attiva;
+      b.style.background = on ? "#ce5812" : "rgba(238,219,190,.12)";
+      b.style.color = on ? "#eedbbe" : "rgba(238,219,190,.75)";
+    });
+    dipingi(scelta);
+
+    document.body.appendChild(box);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+  } else {
+    start();
+  }
+})();

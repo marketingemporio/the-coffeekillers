@@ -161,10 +161,10 @@ function GalleryApp() {
               <h2 className="section-title-50" style={{ marginTop: 0 }}>
                 Ascoltaci <span className="it" style={{ color: "var(--ck-gold)" }}>dal vivo.</span>
               </h2>
-              <p style={{ maxWidth: "44ch", color: "rgba(243,232,210,.75)", fontSize: "clamp(16px,2vw,20px)", marginTop: 16, lineHeight: 1.65 }}>
+              <p style={{ maxWidth: "44ch", color: "rgba(238,219,190,.75)", fontSize: "clamp(16px,2vw,20px)", marginTop: 16, lineHeight: 1.65 }}>
                 Estratti dei nostri show. Per capire davvero come suoniamo, niente è meglio di vederci in azione.
               </p>
-              <a className="btn" href="https://www.youtube.com/@thecoffeekillers" target="_blank" rel="noopener" style={{ marginTop: 24, background: "var(--ck-paper)", color: "#15100b", borderColor: "var(--ck-paper)" }}>
+              <a className="btn" href="https://www.youtube.com/@thecoffeekillers" target="_blank" rel="noopener" style={{ marginTop: 24, background: "var(--ck-paper)", color: "#49240a", borderColor: "var(--ck-paper)" }}>
                 Vai al canale <span className="arrow"><Arrow /></span>
               </a>
             </div>

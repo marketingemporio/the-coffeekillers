@@ -8,8 +8,8 @@ function App() {
 
   // apply palette + typeset CSS variables to :root
   useEffect(() => {
-    const pal = PALETTES[t.palette] || PALETTES.saloon;
-    const typ = TYPESETS[t.type] || TYPESETS.editorial;
+    const pal = PALETTES[t.palette] || PALETTES.brand;
+    const typ = TYPESETS[t.type] || TYPESETS.brand;
     const root = document.documentElement;
     Object.entries({ ...pal, ...typ }).forEach(([k, v]) => {
       if (k.startsWith("--")) root.style.setProperty(k, v);
@@ -26,7 +26,13 @@ function App() {
       <Nav/>
       <Hero/>
       <Marquee/>
+      {/* Il video di una canzone intera sta subito sotto l'hero: è la cosa
+          che convince di più chi ci sta valutando, non va sepolta in fondo. */}
+      <FeaturedVideo/>
       <StyleSection/>
+      {/* Subito dopo il blocco "dove suoniamo": il video del palco allestito
+          è la prova visiva di quello che il testo ha appena promesso. */}
+      <StageShowcase/>
       <Socials/>
       <Brands/>
       <Lineup/>
@@ -52,6 +58,8 @@ function App() {
           label="Mood"
           value={t.palette}
           options={[
+            { value: "brand", label: "Brand 26" },
+            { value: "brandnight", label: "Brand Night" },
             { value: "saloon", label: "Saloon" },
             { value: "midnight", label: "Midnight" },
             { value: "wildflower", label: "Wildflower" },
@@ -63,6 +71,7 @@ function App() {
           label="Set"
           value={t.type}
           options={[
+            { value: "brand", label: "Brand 26" },
             { value: "editorial", label: "Editorial" },
             { value: "poster", label: "Poster" },
             { value: "modern", label: "Modern" },

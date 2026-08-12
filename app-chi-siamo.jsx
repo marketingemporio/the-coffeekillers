@@ -114,6 +114,9 @@ function BandRow({ m, i }) {
 }
 
 function InspirationCard({ ins }) {
+  // Il nome porta al sito ufficiale dell'artista (gli indirizzi stanno in
+  // ARTIST_SITES, in components.jsx). Se per un artista non c'è un sito
+  // ufficiale valido, ArtistLink stampa il nome senza link.
   return (
     <div className="inspiration-card">
       <div className="inspiration-photo">
@@ -121,7 +124,12 @@ function InspirationCard({ ins }) {
       </div>
       <div className="inspiration-body">
         <span className="inspiration-tag">{ins.tag}</span>
-        <div className="inspiration-name">{ins.name}</div>
+        <div className="inspiration-name">
+          <ArtistLink name={ins.name}>
+            {ins.name}
+            {ARTIST_SITES[ins.name] && <span className="ext"><ArrowUR size={14} /></span>}
+          </ArtistLink>
+        </div>
         <p className="inspiration-desc">{ins.desc}</p>
       </div>
     </div>
@@ -203,7 +211,7 @@ function ChiSiamoApp() {
         <div className="wrap">
           <SectionHead left="Le radici" right="Sei maestri" />
           <div className="lineup-head rv">
-            <h2 className="section-title-50">Da chi <span className="it">impariamo.</span></h2>
+            <h2 className="t-caps section-title-50">Da chi <span className="it">impariamo.</span></h2>
             <p style={{ maxWidth: "42ch", margin: 0, color: "var(--ck-mute)" }}>
               Il suono dei Coffeekillers non viene dal nulla. Questi sono gli artisti che hanno costruito il nostro gusto e il nostro modo di stare sul palco.
             </p>
@@ -219,7 +227,7 @@ function ChiSiamoApp() {
         <div className="wrap">
           <SectionHead left="La formazione" right="Cinque facce, una band" />
           <div className="lineup-head rv">
-            <h2 className="section-title-50">Chi c'è <span className="it">sul palco.</span></h2>
+            <h2 className="t-caps section-title-50">Chi c'è <span className="it">sul palco.</span></h2>
             <p style={{ maxWidth: "38ch", margin: 0, color: "var(--ck-mute)" }}>
               Tecnica, ironia e troppa caffeina. Passa il mouse sulle foto per conoscerci meglio.
             </p>

@@ -1,9 +1,190 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-07-28
-> **Stato in una riga:** sito **ONLINE** e allineato (`main` = `origin/main` = `fe6ba01`). Pubblicato il 28/07: **gallery a 61 scatti** con i servizi 2022–2023, **tutto il sito in webp**, alt text e SEO immagini rifatti (vedi prima sezione). Verificato in produzione.
+> **Ultimo aggiornamento:** 2026-08-12
+> **Stato in una riga:** sito **ONLINE**. Il 12/08 è entrato il **brand rev.2** (palette, font, icone —
+> **non** il logo, vedi sotto), il **video della prima canzone intera** in home, la sezione
+> **"Il palco"** col video del drone, i **link ai siti ufficiali** degli artisti citati e il fix
+> dell'**overflow su mobile**. Data Beach Fly spostata al **10 ottobre**.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+---
+
+# ⏳ DA DECIDERE — titoli maiuscoli o minuscoli (con la band)
+
+Al momento è attiva una **proposta mista**, decisa il 12/08/2026:
+- **MAIUSCOLO** → titoli brevi e dichiarativi, "da manifesto"
+  ("ABBIAMO FATTO BALLARE", "DOVE CI TROVI NEL 2026", il claim dell'hero)
+- **minuscolo** → frasi lunghe, discorsive o ironiche, dove il maiuscolo urla e si legge peggio
+  ("Dove c'è birra, lì c'è anche il country", "Non arriviamo con due casse e un cavo")
+
+Si sceglie **titolo per titolo** con la classe `t-caps` nel JSX: è una scelta di tono, non una
+regola automatica.
+
+**Per decidere con la band**: apri il sito **in locale** e usa l'interruttore in basso a destra
+(*Proposta (misto) · TUTTO MAIUSCOLO · tutto minuscolo*). Compare **solo** in locale e sulle
+anteprime Netlify, online non esiste. Il codice è in fondo a `components.jsx`.
+👉 Quando la scelta è definitiva: sistema le classi `t-caps` e **cancella** sia quel blocco in
+`components.jsx` sia le regole `html[data-titoli=...]` in `styles.css`.
+
+---
+
+# ⏳ DA FARE — comprare i font del brand
+
+⚠️ **Stato al 12/08/2026**: i titoli sono in **Rye**, e questa versione va online così.
+Michele: *"per ora usa comunque Rye, che come resa mi piace di più"*. Poco dopo però ha aggiunto:
+*"intanto compro Bronco originale, è diverso da tutti quelli che mi hai messo comunque"* — quindi
+**Bronco Valley è in acquisto** e andrà provato sul serio appena arrivano i file.
+
+Bronco Valley è **volutamente fuori** dalla lista dei font dei titoli (`--ck-display`): mettere la
+`@font-face` non deve bastare a cambiare l'aspetto del sito da solo. L'attivazione è un passo
+esplicito (istruzioni sotto), così si può caricare il font, guardarlo e decidere con calma.
+
+⚠️ **Rye ha un solo peso**: niente grassetto sui titoli. Vedi la regola su `h1`–`h6` in
+`styles.css` — c'è scritto lì perché.
+
+Il brand book rev.2 usa **quattro** font. Due sono gratis e sono già sul sito. **Due mancano**:
+
+| Font | A cosa serve | Stato | Come si prende |
+|---|---|---|---|
+| **Manrope** | tutti i testi | ✅ **attivo** | Google Fonts, gratis |
+| **Smokum** | date, pulsanti, dettagli | ✅ **attivo** | Google Fonts, gratis |
+| **Bronco Valley** | i titoli, secondo il brand book | ⏸️ **in sospeso** — per ora i titoli sono in **Rye**, per scelta | [variatype.com/bronco-valley-vintage-serif](https://variatype.com/bronco-valley-vintage-serif/) — servirebbe la **"Webfont License 100K Views", $31** (verificato il 12/08/2026) |
+| **LT Cushion** | sottotitoli | ❌ **manca** → al suo posto c'è DM Serif Display | [dafont.com/lt-cushion.font](https://www.dafont.com/lt-cushion.font) — gratis (nel brand book: "100% free") |
+
+⚠️ **Attenzione a quale licenza compri**: la **Desktop ($21)** serve per Illustrator/Canva, **non**
+copre l'uso su un sito. Per il sito ci vuole la **Webfont** ($31 fino a 100.000 visualizzazioni;
+$225 fino a 1M). Con i numeri attuali del sito, quella da $31 è abbondante.
+
+**Michele (12/08/2026): "vai online e poi comprerò quelli buoni, tienimelo scritto che devo farlo".**
+
+### Se un giorno si decide di usare Bronco Valley
+1. Compra la licenza **Webfont** e metti i `.woff2` in una cartella `fonts/` in radice.
+2. In `styles.css`, in cima:
+   ```css
+   @font-face{ font-family:"Bronco Valley"; src:url("fonts/bronco-valley.woff2") format("woff2");
+               font-weight:400; font-display:swap; }
+   ```
+3. **Poi, di proposito**, mettilo davanti a Rye in `--ck-display` — in **due** punti:
+   `:root` in `styles.css` **e** `TYPESETS.brand` in `components.jsx`.
+   (Se salti questo passo non succede nulla: Rye resta, ed è voluto.)
+4. Ricontrolla i titoli: Bronco Valley è più stretto e alto di Rye, quindi le larghezze massime
+   (per esempio `.hero-cinematic-title`) vanno riviste.
+
+---
+
+## ✅ Brand rev.2 + video in home + link artisti — 2026-08-12
+
+Richiesta di Michele: data Beach Fly al 3 ottobre; una **grossa preview** in home del primo
+video di una canzone intera; **link ai siti ufficiali** degli artisti citati ("così facciamo un
+po' di link building"); e dal brand book rev.2 prendere **solo palette, icone, font e colori** —
+⚠️ **NON il logo** ("c'è un coloring che non va bene, lascia quello vecchio per ora").
+
+### 🎨 Palette — i sei colori ufficiali
+Campionati direttamente dal PDF `HJCK brand rev.2.pdf` (in radice, non committato):
+
+| Colore | Hex | Nome nel brand book |
+|---|---|---|
+| beige chiaro | `#EEDBBE` | carta consumata, superfici vintage |
+| giallo/arancio ocra | `#FB8700` | luce calda, insegne retrò |
+| tan | `#BE8C65` | — |
+| azzurro vintage | `#8CAFA5` | cieli aperti, cromie sbiadite |
+| ruggine | `#CE5812` | — |
+| caffè tostato | `#49240A` | profondità, carattere |
+
+- Sono in **due palette nuove**: `brand` (chiara) e `brandnight` (scura), in `components.jsx`
+  e ricopiate nel `:root` di `styles.css` (il CSS deve avere i colori giusti **prima** che React
+  parta, altrimenti la pagina lampeggia). **Se ne cambi una, cambia anche l'altra.**
+- Tutte le pagine usano `brand`, **tranne `date.html`** che usa `brandnight` (era già scura).
+- Le vecchie palette (Saloon/Midnight/Wildflower) sono ancora selezionabili dal pannello tweaks.
+- Sostituiti anche i **~70 colori scritti a mano** in CSS e JSX con gli equivalenti rev.2.
+
+### 🤠 Icone — le 8 del "sistema visivo"
+Estratte **in vettoriale** dal PDF (erano vere curve, non foto) → `images/icone/`:
+`teschio-longhorn` · `cactus` · `cappello-cowboy` · `ferri-di-cavallo` · `stivale` ·
+`camaleonte` · `stella-sceriffo` · `chitarra`.
+- Il colore ruggine è **dentro** il file: servono caricate con `<img>`, e un `<img>` non eredita
+  il colore del testo della pagina.
+- Usate: negli **occhielli** delle sezioni (una fissa per sezione) e nella **striscia scorrevole**
+  al posto dei vecchi pallini.
+- ⚠️ Stanno in un **quadrato** con `object-fit: contain` (classe `.ck-ico`): hanno proporzioni
+  molto diverse fra loro e dandogli solo l'altezza la chitarra diventava un trattino illeggibile.
+
+### 🎬 Video in home — "Guitar" (Zach Top)
+- Video: `https://www.youtube.com/watch?v=mwindsVYrmo` — sezione `FeaturedVideo` in
+  `components.jsx`, messa **subito sotto l'hero**.
+- È una **facade**: si vede una copertina locale (`images/video-guitar-cover.webp`) e l'iframe di
+  YouTube nasce **solo al click**. Un embed YouTube pesa quasi 1 MB di script di terze parti:
+  a freddo in cima alla home lo pagherebbero tutti, anche chi il video non lo guarda.
+- Aggiunto anche il **JSON-LD `VideoObject`** in `index.html`. ⚠️ Se cambi video, aggiorna lì
+  anche `uploadDate` e `duration`: sono i dati che Google usa per l'anteprima nei risultati.
+
+### 🔗 Link ai siti ufficiali degli artisti
+Indirizzi tutti in un posto solo: **`ARTIST_SITES`** in `components.jsx` (+ il componente
+`ArtistLink`, che se un artista non ha un sito stampa solo il nome). Aperti e verificati uno a uno.
+- Dove compaiono: schede **"ispirazioni"** di *Chi siamo* (6 artisti), **pillole** del repertorio
+  in home (5), testo di **Zach Top** nella sezione video, e nel blocco statico per i crawler.
+- ⚠️ Kruse Brothers → **krusebrothersmusic.com**. Il dominio `krusebrothers.com` ha il
+  **certificato HTTPS rotto**: non linkarlo.
+- 📌 **Nota SEO, da dire a Michele**: questi sono link **in uscita** — non portano autorità
+  *verso* di noi, la "link building" funziona al contrario (sono gli altri che devono linkare noi).
+  È del tutto lecito e fa bene a lettori e rilevanza tematica, ma non aspettarsi un effetto SEO diretto.
+
+### 📅 Beach Fly
+`12 set 2026` → **`10 ott 2026`**. Cambiata in `components.jsx` (`SHOWS`) **e** in `date.html`
+(sia il JSON-LD sia l'elenco statico per i crawler): sono **tre** punti, vanno tenuti allineati.
+Aggiornata anche la tabella in [[Date Live 2026]] nel Brain.
+
+### 🎥 Il palco (video col drone) — sezione nuova in home
+Sezione `StageShowcase` in `components.jsx`, subito **dopo** il blocco "Dove c'è birra":
+il testo promette un allestimento serio, il video lo dimostra.
+- Sorgente: video del drone girato a **Gussago (BS)** (il palco allestito, poi il drone si
+  allontana e scopre villa, sedie e vigneti). Originale **72 MB**, muto, 1920×1080.
+- Pubblicato: `images/palco-villa-gussago.mp4` — **2,1 MB**, 1280×720, 25 fps.
+  Ricetta ffmpeg (il fogliame dei vigneti è la cosa che fa esplodere il peso, il denoise è
+  quello che fa la differenza):
+  ```
+  ffmpeg -i ORIGINALE.mp4 -an -vf "scale=1280:-2,hqdn3d=2:1.5:4:4,fps=25" \
+         -c:v libx264 -profile:v high -crf 29 -preset slower \
+         -pix_fmt yuv420p -movflags +faststart -y images/palco-villa-gussago.mp4
+  ```
+- Copertina `images/palco-villa-gussago.webp` = **primo fotogramma** del video, così quando
+  parte non si vede lo stacco.
+- Parte da solo, muto, in loop. ⚠️ Tre cose messe apposta, non toglierle:
+  `muted` (senza, il browser non lo fa partire), `playsinline` (senza, iPhone lo apre a
+  tutto schermo), `preload="none"` (senza, i 2 MB li scarica anche chi non arriva fin qui).
+- C'è un **pulsante play di riserva** che compare solo se il browser blocca l'avvio
+  automatico (capita sugli iPhone in risparmio energetico).
+- Con "riduci animazioni" attivo nel sistema operativo resta la sola copertina, ferma.
+- ⚠️ **Verifica sempre col browser vero**: Chrome headless carica e decodifica il video ma
+  **non lo fa scorrere**, quindi da riga di comando non si può confermare che parta.
+- 📌 Il luogo scritto in `place` ("Villa a Gussago (BS)") viene dal nome del file originale.
+  Se cambi video, cambia anche quello.
+
+### 🔤 Titoli impastati — RISOLTO (12/08, seconda passata)
+Michele: *"Bronco Valley lo vedo in due modi diversi"*. Non erano due font: era **lo stesso Rye**,
+di cui però una parte era **finta**.
+**Causa**: `<h1>`–`<h6>` il browser li scrive in grassetto per impostazione predefinita. Rye
+esiste in **un peso solo**: non trovando un grassetto vero, il browser **se lo inventa**
+ingrassando i contorni. Su un carattere western pieno di dettagli il risultato è impastato — e
+stonava con i punti dove il grassetto non c'era (nomi delle serate, "since 2018", la striscia
+scorrevole), che mostravano Rye autentico: quelli che a Michele piacevano.
+**Fix**: `h1..h6 { font-weight: 400 }` + `font-synthesis-weight: none` come sicurezza, con due
+eccezioni (`footer h5`, `.ig-handle`) dove il carattere è Manrope, che il grassetto ce l'ha davvero.
+⚠️ **Non rimettere il grassetto sui titoli**: finché il carattere ha un peso solo, "bold" non li
+rende più marcati, li rende solo più sporchi.
+
+### 📱 Overflow orizzontale su mobile — RISOLTO
+Sui telefoni la pagina si poteva trascinare di lato di ~10px (`body.scrollWidth` 400 invece
+di 390). **Causa**: `.rv--right`, l'animazione "entra da destra", tiene l'elemento spostato di
+30px finché non compare; su schermo stretto il blocco è già largo quanto lo schermo e sporge.
+**Fix**: sotto i 700px le entrate laterali diventano verticali (non si nota nulla), più
+`overflow-x: clip` sul body come cintura di sicurezza — `clip` e non `hidden`, che romperebbe
+gli elementi "sticky".
+⚠️ **Attenzione a come si misura**: gli screenshot da riga di comando con `--window-size=390`
+mostrano il testo tagliato anche quando il sito è a posto (Chrome headless non scende sotto
+una certa larghezza di finestra). Per misurare davvero, carica la pagina in un **iframe da
+390px** e leggi `body.scrollWidth`.
 
 ## ✅ Servizi 2022–2023 + sito tutto in webp + SEO foto — PUBBLICATO il 2026-07-28
 Richiesta di Michele: "ho caricato una cartella con nuove foto, comprimile in webp e aggiungile",

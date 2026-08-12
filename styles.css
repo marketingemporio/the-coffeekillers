@@ -5,25 +5,47 @@ html,body{margin:0;padding:0}
 html{scroll-behavior:smooth; scroll-padding-top: 90px;}
 
 :root{
-  /* default palette: Saloon */
-  --ck-ink: #15100b;
-  --ck-paper: #f1e6cf;
-  --ck-paper-2: #e8d9bb;
-  --ck-rust: #b94a1c;
-  --ck-gold: #c8973b;
-  --ck-sage: #5a6b4f;
-  --ck-mute: rgba(21,16,11,0.62);
-  --ck-line: rgba(21,16,11,0.18);
-  --ck-on-dark: #f3e8d2;
+  /* Palette di default: "Brand 26" — i sei colori ufficiali del brand book
+     HJCK rev.2 (08/2026), campionati dal PDF. Questi valori sono la copia di
+     PALETTES.brand in components.jsx: se tocchi uno, tocca anche l'altro.
+     Servono qui perché il CSS deve avere i colori giusti già al primo
+     istante, prima che React parta (altrimenti la pagina "lampeggia"). */
+  --ck-ink: #49240a;      /* caffè tostato */
+  --ck-paper: #eedbbe;    /* beige chiaro */
+  --ck-paper-2: #e2c7a8;  /* beige + un tocco di tan #BE8C65 */
+  --ck-rust: #ce5812;     /* ruggine */
+  --ck-gold: #fb8700;     /* giallo/arancio ocra */
+  --ck-sage: #8cafa5;     /* azzurro vintage */
+  --ck-mute: rgba(73,36,10,0.62);
+  --ck-line: rgba(73,36,10,0.18);
+  --ck-on-dark: #eedbbe;
 
-  /* default fonts: Editorial */
-  --ck-display: "DM Serif Display", "Times New Roman", serif;
-  --ck-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --ck-mono: "JetBrains Mono", ui-monospace, monospace;
-  --ck-poster: "Rye", "DM Serif Display", serif;
+  /* Tipografia di default: "Brand 26".
+     Manrope e Smokum sono i font veri del brand (gratis su Google Fonts).
+
+     ⚠️ TITOLI: "Rye" è una SCELTA, non un ripiego.
+     Il brand book prevede Bronco Valley, ma il 12/08/2026 Michele ha detto di
+     tenere Rye ("come resa mi piace di più") e di decidere su Bronco più avanti.
+     Per questo Bronco Valley NON è in questa lista: se un domani lo compriamo e
+     mettiamo la @font-face, il sito NON deve cambiare aspetto da solo. Per
+     attivarlo servirà rimetterlo qui davanti, di proposito. Vedi _STATO.md. */
+  --ck-display: "Rye", "DM Serif Display", serif;
+  --ck-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --ck-mono: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --ck-poster: "Smokum", "Rye", serif;
+
+  /* colore "buco" delle icone del brand: i dettagli interni (es. gli occhi del
+     camaleonte) sono dipinti col colore della carta, non sono trasparenti.
+     Le sezioni scure lo ridichiarano per non farli restare beige. */
+  --ck-icon-bg: #eedbbe;
 }
 
 body{
+  /* Cintura di sicurezza: taglia qualsiasi sporgenza orizzontale, così una
+     futura animazione o un blocco troppo largo non rendono più la pagina
+     scrollabile di lato sui telefoni. "clip" e non "hidden": hidden creerebbe
+     un contenitore di scorrimento e romperebbe gli elementi "sticky". */
+  overflow-x: clip;
   background: var(--ck-paper);
   color: var(--ck-ink);
   font-family: var(--ck-body);
@@ -37,8 +59,8 @@ body{
 body::before{
   content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
   background-image:
-    radial-gradient(rgba(21,16,11,0.04) 1px, transparent 1px),
-    radial-gradient(rgba(21,16,11,0.025) 1px, transparent 1px);
+    radial-gradient(rgba(73,36,10,0.04) 1px, transparent 1px),
+    radial-gradient(rgba(73,36,10,0.025) 1px, transparent 1px);
   background-size: 3px 3px, 7px 7px;
   background-position: 0 0, 1px 2px;
   mix-blend-mode: multiply;
@@ -105,9 +127,14 @@ button{font:inherit;cursor:pointer}
 .nav .brand .logo{
   height: 64px; width: auto; display:block;
 }
+/* Sulle palette a fondo scuro (midnight, Brand 26 Night) va il logo chiaro:
+   quello scuro sparirebbe nel fondo. Se aggiungi una palette scura, aggiungila
+   anche qui, altrimenti in cima alla pagina resta un buco al posto del logo. */
 .nav .brand .logo-light{ display: none; }
-html[data-palette="midnight"] .nav .brand .logo-dark{ display: none; }
-html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
+html[data-palette="midnight"] .nav .brand .logo-dark,
+html[data-palette="brandnight"] .nav .brand .logo-dark{ display: none; }
+html[data-palette="midnight"] .nav .brand .logo-light,
+html[data-palette="brandnight"] .nav .brand .logo-light{ display: block; }
 .nav ul{ list-style:none; padding:0; margin:0; display:flex; gap: 32px; align-items:center; }
 .nav .nav-link{
   font-family: var(--ck-mono); font-size:13px; letter-spacing:.18em; text-transform:uppercase;
@@ -349,8 +376,8 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 .brands{
   background: var(--ck-paper-2);
   padding: clamp(48px, 7vw, 100px) 0;
-  border-top: 1px solid rgba(243,232,210,0.12);
-  border-bottom: 1px solid rgba(243,232,210,0.12);
+  border-top: 1px solid rgba(238,219,190,0.12);
+  border-bottom: 1px solid rgba(238,219,190,0.12);
 }
 .brands h3{
   font-family: var(--ck-display);
@@ -361,18 +388,18 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 }
 .brand-grid{
   display:grid; grid-template-columns: repeat(5, 1fr); gap: 0;
-  border-top: 1px solid rgba(243,232,210,0.12);
+  border-top: 1px solid rgba(238,219,190,0.12);
 }
 @media (max-width: 800px){ .brand-grid{ grid-template-columns: repeat(2, 1fr); } }
 .brand-cell{
   aspect-ratio: 5/3;
   display:grid; place-items:center;
-  border-bottom: 1px solid rgba(243,232,210,0.12);
-  border-right: 1px solid rgba(243,232,210,0.12);
+  border-bottom: 1px solid rgba(238,219,190,0.12);
+  border-right: 1px solid rgba(238,219,190,0.12);
   padding: 24px;
   position: relative;
   transition: background .3s;
-  background: rgb(21,16,11);
+  background: rgb(73,36,10);
 }
 .brand-mark{
   font-family: var(--ck-display);
@@ -380,7 +407,7 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
   font-size: clamp(20px, 2.4vw, 30px);
   letter-spacing: -0.005em;
   line-height: 1.05;
-  color: #f3e8d2;
+  color: #eedbbe;
   text-align: center;
   max-width: 100%;
 }
@@ -389,9 +416,9 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
   top: 12px; left: 14px;
   font-family: var(--ck-mono);
   font-size: 10px; letter-spacing: 0.2em;
-  color: rgba(243,232,210,0.4);
+  color: rgba(238,219,190,0.4);
 }
-.brand-cell:hover{ background: rgba(243,232,210,0.04); }
+.brand-cell:hover{ background: rgba(238,219,190,0.04); }
 .brand-cell:hover .brand-mark{ color: var(--ck-gold); }
 .brand-cell:nth-child(5n){ border-right: 0; }
 
@@ -419,7 +446,7 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
   font-size: 10px;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: rgba(243,232,210,0.35);
+  color: rgba(238,219,190,0.35);
   pointer-events: none;
 }
 
@@ -560,22 +587,22 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 }
 .faq-section::before{
   content:""; position:absolute; inset:0;
-  background-image: radial-gradient(rgba(245,230,200,0.04) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(238,219,190,0.04) 1px, transparent 1px);
   background-size: 4px 4px; pointer-events:none;
 }
 .faq{ display:grid; grid-template-columns: 1fr 1.6fr; gap: clamp(32px, 5vw, 80px); position: relative; }
 @media (max-width: 900px){ .faq{ grid-template-columns: 1fr; } }
-.faq-section .eyebrow{ color: rgba(243,232,210,0.55); }
+.faq-section .eyebrow{ color: rgba(238,219,190,0.55); }
 .faq h2{
   font-family: var(--ck-display); font-size: clamp(28px, 3.8vw, 50px); margin: 0; line-height: 1.02;
   letter-spacing: -0.02em; color: var(--ck-on-dark);
 }
 .faq h2 .it{ font-style: italic; color: var(--ck-gold); }
-.faq-intro{ max-width: 30ch; margin-top: 24px; color: rgba(243,232,210,0.6); font-size: 18px; }
+.faq-intro{ max-width: 30ch; margin-top: 24px; color: rgba(238,219,190,0.6); font-size: 18px; }
 .faq-section .btn{ background: var(--ck-paper); color: var(--ck-ink); border-color: var(--ck-paper); }
 .faq-section .btn:hover{ background: var(--ck-rust); border-color: var(--ck-rust); color: var(--ck-paper); }
-.faq-list{ border-top: 1px solid rgba(243,232,210,0.18); }
-.faq-item{ border-bottom: 1px solid rgba(243,232,210,0.18); }
+.faq-list{ border-top: 1px solid rgba(238,219,190,0.18); }
+.faq-item{ border-bottom: 1px solid rgba(238,219,190,0.18); }
 .faq-q{
   width: 100%; text-align: left;
   display:flex; align-items: center; justify-content: space-between; gap: 24px;
@@ -590,7 +617,7 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 .faq-item.open .faq-q .plus{ transform: rotate(45deg); }
 .faq-a{
   max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s;
-  font-size: 20px; line-height: 1.65; color: rgba(243,232,210,0.82);
+  font-size: 20px; line-height: 1.65; color: rgba(238,219,190,0.82);
 }
 .faq-item.open .faq-a{ max-height: 500px; padding: 0 0 24px; }
 
@@ -601,7 +628,7 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 }
 .contact-cta::before{
   content:""; position:absolute; inset:0;
-  background-image: radial-gradient(rgba(21,16,11,0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(73,36,10,0.05) 1px, transparent 1px);
   background-size: 4px 4px; pointer-events:none;
 }
 .contact-cta .wrap{ position: relative; }
@@ -656,7 +683,7 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 }
 .contact::before{
   content:""; position:absolute; inset:0;
-  background-image: radial-gradient(rgba(21,16,11,0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(73,36,10,0.05) 1px, transparent 1px);
   background-size: 4px 4px; pointer-events:none;
 }
 .contact .wrap{ position: relative; }
@@ -885,14 +912,14 @@ html[data-palette="midnight"] .nav .brand .logo-light{ display: block; }
 footer{ background: var(--ck-ink); color: var(--ck-on-dark); padding: 64px 0 32px; }
 footer .footer-grid{
   display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px;
-  border-bottom: 1px solid rgba(243,232,210,0.18);
+  border-bottom: 1px solid rgba(238,219,190,0.18);
   padding-bottom: 48px;
 }
 @media (max-width: 800px){ footer .footer-grid{ grid-template-columns: 1fr 1fr; } }
 @media (max-width: 500px){ footer .footer-grid{ grid-template-columns: 1fr; gap: 32px; } }
 footer h5{
   font-family: var(--ck-mono); font-size: 10px; letter-spacing: .25em; text-transform: uppercase;
-  color: rgba(243,232,210,0.55); margin: 0 0 14px;
+  color: rgba(238,219,190,0.55); margin: 0 0 14px;
 }
 footer .big{
   font-family: var(--ck-display); font-style: italic; font-size: clamp(40px, 5.5vw, 88px);
@@ -902,11 +929,11 @@ footer ul{ list-style:none; padding: 0; margin: 0; display:flex; flex-direction:
 footer .sm-row{ display:flex; gap: 12px; }
 footer .ico{
   width: 38px; height: 38px; border-radius: 50%;
-  border: 1px solid rgba(243,232,210,0.3);
+  border: 1px solid rgba(238,219,190,0.3);
   display:grid; place-items: center; transition: background .25s, color .25s;
 }
 footer .ico:hover{ background: var(--ck-paper); color: var(--ck-ink); border-color: var(--ck-paper); }
-footer .copy{ display:flex; justify-content: space-between; padding-top: 24px; font-family: var(--ck-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(243,232,210,0.6); flex-wrap: wrap; gap: 12px; }
+footer .copy{ display:flex; justify-content: space-between; padding-top: 24px; font-family: var(--ck-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(238,219,190,0.6); flex-wrap: wrap; gap: 12px; }
 
 /* ===== RESPONSIVE FIXES ===================================== */
 
@@ -942,7 +969,7 @@ html, body { overflow-x: hidden; }
 
 /* --- brand grid: fix border su 2 colonne ------------------- */
 @media (max-width: 800px) {
-  .brand-cell:nth-child(5n) { border-right: 1px solid rgba(243,232,210,0.12); }
+  .brand-cell:nth-child(5n) { border-right: 1px solid rgba(238,219,190,0.12); }
   .brand-cell:nth-child(2n) { border-right: 0; }
   .brand-cell { aspect-ratio: 3/2; }
 }
@@ -950,7 +977,7 @@ html, body { overflow-x: hidden; }
 /* --- brand grid: 1 colonna sotto 400px --------------------- */
 @media (max-width: 400px) {
   .brand-grid { grid-template-columns: 1fr; }
-  .brand-cell:nth-child(2n) { border-right: 1px solid rgba(243,232,210,0.12); }
+  .brand-cell:nth-child(2n) { border-right: 1px solid rgba(238,219,190,0.12); }
   .brand-cell:nth-child(1n) { border-right: 0; }
 }
 
@@ -1031,7 +1058,7 @@ html, body { overflow-x: hidden; }
 .tag-strip{
   display:flex; gap: 8px; flex-wrap: wrap; margin-top: 24px;
 }
-.tag-strip > span{
+.tag-strip > span, .tag-strip > a{
   font-family: var(--ck-mono); font-size: 11px; letter-spacing: .15em; text-transform:uppercase;
   border: 1px solid var(--ck-line); padding: 8px 14px; border-radius: 999px;
   color: var(--ck-mute);
@@ -1064,7 +1091,7 @@ html, body { overflow-x: hidden; }
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   gap: 14px;
-  background: linear-gradient(135deg, #15100b 0%, #2a1f15 100%);
+  background: linear-gradient(135deg, #49240a 0%, #2a1f15 100%);
   color: var(--ck-paper);
   text-decoration: none;
   text-align: center;
@@ -1081,7 +1108,7 @@ html, body { overflow-x: hidden; }
 .yt-fallback .yt-label{
   font-family: var(--ck-mono);
   font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(243,232,210,0.85);
+  color: rgba(238,219,190,0.85);
 }
 
 /* =========================================================
@@ -1163,11 +1190,11 @@ img, video, iframe, svg {
 
   /* Tag strip — smaller, cleaner spacing, no nested-box look */
   .tag-strip { gap: 6px; margin-top: 18px; }
-  .tag-strip > span {
+  .tag-strip > span, .tag-strip > a {
     padding: 6px 11px;
     font-size: 10px;
     letter-spacing: .1em;
-    border-color: rgba(21,16,11,0.22);
+    border-color: rgba(73,36,10,0.22);
     background: transparent;
   }
 
@@ -1245,7 +1272,7 @@ img, video, iframe, svg {
   .hero-title { font-size: 36px; }
   .split .lead { font-size: 22px; }
   .brand-grid { grid-template-columns: 1fr; }
-  .tag-strip > span { font-size: 9.5px; padding: 5px 10px; }
+  .tag-strip > span, .tag-strip > a { font-size: 9.5px; padding: 5px 10px; }
 }
 /* ============================================================
    GALLERY — griglia foto + placeholder
@@ -1488,7 +1515,7 @@ img, video, iframe, svg {
    ============================================================ */
 
 /* --- selection + focus ------------------------------------- */
-::selection{ background: var(--ck-rust); color: #f3e8d2; }
+::selection{ background: var(--ck-rust); color: #eedbbe; }
 a:focus-visible, button:focus-visible, input:focus-visible,
 select:focus-visible, textarea:focus-visible{
   outline: 2px solid var(--ck-rust); outline-offset: 3px; border-radius: 2px;
@@ -1504,6 +1531,15 @@ select:focus-visible, textarea:focus-visible{
 .rv--right{ transform: translateX(30px); }
 .rv--zoom{ transform: scale(.95); }
 .rv.in{ opacity: 1; transform: none; }
+
+/* ⚠️ Sui telefoni le entrate laterali diventano verticali.
+   Motivo: su schermo stretto un blocco è già largo quanto lo schermo; spostarlo
+   di 30px a destra lo fa sporgere e la pagina diventa scrollabile in orizzontale
+   (finché l'elemento non entra in vista e torna al suo posto). Di lato quei 30px
+   non si notano nemmeno, quindi non si perde niente. */
+@media (max-width: 700px){
+  .rv--left, .rv--right{ transform: translateY(26px); }
+}
 
 .stagger > *{
   opacity: 0; transform: translateY(20px);
@@ -1542,7 +1578,7 @@ select:focus-visible, textarea:focus-visible{
 
 /* --- nav: stato scrolled + link attivo ----------------------- */
 .nav{ transition: box-shadow .3s ease, padding .3s ease; }
-.nav.scrolled{ box-shadow: 0 10px 30px rgba(21,16,11,.1); }
+.nav.scrolled{ box-shadow: 0 10px 30px rgba(73,36,10,.1); }
 .nav .nav-link.active{ color: var(--ck-rust); }
 .nav .nav-link.active::after{ right: 0; background: var(--ck-rust); }
 
@@ -1610,7 +1646,7 @@ select:focus-visible, textarea:focus-visible{
 
 /* variante scura con foto di sfondo */
 .page-hero--photo{
-  background: #0c0907; color: #f3e8d2; overflow: hidden;
+  background: #0c0907; color: #eedbbe; overflow: hidden;
   padding: clamp(90px, 12vw, 170px) 0 clamp(56px, 8vw, 100px);
 }
 .page-hero--photo .ph-bg{ position: absolute; inset: 0; overflow: hidden; }
@@ -1620,14 +1656,14 @@ select:focus-visible, textarea:focus-visible{
 }
 .page-hero--photo .ph-bg::after{
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(12,9,7,.5), rgba(12,9,7,.82));
+  background: linear-gradient(180deg, rgba(30,14,4,.5), rgba(30,14,4,.82));
 }
 .page-hero--photo .wrap{ position: relative; z-index: 2; }
-.page-hero--photo .ph-title{ color: #f3e8d2; }
+.page-hero--photo .ph-title{ color: #eedbbe; }
 .page-hero--photo .ph-title .it{ color: var(--ck-gold); }
-.page-hero--photo .ph-lead{ color: rgba(243,232,210,.78); }
-.page-hero--photo .orna-row{ color: rgba(243,232,210,.6); }
-.page-hero--photo .orna-row .line{ background: rgba(243,232,210,.22); }
+.page-hero--photo .ph-lead{ color: rgba(238,219,190,.78); }
+.page-hero--photo .orna-row{ color: rgba(238,219,190,.6); }
+.page-hero--photo .orna-row .line{ background: rgba(238,219,190,.22); }
 .page-hero--photo .orna-row .star{ color: var(--ck-gold); }
 
 /* --- stats (contatori) ---------------------------------------- */
@@ -1692,7 +1728,7 @@ select:focus-visible, textarea:focus-visible{
 .story-steps{ display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
 .story-step{
   display: grid; grid-template-columns: 92px 1fr; gap: 24px;
-  padding: 26px 0; border-top: 1px solid rgba(243,232,210,.16);
+  padding: 26px 0; border-top: 1px solid rgba(238,219,190,.16);
   align-items: baseline;
 }
 .story-step .ss-key{
@@ -1717,11 +1753,11 @@ select:focus-visible, textarea:focus-visible{
 /* --- ispirazioni: refresh --------------------------------------- */
 .inspiration-card{
   transition: transform .35s ease, box-shadow .35s ease;
-  box-shadow: 0 1px 2px rgba(21,16,11,.05);
+  box-shadow: 0 1px 2px rgba(73,36,10,.05);
 }
 .inspiration-card:hover{
   transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(21,16,11,.12);
+  box-shadow: 0 18px 40px rgba(73,36,10,.12);
 }
 .inspiration-tag{
   font-family: var(--ck-mono); font-size: 10px; letter-spacing: .18em;
@@ -1732,21 +1768,21 @@ select:focus-visible, textarea:focus-visible{
 .ch-num{
   font-family: var(--ck-display); font-size: clamp(56px, 9vw, 120px);
   line-height: .85; color: transparent;
-  -webkit-text-stroke: 1.5px rgba(21,16,11,.28);
+  -webkit-text-stroke: 1.5px rgba(73,36,10,.28);
   user-select: none;
 }
-.on-dark .ch-num, .ch-num--dark{ -webkit-text-stroke: 1.5px rgba(243,232,210,.3); }
+.on-dark .ch-num, .ch-num--dark{ -webkit-text-stroke: 1.5px rgba(238,219,190,.3); }
 
 .toc-chips{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
 .toc-chips a{
   font-family: var(--ck-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-  border: 1px solid rgba(243,232,210,.35); color: rgba(243,232,210,.85);
+  border: 1px solid rgba(238,219,190,.35); color: rgba(238,219,190,.85);
   padding: 9px 15px; border-radius: 999px;
   transition: background .25s, color .25s, border-color .25s;
 }
-.toc-chips a:hover{ background: var(--ck-gold); border-color: var(--ck-gold); color: #15100b; }
+.toc-chips a:hover{ background: var(--ck-gold); border-color: var(--ck-gold); color: #49240a; }
 .toc-chips a .n{ color: var(--ck-gold); margin-right: 6px; }
-.toc-chips a:hover .n{ color: #15100b; }
+.toc-chips a:hover .n{ color: #49240a; }
 
 /* ere del country (timeline orizzontale) */
 .era-grid{
@@ -1786,11 +1822,11 @@ select:focus-visible, textarea:focus-visible{
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 36px;
 }
 .snd-card{
-  border: 1px solid rgba(243,232,210,.18); border-radius: 16px;
-  padding: 24px 22px 26px; background: rgba(243,232,210,.04);
+  border: 1px solid rgba(238,219,190,.18); border-radius: 16px;
+  padding: 24px 22px 26px; background: rgba(238,219,190,.04);
   transition: background .3s ease, transform .3s ease;
 }
-.snd-card:hover{ background: rgba(243,232,210,.09); transform: translateY(-3px); }
+.snd-card:hover{ background: rgba(238,219,190,.09); transform: translateY(-3px); }
 .snd-card .s-num{
   font-family: var(--ck-mono); font-size: 11px; letter-spacing: .22em; color: var(--ck-gold);
 }
@@ -1817,8 +1853,8 @@ select:focus-visible, textarea:focus-visible{
 .gal-cap{
   position: absolute; left: 0; right: 0; bottom: 0;
   padding: 26px 16px 13px;
-  background: linear-gradient(transparent, rgba(12,9,7,.78));
-  color: #f3e8d2; text-align: left;
+  background: linear-gradient(transparent, rgba(30,14,4,.78));
+  color: #eedbbe; text-align: left;
   font-family: var(--ck-mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
   opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease;
 }
@@ -1837,13 +1873,13 @@ select:focus-visible, textarea:focus-visible{
   border-radius: 10px; box-shadow: 0 40px 90px rgba(0,0,0,.55);
 }
 .lb .lb-cap{
-  margin-top: 16px; color: rgba(243,232,210,.75);
+  margin-top: 16px; color: rgba(238,219,190,.75);
   font-family: var(--ck-mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
 }
 .lb-btn{
   position: absolute; width: 46px; height: 46px; border-radius: 50%;
-  border: 1px solid rgba(243,232,210,.4); background: rgba(12,9,7,.5);
-  color: #f3e8d2; display: grid; place-items: center; font-size: 18px;
+  border: 1px solid rgba(238,219,190,.4); background: rgba(30,14,4,.5);
+  color: #eedbbe; display: grid; place-items: center; font-size: 18px;
   transition: background .25s, transform .25s;
 }
 .lb-btn:hover{ background: var(--ck-rust); border-color: var(--ck-rust); transform: scale(1.06); }
@@ -1866,7 +1902,7 @@ select:focus-visible, textarea:focus-visible{
 .next-card .nx-tag{
   display: inline-block;
   font-family: var(--ck-mono); font-size: 10px; letter-spacing: .24em; text-transform: uppercase;
-  background: var(--ck-gold); color: #15100b;
+  background: var(--ck-gold); color: #49240a;
   padding: 7px 13px; border-radius: 999px; margin-bottom: 18px;
 }
 .next-card .nx-name{
@@ -1913,8 +1949,8 @@ select:focus-visible, textarea:focus-visible{
 }
 .ticket:hover{
   transform: translateY(-2px);
-  box-shadow: 0 14px 34px rgba(21,16,11,.1);
-  border-color: rgba(21,16,11,.32);
+  box-shadow: 0 14px 34px rgba(73,36,10,.1);
+  border-color: rgba(73,36,10,.32);
 }
 .ticket .t-date{
   border-right: 1px dashed var(--ck-line); padding-right: 22px; text-align: center;
@@ -1985,34 +2021,35 @@ select:focus-visible, textarea:focus-visible{
 }
 .faq-q > span:nth-child(2){ flex: 1; }
 .faq-item{ transition: background .3s ease; }
-.faq-item.open{ background: rgba(243,232,210,.03); }
+.faq-item.open{ background: rgba(238,219,190,.03); }
 
 /* --- footer: riga CTA ------------------------------------------------ */
 .footer-cta{
   display: flex; justify-content: space-between; align-items: center;
   gap: 24px; flex-wrap: wrap;
   padding-bottom: 40px; margin-bottom: 44px;
-  border-bottom: 1px solid rgba(243,232,210,0.18);
+  border-bottom: 1px solid rgba(238,219,190,0.18);
 }
 .footer-cta .fc-title{
   font-family: var(--ck-display); font-style: italic;
   font-size: clamp(24px, 3.4vw, 44px); line-height: 1.05; margin: 0;
 }
 .footer-cta .btn{
-  background: var(--ck-paper); color: #15100b; border-color: var(--ck-paper);
+  background: var(--ck-paper); color: #49240a; border-color: var(--ck-paper);
 }
-.footer-cta .btn:hover{ background: var(--ck-rust); border-color: var(--ck-rust); color: #f3e8d2; }
-html[data-palette="midnight"] .footer-cta .btn{ background: #f3e8d2; border-color: #f3e8d2; }
+.footer-cta .btn:hover{ background: var(--ck-rust); border-color: var(--ck-rust); color: #eedbbe; }
+html[data-palette="midnight"] .footer-cta .btn,
+html[data-palette="brandnight"] .footer-cta .btn{ background: #eedbbe; border-color: #eedbbe; }
 
 /* --- home: scroll cue + hero polish ---------------------------------- */
 .scroll-cue{
   position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%);
-  width: 26px; height: 42px; border: 1.5px solid rgba(243,232,210,.5);
+  width: 26px; height: 42px; border: 1.5px solid rgba(238,219,190,.5);
   border-radius: 999px; z-index: 5;
 }
 .scroll-cue::after{
   content: ""; position: absolute; top: 8px; left: 50%; margin-left: -2px;
-  width: 4px; height: 8px; border-radius: 999px; background: rgba(243,232,210,.8);
+  width: 4px; height: 8px; border-radius: 999px; background: rgba(238,219,190,.8);
   animation: cue-drop 1.9s ease-in-out infinite;
 }
 @keyframes cue-drop{
@@ -2021,3 +2058,286 @@ html[data-palette="midnight"] .footer-cta .btn{ background: #f3e8d2; border-colo
   100%{ opacity: 0; transform: translateY(14px); }
 }
 @media (max-width: 900px){ .scroll-cue{ display: none; } }
+
+/* ============================================================
+   BRAND REV.2 — icone, link agli artisti, video in evidenza
+   (aggiunto 2026-08-12 insieme alla palette e ai font del brand book)
+   ============================================================ */
+
+/* --- icone del sistema visivo ------------------------------- */
+/* Gli SVG in images/icone/ hanno il colore ruggine scritto dentro il file,
+   perché sono caricati con <img> e un <img> non eredita il colore del testo.
+   Ogni icona sta dentro un quadrato e si adatta ("contain"): le otto icone
+   hanno proporzioni molto diverse — il teschio è largo il doppio dell'altezza,
+   la chitarra alta il triplo della larghezza. Dando solo l'altezza, la chitarra
+   si riduceva a un trattino illeggibile. Col quadrato hanno tutte lo stesso
+   peso visivo e nessuna si deforma. */
+.ck-ico{
+  display: inline-block; vertical-align: middle;
+  object-fit: contain; flex: 0 0 auto; user-select: none;
+}
+
+/* occhielli di sezione: icona + trattino + testo, allineati sulla stessa riga */
+.eyebrow-ico{
+  display: inline-flex; align-items: center; gap: 10px;
+}
+
+/* striscia scorrevole: le icone sostituiscono i vecchi pallini */
+.marquee-ico{ opacity: .95; }
+
+/* --- link ai siti ufficiali degli artisti -------------------- */
+/* Nelle "pillole" sotto il repertorio: stesso aspetto di prima, ma cliccabili.
+   Sottolineatura solo al passaggio del mouse, altrimenti la fila di pillole
+   diventa un muro di righe. */
+.tag-strip > a{
+  text-decoration: none; cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, background-color .2s ease;
+}
+.tag-strip > a:hover,
+.tag-strip > a:focus-visible{
+  color: var(--ck-rust); border-color: var(--ck-rust);
+  background: rgba(206,88,18,0.06);
+}
+
+/* Nelle schede "ispirazioni" di Chi siamo il nome dell'artista è il link */
+.inspiration-name a{
+  color: inherit; text-decoration: none;
+  border-bottom: 1px solid var(--ck-line);
+  transition: color .2s ease, border-color .2s ease;
+}
+.inspiration-name a:hover,
+.inspiration-name a:focus-visible{
+  color: var(--ck-rust); border-color: var(--ck-rust);
+}
+.inspiration-name .ext{
+  display: inline-block; margin-left: 6px; vertical-align: middle;
+  opacity: .55;
+}
+.inspiration-card:hover .inspiration-name .ext{ opacity: 1; }
+
+/* ============================================================
+   HOME — video in evidenza (canzone intera)
+   ============================================================ */
+.featured-video{
+  /* i dettagli interni delle icone vanno del colore del fondo, non beige */
+  --ck-icon-bg: var(--ck-ink);
+}
+.featured-video .eyebrow{ color: rgba(238,219,190,.62); }
+
+.fv-head{
+  display: grid; grid-template-columns: 1.05fr 1fr;
+  gap: 20px 48px; align-items: end; margin-bottom: 36px;
+}
+.fv-intro{
+  margin: 0; font-size: clamp(16px, 2vw, 20px);
+  color: rgba(238,219,190,.82);
+}
+.fv-intro a{
+  color: var(--ck-gold); text-decoration: none;
+  border-bottom: 1px solid rgba(251,135,0,.45);
+}
+.fv-intro a:hover{ border-bottom-color: var(--ck-gold); }
+
+/* La cornice tiene il 16:9 sia con la copertina sia con l'iframe: così quando
+   si clicca "play" la pagina non fa un salto. */
+.fv-frame{
+  position: relative; aspect-ratio: 16 / 9; width: 100%;
+  border-radius: 18px; overflow: hidden;
+  background: #2a1405;
+  border: 1px solid rgba(238,219,190,.18);
+  box-shadow: 0 30px 70px rgba(30,14,4,.45);
+}
+.fv-frame iframe{
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block;
+}
+
+/* la copertina è un <button>: si apre anche da tastiera, non solo col mouse */
+.fv-cover{
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  padding: 0; margin: 0; border: 0; background: none; cursor: pointer;
+  display: block; color: inherit;
+}
+.fv-cover img{
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .6s cubic-bezier(.2,.7,.3,1), filter .4s ease;
+}
+.fv-cover::after{
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(30,14,4,.55), rgba(30,14,4,.08) 55%);
+  pointer-events: none;
+}
+.fv-cover:hover img,
+.fv-cover:focus-visible img{ transform: scale(1.03); }
+
+.fv-play{
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 88px; height: 88px; border-radius: 50%; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--ck-rust); color: #eedbbe;
+  box-shadow: 0 10px 34px rgba(30,14,4,.5);
+  transition: transform .25s ease, background-color .25s ease;
+}
+.fv-play svg{ margin-left: 5px; } /* il triangolo "pesa" a sinistra: lo ricentro */
+.fv-cover:hover .fv-play,
+.fv-cover:focus-visible .fv-play{ transform: translate(-50%,-50%) scale(1.08); background: var(--ck-gold); }
+
+.fv-caption{
+  position: absolute; left: 22px; bottom: 18px; z-index: 2;
+  font-family: var(--ck-poster); letter-spacing: .06em;
+  font-size: clamp(15px, 2vw, 22px); color: #eedbbe;
+  text-shadow: 0 2px 12px rgba(30,14,4,.6);
+}
+
+.fv-actions{ display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+
+@media (max-width: 900px){
+  .fv-head{ grid-template-columns: 1fr; gap: 16px; align-items: start; margin-bottom: 26px; }
+  .fv-frame{ border-radius: 12px; }
+  .fv-play{ width: 64px; height: 64px; }
+  .fv-play svg{ width: 26px; height: 26px; }
+  .fv-caption{ left: 14px; bottom: 12px; }
+}
+@media (max-width: 600px){
+  .featured-video{ padding: 64px 0 !important; }
+  .eyebrow-ico{ gap: 8px; }
+  .eyebrow-ico .ck-ico{ width: 20px !important; height: 20px !important; }
+  .marquee-ico{ width: 26px !important; height: 26px !important; }
+}
+
+/* ============================================================
+   HOME — il palco (video drone dell'allestimento)
+   ============================================================ */
+.stage-showcase{ background: var(--ck-paper-2); }
+
+.stage-head{
+  display: grid; grid-template-columns: 1.05fr 1fr;
+  gap: 20px 48px; align-items: end; margin-bottom: 36px;
+}
+.stage-intro{ margin: 0; font-size: clamp(16px, 2vw, 20px); }
+
+/* Il video esce dai margini del testo e va quasi a filo schermo: una
+   panoramica col drone ha bisogno di larghezza per raccontare qualcosa.
+   Niente "100vw": con la barra di scorrimento del desktop sporgerebbe di
+   una quindicina di pixel. Basta non incapsularlo nel .wrap. */
+.stage-video{
+  position: relative;
+  margin: 0 auto; padding: 0 clamp(16px, 3vw, 48px);
+  max-width: 1720px;
+}
+.stage-video video{
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: 18px;
+  background: #2a1405;
+  border: 1px solid var(--ck-line);
+  box-shadow: 0 30px 70px rgba(30,14,4,.28);
+}
+.stage-place{
+  position: absolute; left: clamp(30px, 4vw, 66px); bottom: 20px;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 999px;
+  background: rgba(30,14,4,.62);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  color: #eedbbe;
+  font-family: var(--ck-mono); font-size: 11px;
+  letter-spacing: .18em; text-transform: uppercase;
+  --ck-icon-bg: #2a1405;
+}
+.stage-tags{ margin-top: 32px; justify-content: flex-start; }
+
+@media (max-width: 900px){
+  .stage-head{ grid-template-columns: 1fr; gap: 16px; align-items: start; margin-bottom: 26px; }
+  .stage-video video{ border-radius: 12px; }
+  .stage-place{ left: 26px; bottom: 12px; padding: 7px 12px; font-size: 10px; }
+}
+@media (max-width: 600px){
+  .stage-showcase{ padding: 64px 0 !important; }
+  /* in verticale una panoramica 16:9 diventa una fettuccia: la alzo un po' */
+  .stage-video video{ aspect-ratio: 4 / 3; }
+}
+
+/* pulsante di riserva: compare solo se il browser rifiuta di far partire
+   il video da solo (iPhone in risparmio energetico) */
+.stage-play{
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 78px; height: 78px; border-radius: 50%; border: 0; padding: 0;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  background: var(--ck-rust); color: #eedbbe;
+  box-shadow: 0 10px 34px rgba(30,14,4,.5);
+  transition: transform .25s ease, background-color .25s ease;
+}
+.stage-play svg{ margin-left: 4px; }
+.stage-play:hover, .stage-play:focus-visible{
+  transform: translate(-50%,-50%) scale(1.08); background: var(--ck-gold);
+}
+
+/* ============================================================
+   TITOLI — via il grassetto inventato dal browser
+   ============================================================ */
+/* I titoli usano il carattere display, che esiste in UN SOLO peso (oggi Rye,
+   domani Bronco Valley). Ma <h1>…<h6> il browser li scrive in grassetto per
+   impostazione predefinita: non trovando un grassetto vero se lo inventa
+   ingrassando i contorni delle lettere. Su un carattere western, con le grazie
+   piene di dettagli, il risultato è impastato — e stona rispetto ai punti dove
+   il grassetto non c'era (i nomi delle serate, "since 2018"), che mostravano il
+   carattere autentico. Da qui l'impressione che fossero due font diversi.
+   ⚠️ Non rimettere il grassetto sui titoli: finché il carattere ha un peso solo,
+   "bold" non lo rende più marcato, lo rende solo più sporco. */
+h1, h2, h3, h4, h5, h6{ font-weight: 400; }
+
+/* Le uniche eccezioni: qui sotto il carattere è Manrope, che il grassetto ce
+   l'ha davvero, e sono etichette piccole che senza peso sparirebbero. */
+footer h5{ font-weight: 600; }
+.ig-handle{ font-weight: 700; }
+
+/* Cintura di sicurezza: se un browser dovesse comunque provare a inventarsi un
+   peso, glielo impediamo (il corsivo finto invece serve e resta attivo). */
+h1, h2, h3, h4, h5, h6, .marquee-item, .date-name, .ticket .t-name{
+  font-synthesis-weight: none;
+}
+
+/* ============================================================
+   TITOLI — quali in MAIUSCOLO e quali no
+   ============================================================ */
+/* Criterio (proposta del 12/08/2026, da confermare con la band):
+     MAIUSCOLO  → titoli brevi e dichiarativi, "da manifesto"
+                  ("ABBIAMO FATTO BALLARE", "DOVE CI TROVI NEL 2026")
+     minuscolo  → frasi lunghe, discorsive o ironiche, dove il maiuscolo urla
+                  e si legge peggio ("Dove c'è birra, lì c'è anche il country",
+                  "Non arriviamo con due casse e un cavo")
+   Si sceglie titolo per titolo aggiungendo la classe .t-caps nel JSX,
+   non con una regola automatica: è una scelta di tono, non una regola tecnica. */
+.t-caps{
+  text-transform: uppercase;
+  /* in maiuscolo le lettere hanno bisogno di respirare: la stretta che va bene
+     al minuscolo qui le farebbe toccare */
+  letter-spacing: .005em;
+}
+
+/* --- prova al volo, per decidere con la band ------------------
+   L'interruttore in basso a destra (che compare SOLO in locale, vedi
+   components.jsx) mette uno di questi due attributi sul tag <html> per far
+   vedere gli estremi. Senza attributo si vede la proposta mista qui sopra. */
+html[data-titoli="caps"] .hero-title,
+html[data-titoli="caps"] .lead,
+html[data-titoli="caps"] .section-title-50,
+html[data-titoli="caps"] .ph-title,
+html[data-titoli="caps"] .shows-head h1,
+html[data-titoli="caps"] .shows-head h2{
+  text-transform: uppercase; letter-spacing: .005em;
+}
+html[data-titoli="lower"] .t-caps{
+  text-transform: none; letter-spacing: -0.02em;
+}
+
+/* Larghezza del titolone dell'hero: in MAIUSCOLO le stesse parole occupano più
+   spazio e la riga finirebbe sotto il logo della band, che sta a destra.
+   Quindi in maiuscolo va a capo prima. */
+.hero-cinematic-title{ max-width: 15ch; }
+.hero-cinematic-title.t-caps,
+html[data-titoli="caps"] .hero-cinematic-title{
+  max-width: 13ch;
+  /* mai spezzare una parola a metà: meglio una riga un po' più lunga */
+  overflow-wrap: normal; word-break: keep-all; hyphens: none;
+}
+html[data-titoli="lower"] .hero-cinematic-title{ max-width: 15ch; }

@@ -140,11 +140,11 @@ function CountryApp() {
               <p style={pStyle(true)}>La spinta arriva da fuori — la scena di Nashville più forte che mai, popstar che virano al country, hit che sfondano ovunque — ma la richiesta è tutta locale: feste di paese, sagre, matrimoni, inaugurazioni ed eventi aziendali. Chi organizza una serata cerca qualcosa che faccia ballare senza escludere nessuno. Il country fa esattamente questo.</p>
               <p style={pStyle(true)}>Noi siamo su questa strada da prima che diventasse tendenza: una band country di Brescia che gira tutto il Nord Italia. Conosciamo il repertorio che funziona nelle nostre piazze, sappiamo leggere il pubblico e sappiamo quando alzare i giri. Il country funziona anche in Italia — lo vediamo ogni weekend, palco dopo palco.</p>
               <div className="tag-strip" style={{ marginTop: 20 }}>
-                <span style={{ color: "rgba(243,232,210,.75)", borderColor: "rgba(243,232,210,.3)" }}>Line dance</span>
-                <span style={{ color: "rgba(243,232,210,.75)", borderColor: "rgba(243,232,210,.3)" }}>Festival</span>
-                <span style={{ color: "rgba(243,232,210,.75)", borderColor: "rgba(243,232,210,.3)" }}>Feste &amp; sagre</span>
-                <span style={{ color: "rgba(243,232,210,.75)", borderColor: "rgba(243,232,210,.3)" }}>Locali</span>
-                <span style={{ color: "rgba(243,232,210,.75)", borderColor: "rgba(243,232,210,.3)" }}>Eventi aziendali</span>
+                <span style={{ color: "rgba(238,219,190,.75)", borderColor: "rgba(238,219,190,.3)" }}>Line dance</span>
+                <span style={{ color: "rgba(238,219,190,.75)", borderColor: "rgba(238,219,190,.3)" }}>Festival</span>
+                <span style={{ color: "rgba(238,219,190,.75)", borderColor: "rgba(238,219,190,.3)" }}>Feste &amp; sagre</span>
+                <span style={{ color: "rgba(238,219,190,.75)", borderColor: "rgba(238,219,190,.3)" }}>Locali</span>
+                <span style={{ color: "rgba(238,219,190,.75)", borderColor: "rgba(238,219,190,.3)" }}>Eventi aziendali</span>
               </div>
             </div>
             <figure className="co-media rv rv--right">

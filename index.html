@@ -79,14 +79,37 @@
   }
   </script>
 
+  <!-- JSON-LD: il video in evidenza della home (canzone intera).
+       Deve restare allineato a FEATURED_VIDEO in components.jsx.
+       Se cambi video ricordati anche di uploadDate e duration: sono i dati
+       che Google usa per mostrare l'anteprima nei risultati. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Guitar - Zach Top (cover by The Coffeekillers)",
+    "description": "Hot Joe & The Coffeekillers suonano dal vivo \"Guitar\" di Zach Top: una canzone intera, registrata durante un live all'aperto.",
+    "thumbnailUrl": "https://i.ytimg.com/vi/mwindsVYrmo/maxresdefault.jpg",
+    "uploadDate": "2026-08-11",
+    "duration": "PT3M10S",
+    "embedUrl": "https://www.youtube.com/embed/mwindsVYrmo",
+    "contentUrl": "https://www.youtube.com/watch?v=mwindsVYrmo",
+    "publisher": {
+      "@type": "MusicGroup",
+      "name": "Hot Joe & The Coffeekillers",
+      "url": "https://thecoffeekillers.com"
+    }
+  }
+  </script>
+
   <!-- Preload hero -->
   <!-- Precarica la foto dell'hero della home: deve restare allineata a HeroCinematic in components.jsx -->
   <link rel="preload" as="image" href="images/band-fiume-o4.webp" fetchpriority="high" />
 
-  <!-- Fonts: Editorial + Western accents -->
+  <!-- Fonts: Brand 26 (Manrope + Smokum) + set alternativi del pannello tweaks -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Rye&family=Alfa+Slab+One&family=Libre+Caslon+Text:ital@0;1&family=Big+Shoulders+Display:wght@500;700;900&family=Bricolage+Grotesque:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Smokum&family=Rye&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Alfa+Slab+One&family=Libre+Caslon+Text:ital@0;1&family=Big+Shoulders+Display:wght@500;700;900&family=Bricolage+Grotesque:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
 
@@ -124,9 +147,14 @@
         <p><a href="preventivo.html">Richiedi un preventivo</a></p>
       </section>
 
+      <section id="video">
+        <h2>Guardaci dal vivo: una canzone intera</h2>
+        <p>Il nostro primo video di un brano completo, registrato dal vivo: <a href="https://www.youtube.com/watch?v=mwindsVYrmo">&quot;Guitar&quot; nella versione di Hot Joe &amp; The Coffeekillers</a>, dall'originale di <a href="https://zachtop.com">Zach Top</a>. Cinque strumenti, le armonie vocali e il suono che porteremo alla tua serata.</p>
+      </section>
+
       <section id="stile">
         <h2>Stile e repertorio</h2>
-        <p>Cocktail e ballads romantiche oppure party songs da ballare sui tavoli: il nostro repertorio mescola inediti e cover di icone country come Blake Shelton, Chris Stapleton, Brad Paisley, Carrie Underwood e The Chicks.</p>
+        <p>Cocktail e ballads romantiche oppure party songs da ballare sui tavoli: il nostro repertorio mescola inediti e cover di icone country come <a href="https://www.blakeshelton.com">Blake Shelton</a>, <a href="https://chrisstapleton.com">Chris Stapleton</a>, <a href="https://www.bradpaisley.com">Brad Paisley</a>, <a href="https://www.carrieunderwoodofficial.com">Carrie Underwood</a> e <a href="https://thechicks.com">The Chicks</a>.</p>
         <p>Sound deciso, basi ritmiche solide, intrecci di chitarre e lap steel, double bass e tante armonie vocali che richiamano l'atmosfera dei live show di Nashville, con il nostro carattere coffee-killer.</p>
         <p>Siamo adatti a locali, feste e sagre di paese, festival, party, eventi privati e matrimoni: ovunque lo spirito del country non manchi.</p>
       </section>
@@ -168,8 +196,8 @@
   <script>
     // === Persisted defaults (host edits this between markers) ===
     window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-      "palette": "saloon",
-      "type": "editorial",
+      "palette": "brand",
+      "type": "brand",
       "hero": "cinematic"
     }/*EDITMODE-END*/;
   </script>

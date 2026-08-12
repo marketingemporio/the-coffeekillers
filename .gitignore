@@ -8,3 +8,18 @@
 # Sul sito vanno solo le versioni compresse in images/*.webp
 Foto Nuovo sito/
 Foto x sito nuovo/
+
+# Materiale di lavoro appoggiato in radice: stessa ragione di sopra, se finisce
+# in un commit va ONLINE e chiunque può scaricarlo dal dominio del sito.
+# Il brand book è un documento interno (16 MB); i video grezzi pesano decine di MB.
+HJCK brand*.pdf
+*.mp4
+*.mov
+# ...ma i video già compressi per il sito devono essere pubblicati:
+!images/*.mp4
+
+# Pagine di prova/confronto usate durante il lavoro: servono in locale, non
+# devono finire online (Netlify pubblica la radice del repo).
+_titoli.html
+_diag*.html
+_font.html
