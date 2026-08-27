@@ -1,12 +1,184 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-08-12
-> **Stato in una riga:** sito **ONLINE**. Il 12/08 è entrato il **brand rev.2** (palette, font, icone —
+> **Ultimo aggiornamento:** 2026-08-20
+> **Stato in una riga:** sito **ONLINE** (invariato); **in locale c'è la maquette del sito nuovo**
+> e, dal **20/08**, la **cartella cliente definitiva con il logo nuovo** (caricata, non ancora montata)
+> — vedi la sezione qui sotto. Il 12/08 era entrato il **brand rev.2** (palette, font, icone —
 > **non** il logo, vedi sotto), il **video della prima canzone intera** in home, la sezione
 > **"Il palco"** col video del drone, i **link ai siti ufficiali** degli artisti citati e il fix
 > dell'**overflow su mobile**. Data Beach Fly spostata al **10 ottobre**.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+---
+
+# ⚠️ DA FARE — il sito ONLINE raccoglie dati senza informativa privacy
+
+Scoperto il 2026-08-16 controllando il form: `preventivo.html` + `components.jsx` mandano
+**nome, email, telefono e note a Formspree** (`formspree.io/f/xdabrrrr`) e **non c'è né una
+casella di consenso né una pagina di informativa** — cercando "privacy" nel codice del sito
+pubblicato non esce nulla. Riguarda il sito **vivo**, non solo la maquette.
+
+Cosa serve per sistemarlo:
+1. una pagina di informativa (bozza gia' pronta nella maquette: `proposta-informativa-privacy.html`,
+   da far validare — mancano forma giuridica, sede legale e la verifica sui server di Formspree);
+2. nel form, una spunta obbligatoria di consenso col link all'informativa (nella maquette c'e' gia':
+   il bottone di invio resta disattivato finche' non e' spuntata);
+3. il consenso incluso nei dati inviati.
+
+Michele deve dare l'ok prima di toccare il sito pubblicato.
+
+---
+
+# 🚧 IN CORSO — maquette del sito nuovo, solo in locale (2026-08-16)
+
+Il redesign si sta progettando **in locale**, come pagine `proposta-*.html` servite da
+`python3 -m http.server 8910` nella radice. **Git le esclude tutte** (`/proposta-*.html` in
+`.git/info/exclude`), quindi non possono finire online per sbaglio: il sito pubblicato è ancora
+quello React di sempre, intatto.
+
+**`proposta-a2.html` è la versione di riferimento** (home). Le altre pagine della maquette:
+`proposta-chi-siamo` · `proposta-country` · `proposta-date` · `proposta-gallery` · `proposta-faq` ·
+`proposta-preventivo` · `proposta-informativa-privacy` (bozza, vedi sopra). La pillola in basso a sinistra salta tra le home (A · A2 · A3 · B · C · D ·
+sito attuale). Varianti: **A** (prima versione), **A3** (uguale ad A2 ma con font Champ),
+**B**/**C** (prove vecchie), **D** (variante "cartellone" ispirata al poster Kruse Brothers).
+
+**Com'è fatta la A2**: sezioni scelte con la band pescando il meglio da sito online + proposta B +
+proposta A (hero con la foto della band senza logo gigante, video Guitar layout B, "dove diamo il
+meglio" layout B, il palco da A, calendario layout B, poi le sezioni recuperate dal sito online —
+Chi trovi sul palco, Abbiamo fatto ballare, Un assaggio del live, Ti aggiorniamo sulle date — CTA
+e footer ridotto). Colori della proposta A ovunque (azzurro **solo** come accento, mai sfondo),
+effetto apparizione allo scroll con fallback senza JS. Testata replicata dal sito **Kruse
+Brothers**: striscia annuncio, menu a sinistra, logo grande centrato, social + Preventivo a destra;
+in home trasparente sulla foto e sticky marrone scendendo, nelle pagine interne marrone piena.
+
+**Font della maquette** (tutti di prova in `_font-prova/`, gitignorata): titoli **Bronco**, bottoni
+**Valley** (taglio pulito della stessa famiglia), supporto **LT Cushion**, testi **Manrope**.
+⚠️ Il Bronco demo **non ha le lettere accentate**: i titoli sono scritti senza accenti. Comprando
+Bronco Valley (~$21) arrivano entrambi i tagli con gli accenti. In `proposta-a3.html` c'è la prova
+con **Champ Ultra** (che gli accenti li ha) + **Rio Grande NF** sui bottoni.
+
+⚠️ **Prima di pubblicare qualunque cosa**: comprare le licenze dei font usati. Tutti i file in
+`_font-prova/` sono demo/trial per uso interno.
+
+---
+
+# ✅ ARRIVATO — la cartella cliente definitiva (logo compreso) — 2026-08-20
+
+Lo studio ha consegnato **`HJCK_Cartella cliente.zip`**: dentro c'è finalmente il **logo
+definitivo** — quello che al 12/08 era stato messo in pausa ("c'è un coloring che non va bene,
+lascia quello vecchio per ora"). Insieme al logo sono arrivati icone ufficiali, i file dei font
+e il PDF della palette con i valori esatti.
+
+**Dove sono i file adesso:**
+- **`_brand-def/`** (radice, **esclusa da git**) — la cartella cliente intera, come consegnata:
+  logo in SVG/PNG/PDF, icone, font, `BRND DEF_HJCK.pdf` (8 pagine), `Palette colori.pdf`.
+  ⚠️ Esclusa apposta: sono master da migliaia di pixel e font, e Netlify pubblica la radice.
+- **`images/logo/`** (nel sito) — le **4 versioni web** del logo, SVG ottimizzati con svgo
+  (‑22/26% di peso, resa identica: verificata a schermo) + un PNG a 1200px di ciascuna:
+  | File | Com'è fatto | Quando si usa |
+  |---|---|---|
+  | `hjck-logo-positivo.svg` | scritta marrone + "Hot Joe" arancio | fondi **chiari** (beige, bianco) |
+  | `hjck-logo-negativo.svg` | scritta beige + "Hot Joe" arancio | fondi **scuri** (marrone, arancio) |
+  | `hjck-logo-positivo-contorno.svg` | scritta beige bordata di marrone | **sopra le foto** e i fondi mossi |
+  | `hjck-logo-negativo-contorno.svg` | scritta marrone bordata di beige | **sopra le foto** chiare |
+- **`_font-prova/brand-def/`** (esclusa da git) — i tre font consegnati:
+  `Smokum-Regular.ttf`, `LTCushion-VF.ttf`, `Manrope-VariableFont_wght.ttf`.
+- **`images/icone/`** — le **8 icone ufficiali** (arancio), più le stesse in **beige** in
+  `images/icone/beige/` per i fondi scuri. Le vecchie sono in `_parcheggio/`.
+- **`_diag-loghi.html`** (esclusa da git) — pagina di controllo: le 4 versioni sui 6 colori e sopra
+  una foto, il logo alle misure vere della testata (74px e 52px), la tabella dei colori e il
+  confronto dei font con gli accenti, le 8 icone nei sei colori e le due ipotesi di favicon.
+  Si apre con `python3 -m http.server 8910` in radice.
+
+## ✅ Le proposte sono già passate al brand nuovo (20/08)
+
+**Tutte e 15 le pagine `proposta-*.html`** montano ora logo, colori e icone definitivi.
+Riepilogo di cosa è cambiato dentro i file:
+
+- **Logo** — via `images/HJCK_Logo2.svg`, dentro la versione giusta per il fondo di ogni testata:
+  **negativo** dove la nav è scura (quasi tutte), **positivo** in `proposta-c` (nav chiara) con il
+  **negativo nel footer**. In `proposta-b` il logo è usato come **maschera**: prima c'era un
+  ritaglio a mano (`59.4% 47.5%/176%`) che serviva a togliere il margine vuoto del file vecchio —
+  il file nuovo è già tagliato stretto, quindi ora è un normale `center/contain`.
+- **Tolti i filtri CSS sul logo.** Il file vecchio era nero e veniva schiarito a forza
+  (`brightness(0) invert(1) sepia(…)`, e in `proposta-d` un `invert(92%) sepia(…)`).
+  Il logo nuovo i colori ce li ha dentro: i filtri sono spariti e ora **"Hot Joe" resta arancio**
+  anche in testata, cosa che prima non succedeva.
+- **Colori** — sostituiti i 5 hex sbagliati **e** le stesse tinte scritte come numeri dentro
+  `rgba()` (erano 213 in tutto: la tabella qui sopra vale anche per quelle).
+- **Icone** — i file ufficiali al posto di quelli estratti dal PDF. Le pagine le usano come
+  **maschera CSS**, quindi il colore lo mette il CSS e funzionano in tutti e sei i colori.
+  ⚠️ Sono cambiate le proporzioni dei disegni: aggiornati gli `aspect-ratio` in tutte le pagine
+  (se si salta questo passo le icone si schiacciano).
+- **Favicon** — nuova, generata dal logo su quadrato beige: `images/logo/favicon.svg`
+  (+ PNG 512/180/32). Quella di prima era la scritta in nero persa in un quadrato bianco.
+
+⚠️ **Eccezione voluta: `proposta-a5.html`** ("Mount West vintage") ha una **palette sua**,
+sbiadita apposta (`#8E3A22`, `#E3A155`, `#B8C4AB`…). Non è il brand sbagliato, è un esperimento:
+**l'ho lasciata com'era**. Se va allineata anche quella, va rifatta la scelta cromatica a mano.
+
+⚠️ **Il sito ONLINE non è stato toccato**: `components.jsx`, `styles.css`, `index.html` e le altre
+pagine pubblicate hanno ancora il logo vecchio e i 5 colori sfasati. È un passo a parte, da fare
+quando Michele dà l'ok. Il vecchio `images/HJCK_Logo2.svg` **resta dov'è**: non l'ha toccato nessuno.
+
+### Dove sono finiti i file vecchi
+In **`_parcheggio/`** (esclusa da git, solo in locale): le 8 icone estratte dal PDF in
+`icone-estratte-dal-pdf/` e una copia di tutte le proposte com'erano prima, in
+`proposte-prima-del-brand-def/`. Nessun file cancellato: se qualcosa non convince, si torna indietro.
+
+### Un rumore che c'era già
+`proposta-a`, `-b`, `-c`, `-d` chiedono al server `fonts/bronco-valley.woff2`/`.woff`/`.otf` che
+**non esistono** → 4 richieste fallite a pagina nella console. Non è un guasto: è la lista dei
+formati messa lì apposta per il giorno in cui si compra Bronco Valley. Il `.ttf` in fondo alla
+lista c'è e viene caricato. Era così anche prima del 20/08.
+
+## 🎨 I colori ufficiali: cinque su sei erano sbagliati di pochissimo
+
+Il PDF `Palette colori.pdf` dà i valori esatti. Quelli sul sito erano stati **campionati a schermo**
+dal brand book e sono sfasati di **un punto per canale** — invisibile a occhio, ma è il tipo di
+scarto che poi non torna quando lo studio fa una locandina.
+
+| Nome (dal brand) | Ufficiale | Oggi sul sito |
+|---|---|---|
+| Beige | `#EDDABD` | `#EEDBBE` |
+| Giallo | `#FA8600` | `#FB8700` |
+| Marrone chiaro | `#BD8B65` | `#BE8C65` |
+| Turchese | `#8BAEA4` | `#8CAFA5` |
+| Arancio | `#CD5812` | `#CE5812` |
+| Marrone | `#49240A` | `#49240A` ✅ |
+
+✅ **Nelle proposte è già fatto.** ⏳ **Sul sito online no**: quando si farà, va corretto in
+**due punti** (come sempre) — le palette `brand`/`brandnight` in `components.jsx` **e** il
+`:root` di `styles.css`. Se se ne cambia una sola, in cima alla pagina si vede il lampeggio.
+
+## 🔤 I font: cosa cambia con la consegna
+
+Pagina 6 del brand book conferma i quattro font: **LT Cushion** (DaFont), **Bronco Valley**
+(variatype, $20/$40 desktop), **Manrope** (Google) e **Smokum** (Google).
+
+- **LT Cushion** non è più un buco: il file è arrivato (`LTCushion-VF.ttf`, variabile 300‑900).
+  Sul sito online al suo posto c'è ancora DM Serif Display.
+- **Bronco Valley** resta l'unico **a pagamento** e l'unico che manca davvero. Nella consegna
+  **non c'è** — giustamente, è a licenza.
+- **Verificato sui file** (lettura della tabella dei caratteri): Smokum, LT Cushion e Manrope
+  hanno **tutti gli accenti italiani**; il **Bronco demo** ha 89 glifi in croce e gli mancano
+  à è é ì ò ù, le maiuscole accentate, la `&` e l'apostrofo curvo. Ecco perché nella maquette
+  i titoli sono scritti senza accenti: non è una scelta di stile, è il font demo che non li ha.
+  → Comprando la Webfont di Bronco Valley il problema sparisce; **oppure** si valuta **Smokum**
+  per i titoli, che è gratis e gli accenti ce li ha (in `_diag-loghi.html` c'è la prova diretta).
+
+## 🤠 Le icone ufficiali — sostituite (20/08)
+
+Sono le **stesse 8**, ma ora i file **ufficiali** dello studio invece di quelli estratti a mano dal
+PDF. In `images/icone/` la versione **arancio**, in `images/icone/beige/` la versione **beige**
+(che prima non esisteva e serve sui fondi scuri). I nomi dei file sono rimasti quelli di prima
+(`teschio-longhorn`, `ferri-di-cavallo`, `stella-sceriffo`, `cappello-cowboy`…) apposta, per non
+dover toccare le ~230 righe che li richiamano.
+
+⚠️ **Il sito pubblicato le usa con `<img>`**, non come maschera: lì il colore è dentro al file, e
+per i fondi scuri va puntata la cartella `beige/`. Nelle proposte invece sono maschere e il
+problema non si pone.
 
 ---
 
@@ -43,14 +215,16 @@ esplicito (istruzioni sotto), così si può caricare il font, guardarlo e decide
 ⚠️ **Rye ha un solo peso**: niente grassetto sui titoli. Vedi la regola su `h1`–`h6` in
 `styles.css` — c'è scritto lì perché.
 
-Il brand book rev.2 usa **quattro** font. Due sono gratis e sono già sul sito. **Due mancano**:
+Il brand book rev.2 usa **quattro** font (confermati a pagina 6 del `BRND DEF_HJCK.pdf` consegnato
+il 20/08). Due sono gratis e già sul sito; **LT Cushion** ora ce l'abbiamo come file; l'unico
+davvero da prendere è **Bronco Valley**:
 
 | Font | A cosa serve | Stato | Come si prende |
 |---|---|---|---|
 | **Manrope** | tutti i testi | ✅ **attivo** | Google Fonts, gratis |
 | **Smokum** | date, pulsanti, dettagli | ✅ **attivo** | Google Fonts, gratis |
 | **Bronco Valley** | i titoli, secondo il brand book | ⏸️ **in sospeso** — per ora i titoli sono in **Rye**, per scelta | [variatype.com/bronco-valley-vintage-serif](https://variatype.com/bronco-valley-vintage-serif/) — servirebbe la **"Webfont License 100K Views", $31** (verificato il 12/08/2026) |
-| **LT Cushion** | sottotitoli | ❌ **manca** → al suo posto c'è DM Serif Display | [dafont.com/lt-cushion.font](https://www.dafont.com/lt-cushion.font) — gratis (nel brand book: "100% free") |
+| **LT Cushion** | sottotitoli | 📦 **file in mano** (`_font-prova/brand-def/LTCushion-VF.ttf`, consegna 20/08) — sul sito online c'è ancora DM Serif Display | [dafont.com/lt-cushion.font](https://www.dafont.com/lt-cushion.font) — gratis (nel brand book: "100% free") |
 
 ⚠️ **Attenzione a quale licenza compri**: la **Desktop ($21)** serve per Illustrator/Canva, **non**
 copre l'uso su un sito. Per il sito ci vuole la **Webfont** ($31 fino a 100.000 visualizzazioni;
@@ -81,7 +255,9 @@ po' di link building"); e dal brand book rev.2 prendere **solo palette, icone, f
 ⚠️ **NON il logo** ("c'è un coloring che non va bene, lascia quello vecchio per ora").
 
 ### 🎨 Palette — i sei colori ufficiali
-Campionati direttamente dal PDF `HJCK brand rev.2.pdf` (in radice, non committato):
+⚠️ **Superata**: questi hex erano **campionati a schermo** dal PDF e sono sfasati di un punto per
+canale. I valori buoni sono nella sezione del **20/08** qui sopra. Lasciata per capire da dove
+vengono i colori che sono ancora nel sito pubblicato.
 
 | Colore | Hex | Nome nel brand book |
 |---|---|---|

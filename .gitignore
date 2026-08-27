@@ -22,4 +22,16 @@ HJCK brand*.pdf
 # devono finire online (Netlify pubblica la radice del repo).
 _titoli.html
 _diag*.html
-_font.html
+_font*.html
+# Font demo "free for personal use" scaricati per provarli in locale:
+# NON vanno online finché non si compra la licenza commerciale.
+_font-prova/
+
+# Cartella cliente del brand (master di logo, icone, font, PDF) consegnata dallo
+# studio il 2026-08-20: sono i file sorgente ad altissima risoluzione + i font.
+# Sul sito vanno solo le versioni web in images/logo/ e images/icone/.
+_brand-def/
+
+# Roba messa da parte prima di una sostituzione, tenuta solo in locale per poter
+# tornare indietro a mano. Non deve finire online.
+_parcheggio/
