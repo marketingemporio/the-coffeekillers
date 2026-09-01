@@ -35,3 +35,16 @@ _brand-def/
 # Roba messa da parte prima di una sostituzione, tenuta solo in locale per poter
 # tornare indietro a mano. Non deve finire online.
 _parcheggio/
+
+# Barra locale per saltare fra le proposte: serve solo in locale, come le proposta-*.html
+_switch-proposte.js
+
+# Font Bonzana scaricato per la prova: la copia buona sta in _font-prova/bonzana/.
+# Lo zip e la cartella originale restano in locale (la radice del repo va online).
+BONZANA-*.zip
+Font Bonzana/
+HJCK_Brand*.pdf
+
+# Lo strato di stile condiviso dalle proposte locali: come le proposta-*.html
+# non deve finire online (Netlify pubblica la radice).
+_stile-hjck.css

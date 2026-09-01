@@ -1,7 +1,7 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-08-20
+> **Ultimo aggiornamento:** 2026-09-01
 > **Stato in una riga:** sito **ONLINE** (invariato); **in locale c'è la maquette del sito nuovo**
 > e, dal **20/08**, la **cartella cliente definitiva con il logo nuovo** (caricata, non ancora montata)
 > — vedi la sezione qui sotto. Il 12/08 era entrato il **brand rev.2** (palette, font, icone —
@@ -39,9 +39,26 @@ quello React di sempre, intatto.
 
 **`proposta-a2.html` è la versione di riferimento** (home). Le altre pagine della maquette:
 `proposta-chi-siamo` · `proposta-country` · `proposta-date` · `proposta-gallery` · `proposta-faq` ·
-`proposta-preventivo` · `proposta-informativa-privacy` (bozza, vedi sopra). La pillola in basso a sinistra salta tra le home (A · A2 · A3 · B · C · D ·
-sito attuale). Varianti: **A** (prima versione), **A3** (uguale ad A2 ma con font Champ),
-**B**/**C** (prove vecchie), **D** (variante "cartellone" ispirata al poster Kruse Brothers).
+`proposta-preventivo` · `proposta-informativa-privacy` (bozza, vedi sopra).
+Varianti: **A** (prima versione), **A3** (uguale ad A2 ma con font Champ), **A4**/**A5**
+(font Mount West; **A5** ha anche una palette vintage tutta sua), **B**/**C** (prove vecchie),
+**D** (variante "cartellone" ispirata al poster Kruse Brothers).
+
+### 🔀 Come si salta da una proposta all'altra (rifatto il 20/08)
+
+In basso a sinistra c'è una **barra** che porta a **tutte** le pagine: le 8 home, le 7 pagine
+interne, la pagina di controllo del brand e il sito pubblicato. Si apre col bottone `▾`, e
+**resta aperta anche cambiando pagina** (se lo ricorda nel browser). Le frecce `‹ ›` scorrono le
+home in ordine; da tastiera funzionano **←** e **→**, e **P** apre e chiude il pannello.
+
+Il codice sta tutto in **`_switch-proposte.js`** (radice, esclusa da git): l'elenco delle pagine è
+in cima al file, se se ne aggiunge una si aggiorna **solo lì** e compare ovunque. Ogni pagina ha una
+riga sola, `<script src="_switch-proposte.js" defer></script>`, prima di `</body>`.
+
+⚠️ **Perché era da rifare**: prima ogni pagina aveva la *sua* pillola scritta a mano, e nessuna era
+aggiornata — `proposta-a`, `-b`, `-c` conoscevano solo A/B/C, `-d` non sapeva di A3/A4/A5, e le 7
+pagine interne non avevano proprio niente: ci si entrava e non si tornava più indietro. Le vecchie
+pillole (`nav.pill`, `nav.switcher`, `nav.pill-nav`) e il loro CSS sono stati tolti.
 
 **Com'è fatta la A2**: sezioni scelte con la band pescando il meglio da sito online + proposta B +
 proposta A (hero con la foto della band senza logo gigante, video Guitar layout B, "dove diamo il
@@ -114,9 +131,8 @@ Riepilogo di cosa è cambiato dentro i file:
 - **Favicon** — nuova, generata dal logo su quadrato beige: `images/logo/favicon.svg`
   (+ PNG 512/180/32). Quella di prima era la scritta in nero persa in un quadrato bianco.
 
-⚠️ **Eccezione voluta: `proposta-a5.html`** ("Mount West vintage") ha una **palette sua**,
-sbiadita apposta (`#8E3A22`, `#E3A155`, `#B8C4AB`…). Non è il brand sbagliato, è un esperimento:
-**l'ho lasciata com'era**. Se va allineata anche quella, va rifatta la scelta cromatica a mano.
+✅ **`proposta-a5.html` è stata rifatta il 20/08** — vedi la sezione qui sotto.
+✅ **`proposta-a6.html` è nuova**: identica alla A5, cambia solo il carattere (Bonzana).
 
 ⚠️ **Il sito ONLINE non è stato toccato**: `components.jsx`, `styles.css`, `index.html` e le altre
 pagine pubblicate hanno ancora il logo vecchio e i 5 colori sfasati. È un passo a parte, da fare
@@ -181,6 +197,555 @@ per i fondi scuri va puntata la cartella `beige/`. Nelle proposte invece sono ma
 problema non si pone.
 
 ---
+
+
+# 🎨 A5 e A6 — tutta la pagina dentro i colori del brand (20/08)
+
+Richiesta di Michele: **solo i colori del brand**, **senza il giallo `#FA8600`**, **niente marroni
+inventati** (l'unico ammesso è `#49240A`) e **l'arancio `#CD5812` come colore che comanda**.
+
+## Cos'era e cos'è
+A5 aveva **13 colori suoi**, una lettura "sbiadita" del brand (`#8E3A22`, `#E3A155`, `#B8C4AB`…):
+nessuno dei sei ufficiali. Ora la pagina usa **cinque** colori e basta —
+`#CD5812` · `#49240A` · `#EDDABD` · `#BD8B65` · `#8BAEA4` — con il giallo escluso per scelta.
+Convertiti anche **43 colori scritti a mano dentro le trasparenze** (`rgba(…)`), comprese le ombre,
+che erano in nero puro e ora sono marrone: le ombre sono calde, non grigie.
+
+## L'arancio comanda, ma non può stare sotto il testo piccolo
+Misurato: **beige su arancio dà 3.07:1** e **marrone su arancio 3.25:1**. Per il testo normale
+serve **4.5**. Quindi con questi cinque colori **nessuna scritta piccola è leggibile sull'arancio**:
+non è una scelta di gusto, è una proprietà della palette.
+
+La soluzione: l'arancio prende **le grandi superfici**, il marrone resta dove ci sono le scritte
+piccole. Le fasce arancio sono `.video-b`, `.palco`, `.brands-sec` e la `.cta`, più il velo sulle
+foto; restano marroni la testata, il calendario, la newsletter e il footer — tutte zone fitte di
+testo piccolo. Conto reale delle altezze: **3.801px di arancio contro 2.261px di marrone**.
+
+Dove l'arancio e il testo piccolo si incontravano per forza, tre trucchi:
+- le **etichettine** (occhielli) stanno in una **pastiglia marrone** — beige su marrone fa 10:1;
+- il **paragrafo d'apertura** delle fasce arancio va **in grande e in neretto** (≥19px/700), che è
+  la soglia oltre la quale bastano 3:1;
+- il **riquadro della CTA** (email, telefono, cachet) ha **fondo beige**, e la fascia arancio gli
+  resta attorno.
+
+## Guasti trovati per strada (c'erano già, ma non si vedevano)
+- **`.cal-sec` porta la classe `on-light` ma ha il fondo scuro**: titolo e occhiello erano marroni
+  su marrone. Prima non si notava solo perché i due marroni erano tinte diverse; con la palette
+  vera diventavano invisibili. Ora il testo di quella sezione è beige.
+- Il bottone **"Dettagli"** dentro la scheda "La prossima" era trasparente con il testo beige,
+  su una scheda beige: spariva. Ora è pieno.
+
+## Come è stato verificato
+Uno script apre la pagina in un browser vero, per **ogni testo** calcola il colore effettivo dello
+sfondo (risalendo i livelli e componendo le trasparenze) e confronta il rapporto con la soglia
+giusta per quel corpo. Si è partiti da **20 testi sotto soglia**, si è arrivati a **0**.
+L'unica segnalazione che resta è un falso positivo: la parola "travolgente" dell'hero sta **sopra
+la foto**, non sul fondo della sezione, ed è leggibile (guardata a schermo).
+
+---
+
+# 🔤 A6 — la stessa pagina con Bonzana (20/08)
+
+`proposta-a6.html` è una **copia esatta della A5**: stessa struttura, stessa palette, stesse
+correzioni. **Cambia solo il carattere**: al posto di **Mount West** c'è **BONZANA**
+(`_font-prova/bonzana/bonzana.otf`, gitignorata). Serve a confrontare i due font a parità di tutto.
+
+- ✅ **Accenti**: controllati sul file — **206 glifi, non manca né un accento né la `&`**.
+- ⚠️ **Bonzana ha un taglio solo.** A5 alternava Mount West largo sui titoli e Mount West **Narrow**,
+  stretto, sui bottoni: in A6 è lo stesso carattere in entrambi i ruoli, e la gerarchia la fanno
+  solo corpo e spaziatura.
+- ⚠️ **È molto più largo.** Nell'hero "Vivi l'energia travolgente del country live." passa da 4 a 5
+  righe e arriva a toccare il fondo. **Non ho toccato le misure** (era una prova a parità di tutto):
+  se vuoi un confronto pulito basta abbassare il corpo del titolo dell'hero, è una riga sola.
+- ⚠️ **Licenza da verificare** prima di pubblicare: lo zip arriva da un sito di font gratuiti, ma
+  l'uso commerciale va confermato. Lo zip originale e la cartella `Font Bonzana/` in radice sono
+  **esclusi da git** (la radice del repo finisce online).
+
+---
+
+
+# 🪵 A7 — gli sfondi del brand + Bonzana (20/08)
+
+`proposta-a7.html`: **parte dalla A4**, le mette gli **sfondi sporcati del brand** e il font
+**Bonzana**. A4 resta com'era.
+
+## Da dove arrivano gli sfondi
+Dalla pagina **SFONDI** del brand book rev.2 (04. Sistema visivo, pagina 15): tre fondi —
+marrone, tan, arancio — con una **sporcatura** sopra e un **bordo mangiato** in fondo alla striscia.
+Sono immagini vere dentro il PDF (1631×856 con maschera di trasparenza), estratte con `pdfimages`.
+
+Verificato che il colore pulito sotto la sporcatura è **`#4A240B`**: cioè il marrone del brand.
+Confermato che quei fondi **sono** i colori ufficiali, non tinte a parte.
+
+## Come sono stati messi nella pagina (e perché così)
+Non come tre immagini a colori, ma **separando la sporcatura dal colore**:
+- **`images/sfondi/sporco.webp`** (93 KB) — solo il velo di sporco, senza colore, ricavato
+  calcolando quanto ogni pixel è più scuro del fondo pulito.
+- **`images/sfondi/bordo-strappato.webp`** (8 KB) — il bordo mangiato, usato come maschera:
+  il colore di una sezione **sborda in modo irregolare** su quella dopo, come nel brand book.
+
+Il vantaggio: il colore sotto resta **esattamente** quello ufficiale (è un colore CSS, non un
+pixel di JPEG), **un file solo** serve tutti e tre i fondi e anche i colori futuri, e la quantità
+di sporco si dosa sezione per sezione con l'opacità (`.poco` sui fondi chiari, `.molto` sulle
+fasce forti). Un confronto fianco a fianco fra gli originali dello studio e la ricostruzione sta
+in **`_diag-sfondi.html`** (locale, esclusa da git).
+
+## Tre cose sistemate mentre le montavo
+- **Il bordo strappato non si vedeva**: la sezione seguente ci passava sopra. Serviva lo `z-index`
+  sulla sezione che sborda.
+- **Sul chiaro lo sporco sembrava muffa**: il velo nero al 30% su un fondo quasi bianco leggeva
+  come sporcizia, non come carta. Sceso al 12%.
+- **La macchia cadeva sempre a sinistra** (nel file originale sta lì): a sezioni alterne il velo
+  si ribalta.
+
+## Leggibilità
+Cambiare il fondo di una sezione cambia cosa ci si legge sopra: il controllo automatico ha trovato
+**13 testi sotto soglia**, ora **0**. Erano gli stessi punti deboli della A5 — la sezione `.cal-sec`
+che ha la classe `on-light` ma il fondo scuro, il bottone "Dettagli" beige su scheda beige, e le
+etichettine finite sull'arancio (dove nessun testo piccolo arriva a 4.5:1, quindi vanno in
+pastiglia marrone).
+
+⚠️ **A7 eredita la palette della A4**, che **non** è quella del brand: c'è ancora il giallo
+`#FA8600` e tre marroni inventati (`#241005`, `#2E1509`, `#180A02`) più un bianco sporco `#FBF5EA`
+e tre verdi-azzurri fuori tabella. Gli **sfondi** invece sono i colori ufficiali. Se vuoi la A7
+tutta dentro il brand come la A5, è un passaggio a parte — la ricetta è già scritta e collaudata.
+
+⚠️ I due file in `images/sfondi/` **sono tracciati da git**: finiranno online al primo deploy anche
+se per ora li usa solo una pagina locale. Sono 101 KB in tutto e servono comunque quando la
+maquette andrà in produzione.
+
+---
+
+
+# ✨ A6 — rilavorata a fondo (29/08/2026)
+
+Richiesta di Michele: lavorarla **piu' a fondo**, con **blocchi piu' creativi**, partendo
+dall'hero — *"quel gradiente che seppia tutto rovina e non porta lontano"* e *"alcuni contrasti
+non rendono leggibile il testo"*.
+
+## 1 · L'hero: la foto a tutto campo, ma con un velo che ragiona
+
+Prima versione (poi scartata da Michele): una locandina beige di fianco alla foto. Leggibile, ma
+*"così non mi piace"* — voleva la **fotografia di sfondo**, con il contenuto organizzato meglio sopra.
+
+**Il punto non era il gradiente in sé, era che copriva tutto.** Il seppia veniva steso sull'intera
+immagine per far reggere il testo, e finiva per spegnere anche la parte che nessuno stava leggendo.
+
+Adesso il velo è **direzionale**: scende da **sinistra e dal basso**, cioè solo dove appoggia il
+testo, e lascia libero l'angolo in alto a destra. La fotografia resta viva dove si guarda e
+diventa fondo dove si legge.
+
+**Le misure non sono a occhio.** Col marrone all'80% sopra un cielo bianco — il punto peggiore
+della foto — il beige sta a **5.4:1**, sopra la soglia del testo piccolo. Nella zona del testo i
+due gradienti sommati arrivano al **93%**. Sotto i 1000px il velo laterale sparisce (il testo
+occupa tutta la larghezza) e resta solo quello verticale, più alto.
+
+**Il contenuto è su due piani:**
+1. In basso a sinistra: occhiello su pastiglia bordata d'arancio → titolo → sottotitolo → i due
+   inviti all'azione. Il blocco è agganciato in basso, così la metà alta della foto resta libera —
+   che è poi il motivo per cui una fotografia si mette lì.
+2. In fondo, una **fascia marrone piena** con filetto arancio: i tre dati (dal 2018 · 5 sul palco ·
+   base Brescia) e **la prossima data** come collegamento. Essendo marrone pieno, ogni scritta
+   piccola lì dentro sta a 10:1 senza dipendere dai pixel della foto.
+
+⚠️ **La parola in evidenza** non poteva restare arancio: sul velo scuro sarebbe stata a 2.5:1,
+troppo poco anche per un titolone. È diventata un **blocco arancio con la scritta beige**, come una
+timbratura — 3.07:1, sopra la soglia dei corpi grandi.
+
+Tre aggiustamenti fatti guardando il risultato a schermo: il titolo a corpo pieno arrivava
+all'altezza delle facce e ne copriva due; spingendo il blocco in basso col padding l'hero si
+allungava e la fascia finiva sotto lo schermo; allargando la misura del titolo da 17 a 21 caratteri
+scende a tre righe e si sistema da solo.
+
+## 2 · Le fotografie tornano a colori
+
+C'era `sepia(.52) saturate(.58)` su **tutte** le immagini, piu' due veli arancio in *multiply*.
+Insieme appiattivano la pagina su un tono solo. Ora resta un ritocco leggero
+(`saturate(1.05) contrast(1.03)`) e il velo scuro sopravvive **solo in fondo alle immagini
+grandi**, dove ci sono didascalie appoggiate sopra. Il video del palco, per dire, e' tornato verde.
+
+## 3 · Due blocchi ridisegnati
+
+- **Il calendario e' diventato biglietti.** La prossima data e' un biglietto vero: tallone arancio
+  con la data, perforazione tratteggiata, e **due tacche tonde** del colore della sezione — sono
+  loro a far leggere il buco come un buco. Le altre date sono biglietti piccoli in griglia, col
+  tallone in marrone chiaro. ⚠️ Le tacche sono agganciate al **tallone**, non messe a una distanza
+  fissa: se no basta cambiare una misura e vanno fuori asse.
+- **La formazione e' diventata manifesti.** Foglio beige, doppio filetto, **foto ad arco**, nome
+  in Bonzana, ruolo su pastiglia marrone, citazione sotto un tratteggio. Sono su fondo dello stesso
+  beige, quindi hanno un'**ombra piena arancio spostata** — lo stesso gesto del bottone dell'hero,
+  cosi' la pagina parla una lingua sola.
+
+## 4 · Leggibilita' verificata
+
+Controllo a schermo su ogni testo della pagina: **da 11 sotto soglia a 0**. Erano tutti lo stesso
+caso — arancio e beige uno sull'altro fanno **3.07:1**, abbastanza per un titolo grande, non per una
+scritta piccola. Sistemati: le etichette dei dati nell'hero, le pastiglie del palco (ora piene di
+marrone, 10:1) e le localita' sui biglietti.
+
+⚠️ Promemoria che vale per tutta la A5/A6/A7: **sull'arancio nessun testo piccolo arriva a 4.5:1**
+(beige 3.07, marrone 3.25). O si sale di corpo, o ci va sotto una pastiglia marrone.
+
+---
+
+
+# 🧱 A6 — sfondi rovinati e font dei bottoni (29/08, seconda tornata)
+
+## Gli sfondi del brand, anche qui
+A6 ha ora la stessa sporcatura della A7 (dalla pagina SFONDI del brand book): fasce arancio e
+marrone sporcate, sezioni chiare con un velo appena accennato, e il **bordo mangiato** che fa
+sbordare il colore di una sezione su quella dopo.
+
+## ⚠️ Perché l'arancio sembrava "pixelato" — e come è stato risolto
+Michele: *"attenzione all'arancio, è molto pixelato, come se tu avessi zoommato troppo."*
+Aveva ragione, ed era proprio uno zoom: la texture era **un file solo** (1000×525) allargato a
+coprire sezioni alte più del doppio. Ingrandita 2,3 volte, una sporcatura fatta di **puntini
+fitti** si vede tutta a quadretti — e sull'arancio, che è il colore principale, saltava all'occhio.
+
+La texture ora è **divisa in due strati**, perché le due frequenze vanno trattate in modo opposto:
+
+| File | Cos'è | Come si comporta |
+|---|---|---|
+| `images/sfondi/grana.webp` (384px, 7 KB) | i puntini fitti | **si ripete a misura naturale**, non viene mai ingrandita → non sgrana. Il tassello è specchiato sui due assi, così le giunzioni non si vedono |
+| `images/sfondi/macchie.webp` (760px, 84 KB) | gli aloni larghi | **sfocati**, quindi allargarli non si nota |
+
+Due tentativi sbagliati prima di arrivarci, vale la pena saperlo:
+1. ho **amplificato** la grana (×1,5) e alzato l'opacità: il risultato sembrava **statica della
+   televisione**, non sporcatura;
+2. ho preso il tassello di grana da una **zona macchiata** dell'originale: ripetuto ovunque
+   rendeva tutta la pagina uniformemente sporca, e la simmetria del tassello si vedeva.
+La versione buona non amplifica niente e prende la grana da una **zona pulita**, con il picco a
+26/255 — appena percettibile. Confronto fianco a fianco con gli originali dello studio in
+`_diag-sfondi.html`.
+
+✅ **La correzione vale anche per la A7**, che aveva lo stesso file e lo stesso difetto.
+Il vecchio `sporco.webp` è stato tolto. In tutto il velo pesa **91 KB**, meno di prima.
+
+## Il font dei bottoni
+Michele: *"i bottoni in bonzana non sono leggibili."* Vero: Bonzana è un carattere da manifesto,
+sui titoli grandi funziona, ma su un'etichetta di quindici o venti pixel le grazie squadrate si
+chiudono e la parola non si legge più.
+
+Al suo posto **LT Cushion**, che è uno degli altri tre font del brand (Bronco Valley è fuori,
+sostituito da Bonzana), nel taglio **900** con le lettere staccate. Variabile `--btn`, applicata a
+`.btn-poster` · `.btn-dark` · `.cta-btn` · `.nav-cta` · `.hero6-btn` · `.cal-badge`.
+Ha l'occhio più piccolo di Bonzana, quindi i corpi sono stati alzati di un paio di punti.
+
+⚠️ **I numeroni delle date restano in Bonzana**: lì il corpo è grande e il carattere fa il suo
+mestiere. Il cambio riguarda solo le etichette piccole.
+
+Contrasti ricontrollati dopo tutto questo: **0 testi sotto soglia**.
+
+---
+
+---
+
+
+# 🧭 A6 — il giro di grafica del 01/09/2026
+
+Michele ha dato una lista di richieste puntuali partendo dalla A6, poi un secondo giro dopo aver
+guardato il risultato. Copia della versione precedente in
+**`_parcheggio/proposte-prima-del-2026-09-01/proposta-a6.html`** (niente e' andato perso).
+Il sito **online non e' stato toccato**: si lavora solo sulla maquette locale.
+
+## 🩹 Il guasto piu' grosso: gli sfondi "sporcati" sgranavano — RIFATTI DA ZERO
+
+Michele: *"Gli sfondi sono venuti ancora tutti sgranati, hai preso i contenuti del brand come
+sfondi ma li hai zoomati."* Aveva ragione, e la causa era strutturale.
+
+**Cos'era**: due immagini ritagliate dalla pagina SFONDI del brand book —
+`images/sfondi/grana.webp` (512px) e soprattutto `macchie.webp` (760px) — la seconda stesa a
+`cover` su fasce larghe 1440px e piu'. Ingrandita due-tre volte si vedeva tutto: i puntini a
+quadretti e, dentro le "macchie", **le lettere sfocate della pagina di PDF** da cui erano state
+ritagliate. Il tentativo del 29/08 (dividere in due strati) aveva ridotto il problema, non
+tolto la causa: **un'immagine, per quanto grande, prima o poi la ingrandisci.**
+
+**Cos'e' adesso**: la sporcatura non e' piu' un'immagine, e' **disegnata dal browser**
+(`feTurbulence` dentro un SVG in `data:`), su **tre strati** in `:root`:
+
+| Variabile | Tassello | Cosa fa |
+|---|---|---|
+| `--sporco-grana` | 190px, `baseFrequency 0.92` | i puntini fittissimi: il rumore della carta |
+| `--sporco-fibra` | 340px, `baseFrequency 0.14` | una trama media, rompe la regolarita' della grana |
+| `--sporco-nuvole` | 620px, `baseFrequency 0.013` | gli aloni larghi: la disomogeneita' del foglio |
+
+Tutti e tre con **`stitchTiles='stitch'`**: i bordi del tassello combaciano, le giunzioni non si
+vedono. Si ripetono **a misura fissa** e **non vengono mai scalati**, quindi non possono sgranare
+a nessuna larghezza di schermo. Pesano **zero byte di rete** e servono tutti i colori.
+
+⚠️ **Le dosi stanno dentro i tasselli** (`feFuncA tableValues`), non nell'`opacity` della regola:
+cosi' i tre strati si bilanciano uno per uno. Valori scelti provandoli fianco a fianco su arancio,
+marrone e beige — la pagina di confronto e' **`_diag-grana.html`** (in radice, esclusa da git).
+Primo tentativo a `opacity:.5` complessiva: la sporcatura spariva del tutto e la pagina sembrava
+piatta. Buono: grana `0.85`, fibra `0.18`, nuvole `0.22`, `opacity:1`, `.poco` a `.4` sui beige.
+
+📌 **I tre `.webp` in `images/sfondi/` non li usa piu' nessuno tranne `bordo-strappato.webp`**,
+che pero' e' una **maschera di forma** (il bordo mangiato fra una sezione e l'altra), non una
+texture: quello puo' restare un file. `grana.webp` e `macchie.webp` si possono cancellare quando
+anche la A7 sara' passata al sistema nuovo — **la A7 ha ancora il difetto vecchio**.
+
+## Testata
+- **Via la striscia annuncio** in cima (la nav parte da `top:0`).
+- **Via le icone social**: stanno **solo nel footer**, dove ora hanno l'icona accanto alla parola.
+- **Ordine nuovo**: a sinistra *Chi siamo · Gallery · Il country*, a destra *Date · FAQ · Preventivo*.
+  Le voci sono **addosso al logo centrale**, non ai bordi (`justify-content` invertito sulle due liste).
+- **Le voci non si leggevano sul trasparente**: il velo era `.72/.28` proprio all'altezza del menu,
+  e sopra un cielo chiaro spariva. Ora il gradiente e' piu' fitto e piu' lungo e le voci hanno un
+  alone scuro, che sparisce quando la barra diventa piena.
+- **Il bottone "Preventivo" non si leggeva**: era turchese contornato. Ora e' **pieno di beige con
+  la scritta marrone** (10:1 sempre) e ha l'ombra piena arancio del bottone dell'hero.
+
+## Hero
+Via **"— Nord Italia"**, poi via **tutto l'occhiello "Country Live Band"**, via **i due bottoni**,
+via **tutta la fascia in fondo** (i tre dati e "La prossima 23 ago"). Il titolo era **schiacciato**:
+interlinea da `.98` a **`1.16`**.
+
+## Sezioni: cos'e' cambiato
+| Prima | Adesso |
+|---|---|
+| striscia scorrevole *Long Live Country Music* | **eliminata** (restano `.payoff-edge`/`.tartan`, li usa il footer) |
+| video: due occhielli, titolo "Adesso puoi sentirci per intero", due bottoni sotto | titolo **"Ascoltaci dal vivo!"**, sottotitolo nuovo, **niente bottoni**, e il video **si apre dentro la pagina** |
+| *La birra chiama, il country risponde* + intestazione + zigzag | **"Cosa facciamo?"** col testo nuovo. Colonna del testo allargata (1.35fr) perche' il paragrafo e' lungo |
+| le 5 card dentro il blocco birra | **sezione sua "Dove diamo il meglio?"**, fascia arancio, **sei** card (aggiunte *Locali & Pub* e *Ranch & Maneggi*) con descrizioni piu' concrete |
+| palco: occhielli, titolo, paragrafo, 4 pastiglie, fascia arancio | **solo il video** che parte scorrendo, a tutto campo |
+| calendario a "biglietti staccabili" | **impianto della A7**: scheda beige + elenco di righe. Via il tag *La prossima*, via *Vedi tutte le date*, via *Negli ultimi mesi anche a Cremona…* |
+| lineup: occhielli, titolo lungo, intro "Ci conosci gia'…", **schede a manifesto** (foglio beige, doppio filetto, foto ad arco, ombra arancio) | titolo **"La nostra LineUp"**, intro eliminata, **niente card**: solo i ritratti **tondi** su fondo pulito |
+| brands: *— Hanno ballato con noi* / *Selected clients* | occhielli eliminati |
+| social: occhielli, *Un assaggio del nostro live*, paragrafo | titolo **"Seguici sui social"**, restano i due agganci (Instagram + YouTube) |
+| newsletter come **fascia a se'** prima della CTA | **dentro il footer**, prima riga, nella stessa gabbia delle colonne e chiusa da un filetto: non "galleggia" piu' |
+| CTA: cachet / email / WhatsApp | contatti eliminati, frase nuova: *"Raccontaci il tuo evento, compila i dettagli e ti facciamo la nostra proposta!"* |
+| footer: *Hot Joe & The CoffeeKillers — country live since 2018* | riga eliminata |
+| **camaleonti** sparsi (video, birra, calendario, occhiello social) | **tutti tolti**: resta **solo quello grande** sopra "Long Live Country Music" |
+| **occhielli** sopra ogni blocco (*Il calendario* con i ferri di cavallo, ecc.) | **tolti da tutte le sezioni** |
+| **zigzag** negli angoli | **tolti da tutta la pagina** |
+
+⚠️ Un blocco **"Non ci trovi vicino a casa?"** (rimando al preventivo sotto le date) era stato
+aggiunto nel primo giro e **poi tolto** su richiesta di Michele. L'invito al preventivo resta uno
+solo: la CTA grande in fondo.
+
+## Testi della formazione
+- Nomi con il **soprannome**: Michele "Mike" Frosio · Davide "Miglio" Miglietti ·
+  Lorenzo "Larry" Marini · Stefano "Ste" Martinelli · Riccardo "Richi" Loda.
+- **Mike**: bio rifatta (*"…ha trovato nel country il palcoscenico ideale… Commerciale, esuberante,
+  **spirito libero**, fatto di conoscenza musicale e autenticita'"*) — "anima jazz" era da togliere.
+  Battuta: *"Ma l'hamburger c'e' anche vegetale?"*
+- **Larry**: ruolo da *Key & Harmonica* a **Keys**; *"Precisione e positivita'"* → **"Colore e positivita'"**.
+- **Ste**: bio nuova (*"Le mani piu' veloci del west… tecnica, salopette e ricambi di ogni genere…"*),
+  battuta *"Ti serve «qualunque cosa»? Ce l'ho."*
+
+## 🔔 "Ricordamela": come funziona il promemoria 3 giorni prima
+Il bottone **Dettagli** (sulla prossima data **e su ogni riga** dell'elenco) apre un **popup**, non
+porta piu' alla pagina Date. Dentro: quando, dove, una nota, **Indicazioni su Google Maps** e
+**Ricordamela**.
+
+**La soluzione scelta e' il file `.ics`**, generato al volo dal browser:
+- e' lo standard dei calendari; dentro c'e' un allarme `VALARM` con `TRIGGER:-P3D`, cioe'
+  **tre giorni prima**;
+- lo apre il calendario del telefono (iPhone e Android) ed **e' lui a suonare**: la notifica non
+  passa da noi;
+- **zero backend, zero dati raccolti, zero privacy da gestire** — non c'e' nessun indirizzo da
+  chiedere, quindi nessun consenso, nessun archivio, niente che si possa perdere;
+- accanto c'e' anche **"Apri in Google Calendar"**: comodo da desktop, ma li' il promemoria a
+  3 giorni **va confermato a mano** (il link `TEMPLATE` di Google non permette di imporlo).
+  Nel popup c'e' scritto.
+
+Verificato in un browser vero: il file generato e' valido, con le righe **piegate a 75 ottetti**
+come vuole la RFC 5545 (i trattini lunghi contano piu' di un byte, per questo si conta in byte,
+non in caratteri).
+
+**Se un giorno si vuole la notifica via e-mail** (spinta da noi, non dal calendario del cliente)
+serve un pezzo in piu': raccogliere l'indirizzo → **informativa privacy + consenso** → un servizio
+che il giorno X-3 manda la mail (Brevo/Mailchimp con automazione sulla data, o la newsletter gia'
+prevista). E' l'unica strada che raggiunge anche chi non usa il calendario, ma apre il capitolo
+dati personali. **L'`.ics` no.**
+
+⚠️ **Le date sono ancora quelle di prova** (23/28/29 ago, 5 set, 10 ott — ormai passate) e i
+**dettagli sono vuoti**: quando `data-dettagli` e' vuoto il popup scrive *"I dettagli di questa
+serata arrivano a breve."* Per riempirli si tocca **solo l'HTML** della sezione `#date`: ogni data
+porta i suoi `data-titolo`, `data-quando`, `data-dove`, `data-maps`, `data-dettagli`,
+`data-ics-inizio`, `data-ics-fine`. **Il JavaScript non va aperto.**
+
+## 🎬 Il video "Ascoltaci dal vivo" ora sta dentro la pagina
+Prima il play portava **su YouTube**. Adesso e' una **facciata**: si vede la copertina locale e
+l'iframe di YouTube nasce **al primo clic, dentro la pagina**. Un embed a freddo pesa quasi 1 MB
+di script di terze parti: cosi' lo paga solo chi il video lo guarda.
+
+## Come e' stato verificato (Chrome vero, non a occhio)
+- **0 testi sotto soglia di contrasto** su desktop **e** su mobile (per ogni testo si ricompone il
+  fondo effettivo e si confronta col rapporto giusto per quel corpo).
+- **0 errori JavaScript**, **0 immagini rotte**, **0 richieste fallite**.
+- **Nessun trabocco orizzontale**. Un guasto trovato e corretto: la riga *"Inaugurazione Beach Fly"*
+  del calendario sporgeva di **11px** su mobile — mancava `minmax(0,1fr)` sulla colonna del nome.
+- Popup provato davvero: si apre, si riempie coi dati giusti, si chiude con **Esc** e con la **×**,
+  il link Maps e il file `.ics` sono corretti.
+- Texture confrontate fianco a fianco in `_diag-grana.html` sui tre fondi del brand.
+
+⚠️ **Restano in piedi, da decidere con Michele:**
+- le descrizioni delle sei card dicono cose concrete (*5 × 3 m*, *stage plan e input list*,
+  *il brano dell'ingresso su richiesta*): sono coerenti con quello che il sito gia' dichiara, ma
+  **vanno confermate** prima di andare online;
+- dentro l'insegna della CTA e' rimasto l'occhiello in corsivo *"— Richiedi un preventivo —"*:
+  non ha icona e fa parte del disegno della cornice, non e' un'intestazione di sezione. Se lo vuole
+  via e' una riga;
+- la **A7 ha ancora gli sfondi vecchi** (quelli che sgranano): la ricetta nuova e' pronta e si
+  copia in cinque minuti.
+
+
+## 📸 Foto nuove e ultime regolazioni (01/09, tarda serata)
+
+**Hero — foto nuova.** `~/Downloads/Hero.jpg` (1536×2048, i cinque in giardino) →
+`images/band-giardino-hero.webp`. ⚠️ Primo tentativo sbagliato: `cwebp -resize 0 1600` imposta
+l'**altezza**, non la larghezza, e la foto era scesa a 1200px di larghezza — i volti venivano
+sgranati. Rifatta con **ritaglio orizzontale** (`-crop 0 400 1536 1100`) e **q90**: si buttano i
+pixel di cielo e prato che l'hero taglierebbe comunque, e quel che resta e' alla risoluzione
+piena della sorgente. 616 KB (l'hero di prima ne pesava 1276).
+
+**"Cosa facciamo" — foto della terrazza.** `~/Downloads/foto terrazza.JPG` (6000×4000) →
+`images/terrazza-live.webp` (1600px, q86, 257 KB): la band dal vivo al tramonto con la collina
+sullo sfondo. La colonna della foto e' passata a `1fr 1.2fr` e il ritaglio da 4:3 a **3:2**
+(quello vecchio mangiava cielo e collina, che sono meta' della fotografia).
+
+**Formazione — i cinque ritratti nuovi.** Da `~/Downloads/Foto {Mike,Miglio,Larry,Ste,Richi}.jpg`
+→ `images/{mike,miglio,larry,ste,richi}-ritratto-muro.webp` (760px, q84, ~180 KB l'una).
+Le vecchie **non sono state toccate**.
+⚠️ Dentro un cerchio `object-fit:cover` ritaglia un quadrato, e in una foto 3:4 quel quadrato
+parte al 12,5% dell'altezza — ma i volti stanno fra il 26% e il 40%, **e non nello stesso punto
+in tutte e cinque**. Percio' ognuna ha la sua `object-position`, calcolata perche' il viso cada
+sempre a circa **un terzo dall'alto del cerchio**: e' l'inquadratura da ritratto, ed e' quello
+che allinea i cinque fra loro. Larry e Richi erano **lontani** nella foto: le loro sorgenti sono
+state ritagliate piu' strette in fase di conversione (`-crop`), non ingrandite via CSS.
+
+**I loghi dei clienti, rimessi in scala.** Michele: *"Lombarda ceramiche e' piccolissimo."*
+Misurato col `getBBox` del browser: con la regola unica `max-width:80%; max-height:80px` il
+**disegno vero** risultava alto Ca' del Bosco 80px · Coca-Cola 56 · Thun 50 · Porsche 28 ·
+**Lombarda 25**. Il motivo e' che dentro il file il disegno non riempie il riquadro, e ognuno lo
+riempie in modo diverso. Ora ogni marchio ha la sua misura, calibrata sulla **larghezza del
+disegno** (~150px, che in una fila di marchi a scritta e' quello che si percepisce) e agganciata
+al **nome del file**, non alla posizione. Ridotto anche il padding della cella da 24 a 14px: i due
+marchi larghi sbattevano contro il `max-width` prima di arrivare alla loro altezza.
+
+⚠️ **`Porsche.svg` e `Lombarda-Ceramiche.svg` non sono i loghi veri**: sono segnaposto scritti a
+mano, e Lombarda ha il testo a `font-size 13` dentro un riquadro alto 80 — cioe' le **lettere**
+restano minuscole per quanto si ingrandisca il blocco. Non si risolve dal CSS. Ho creato
+**`images/Lombarda-Ceramica-v2.svg`**, stesso stile ma disegnato in scala, e la A6 usa quello.
+**Il file vecchio non e' stato toccato**: lo usano il sito pubblicato (`components.jsx`) e tutte
+le altre proposte. Vanno comunque sostituiti coi loghi veri dei clienti.
+
+**Footer piu' basso.** Era **932px su una finestra da 900**, cioe' piu' di uno schermo pieno.
+Il grosso lo faceva il camaleonte (235px da solo) piu' il payoff a corpo 64. Stretto tutto in
+proporzione senza togliere niente — il camaleonte grande resta, a 230px invece di 400 — e ora e'
+**722px**. Ultimo contrasto chiuso: su telefono il titolo del footer scendeva a 22px e la parola
+in arancio ("date.") sotto i 24px non conta piu' come "testo grande": portato a 25px.
+
+
+## 🗂️ Tutte le pagine allineate allo stile della home + landing per le ads (01/09, sera)
+
+Michele ha **confermato lo stile della home**, quindi si e' portato su tutto il resto del sito.
+
+### Un solo posto per lo stile: `_stile-hjck.css`
+Invece di ricopiare duecento righe in sette pagine, lo strato "stile home" sta in **un file
+condiviso** (radice, **escluso da git**: la radice finisce online). Ogni pagina lo aggancia con
+una riga sola, dopo il proprio `<style>`, cosi' vince sulle regole vecchie.
+Porta: la sporcatura procedurale, la testata senza striscia annuncio e senza social con le voci
+addosso al logo, il bottone Preventivo leggibile, il footer basso con la newsletter dentro e i
+social con l'icona, la formazione senza card coi ritratti tondi, i loghi clienti in scala.
+⚠️ **La sorgente di verita' resta `proposta-a6.html`**, che ha tutto in linea: se cambia la home,
+questo file va riallineato a mano.
+
+Nell'HTML di tutte e sette le pagine interne sono stati tolti in blocco: striscia annuncio,
+icone social in testata, **occhielli** sopra i blocchi, **zigzag**, **camaleonti** sparsi (resta
+solo quello grande del footer), la riga *"country live since 2018"*. Aggiunta la newsletter nel
+footer con lo stesso comportamento della home.
+
+### Gallery — da 61 a 34 scatti
+Tolte **27 foto**, con questo criterio (e il criterio e' stato verificato foto per foto, non a
+occhio: provini a contatto in `_diag-provino*.html` e confronto percettivo di tutte le 61 fra loro):
+| Perche' | Quante | Quali |
+|---|---|---|
+| gia' usate in altre pagine | 9 | band-fiume-o2, live-notte, live-palco-luci-calde, strumenti-fila-alberi, band-giardino-salopette, live-sera-pubblico, live-allaperto-pomeriggio, miglio-batteria, strumenti-palco-verde |
+| ritratti sul muro arancio, ora sono la **formazione in home** | 4 | mike-acustica-live, larry-tastiera-rossa, ste-chitarra, richi-basso-live |
+| **con Eli** | 6 | vigna-live-voce, live-controluce-voce, vigna-live-palco, live-telecaster-notte, vigna-live-panoramica, prato-palco-pubblico |
+| **con Matteo** | 1 | acustico-cortile |
+| **Larry alla lap steel** | 2 | vigna-lapsteel, studio-lapsteel |
+| quasi identiche a una gia' presente | 5 | band-fiume-o1, band-fiume-v3, band-muro-b, band-completo-strumenti, band-giardino-b |
+
+**Come sono stati trovati i quasi-duplicati**: ogni foto ridotta a 12×12 blocchi di luminosita' e
+confrontata con tutte le altre. Le coppie sotto 11 (su una scala dove 0 = identiche) erano
+`band-fiume-o1/o2/o3` (3,3 e 3,8!), `band-fiume-v2/v3` (5,1), `band-muro-a/b` (9,3),
+`band-giardino-a/salopette` (11,0). Fra le 34 rimaste la coppia piu' simile sta a 16,7.
+
+⚠️ **Come si riconosce Eli nelle foto d'epoca**: in alcune e' scritto nella didascalia, in altre no.
+Nelle **panoramiche dei live 2022–2023** la band era al completo, quindi Eli **c'e' anche quando
+non si distingue** — sono state tolte tutte. Matteo (banjo, 2022→2025) e' l'uomo riccio con la
+barba dietro a Mike in `acustico-cortile`: non puo' essere Ste, che e' arrivato a gennaio 2026.
+
+Tolti anche **i titoli delle foto** (le `gal-cap`, che portavano dentro le date "· 2022"), la nota
+storica su Eli e Matteo e l'intestazione *"L'album / Dal 2022 a oggi"*. Restano **3 foto di soli
+strumenti** (telecaster-dettaglio, strumenti-prato, targa-band). Contatore aggiornato a 34.
+
+### FAQ — al centro, con risalto
+Via l'intestazione *"Domande frequenti / Cachet · Durata · Service · Spazio · Trasferte"*, via
+e-mail e telefono, via il bottone preventivo, via il camaleonte, **via anche la CTA in fondo**:
+la pagina adesso e' solo le FAQ. Erano due colonne con l'introduzione appiccicata a sinistra; ora
+sono **una colonna sola larga 900px al centro**, titolo a corpo 68 e domande a 22px.
+🙂 **Le emoji sono tornate**: 😬 🤓 😉 🕺🏻 ☕️🥃 🤠 — sono quelle vere del sito online, riprese da
+`FAQS` in `components.jsx` (nella maquette erano state sostituite con le icone western).
+
+### Il country — contenuto SEO sull'Italia
+Riscritta la sezione 04, che ora si chiama **"Il country in Italia: non e' piu' roba d'oltreoceano"**
+e va per gradi con tre sottotitoli (`<h3>`, buoni sia per chi scorre sia per Google):
+*cos'e' successo negli ultimi anni* → *perche' funziona alle feste italiane* → *e dove lo si trova,
+in Italia?*. Parte dal cos'e' il country, passa per line dance, festival e artisti, e arriva alla
+curiosita' concreta: non serve andare a Nashville, la scena italiana c'e' — e ci siamo anche noi.
+Tolta la **CTA preventivo in fondo** come chiesto.
+⚠️ Cambiata anche la foto: c'era `live-sera-pubblico` (**con Eli**), sostituita con `live-notte`.
+Era un punto rimasto aperto dal 28/07.
+
+### Chi siamo — minimale
+Su richiesta di Michele ("*sii minimale come contenuto per il momento poi la arricchiamo noi*")
+restano **solo l'apertura e la formazione**. Storia, ispirazioni (i sei artisti coi link),
+repertorio e CTA sono usciti — **sono tutti nel backup** in
+`_parcheggio/proposte-prima-del-2026-09-01/`, si rimettono quando serve.
+Montati i ritratti nuovi sul muro arancio, senza le schede a manifesto.
+
+---
+
+## 🎯 `proposta-landing-ads.html` — la pagina di atterraggio delle inserzioni
+
+Pagina **a parte**, che non esiste per Google: `<meta name="robots" content="noindex,nofollow">`.
+Non e' un vezzo — se finisse in indice farebbe concorrenza alla home sulle stesse parole (il
+contenuto e' quasi lo stesso) e sporcherebbe i numeri della campagna.
+
+**Da dove arriva chi la apre**: da un video con un aggancio del tipo *"hai un locale e vorresti
+musica country?"*. Ha tre secondi di attenzione e una domanda sola: «questi fanno al caso mio, e
+quanto costano?» La pagina e' costruita su quello:
+
+1. **Niente menu.** Le vie di fuga in una landing costano conversioni: l'unica strada e' il modulo.
+   In alto c'e' il solo logo, e **non e' un link**.
+2. **Il titolo ripete la promessa dell'inserzione parola per parola.** Se la pagina dicesse
+   un'altra cosa rispetto al video, la persona se ne andrebbe.
+3. **Il video intero subito**, perche' la prova sta li' (facciata: l'iframe nasce al clic).
+4. **Cosa ti trovi in casa** — quattro fatti concreti, non aggettivi.
+5. **I loghi dei clienti** come prova sociale.
+6. **Le quattro domande che bloccano** (costo, durata, service, trasferta) sciolte **prima** del
+   modulo: se restano in testa, il modulo non si compila. Il cachet e' scritto: 1.000–2.500 €.
+7. **Il modulo: sei campi.** Ogni campo in piu' e' gente che se ne va. Con **consenso privacy
+   obbligatorio** (il bottone resta spento finche' non e' spuntato) e link all'informativa.
+
+⚠️ **PRIMA di mandarci traffico a pagamento** servono due cose:
+- **agganciare il modulo a un destinatario** (Formspree o altro): oggi mostra il ringraziamento
+  ma **non manda niente a nessuno**;
+- far **validare l'informativa privacy**, che e' ancora una bozza (vedi la sezione in cima).
+
+Aggiunta alla barra delle proposte in basso a sinistra, insieme alle altre.
+
+### Come e' stato verificato tutto
+Ogni pagina caricata in Chrome vero, desktop **e** telefono: **0 testi sotto soglia di contrasto**,
+**0 errori JavaScript**, **0 immagini rotte**, **0 richieste fallite**, nessun trabocco orizzontale.
+Tre contrasti trovati e corretti per strada, tutti lo stesso caso (arancio o beige su fondo
+sbagliato): i ruoli dei musicisti, il tondo play sulla fascia arancio, e — solo su telefono — gli
+anni della linea del tempo del country, che scendendo a 22px smettono di contare come "testo
+grande" e non arrivano piu' a 4,5:1.
 
 # ⏳ DA DECIDERE — titoli maiuscoli o minuscoli (con la band)
 
