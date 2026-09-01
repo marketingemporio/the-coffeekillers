@@ -44,7 +44,3 @@ _switch-proposte.js
 BONZANA-*.zip
 Font Bonzana/
 HJCK_Brand*.pdf
-
-# Lo strato di stile condiviso dalle proposte locali: come le proposta-*.html
-# non deve finire online (Netlify pubblica la radice).
-_stile-hjck.css

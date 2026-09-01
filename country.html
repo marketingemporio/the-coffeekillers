@@ -1,96 +1,917 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Il country: storia, suono e boom in Italia — The Coffeekillers</title>
-  <meta name="description" content="La guida al country di Hot Joe & The Coffeekillers, band country di Brescia: origini, suono, evoluzione e perché il country sta spopolando in Italia — a feste, sagre, matrimoni ed eventi." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Il country: storia, suono e boom in Italia — The Coffeekillers</title>
+<meta name="description" content="La guida al country di Hot Joe & The Coffeekillers, band country di Brescia: origini, suono, evoluzione e perché il country sta spopolando in Italia — a feste, sagre, matrimoni ed eventi." />
+<link rel="canonical" href="https://thecoffeekillers.com/country.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Hot Joe &amp; The CoffeeKillers" />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:url" content="https://thecoffeekillers.com/country.html" />
+<meta property="og:title" content="Il country: storia, suono e boom in Italia — The Coffeekillers" />
+<meta property="og:description" content="La guida al country di Hot Joe & The Coffeekillers, band country di Brescia: origini, suono, evoluzione e perché il country sta spopolando in Italia — a feste, sagre, matrimoni ed eventi." />
+<!-- ⚠️ jpg e non webp: Facebook e WhatsApp gestiscono male il webp nelle anteprime -->
+<meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Rye&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Il country: storia, suono e boom in Italia",
+  "description": "Origini, suono, evoluzione e perché il country sta spopolando in Italia — a feste, sagre, matrimoni ed eventi.",
+  "inLanguage": "it",
+  "author": { "@type": "MusicGroup", "name": "Hot Joe & The Coffeekillers" },
+  "publisher": { "@type": "MusicGroup", "name": "Hot Joe & The Coffeekillers" }
+}
+</script>
+<style>
+/* ============ FONT ============ */
+/* Valley = taglio pulito senza trattini (demo personal-use, come Bronco);
+   LT Cushion = sottotitoli e contenuti di supporto (LyonsType).
+   File in _font-prova/ (gitignorata): prima di pubblicare, comprare Bronco Valley
+   (include entrambi i tagli con gli accenti) e verificare la licenza di LT Cushion. */
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Light.ttf");font-weight:300;font-display:swap}
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Medium.ttf");font-weight:500;font-display:swap}
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Bold.ttf");font-weight:700;font-display:swap}
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Black.ttf");font-weight:900;font-display:swap}
 
-  <link rel="icon" type="image/svg+xml" href="images/HJCK_Logo2.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png" />
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+/* ============ TOKENS ============ */
+:root{
+  --espresso:#241005;      /* fondo notte */
+  --espresso-2:#2E1509;    /* base tartan / variazione */
+  --nero:#180A02;          /* footer quasi nero */
+  --caffe:#49240A;
+  --panna:#FBF5EA;
+  --beige:#EDDABD;
+  --tan:#BD8B65;
+  --arancio:#FA8600;
+  --ruggine:#CD5812;
+  --azz:#8BAEA4;           /* azzurro vintage: etichette su scuro */
+  --azz-scuro:#5F837A;     /* azzurro leggibile su chiaro */
+  --azz-testo:#3F5C55;    /* azzurro leggibile per i TESTI su fondo chiaro */
+  --azz-wash:#D8E5E0;
+  --bronco:"Bronco Valley","Rye",serif;
+  --serif:"LT Cushion",serif;
+  --sans:"Manrope",sans-serif;
+  --valley:"Valley","Rye",serif;
+  --cushion:"LT Cushion",serif;
+  --wrap:1180px;
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+}
 
-  <link rel="canonical" href="https://thecoffeekillers.com/country.html" />
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:130px}
+body{
+  font-family:var(--sans);
+  background:var(--espresso);
+  color:var(--panna);
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
 
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://thecoffeekillers.com/country.html" />
-  <meta property="og:title" content="Il country: storia, suono e radici — The Coffeekillers" />
-  <meta property="og:description" content="Dalle origini negli Appalachi ai grandi festival moderni: tutto sulla musica country, il suo suono e perché funziona agli eventi." />
-  <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="it_IT" />
+/* il velluto: grana su tutta la pagina */
+body::after{
+  content:"";position:fixed;inset:0;z-index:80;pointer-events:none;
+  background:var(--grain);opacity:.07;
+}
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Il country: storia, suono e radici — The Coffeekillers" />
-  <meta name="twitter:description" content="Dalle origini negli Appalachi ai grandi festival moderni: tutto sulla musica country, il suo suono e perché funziona agli eventi." />
-  <meta name="twitter:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
+h1,h2,h3{
+  font-family:var(--bronco);
+  font-weight:400;
+  font-synthesis:none;
+  letter-spacing:.03em;
+  line-height:1.04;
+  text-transform:uppercase;
+}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,48px)}
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Il country: storia, suono e radici",
-    "description": "Tutto sul country: origini, evoluzione, il suono autentico da Nashville, il country in Italia e perché funziona agli eventi.",
-    "author": { "@type": "MusicGroup", "name": "Hot Joe & The Coffeekillers", "url": "https://thecoffeekillers.com" },
-    "publisher": { "@type": "MusicGroup", "name": "Hot Joe & The Coffeekillers", "url": "https://thecoffeekillers.com" },
-    "url": "https://thecoffeekillers.com/country.html"
+/* ============ ICONE (mask) ============ */
+.ico{
+  display:inline-block;background:currentColor;flex:none;
+  -webkit-mask:no-repeat center/contain;mask:no-repeat center/contain;
+}
+.i-teschio  {-webkit-mask-image:url("images/icone/teschio-longhorn.svg");mask-image:url("images/icone/teschio-longhorn.svg");aspect-ratio:373.99/176.81}
+.i-cactus   {-webkit-mask-image:url("images/icone/cactus.svg");mask-image:url("images/icone/cactus.svg");aspect-ratio:140.28/229.85}
+.i-cappello {-webkit-mask-image:url("images/icone/cappello-cowboy.svg");mask-image:url("images/icone/cappello-cowboy.svg");aspect-ratio:266.88/132.43}
+.i-ferri    {-webkit-mask-image:url("images/icone/ferri-di-cavallo.svg");mask-image:url("images/icone/ferri-di-cavallo.svg");aspect-ratio:267.1/184.4}
+.i-stivale  {-webkit-mask-image:url("images/icone/stivale.svg");mask-image:url("images/icone/stivale.svg");aspect-ratio:169.63/240.37}
+.i-camaleonte{-webkit-mask-image:url("images/icone/camaleonte.svg");mask-image:url("images/icone/camaleonte.svg");aspect-ratio:272.48/160.07}
+.i-stella   {-webkit-mask-image:url("images/icone/stella-sceriffo.svg");mask-image:url("images/icone/stella-sceriffo.svg");aspect-ratio:187.62/203.89}
+.i-chitarra {-webkit-mask-image:url("images/icone/chitarra.svg");mask-image:url("images/icone/chitarra.svg");aspect-ratio:128.45/317.28}
+
+/* ============ TARTAN ============ */
+.tartan{
+  background-color:var(--espresso-2);
+  background-image:
+    repeating-linear-gradient(90deg,
+      transparent 0 16px, rgba(205,88,18,.5) 16px 23px,
+      transparent 23px 40px, rgba(251,245,234,.22) 40px 41.5px,
+      transparent 41.5px 56px),
+    repeating-linear-gradient(0deg,
+      transparent 0 16px, rgba(205,88,18,.5) 16px 23px,
+      transparent 23px 40px, rgba(251,245,234,.22) 40px 41.5px,
+      transparent 41.5px 56px);
+}
+
+/* ============ BARRA DI LETTURA ============ */
+.readbar{
+  position:fixed;top:0;left:0;z-index:95;
+  height:4px;width:0;background:var(--arancio);
+  transition:width .12s linear;
+}
+
+/* ============ NAV ============ */
+/* ============ NAV stile sito Kruse Brothers, replica fedele:
+   striscia annuncio in cima, menu maiuscoletto a sinistra, logo grande
+   centrale, icone social a destra; nav trasparente con gradiente sull'hero,
+   scendendo si stacca e diventa barra fissa scura (JS in fondo) ============ */
+.annuncio{
+  background:var(--caffe);color:var(--panna);text-align:center;
+  font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  padding:9px 16px;position:relative;z-index:61;
+}
+.annuncio a{color:inherit;text-decoration:none}
+.annuncio a:hover{color:var(--arancio)}
+.nav{
+  position:absolute;top:36px;left:0;right:0;z-index:60;
+  background:linear-gradient(180deg,rgba(8,4,1,.94) 0%,rgba(8,4,1,.72) 46%,rgba(8,4,1,.28) 80%,transparent 100%);
+  padding-bottom:26px;
+  transition:background .3s,box-shadow .3s;
+}
+.nav.solid{
+  position:fixed;top:0;
+  background:var(--caffe);            /* stesso marrone della striscia annuncio, come nel riferimento */
+  padding-bottom:0;
+  border-bottom:1px solid rgba(237,218,189,.14);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+.nav-in{
+  max-width:1320px;margin:0 auto;padding:10px clamp(20px,4vw,48px) 14px;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;
+}
+.nav-logo{justify-self:center}
+.nav-logo img{
+  height:118px;width:auto;transition:height .3s;
+}
+.nav.solid .nav-logo img{height:74px}
+.nav-side{display:flex;align-items:center;gap:clamp(12px,1.8vw,26px);list-style:none;margin:0;padding:0}
+.nav-side.dx{justify-content:flex-end}
+.nav-side a{
+  color:#fff;text-decoration:none;font-weight:700;font-size:12.5px;
+  letter-spacing:.16em;text-transform:uppercase;
+}
+.nav-side a:hover{color:var(--arancio)}
+.nav-side a{white-space:nowrap}
+.nav-soc{display:flex;align-items:center;gap:14px}
+.nav-soc a{display:flex}
+.nav-soc svg{width:18px;height:18px;fill:#fff;transition:fill .2s}
+.nav-soc a:hover svg{fill:var(--arancio)}
+
+/* ---- Menu mobile (sotto i 720px): panetto a tendina con tutte le voci ---- */
+.nav-burger{
+  display:none;background:none;border:0;cursor:pointer;padding:8px 6px;
+  flex-direction:column;gap:5px;width:38px;
+}
+.nav-burger span{display:block;height:2px;width:26px;background:var(--beige);transition:transform .25s,opacity .2s}
+.nav-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer{
+  display:none;background:var(--caffe);border-top:1px solid rgba(237,218,189,.16);
+  padding:10px clamp(20px,5vw,32px) 22px;
+}
+.nav-drawer.open{display:block}
+.nav-drawer ul{list-style:none;margin:0;padding:0}
+.nav-drawer a{
+  display:block;padding:14px 2px;color:var(--beige);text-decoration:none;
+  font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;
+  border-bottom:1px solid rgba(237,218,189,.12);
+}
+.nav-drawer a[aria-current="page"]{color:var(--arancio)}
+.nav-drawer .dr-soc{display:flex;gap:20px;padding-top:18px}
+.nav-drawer .dr-soc a{border-bottom:0;padding:0}
+.nav-drawer .dr-soc svg{width:20px;height:20px;fill:var(--beige)}
+
+
+/* Pagine interne: niente foto a tutta pagina dietro la nav → barra marrone
+   piena fin da subito, come la pagina MERCH del riferimento. */
+.nav{
+  position:sticky;top:0;
+  background:var(--caffe);
+  padding-bottom:0;
+  border-bottom:1px solid rgba(237,218,189,.14);
+}
+.nav .nav-logo img{height:74px}
+.nav-cta{
+  font-family:var(--valley)!important;font-size:17px!important;font-weight:400!important;
+  color:var(--azz)!important;border:1.5px solid var(--azz);border-radius:8px;
+  padding:6px 16px;letter-spacing:.05em!important;
+}
+.nav-cta:hover{color:var(--espresso)!important;background:var(--azz)}
+.nav-side a[aria-current="page"]{color:var(--arancio)}
+.nav-burger{display:none}
+
+/* ============ SEZIONI COMUNI ============ */
+.section{position:relative;padding:clamp(72px,9vw,120px) 0}
+.sec-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  gap:12px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,44px);
+}
+.eyebrow{
+  display:flex;align-items:center;gap:12px;
+  font-size:13.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--azz);
+}
+.eyebrow .ico{color:var(--azz)}
+.eyebrow-r{font-size:12.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--tan)}
+.on-light .eyebrow{color:var(--azz-testo)}          /* testo: tono leggibile */
+.on-light .eyebrow .ico{color:var(--azz-scuro)}      /* icona: tono originale */
+.on-light .eyebrow-r{color:var(--caffe);opacity:.75}
+.sec-title{
+  font-size:clamp(34px,4.6vw,60px);
+  color:var(--panna);
+  margin-bottom:18px;
+}
+.on-light .sec-title{color:var(--espresso)}
+.lead-p{font-size:clamp(16px,1.9vw,19px);color:var(--beige)}
+.on-light .lead-p{color:var(--caffe)}
+
+/* ============ BOTTONI (veste poster, da A2) ============ */
+.btn-poster,.btn-dark,.cta-btn,.nav-burger{
+  font-family:var(--valley);
+  letter-spacing:.04em;
+}
+.btn-poster,.cta-btn{
+  display:inline-block;text-decoration:none;
+  background:var(--beige);color:var(--caffe);
+  border:2px solid var(--beige);border-radius:6px;
+  padding:10px 30px 12px;
+  box-shadow:inset 0 0 0 2px var(--beige),inset 0 0 0 3px rgba(73,36,10,.55);
+  transition:background .2s,border-color .2s,color .2s;
+}
+.btn-poster::before,.cta-btn::before{content:"★ ";color:var(--ruggine);font-size:.75em}
+.btn-poster::after,.cta-btn::after{content:" ★";color:var(--ruggine);font-size:.75em}
+.btn-poster:hover,.cta-btn:hover{
+  background:var(--arancio);border-color:var(--arancio);color:var(--espresso);
+  box-shadow:inset 0 0 0 2px var(--arancio),inset 0 0 0 3px rgba(24,10,2,.55);
+}
+.btn-poster{font-size:clamp(19px,2.2vw,23px)}
+.cta-btn{font-size:clamp(21px,2.6vw,26px);padding:14px 40px 16px;border-radius:6px}
+.btn-dark{
+  display:inline-block;font-weight:300;font-size:20px;letter-spacing:.08em;
+  background:var(--espresso);color:var(--panna);border-radius:6px;
+  padding:10px 26px 12px;text-decoration:none;
+  border:2px solid var(--espresso);transition:background .2s,color .2s;
+}
+.btn-dark:hover{background:transparent;color:var(--espresso)}
+/* sulle sezioni scure il btn-dark diventa ghost beige (stile A) */
+.sec-dark .btn-dark{
+  background:transparent;color:var(--beige);border-color:rgba(237,218,189,.7);
+}
+.sec-dark .btn-dark:hover{border-color:var(--beige);background:transparent;color:var(--beige)}
+
+/* ============ HERO DI PAGINA (foto a tutto sfondo, da hero-cine A2) ============ */
+.page-hero{position:relative;padding:0}
+.page-hero-box{position:relative;min-height:min(680px,84vh);overflow:hidden;background:var(--nero)}
+/* stesso trattamento delle altre foto del sito: neon addolciti, palette calda */
+.page-hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;filter:contrast(1.05) saturate(.78)}
+.page-hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,10,2,.62) 0%,rgba(24,10,2,.32) 34%,var(--espresso) 100%)}
+.page-hero-content{
+  position:relative;z-index:1;min-height:min(680px,84vh);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  max-width:var(--wrap);margin:0 auto;
+  padding:clamp(140px,22vw,220px) clamp(20px,4vw,48px) clamp(44px,6vw,72px);
+  color:var(--panna);text-shadow:0 2px 10px rgba(24,10,2,.45);
+}
+.page-hero-orna{
+  display:flex;align-items:center;gap:14px;
+  color:var(--azz);font-size:12.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+}
+.page-hero-orna .ico{width:17px;height:18px}
+.page-hero-orna .orna-line{width:clamp(28px,6vw,84px);height:1px;background:var(--azz);opacity:.55}
+.page-hero-eyebrow{
+  font-family:var(--cushion);font-weight:500;font-style:italic;
+  color:var(--arancio);font-size:clamp(17px,2.2vw,24px);letter-spacing:.02em;
+  margin-top:18px;
+}
+.page-hero h1{
+  color:var(--panna);margin:12px 0 0;
+  font-size:clamp(38px,6vw,84px);
+  max-width:16ch;line-height:1;
+}
+.page-hero-lead{
+  font-family:var(--sans);color:var(--beige);
+  max-width:58ch;margin:20px 0 0;font-size:clamp(16px,2vw,19px);
+}
+/* Ken Burns sulla foto + entrata "rise" al load */
+.kb .page-hero-photo{animation:ck-kb 14s ease-out forwards}
+@keyframes ck-kb{from{transform:scale(1.09)}to{transform:none}}
+.rise{animation:ck-rise .9s cubic-bezier(.22,.61,.36,1) both}
+@keyframes ck-rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* indice a chips (capitoli) */
+.toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.toc a{
+  display:flex;align-items:center;gap:10px;
+  font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--beige);text-decoration:none;
+  border:1px solid rgba(139,174,164,.5);border-radius:99px;
+  padding:9px 18px;background:rgba(24,10,2,.45);
+  transition:border-color .2s,color .2s;
+}
+.toc a:hover{border-color:var(--beige);color:var(--panna)}
+.toc .n{font-family:var(--valley);font-size:15px;color:var(--arancio);letter-spacing:.04em}
+
+/* ============ CAPITOLI ============ */
+.chap-num{
+  font-family:var(--valley);font-size:clamp(46px,6vw,76px);line-height:.85;
+  color:var(--tan);letter-spacing:.02em;
+}
+.on-light .chap-num{color:var(--tan)}
+.chap-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
+.chap-grid--flip{grid-template-columns:.9fr 1.1fr}
+.chap-copy p{margin-top:14px}
+.chap-copy p:first-of-type{margin-top:0}
+.chap-copy .lead-p b{color:var(--panna)}
+.on-light .chap-copy .lead-p b{color:var(--espresso)}
+
+/* figure: polaroid (carta) e foto bordata (scuro) */
+.polaroid{
+  background:var(--beige);padding:14px 14px 18px;
+  box-shadow:0 26px 50px -16px rgba(73,36,10,.38);
+  transform:rotate(-1.4deg);
+  position:relative;
+}
+.polaroid img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.polaroid figcaption{
+  font-family:var(--cushion);font-weight:500;color:var(--caffe);text-align:center;
+  font-size:17px;margin-top:12px;letter-spacing:.05em;
+}
+.photo-r{border-radius:16px;overflow:hidden;border:3px solid var(--beige);box-shadow:0 26px 50px -16px rgba(0,0,0,.5)}
+.photo-r img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.fig-dark figcaption{
+  font-family:var(--cushion);font-weight:500;font-style:italic;color:var(--tan);
+  font-size:16px;margin-top:12px;letter-spacing:.05em;text-align:center;
+}
+
+/* ============ 02 — GRIGLIA STRUMENTI (scuro) ============ */
+.strum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(34px,5vw,52px)}
+.strum-card{
+  border:1px solid rgba(237,218,189,.22);border-radius:12px;
+  padding:24px 22px 22px;background:rgba(24,10,2,.28);
+}
+.strum-card .rn{
+  font-family:var(--valley);font-size:26px;color:var(--arancio);
+  letter-spacing:.06em;display:block;margin-bottom:10px;
+}
+.strum-card h3{font-size:21px;color:var(--panna);letter-spacing:.05em}
+.strum-card p{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--beige);margin-top:8px}
+
+/* ============ 03 — TIMELINE DELLE ERE (carta) ============ */
+.eras{margin-top:clamp(30px,4vw,44px)}
+.era{
+  display:grid;grid-template-columns:190px 1fr;gap:clamp(18px,3vw,40px);
+  padding:26px 6px;border-top:1px solid rgba(95,131,122,.35);
+  align-items:start;
+}
+.era:last-child{border-bottom:1px solid rgba(95,131,122,.35)}
+.era-y{
+  /* su telefono scendeva a 22px: sotto i 24 l'arancio sul beige non e' piu'
+     "testo grande" e a 3.87:1 non basta. 25px lo tiene sopra la soglia. */
+  font-family:var(--valley);font-size:clamp(25px,2.6vw,30px);color:var(--ruggine);
+  letter-spacing:.04em;white-space:nowrap;line-height:1.1;
+}
+.era h3{font-size:clamp(20px,2.4vw,26px);color:var(--espresso);letter-spacing:.04em}
+.era p{font-family:var(--sans);font-size:15.5px;color:var(--caffe);margin-top:8px;max-width:70ch}
+
+/* ============ 04 — STRISCIA TAG (scuro) ============ */
+.tag-strip{
+  display:flex;flex-wrap:wrap;gap:clamp(12px,2vw,16px);
+  margin-top:clamp(26px,4vw,36px);
+}
+.tag-strip span{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--beige);border:1px solid rgba(139,174,164,.4);border-radius:99px;
+  padding:9px 18px;
+}
+.tag-strip .ico{width:13px;height:14px;color:var(--azz)}
+
+/* ============ 05 — AZIONI ============ */
+.chap-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px}
+
+/* ============ CTA INSEGNA (momento CTA su arancio, come la home) ============ */
+.cta{background:var(--arancio);color:var(--espresso);position:relative}
+.cta-panel{
+  max-width:900px;margin:0 auto;text-align:center;
+  border:3px solid var(--espresso);outline:3px solid var(--espresso);outline-offset:7px;
+  padding:clamp(44px,6vw,76px) clamp(22px,5vw,64px);
+  position:relative;
+}
+.cta-corner{position:absolute;width:26px;height:28px;color:var(--espresso)}
+.cta-corner.tl{top:14px;left:14px}
+.cta-corner.tr{top:14px;right:14px}
+.cta-corner.bl{bottom:14px;left:14px}
+.cta-corner.br{bottom:14px;right:14px}
+.cta-eyebrow{
+  font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.2vw,22px);
+  margin-bottom:8px;
+}
+.cta .sec-title{color:var(--espresso);font-size:clamp(40px,6vw,76px);margin-bottom:16px}
+.cta-lead{max-width:46ch;margin:0 auto 30px;font-weight:500;font-size:clamp(16px,1.9vw,18.5px)}
+/* il bottone della CTA resta quello di sistema: barra crema con stelle (.btn-poster) */
+.cta-meta{
+  display:flex;justify-content:center;gap:clamp(18px,4vw,48px);flex-wrap:wrap;
+  margin-top:34px;font-size:14.5px;font-weight:700;
+}
+.cta-meta a{color:inherit}
+.cta-meta .k{display:block;font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;opacity:.7;margin-bottom:2px}
+
+/* ============ FOOTER (variante ridotta) ============ */
+.footer{background:var(--nero);position:relative;padding:0 0 40px}
+.footer-cam{
+  display:flex;flex-direction:column;align-items:center;
+  padding:clamp(64px,9vw,110px) 20px 0;text-align:center;
+}
+.footer-cam .ico{
+  width:min(400px,72vw);height:auto;aspect-ratio:272.48/160.07;
+  color:var(--azz);
+}
+.footer-payoff{
+  font-family:var(--bronco);font-weight:400;font-synthesis:none;text-transform:uppercase;
+  color:var(--panna);font-size:clamp(30px,5.4vw,64px);letter-spacing:.06em;
+  margin-top:26px;line-height:1.08;
+}
+.footer-sub{
+  font-family:var(--serif);font-style:italic;color:var(--azz);
+  font-size:clamp(16px,2vw,20px);margin-top:10px;
+}
+.footer-rule{
+  display:flex;align-items:center;gap:18px;
+  max-width:var(--wrap);margin:clamp(44px,6vw,64px) auto 0;padding:0 clamp(20px,4vw,48px);
+  color:var(--azz);
+}
+.footer-rule .line{flex:1;height:1px;background:rgba(139,174,164,.35)}
+.footer-rule .ico{width:20px;height:22px}
+.footer-grid{
+  max-width:var(--wrap);margin:40px auto 0;padding:0 clamp(20px,4vw,48px);
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,4vw,56px);
+}
+.footer h5{
+  font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--azz);margin-bottom:16px;
+}
+.footer-big{font-family:var(--bronco);font-size:clamp(24px,3vw,32px);color:var(--beige);line-height:1.15;letter-spacing:.04em}
+.footer ul{list-style:none}
+.footer ul li{margin-bottom:9px;font-size:14.5px;color:var(--beige)}
+.footer ul a{color:var(--beige);text-decoration:none}
+.footer ul a:hover{color:var(--azz)}
+.footer-social{display:flex;gap:14px;margin-top:18px}
+.footer-social a{
+  font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--azz);
+  text-decoration:none;border:1px solid rgba(139,174,164,.4);border-radius:99px;
+  padding:7px 16px;
+}
+.footer-social a:hover{background:var(--azz);color:var(--nero)}
+.footer-copy{
+  max-width:var(--wrap);margin:44px auto 0;padding:20px clamp(20px,4vw,48px) 0;
+  border-top:1px solid rgba(139,174,164,.18);
+  font-size:12.5px;color:var(--tan);text-align:center;
+}
+.footer-copy a{color:var(--azz);text-decoration:none}
+/* variante ridotta (-1/3 sulle spaziature verticali) */
+.footer--ridotta{padding:0 0 26px}
+.footer--ridotta .footer-cam{padding:clamp(42px,6vw,72px) 20px 0}
+.footer--ridotta .footer-payoff{margin-top:17px}
+.footer--ridotta .footer-sub{margin-top:7px}
+.footer--ridotta .footer-rule{margin:clamp(29px,4vw,42px) auto 0}
+.footer--ridotta .footer-grid{margin:26px auto 0}
+.footer--ridotta h5{margin-bottom:11px}
+.footer--ridotta ul li{margin-bottom:6px}
+.footer--ridotta .footer-social{margin-top:12px}
+.footer--ridotta .footer-copy{margin:29px auto 0;padding-top:13px}
+@media (max-width:720px){
+  .footer--ridotta .footer-grid{gap:22px}
+}
+
+/* ============ ICONE PIÙ GRANDI DA DESKTOP ============ */
+@media (min-width:900px){
+  .eyebrow .ico{transform:scale(1.35);margin:0 3px}
+  .page-hero-orna .ico{width:24px;height:25px}
+  .tag-strip .ico{width:17px;height:18px}
+  .toc .ico{width:15px;height:16px}
+}
+
+/* ============ REVEAL allo scroll ============
+   Gating con html.js: senza JavaScript la classe .js non c'è e tutto
+   resta visibile (fallback obbligatorio). */
+html.js .rv{
+  opacity:0;transform:translateY(26px);
+  transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1);
+  will-change:opacity,transform;
+}
+html.js .rv--left{transform:translateX(-30px)}
+html.js .rv--right{transform:translateX(30px)}
+html.js .rv.in{opacity:1;transform:none}
+@media (max-width:700px){html.js .rv--left,html.js .rv--right{transform:translateY(26px)}}
+html.js .fade-in{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+html.js .fade-in.in{opacity:1;transform:none}
+html.js .stagger>*{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+html.js .stagger.in>*{opacity:1;transform:none}
+html.js .stagger.in>*:nth-child(1){transition-delay:.04s}
+html.js .stagger.in>*:nth-child(2){transition-delay:.12s}
+html.js .stagger.in>*:nth-child(3){transition-delay:.2s}
+html.js .stagger.in>*:nth-child(4){transition-delay:.28s}
+html.js .stagger.in>*:nth-child(5){transition-delay:.36s}
+html.js .stagger.in>*:nth-child(6){transition-delay:.44s}
+html.js .stagger.in>*:nth-child(7){transition-delay:.52s}
+html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
+
+/* accessibilità: chi chiede meno animazioni vede tutto subito, fermo */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  html.js .rv,html.js .fade-in,html.js .stagger>*,.rise{
+    opacity:1!important;transform:none!important;transition:none!important;animation:none!important;
   }
-  </script>
+  .kb .page-hero-photo{animation:none!important}
+  .readbar{transition:none}
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Smokum&family=Rye&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Alfa+Slab+One&family=Libre+Caslon+Text:ital@0;1&family=Big+Shoulders+Display:wght@500;700;900&family=Bricolage+Grotesque:wght@400;500;700&display=swap" rel="stylesheet" />
+/* ============ RESPONSIVE ============ */
+@media (max-width:960px){
+  .chap-grid,.chap-grid--flip{grid-template-columns:1fr}
+  .chap-grid .polaroid,.chap-grid .fig-dark{max-width:560px;margin-left:auto;margin-right:auto}
+  .strum-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:1000px){
+  .nav-side.sx{display:none}
+  .nav-soc{display:none}
+  .nav-in{grid-template-columns:auto 1fr auto;gap:10px}
+  .nav-logo{grid-column:2}
+  .nav .nav-logo img{height:52px}
+  .nav-burger{display:flex;grid-column:1;justify-self:start}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .era{grid-template-columns:1fr;gap:6px;padding:22px 4px}
+}
+@media (max-width:560px){
+  .strum-grid{grid-template-columns:1fr}
+}
+/* da mobile il testo dell'hero sta sopra la foto: scrim più chiuso per leggere */
+@media (max-width:720px){
+  .page-hero-scrim{
+    background:linear-gradient(180deg,rgba(24,10,2,.72) 0%,rgba(24,10,2,.62) 30%,rgba(24,10,2,.82) 62%,var(--espresso) 100%);
+  }
+}
 
-  <link rel="stylesheet" href="styles.css" />
+/* --- sottotitoli dentro i capitoli (01/09, per la scansione e la SEO) --- */
+.chap-h3{
+  font-family:var(--bronco);font-weight:400;font-synthesis:none;text-transform:uppercase;
+  font-size:clamp(19px,2.1vw,25px);line-height:1.1;letter-spacing:.02em;
+  margin:26px 0 10px;color:var(--panna);
+}
+.on-light .chap-h3{color:var(--espresso)}
 
-  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</style>
+<link rel="stylesheet" href="stile-hjck.css" />
 </head>
-<body style="font-size: 15px">
-  <div id="root">
-    <div style="display:none">
-    <header>
-      <nav>
-        <a href="index.html">Hot Joe &amp; The Coffeekillers</a>
-        <ul>
-          <li><a href="chi-siamo.html">Chi siamo</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="date.html">Date</a></li>
-          <li><a href="country.html">Il country</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="preventivo.html">Richiedi un preventivo</a></li>
-        </ul>
+<body>
+<script>document.documentElement.classList.add("js");</script>
+
+<div class="readbar" aria-hidden="true"></div>
+
+<!-- ==================== NAV (stile home confermato il 01/09) ==================== -->
+<header class="nav">
+  <div class="nav-in">
+    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Apri il menu"><span></span><span></span><span></span></button>
+    <ul class="nav-side sx">
+      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="country.html" aria-current="page">Il country</a></li>
+    </ul>
+    <a class="nav-logo" href="index.html" aria-label="Hot Joe &amp; The CoffeeKillers &mdash; home">
+      <img src="images/logo/hjck-logo-negativo.svg" alt="Logo Hot Joe &amp; The CoffeeKillers" />
+    </a>
+    <ul class="nav-side dx">
+      <li><a href="date.html">Date</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a class="nav-cta" href="preventivo.html">Preventivo</a></li>
+    </ul>
+  </div>
+  <nav class="nav-drawer" id="nav-drawer" aria-label="Menu">
+    <ul>
+      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="country.html" aria-current="page">Il country</a></li>
+      <li><a href="date.html">Date</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="preventivo.html">Preventivo</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ==================== HERO — foto a tutto sfondo ==================== -->
+<section class="page-hero" id="top">
+  <div class="kb page-hero-box">
+    <img class="page-hero-photo" src="images/nashville-broadway.webp" alt="Lower Broadway a Nashville di notte, i neon dei locali di musica country" fetchpriority="high" />
+    <div class="page-hero-scrim"></div>
+    <div class="page-hero-content">
+      <div class="rise page-hero-orna" style="animation-delay:.06s">
+        <span class="orna-line"></span>
+        <span class="ico i-cappello" style="width:26px;height:13px" aria-hidden="true"></span>
+        <span>Guida al country</span>
+        <span class="ico i-cappello" style="width:26px;height:13px" aria-hidden="true"></span>
+        <span class="orna-line"></span>
+      </div>
+      <p class="rise page-hero-eyebrow" style="animation-delay:.14s">Il genere</p>
+      <h1 class="rise" style="animation-delay:.22s">Il country: musica, radici, vita.</h1>
+      <p class="rise page-hero-lead" style="animation-delay:.32s">Dalle verande degli Appalachi ai grandi festival internazionali: cos'è il country, da dove viene, e perché oggi riempie i palchi anche in Italia — feste, sagre, locali e matrimoni.</p>
+      <nav class="rise toc" style="animation-delay:.44s" aria-label="Capitoli della pagina">
+        <a href="#origini"><span class="n">01</span> Le origini</a>
+        <a href="#suono"><span class="n">02</span> Il suono</a>
+        <a href="#evoluzione"><span class="n">03</span> L'evoluzione</a>
+        <a href="#italia"><span class="n">04</span> In Italia</a>
+        <a href="#eventi"><span class="n">05</span> Agli eventi</a>
       </nav>
-    </header>
-    <main>
-      <h1>Il country: storia, suono e radici</h1>
-      <p>Il country nasce nel Sud degli Stati Uniti nei primi decenni del Novecento, dall'incontro di tradizioni musicali diverse: il folk degli immigrati europei, il blues afroamericano, il gospel e la musica da ballo degli Appalachi. Nashville, Tennessee, diventa la capitale mondiale del genere negli anni '40.</p>
-      <h2>Il suono autentico del country</h2>
-      <p>Il country si riconosce da una combinazione di strumenti precisa: chitarra acustica, lap steel guitar, violino (fiddle), basso, batteria, armonica. La lap steel — con il suo suono "piangente" che glissa tra le note — è l'elemento più iconico del genere.</p>
-      <h2>Dal country classico al country moderno</h2>
-      <p>Dagli anni '50 di Hank Williams al Nashville Sound di Patsy Cline, dal neo-tradizionalismo di Garth Brooks e George Strait al country moderno di Luke Combs, Chris Stapleton e Zach Top: il country ha saputo rinnovarsi senza perdere le radici.</p>
-      <h2>Il country in Italia: un genere che sta esplodendo</h2>
-      <p>Negli ultimi anni il country in Italia è passato da nicchia a fenomeno: line dance, festival sold out, playlist e serie tv che riportano il genere in classifica. Oggi cercare una band country per una festa, una sagra, un matrimonio o un evento aziendale è normale come cercare una cover band rock. Hot Joe &amp; The Coffeekillers sono una band country di Brescia che gira tutto il Nord Italia.</p>
-      <h2>Perché il country funziona agli eventi</h2>
-      <p>Melodie immediate, testi che invitano a cantare, un ritmo che mette in moto tutto — il country funziona per tutti, senza barriere di età o gusto. È musica da vivere, non da ascoltare seduti: crea comunità attorno al palco.</p>
-    </main>
     </div>
   </div>
+</section>
 
-  <script>
-    window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-      "palette": "brand",
-      "type": "brand",
-      "hero": "cinematic"
-    }/*EDITMODE-END*/;
-  </script>
+<!-- ==================== 01 — LE ORIGINI (carta) ==================== -->
+<section class="section on-light" id="origini" style="background:var(--panna);color:var(--espresso)">
+  <div class="wrap rv">
+    <p class="chap-num" aria-hidden="true">01</p>
+    <h2 class="sec-title">Dove nasce il country.</h2>
+    <div class="chap-grid">
+      <div class="chap-copy">
+        <p class="lead-p">Il country nasce nel Sud degli Stati Uniti nei primi decenni del Novecento, dall'incontro di tradizioni musicali diverse: il folk degli immigrati europei (soprattutto irlandesi e scozzesi), il blues afroamericano, il gospel e la musica da ballo degli Appalachi. Una musica povera, nata in casa, nelle chiese e sulle verande, che parlava di vita quotidiana — amore, lavoro, dolore, terra.</p>
+        <p class="lead-p">Nashville, Tennessee, diventa la capitale mondiale del country negli anni '40 con la nascita del Grand Ole Opry, il programma radiofonico che porta la musica country nelle case di tutta l'America. Da lì in poi, Nashville diventa sinonimo di country: le sue sale di registrazione, i suoi produttori e la sua scena live costruiranno il genere così come lo conosciamo oggi.</p>
+      </div>
+      <figure class="polaroid">
+        <img src="images/strumenti-fila-alberi.webp" alt="Chitarre acustiche e mandolino su un prato, sotto gli alberi" loading="lazy" />
+        <figcaption>Musica nata all'aperto, con poco: lo spirito è ancora quello.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="components.jsx"></script>
-  <script type="text/babel" src="app-country.jsx"></script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9aebd7c8eb4d4dd29a6c1f9c9f03d7f4"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- ==================== 02 — IL SUONO (scuro) ==================== -->
+<section class="section sec-dark" id="suono" style="background:var(--espresso)">
+  <div class="wrap rv">
+    <p class="chap-num" aria-hidden="true">02</p>
+    <h2 class="sec-title">Cosa rende il country unico.</h2>
+    <div class="chap-grid chap-grid--flip">
+      <figure class="fig-dark">
+        <div class="photo-r">
+          <img src="images/strumenti-palco-verde.webp" alt="Gli strumenti dei Coffeekillers pronti sul palco, immersi nel verde" loading="lazy" />
+        </div>
+        <figcaption>Chitarre, lap steel, armonica: il nostro palco.</figcaption>
+      </figure>
+      <div class="chap-copy">
+        <p class="lead-p">Il country ha un suono riconoscibile che viene da una combinazione di strumenti precisa: la chitarra acustica come base armonica, la lap steel guitar (o pedal steel) come voce melodica caratteristica, il violino (fiddle) per i momenti più danzanti, il basso e la batteria per il groove, e la voce — sempre al centro, sempre narrativa.</p>
+        <p class="lead-p">Ma al di là degli strumenti, ciò che distingue il country è l'attitudine: testi che raccontano storie vere, melodie dirette, un rapporto onesto con il pubblico. Non ci sono virtuosismi fini a se stessi — ogni nota serve la canzone.</p>
+      </div>
+    </div>
+    <div class="strum-grid stagger">
+      <div class="strum-card"><span class="rn">I</span><h3>Chitarra acustica</h3><p>La base armonica di tutto: è da lì che parte ogni canzone country.</p></div>
+      <div class="strum-card"><span class="rn">II</span><h3>Lap steel</h3><p>Il suono “piangente”, quasi vocale, che glissa tra le note: l'elemento più iconico del genere.</p></div>
+      <div class="strum-card"><span class="rn">III</span><h3>Fiddle</h3><p>Il violino country: entra nei momenti più danzanti e accende la pista.</p></div>
+      <div class="strum-card"><span class="rn">IV</span><h3>Armonica</h3><p>Il colore blues del country: poche note, tanta strada.</p></div>
+      <div class="strum-card"><span class="rn">V</span><h3>Contrabbasso</h3><p>Il battito del honky-tonk: groove asciutto che fa muovere i piedi.</p></div>
+      <div class="strum-card"><span class="rn">VI</span><h3>La voce</h3><p>Sempre al centro, sempre narrativa: nel country ogni canzone racconta una storia.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 03 — L'EVOLUZIONE (carta) ==================== -->
+<section class="section on-light" id="evoluzione" style="background:var(--panna);color:var(--espresso)">
+  <div class="wrap rv">
+    <p class="chap-num" aria-hidden="true">03</p>
+    <h2 class="sec-title">Dal country classico al country moderno.</h2>
+    <p class="lead-p" style="max-width:70ch">Negli anni '50 e '60 il country si divide in correnti, negli anni '80 arriva il country pop di Kenny Rogers e Dolly Parton — più accessibile, ma spesso accusato di aver perso le radici. La risposta arriva negli anni '90 con il neo-tradizionalismo, e oggi il country vive una nuova stagione con un movimento che riporta il suono autentico al centro.</p>
+    <div class="eras stagger">
+      <div class="era">
+        <span class="era-y">'20–'40</span>
+        <div>
+          <h3>Le origini</h3>
+          <p>Folk degli immigrati europei, blues, gospel e musica degli Appalachi. Con il Grand Ole Opry il country entra nelle case di tutta l'America.</p>
+        </div>
+      </div>
+      <div class="era">
+        <span class="era-y">'50–'60</span>
+        <div>
+          <h3>Honky-tonk &amp; Nashville Sound</h3>
+          <p>Il honky-tonk di Hank Williams, il suono levigato di Patsy Cline, il country-rock dei Flying Burrito Brothers.</p>
+        </div>
+      </div>
+      <div class="era">
+        <span class="era-y">Anni '90</span>
+        <div>
+          <h3>Neo-tradizionalismo</h3>
+          <p>Garth Brooks, Alan Jackson e George Strait riportano il country alle radici senza rinunciare alla produzione moderna. Un periodo d'oro.</p>
+        </div>
+      </div>
+      <div class="era">
+        <span class="era-y">Oggi</span>
+        <div>
+          <h3>La nuova stagione</h3>
+          <p>Da una parte il mainstream di Nashville, dall'altra Zach Top, Zac Brown Band, Chris Stapleton e Luke Combs. È qui che viviamo noi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 04 — IN ITALIA (scuro) ==================== -->
+<section class="section sec-dark" id="italia" style="background:var(--espresso)">
+  <div class="wrap rv">
+    <p class="chap-num" aria-hidden="true">04</p>
+    <h2 class="sec-title">Il country in Italia: non &egrave; pi&ugrave; roba d&rsquo;oltreoceano.</h2>
+    <div class="chap-grid">
+      <div class="chap-copy">
+        <p class="lead-p">Il country &egrave; nato per raccontare storie di gente comune con pochi strumenti a corda e molte
+          armonie vocali. &Egrave; questo, prima di tutto: <b>una musica che si capisce al primo ascolto</b>, anche se
+          l&rsquo;inglese non lo mastichi. E forse &egrave; proprio per questo che oggi, in Italia, non &egrave; pi&ugrave;
+          una cosa per pochi appassionati.</p>
+
+        <h3 class="chap-h3">Cos&rsquo;&egrave; successo negli ultimi anni</h3>
+        <p class="lead-p">La <b>line dance</b> ha riempito palestre e oratori. I <b>festival country</b> hanno smesso di
+          essere raduni di nicchia e fanno il tutto esaurito. Le serie e i film ambientati nel Sud degli Stati Uniti hanno
+          riportato il genere nelle classifiche, e artisti come <b>Zach Top</b>, <b>Chris Stapleton</b> o
+          <b>Morgan Wallen</b> girano nelle playlist di chi il country non lo aveva mai cercato. Oggi chiedere una
+          <b>band country per una festa</b> &egrave; normale quanto chiedere una cover band rock.</p>
+
+        <h3 class="chap-h3">Perch&eacute; funziona alle feste italiane</h3>
+        <p class="lead-p">Perch&eacute; mette d&rsquo;accordo tutti. Ha il ritmo per far ballare e le melodie per farsi
+          ascoltare, non ha bisogno di volumi da stadio e non esclude nessuno: nonni, bambini e ventenni stanno nella
+          stessa piazza senza che nessuno se ne vada. In una <b>sagra di paese</b>, in un <b>locale</b>, a un
+          <b>matrimonio</b> o a una <b>festa aziendale</b> fa esattamente il lavoro che serve.</p>
+
+        <h3 class="chap-h3">E dove lo si trova, in Italia?</h3>
+        <p class="lead-p">Qui viene il bello: <b>non serve andare a Nashville</b>. La scena italiana c&rsquo;&egrave; e
+          suona ogni weekend, dai ranch del Nord ai festival estivi. Noi siamo una <b>band country di Brescia</b> e
+          giriamo tutto il Nord Italia da prima che diventasse tendenza: conosciamo il repertorio che funziona nelle
+          nostre piazze, sappiamo leggere il pubblico e sappiamo quando alzare i giri. Se ti stai chiedendo com&rsquo;&egrave;
+          avere il country dal vivo al tuo evento, la risposta pi&ugrave; onesta &egrave;: vieni a sentirci a una data,
+          oppure raccontaci che serata hai in mente.</p>
+      </div>
+      <figure class="fig-dark">
+        <div class="photo-r">
+          <img src="images/live-notte.webp" alt="Concerto country dal vivo in Italia: Hot Joe &amp; The Coffeekillers sul palco di sera in piazza, tra luci da concerto e cappelli da cowboy" loading="lazy" />
+        </div>
+        <figcaption>Una nostra serata: il country funziona anche qui.</figcaption>
+      </figure>
+    </div>
+    <div class="tag-strip stagger">
+      <span><span class="ico i-stella" aria-hidden="true"></span> Line dance</span>
+      <span><span class="ico i-stella" aria-hidden="true"></span> Festival country</span>
+      <span><span class="ico i-stella" aria-hidden="true"></span> Feste &amp; sagre</span>
+      <span><span class="ico i-stella" aria-hidden="true"></span> Locali &amp; pub</span>
+      <span><span class="ico i-stella" aria-hidden="true"></span> Ranch &amp; maneggi</span>
+      <span><span class="ico i-stella" aria-hidden="true"></span> Matrimoni</span>
+    </div>
+  </div>
+</section>
+
+<section class="section on-light" id="eventi" style="background:var(--panna);color:var(--espresso)">
+  <div class="wrap rv">
+    <p class="chap-num" aria-hidden="true">05</p>
+    <h2 class="sec-title">La musica che muove tutti.</h2>
+    <div class="chap-grid chap-grid--flip">
+      <figure class="polaroid" style="transform:rotate(1.2deg)">
+        <img src="images/live-allaperto-pomeriggio.webp" alt="I Coffeekillers su un palco all'aperto al tramonto: basso, chitarra, batteria e tastiera, con le colline sullo sfondo" loading="lazy" />
+        <figcaption>Non musica di sottofondo: musica da vivere.</figcaption>
+      </figure>
+      <div class="chap-copy">
+        <p class="lead-p">Il country ha una caratteristica rara: funziona per tutti. Non ha le barriere di età o di gusto che hanno altri generi. Melodie immediate, testi comprensibili, un ritmo che invita a muoversi — che si tratti di una ballad o di una party song. Non a caso il country è il genere più ascoltato negli Stati Uniti da anni.</p>
+        <p class="lead-p">Per un evento — una sagra, una festa di paese, un locale, un matrimonio — il country offre qualcosa di prezioso: un'atmosfera. Non è musica di sottofondo: è musica da vivere. Il pubblico canta, balla, interagisce con la band. Il country crea comunità attorno al palco.</p>
+        <p class="lead-p">Abbiamo costruito il nostro show attorno a questa idea: ogni serata è pensata per muovere le persone, non per impressionarle. Il risultato è un'energia dal vivo che raramente si trova con altri generi.</p>
+        <div class="chap-actions">
+          <a class="btn-poster" href="date.html">Le nostre date 2026</a>
+          <a class="btn-dark" href="faq.html">Domande frequenti</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA INSEGNA ==================== -->
+<footer class="footer footer--ridotta">
+  <div class="payoff-edge tartan" style="height:12px"></div>
+  <div class="footer-cam">
+    <span class="ico i-camaleonte" role="img" aria-label="Il camaleonte, simbolo dei CoffeeKillers"></span>
+    <p class="footer-payoff">Long Live Country Music</p>
+  </div>
+  <div class="footer-rule" aria-hidden="true">
+    <span class="line"></span>
+    <span class="ico i-stella"></span>
+    <span class="line"></span>
+  </div>
+  <div class="footer-grid">
+    <div>
+      <h5>Hot Joe &amp; The CoffeeKillers</h5>
+      <p class="footer-big">Country live<br />since 2018.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6c-2.6 0-2.9 0-3.9.06-1 .05-1.7.2-2.3.45-.63.24-1.16.57-1.7 1.1-.53.53-.86 1.06-1.1 1.7-.24.6-.4 1.3-.45 2.3C2.5 9.2 2.5 9.5 2.5 12s0 2.9.06 3.9c.05 1 .2 1.7.45 2.3.24.63.57 1.16 1.1 1.7.53.53 1.06.86 1.7 1.1.6.24 1.3.4 2.3.45 1 .05 1.3.06 3.9.06s2.9 0 3.9-.06c1-.05 1.7-.2 2.3-.45.63-.24 1.16-.57 1.7-1.1.53-.53.86-1.06 1.1-1.7.24-.6.4-1.3.45-2.3.05-1 .06-1.3.06-3.9s0-2.9-.06-3.9c-.05-1-.2-1.7-.45-2.3a4.7 4.7 0 0 0-1.1-1.7 4.7 4.7 0 0 0-1.7-1.1c-.6-.24-1.3-.4-2.3-.45-1-.05-1.3-.06-3.9-.06zm0 1.7c2.5 0 2.8 0 3.8.06 1 .05 1.5.2 1.9.35.5.18.8.4 1.2.77.36.36.6.7.77 1.16.14.37.3.92.34 1.92.05 1 .06 1.3.06 3.84s0 2.8-.06 3.8c-.05 1-.2 1.5-.34 1.9-.18.5-.4.8-.78 1.2-.36.36-.7.6-1.16.77-.37.14-.92.3-1.92.34-1 .05-1.3.06-3.84.06s-2.8 0-3.8-.06c-1-.05-1.5-.2-1.9-.34-.5-.18-.8-.4-1.2-.78-.36-.36-.6-.7-.77-1.16-.14-.37-.3-.92-.34-1.92-.05-1-.06-1.3-.06-3.84s0-2.8.06-3.8c.05-1 .2-1.5.34-1.9.18-.5.4-.8.78-1.2.36-.36.7-.6 1.16-.77.37-.14.92-.3 1.92-.34 1-.05 1.3-.06 3.84-.06zm0 2.9a4.9 4.9 0 1 0 0 9.7 4.9 4.9 0 0 0 0-9.7zm0 8a3.1 3.1 0 1 1 0-6.3 3.1 3.1 0 0 1 0 6.3zm6.2-8.2a1.14 1.14 0 1 1-2.3 0 1.14 1.14 0 0 1 2.3 0z"/></svg><span>Instagram</span></a>
+        <a href="https://m.facebook.com/hotjoeandthecoffeekillers" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3-.04-1.3-.13-2.5-.13-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5z"/></svg><span>Facebook</span></a>
+        <a href="https://www.youtube.com/@thecoffeekillers" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2s-.22-1.55-.9-2.23c-.85-.9-1.8-.9-2.24-.95C16.74 3.8 12 3.8 12 3.8h-.01s-4.73 0-7.86.22c-.44.05-1.39.05-2.24.95C1.2 5.65 1 7.2 1 7.2S.77 9 .77 10.83v1.7C.77 14.3 1 16.13 1 16.13s.22 1.55.89 2.23c.85.9 1.97.87 2.47.96 1.8.17 7.64.22 7.64.22s4.74-.01 7.87-.23c.44-.05 1.39-.06 2.24-.95.67-.68.9-2.23.9-2.23s.22-1.82.22-3.65v-1.7C23.22 9 23 7.2 23 7.2zM9.7 14.6V8.4l6.05 3.11L9.7 14.6z"/></svg><span>YouTube</span></a>
+      </div>
+    </div>
+    <div>
+      <h5>Contatti</h5>
+      <ul>
+        <li><a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a></li>
+        <li><a href="tel:+393937011409">+39 393 7011409</a></li>
+        <li>Brescia — Italia</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Naviga</h5>
+      <ul>
+        <li><a href="chi-siamo.html">Chi siamo</a></li>
+        <li><a href="country.html">Il country</a></li>
+        <li><a href="date.html">Date</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="preventivo.html">Richiedi preventivo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2026 Hot Joe &amp; The CoffeeKillers — All rights reserved. · Sviluppato con <a href="https://emporionelbosco.it" target="_blank" rel="noopener">Emporio nel Bosco</a>
+  </div>
+</footer>
+
+<script>
+
+// Barra di lettura: la larghezza segue la percentuale di scroll (useReadbar del sito live).
+(function(){
+  var bar=document.querySelector(".readbar");
+  if(!bar) return;
+  function update(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-window.innerHeight;
+    var p=max>0?(window.scrollY||h.scrollTop)/max:0;
+    bar.style.width=(Math.min(1,Math.max(0,p))*100)+"%";
+  }
+  window.addEventListener("scroll",update,{passive:true});
+  window.addEventListener("resize",update);
+  update();
+})();
+
+// Reveal allo scroll (traduzione vanilla dell'hook useReveal del sito live).
+(function(){
+  var els=document.querySelectorAll(".fade-in, .rv, .stagger");
+  if(!("IntersectionObserver" in window)){
+    els.forEach(function(el){el.classList.add("in");});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el);});
+})();
+</script>
+<script>
+// Menu mobile: apre/chiude il panetto a tendina
+(function(){
+  var b=document.querySelector(".nav-burger"), d=document.getElementById("nav-drawer");
+  if(!b||!d) return;
+  b.addEventListener("click",function(){
+    var open=d.classList.toggle("open");
+    b.setAttribute("aria-expanded", open?"true":"false");
+  });
+})();
+</script>
+
+<script>
+// Newsletter: nessun backend, solo la conferma (come in home)
+document.querySelectorAll("form.newsletter").forEach(function(form){
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    form.innerHTML='<span class="nl-done">★ Iscritto. Ci sentiamo presto.</span>';
+  });
+});
+</script>
+<!-- Cloudflare Web Analytics — privacy-friendly, niente cookie, niente banner.
+     Era solo su index e preventivo: adesso e' su TUTTE le pagine, se no i
+     numeri raccontano meta' storia (e sulla landing delle inserzioni serve
+     per capire se la campagna converte). -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9aebd7c8eb4d4dd29a6c1f9c9f03d7f4"}'></script>
 </body>
 </html>

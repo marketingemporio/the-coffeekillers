@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Pagina di atterraggio delle inserzioni: ci si arriva solo dagli annunci.
+# In indice farebbe concorrenza alla home sulle stesse parole.
+Disallow: /musica-country-dal-vivo.html
+
 Sitemap: https://thecoffeekillers.com/sitemap.xml

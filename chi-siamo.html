@@ -1,34 +1,585 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Chi siamo — Hot Joe & The Coffeekillers, band country di Brescia</title>
-  <meta name="description" content="La storia di Hot Joe & The Coffeekillers: 6 musicisti, oltre 200 live, un suono country ispirato a Zac Brown Band, Luke Combs, Chris Stapleton e Zach Top. Band country live di Brescia." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Chi siamo — Hot Joe &amp; The Coffeekillers, band country di Brescia</title>
+<meta name="description" content="La storia di Hot Joe & The Coffeekillers: 6 musicisti, oltre 200 live, un suono country ispirato a Zac Brown Band, Luke Combs, Chris Stapleton e Zach Top. Band country live di Brescia." />
+<link rel="canonical" href="https://thecoffeekillers.com/chi-siamo.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Hot Joe &amp; The CoffeeKillers" />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:url" content="https://thecoffeekillers.com/chi-siamo.html" />
+<meta property="og:title" content="Chi siamo — Hot Joe &amp; The Coffeekillers, band country di Brescia" />
+<meta property="og:description" content="La storia di Hot Joe & The Coffeekillers: 6 musicisti, oltre 200 live, un suono country ispirato a Zac Brown Band, Luke Combs, Chris Stapleton e Zach Top. Band country live di Brescia." />
+<!-- ⚠️ jpg e non webp: Facebook e WhatsApp gestiscono male il webp nelle anteprime -->
+<meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Rye&display=swap" rel="stylesheet" />
+<style>
+/* ============ FONT ============ */
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Light.ttf");font-weight:300;font-display:swap}
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Medium.ttf");font-weight:500;font-display:swap}
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Bold.ttf");font-weight:700;font-display:swap}
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Black.ttf");font-weight:900;font-display:swap}
 
-  <link rel="icon" type="image/svg+xml" href="images/HJCK_Logo2.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png" />
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+/* ============ TOKENS ============ */
+:root{
+  --espresso:#241005;
+  --espresso-2:#2E1509;
+  --nero:#180A02;
+  --caffe:#49240A;
+  --panna:#FBF5EA;
+  --beige:#EDDABD;
+  --tan:#BD8B65;
+  --arancio:#FA8600;
+  --ruggine:#CD5812;
+  --azz:#8BAEA4;
+  --azz-scuro:#5F837A;
+  --azz-testo:#3F5C55;    /* azzurro leggibile per i TESTI su fondo chiaro */
+  --azz-wash:#D8E5E0;
+  --bronco:"Bronco Valley","Rye",serif;
+  --serif:"LT Cushion",serif;
+  --sans:"Manrope",sans-serif;
+  --valley:"Valley","Rye",serif;
+  --cushion:"LT Cushion",serif;
+  --wrap:1180px;
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+}
 
-  <link rel="canonical" href="https://thecoffeekillers.com/chi-siamo.html" />
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:130px}
+body{
+  font-family:var(--sans);
+  background:var(--espresso);
+  color:var(--panna);
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
 
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://thecoffeekillers.com/chi-siamo.html" />
-  <meta property="og:title" content="Chi siamo — Hot Joe & The Coffeekillers" />
-  <meta property="og:description" content="La storia della band country bresciana: 6 musicisti, oltre 200 live, ispirazioni da Zac Brown Band, Luke Combs, Chris Stapleton." />
-  <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="it_IT" />
+/* il velluto: grana su tutta la pagina */
+body::after{
+  content:"";position:fixed;inset:0;z-index:80;pointer-events:none;
+  background:var(--grain);opacity:.07;
+}
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chi siamo — Hot Joe & The Coffeekillers" />
-  <meta name="twitter:description" content="6 musicisti, oltre 200 live, ispirazioni da Zac Brown Band, Luke Combs, Chris Stapleton. Band country live di Brescia." />
-  <meta name="twitter:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
+h1,h2,h3{
+  font-family:var(--bronco);
+  font-weight:400;
+  font-synthesis:none;
+  letter-spacing:.03em;
+  line-height:1.04;
+  text-transform:uppercase;
+}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,48px)}
 
-  <script type="application/ld+json">
-  {
+/* ============ ICONE (mask) ============ */
+.ico{
+  display:inline-block;background:currentColor;flex:none;
+  -webkit-mask:no-repeat center/contain;mask:no-repeat center/contain;
+}
+.i-teschio  {-webkit-mask-image:url("images/icone/teschio-longhorn.svg");mask-image:url("images/icone/teschio-longhorn.svg");aspect-ratio:373.99/176.81}
+.i-cactus   {-webkit-mask-image:url("images/icone/cactus.svg");mask-image:url("images/icone/cactus.svg");aspect-ratio:140.28/229.85}
+.i-cappello {-webkit-mask-image:url("images/icone/cappello-cowboy.svg");mask-image:url("images/icone/cappello-cowboy.svg");aspect-ratio:266.88/132.43}
+.i-ferri    {-webkit-mask-image:url("images/icone/ferri-di-cavallo.svg");mask-image:url("images/icone/ferri-di-cavallo.svg");aspect-ratio:267.1/184.4}
+.i-stivale  {-webkit-mask-image:url("images/icone/stivale.svg");mask-image:url("images/icone/stivale.svg");aspect-ratio:169.63/240.37}
+.i-camaleonte{-webkit-mask-image:url("images/icone/camaleonte.svg");mask-image:url("images/icone/camaleonte.svg");aspect-ratio:272.48/160.07}
+.i-stella   {-webkit-mask-image:url("images/icone/stella-sceriffo.svg");mask-image:url("images/icone/stella-sceriffo.svg");aspect-ratio:187.62/203.89}
+.i-chitarra {-webkit-mask-image:url("images/icone/chitarra.svg");mask-image:url("images/icone/chitarra.svg");aspect-ratio:128.45/317.28}
+
+/* ============ TARTAN ============ */
+.tartan{
+  background-color:var(--espresso-2);
+  background-image:
+    repeating-linear-gradient(90deg,
+      transparent 0 16px, rgba(205,88,18,.5) 16px 23px,
+      transparent 23px 40px, rgba(251,245,234,.22) 40px 41.5px,
+      transparent 41.5px 56px),
+    repeating-linear-gradient(0deg,
+      transparent 0 16px, rgba(205,88,18,.5) 16px 23px,
+      transparent 23px 40px, rgba(251,245,234,.22) 40px 41.5px,
+      transparent 41.5px 56px);
+}
+.payoff-edge{height:12px}
+
+/* ============ NAV ============ */
+/* ============ NAV stile sito Kruse Brothers, replica fedele:
+   striscia annuncio in cima, menu maiuscoletto a sinistra, logo grande
+   centrale, icone social a destra; nav trasparente con gradiente sull'hero,
+   scendendo si stacca e diventa barra fissa scura (JS in fondo) ============ */
+.annuncio{
+  background:var(--caffe);color:var(--panna);text-align:center;
+  font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  padding:9px 16px;position:relative;z-index:61;
+}
+.annuncio a{color:inherit;text-decoration:none}
+.annuncio a:hover{color:var(--arancio)}
+.nav{
+  position:absolute;top:36px;left:0;right:0;z-index:60;
+  background:linear-gradient(180deg,rgba(8,4,1,.94) 0%,rgba(8,4,1,.72) 46%,rgba(8,4,1,.28) 80%,transparent 100%);
+  padding-bottom:26px;
+  transition:background .3s,box-shadow .3s;
+}
+.nav.solid{
+  position:fixed;top:0;
+  background:var(--caffe);            /* stesso marrone della striscia annuncio, come nel riferimento */
+  padding-bottom:0;
+  border-bottom:1px solid rgba(237,218,189,.14);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+.nav-in{
+  max-width:1320px;margin:0 auto;padding:10px clamp(20px,4vw,48px) 14px;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;
+}
+.nav-logo{justify-self:center}
+.nav-logo img{
+  height:118px;width:auto;transition:height .3s;
+}
+.nav.solid .nav-logo img{height:74px}
+.nav-side{display:flex;align-items:center;gap:clamp(12px,1.8vw,26px);list-style:none;margin:0;padding:0}
+.nav-side.dx{justify-content:flex-end}
+.nav-side a{
+  color:#fff;text-decoration:none;font-weight:700;font-size:12.5px;
+  letter-spacing:.16em;text-transform:uppercase;
+}
+.nav-side a:hover{color:var(--arancio)}
+.nav-side a{white-space:nowrap}
+.nav-soc{display:flex;align-items:center;gap:14px}
+.nav-soc a{display:flex}
+.nav-soc svg{width:18px;height:18px;fill:#fff;transition:fill .2s}
+.nav-soc a:hover svg{fill:var(--arancio)}
+
+/* ---- Menu mobile (sotto i 720px): panetto a tendina con tutte le voci ---- */
+.nav-burger{
+  display:none;background:none;border:0;cursor:pointer;padding:8px 6px;
+  flex-direction:column;gap:5px;width:38px;
+}
+.nav-burger span{display:block;height:2px;width:26px;background:var(--beige);transition:transform .25s,opacity .2s}
+.nav-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer{
+  display:none;background:var(--caffe);border-top:1px solid rgba(237,218,189,.16);
+  padding:10px clamp(20px,5vw,32px) 22px;
+}
+.nav-drawer.open{display:block}
+.nav-drawer ul{list-style:none;margin:0;padding:0}
+.nav-drawer a{
+  display:block;padding:14px 2px;color:var(--beige);text-decoration:none;
+  font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;
+  border-bottom:1px solid rgba(237,218,189,.12);
+}
+.nav-drawer a[aria-current="page"]{color:var(--arancio)}
+.nav-drawer .dr-soc{display:flex;gap:20px;padding-top:18px}
+.nav-drawer .dr-soc a{border-bottom:0;padding:0}
+.nav-drawer .dr-soc svg{width:20px;height:20px;fill:var(--beige)}
+
+
+/* Pagine interne: niente foto a tutta pagina dietro la nav → barra marrone
+   piena fin da subito, come la pagina MERCH del riferimento. */
+.nav{
+  position:sticky;top:0;
+  background:var(--caffe);
+  padding-bottom:0;
+  border-bottom:1px solid rgba(237,218,189,.14);
+}
+.nav .nav-logo img{height:74px}
+.nav-cta{
+  font-family:var(--valley)!important;font-size:17px!important;font-weight:400!important;
+  color:var(--azz)!important;border:1.5px solid var(--azz);border-radius:8px;
+  padding:6px 16px;letter-spacing:.05em!important;
+}
+.nav-cta:hover{color:var(--espresso)!important;background:var(--azz)}
+.nav-side a[aria-current="page"]{color:var(--arancio)}
+.nav-burger{display:none}
+
+/* ============ SEZIONI COMUNI ============ */
+.section{position:relative;padding:clamp(72px,9vw,120px) 0}
+.sec-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  gap:12px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,44px);
+}
+.eyebrow{
+  display:flex;align-items:center;gap:12px;
+  font-size:13.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--azz);
+}
+.eyebrow .ico{color:var(--azz)}
+.eyebrow-r{font-size:12.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--tan)}
+.on-light .eyebrow{color:var(--azz-testo)}          /* testo: tono leggibile */
+.on-light .eyebrow .ico{color:var(--azz-scuro)}      /* icona: tono originale */
+.on-light .eyebrow-r{color:var(--caffe);opacity:.75}
+.sec-title{
+  font-size:clamp(34px,4.6vw,60px);
+  color:var(--panna);
+  margin-bottom:18px;
+}
+.on-light .sec-title{color:var(--espresso)}
+.lead-p{font-size:clamp(16px,1.9vw,19px);color:var(--beige)}
+.on-light .lead-p{color:var(--caffe)}
+
+/* ============ BOTTONI (veste poster A2) ============ */
+.btn-poster,.btn-dark,.nav-burger,.cta-btn{
+  font-family:var(--valley);
+  letter-spacing:.04em;
+}
+.btn-poster,.cta-btn{
+  display:inline-block;text-decoration:none;
+  background:var(--beige);color:var(--caffe);
+  border:2px solid var(--beige);border-radius:6px;
+  padding:10px 30px 12px;
+  box-shadow:inset 0 0 0 2px var(--beige),inset 0 0 0 3px rgba(73,36,10,.55);
+  transition:background .2s,border-color .2s,color .2s;
+}
+.btn-poster::before,.cta-btn::before{content:"★ ";color:var(--ruggine);font-size:.75em}
+.btn-poster::after,.cta-btn::after{content:" ★";color:var(--ruggine);font-size:.75em}
+.btn-poster:hover,.cta-btn:hover{
+  background:var(--arancio);border-color:var(--arancio);color:var(--espresso);
+  box-shadow:inset 0 0 0 2px var(--arancio),inset 0 0 0 3px rgba(24,10,2,.55);
+}
+.btn-poster{font-size:clamp(19px,2.2vw,23px)}
+.cta-btn{font-size:clamp(21px,2.6vw,26px);padding:14px 40px 16px}
+.btn-dark{
+  display:inline-block;font-weight:300;font-size:20px;letter-spacing:.08em;
+  background:var(--espresso);color:var(--panna);border-radius:6px;
+  padding:10px 26px 12px;text-decoration:none;
+  border:2px solid var(--espresso);transition:background .2s,color .2s;
+}
+.btn-dark:hover{background:transparent;color:var(--espresso)}
+/* sulle sezioni scure .btn-dark diventa ghost beige (stile A) */
+.sec-dark .btn-dark{
+  background:transparent;color:var(--beige);border-color:rgba(237,218,189,.7);
+}
+.sec-dark .btn-dark:hover{border-color:var(--beige);background:transparent;color:var(--beige)}
+
+/* ============ PAGE HERO ============ */
+.ph-hero{background:var(--espresso);padding:clamp(56px,7vw,96px) 0 clamp(48px,6vw,80px)}
+.ph-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,5vw,72px);
+  align-items:center;
+}
+.ph-hero h1{
+  color:var(--panna);
+  font-size:clamp(40px,5.4vw,72px);
+  margin:10px 0 20px;
+}
+.ph-it{color:var(--arancio)}
+/* La "&" non esiste nel font dei titoli (Bronco Valley e Valley non hanno
+   il glifo): senza questa regola cade su un corsivo riccio di ripiego.
+   Qui la scriviamo di proposito in LT Cushion corsivo — la stessa mano dei
+   soprannomi della formazione ("Mike", "Miglio") — così è una scelta e non
+   un incidente. */
+.ph-amp{
+  font-family:var(--cushion);font-style:italic;font-weight:500;
+  text-transform:none;letter-spacing:0;
+  font-size:.86em;color:var(--azz);
+  padding:0 .04em;
+}
+.ph-lead{font-size:clamp(16px,1.9vw,19px);color:var(--beige);max-width:54ch}
+.ph-lead b{color:var(--panna)}
+.polaroid{
+  background:var(--beige);padding:14px 14px 18px;
+  box-shadow:0 26px 50px -16px rgba(0,0,0,.5);
+  transform:rotate(1.6deg);
+  position:relative;
+}
+.polaroid img{width:100%;aspect-ratio:4/4.6;object-fit:cover}
+.polaroid figcaption{
+  font-family:var(--cushion);font-weight:500;color:var(--caffe);text-align:center;
+  font-size:17px;margin-top:12px;letter-spacing:.05em;
+}
+.stamp{
+  position:absolute;top:-20px;right:-14px;
+  font-family:var(--cushion);font-weight:700;font-size:15px;color:var(--azz-testo);
+  border:2px solid var(--azz-scuro);border-radius:8px;padding:5px 12px;
+  transform:rotate(6deg);letter-spacing:.08em;background:var(--panna);
+}
+/* Sul telefono la polaroid arriva quasi a filo schermo: il timbro sporgente
+   finiva a pochi pixel dal bordo. Qui rientra dentro la cornice. */
+@media (max-width:600px){
+  .stamp{top:-13px;right:10px;font-size:13.5px;padding:4px 10px;letter-spacing:.06em}
+}
+.hero-stats{
+  display:flex;justify-content:center;gap:clamp(24px,5vw,72px);flex-wrap:wrap;
+  margin-top:clamp(38px,6vh,64px);padding-top:26px;
+  border-top:1px solid rgba(139,174,164,.28);
+}
+.stat{text-align:center}
+.stat .num{font-family:var(--valley);font-size:clamp(30px,3.6vw,42px);color:var(--beige);line-height:1}
+.stat .lbl{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--azz);margin-top:6px}
+
+/* ============ LA STORIA ============ */
+.storia{background:var(--espresso)}
+.pullquote{
+  font-family:var(--cushion);font-style:italic;font-weight:500;
+  color:var(--arancio);font-size:clamp(20px,2.6vw,27px);
+  border-left:3px solid var(--azz);padding-left:20px;
+  margin:6px 0 clamp(32px,4vw,48px);max-width:34ch;line-height:1.35;
+}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,36px)}
+.step{border-top:1px solid rgba(139,174,164,.3);padding-top:20px}
+.step .kicker{
+  font-family:var(--cushion);font-style:italic;font-weight:500;
+  color:var(--azz);font-size:16px;letter-spacing:.04em;
+}
+.step h3{font-size:clamp(20px,2vw,24px);color:var(--panna);margin:8px 0 10px}
+.step p{font-size:15px;color:var(--beige)}
+.storia-fig{margin-top:clamp(40px,5vw,64px)}
+.photo-r{border-radius:16px;overflow:hidden;border:3px solid var(--beige);box-shadow:0 26px 50px -16px rgba(0,0,0,.5)}
+.photo-r img{width:100%;aspect-ratio:21/9;object-fit:cover}
+.storia-fig figcaption{
+  font-family:var(--cushion);font-weight:500;font-style:italic;
+  color:var(--tan);font-size:16px;text-align:center;margin-top:14px;letter-spacing:.04em;
+}
+
+/* ============ LA FORMAZIONE (lineup A2: foto tonde) ============ */
+.lu-sec{background:var(--panna);color:var(--espresso)}
+.lu-intro{font-family:var(--sans);max-width:52ch;margin:0 0 clamp(36px,5vw,52px);color:var(--caffe);font-size:clamp(16px,1.9vw,19px)}
+.lu-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:48px 32px;min-width:0}
+.lu-grid .member{grid-column:span 2}
+.lu-grid .member:nth-child(4){grid-column:2 / span 2}
+.lu-grid .member:nth-child(5){grid-column:4 / span 2}
+@media (max-width:900px){
+  .lu-grid{grid-template-columns:repeat(2,1fr)}
+  .lu-grid .member,.lu-grid .member:nth-child(4),.lu-grid .member:nth-child(5){grid-column:auto}
+}
+@media (max-width:560px){.lu-grid{grid-template-columns:1fr}}
+.member{position:relative;text-align:center}
+.member .idx{
+  font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--azz-testo);margin-bottom:12px;
+}
+.member .photo{
+  position:relative;width:230px;height:230px;max-width:100%;border-radius:50%;
+  overflow:hidden;background:var(--beige);margin:0 auto 20px;
+}
+.member .photo img{width:100%;height:100%;object-fit:cover;transition:transform 1s ease,opacity .45s ease;filter:contrast(1.04)}
+.member .photo .ph-b{
+  position:absolute;inset:0;opacity:0;
+}
+/* Col mouse: il cambio foto parte al passaggio. */
+@media (hover:hover) and (pointer:fine){
+  .member:hover .photo img{transform:scale(1.06)}
+  .member:hover .photo .ph-b{opacity:1}
+}
+/* Col dito il :hover non esiste: il cambio foto parte al tocco. La classe
+   .girata la mette il JS in fondo alla pagina, solo sui dispositivi touch. */
+.member .photo.girata img{transform:scale(1.06)}
+.member .photo.girata .ph-b{opacity:1}
+.member .photo[role="button"]{cursor:pointer}
+.member .photo:focus-visible{outline:3px solid var(--azz-scuro);outline-offset:5px}
+/* L'invito cambia con lo strumento che hai in mano. */
+.hint-tocco{display:none}
+@media (hover:none),(pointer:coarse){
+  .hint-mouse{display:none}
+  .hint-tocco{display:inline}
+}
+.member h4{
+  font-family:var(--bronco);font-weight:400;font-synthesis:none;
+  text-transform:uppercase;letter-spacing:.03em;line-height:1.1;
+  font-size:23px;margin:6px 0 4px;color:var(--espresso);
+}
+.member h4 .nick{
+  font-family:var(--cushion);font-style:italic;font-weight:500;
+  text-transform:none;letter-spacing:0;
+}
+.member .role{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ruggine)}
+.member .bio{font-family:var(--sans);margin:14px auto 0;font-size:15.5px;line-height:1.55;color:var(--caffe);max-width:34ch}
+.member .quote{font-family:var(--cushion);font-weight:500;font-style:italic;font-size:16px;margin:10px auto 0;color:var(--azz-testo);max-width:28ch}
+@media (max-width:560px){.member .photo{width:200px;height:200px}}
+
+/* ============ LE ISPIRAZIONI ============ */
+.isp{background:var(--espresso)}
+.isp .lead-p{max-width:58ch;margin-bottom:clamp(36px,5vw,52px)}
+.isp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,44px) clamp(22px,3vw,36px)}
+.isp-card .ph{
+  border-radius:12px;overflow:hidden;border:3px solid var(--beige);
+  box-shadow:0 26px 50px -16px rgba(0,0,0,.5);
+}
+.isp-card .ph img{width:100%;aspect-ratio:3/2;object-fit:cover;filter:saturate(.92);transition:transform .8s ease}
+.isp-card:hover .ph img{transform:scale(1.04)}
+.isp-tag{
+  font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--azz);margin:18px 0 6px;
+}
+.isp-card h3{font-size:clamp(20px,2vw,23px);color:var(--panna)}
+.isp-card h3 a{
+  text-decoration:none;display:inline-flex;align-items:baseline;gap:8px;
+  transition:color .2s;
+}
+.isp-card h3 a:hover{color:var(--arancio)}
+.isp-card h3 svg{flex:none;color:var(--azz);align-self:center}
+.isp-card p{font-size:14.5px;color:var(--beige);margin-top:8px;max-width:42ch}
+@media (max-width:900px){.isp-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.isp-grid{grid-template-columns:1fr}}
+
+/* ============ IL REPERTORIO ============ */
+.rep{background:var(--panna);color:var(--espresso)}
+.rep-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(30px,5vw,72px);align-items:center}
+.rep .sec-title{max-width:16ch}
+.rep p{margin-top:14px}
+.rep-cta{display:flex;gap:16px;flex-wrap:wrap;margin-top:32px}
+.rep .polaroid{transform:rotate(-1.4deg)}
+.rep .polaroid img{aspect-ratio:4/3}
+
+/* ============ CTA INSEGNA (momento CTA — identica alla home) ============ */
+.cta{background:var(--arancio);color:var(--espresso);position:relative}
+.cta-panel{
+  max-width:900px;margin:0 auto;text-align:center;
+  border:3px solid var(--espresso);outline:3px solid var(--espresso);outline-offset:7px;
+  padding:clamp(44px,6vw,76px) clamp(22px,5vw,64px);
+  position:relative;
+}
+.cta-corner{position:absolute;width:26px;height:28px;color:var(--espresso)}
+.cta-corner.tl{top:14px;left:14px}
+.cta-corner.tr{top:14px;right:14px}
+.cta-corner.bl{bottom:14px;left:14px}
+.cta-corner.br{bottom:14px;right:14px}
+.cta-eyebrow{
+  font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.2vw,22px);
+  margin-bottom:8px;
+}
+.cta .sec-title{color:var(--espresso);font-size:clamp(40px,6vw,76px);margin-bottom:16px}
+.cta-lead{max-width:46ch;margin:0 auto 30px;font-weight:500;font-size:clamp(16px,1.9vw,18.5px)}
+/* Il bottone resta la barra crema con le stelle, come sulla home. */
+.cta-meta{
+  display:flex;justify-content:center;gap:clamp(18px,4vw,48px);flex-wrap:wrap;
+  margin-top:34px;font-size:14.5px;font-weight:700;
+}
+.cta-meta a{color:inherit}
+.cta-meta .k{display:block;font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;opacity:.7;margin-bottom:2px}
+
+/* ============ FOOTER (variante ridotta) ============ */
+.footer{background:var(--nero);position:relative;padding:0 0 40px}
+.footer-cam{
+  display:flex;flex-direction:column;align-items:center;
+  padding:clamp(64px,9vw,110px) 20px 0;text-align:center;
+}
+.footer-cam .ico{
+  width:min(400px,72vw);height:auto;aspect-ratio:272.48/160.07;
+  color:var(--azz);
+}
+.footer-payoff{
+  font-family:var(--bronco);font-weight:400;font-synthesis:none;text-transform:uppercase;
+  color:var(--panna);font-size:clamp(30px,5.4vw,64px);letter-spacing:.06em;
+  margin-top:26px;line-height:1.08;
+}
+.footer-sub{
+  font-family:var(--serif);font-style:italic;color:var(--azz);
+  font-size:clamp(16px,2vw,20px);margin-top:10px;
+}
+.footer-rule{
+  display:flex;align-items:center;gap:18px;
+  max-width:var(--wrap);margin:clamp(44px,6vw,64px) auto 0;padding:0 clamp(20px,4vw,48px);
+  color:var(--azz);
+}
+.footer-rule .line{flex:1;height:1px;background:rgba(139,174,164,.35)}
+.footer-rule .ico{width:20px;height:22px}
+.footer-grid{
+  max-width:var(--wrap);margin:40px auto 0;padding:0 clamp(20px,4vw,48px);
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,4vw,56px);
+}
+.footer h5{
+  font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--azz);margin-bottom:16px;
+}
+.footer-big{font-family:var(--bronco);font-size:clamp(24px,3vw,32px);color:var(--beige);line-height:1.15;letter-spacing:.04em}
+.footer ul{list-style:none}
+.footer ul li{margin-bottom:9px;font-size:14.5px;color:var(--beige)}
+.footer ul a{color:var(--beige);text-decoration:none}
+.footer ul a:hover{color:var(--azz)}
+.footer-social{display:flex;gap:14px;margin-top:18px}
+.footer-social a{
+  font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--azz);
+  text-decoration:none;border:1px solid rgba(139,174,164,.4);border-radius:99px;
+  padding:7px 16px;
+}
+.footer-social a:hover{background:var(--azz);color:var(--nero)}
+.footer-copy{
+  max-width:var(--wrap);margin:44px auto 0;padding:20px clamp(20px,4vw,48px) 0;
+  border-top:1px solid rgba(139,174,164,.18);
+  font-size:12.5px;color:var(--tan);text-align:center;
+}
+.footer-copy a{color:var(--azz);text-decoration:none}
+.footer--ridotta{padding:0 0 26px}
+.footer--ridotta .footer-cam{padding:clamp(42px,6vw,72px) 20px 0}
+.footer--ridotta .footer-payoff{margin-top:17px}
+.footer--ridotta .footer-sub{margin-top:7px}
+.footer--ridotta .footer-rule{margin:clamp(29px,4vw,42px) auto 0}
+.footer--ridotta .footer-grid{margin:26px auto 0}
+.footer--ridotta h5{margin-bottom:11px}
+.footer--ridotta ul li{margin-bottom:6px}
+.footer--ridotta .footer-social{margin-top:12px}
+.footer--ridotta .footer-copy{margin:29px auto 0;padding-top:13px}
+@media (max-width:720px){
+  .footer--ridotta .footer-grid{gap:22px}
+}
+
+/* ============ ICONE PIÙ GRANDI DA DESKTOP ============ */
+@media (min-width:900px){
+  .eyebrow .ico{transform:scale(1.35);margin:0 3px}
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:960px){
+  .ph-grid,.rep-grid{grid-template-columns:1fr}
+  .ph-grid .polaroid,.rep-grid .polaroid{max-width:460px;margin:0 auto}
+  .steps{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:1000px){
+  .nav-side.sx{display:none}
+  .nav-soc{display:none}
+  .nav-in{grid-template-columns:auto 1fr auto;gap:10px}
+  .nav-logo{grid-column:2}
+  .nav .nav-logo img{height:52px}
+  .nav-burger{display:flex;grid-column:1;justify-self:start}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .hero-stats{gap:22px 30px}
+}
+
+/* ---- REVEAL allo scroll (gating con html.js: senza JS tutto visibile) ---- */
+html.js .rv{
+  opacity:0;transform:translateY(26px);
+  transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1);
+  will-change:opacity,transform;
+}
+html.js .rv--left{transform:translateX(-30px)}
+html.js .rv--right{transform:translateX(30px)}
+html.js .rv.in{opacity:1;transform:none}
+@media (max-width:700px){html.js .rv--left,html.js .rv--right{transform:translateY(26px)}}
+html.js .fade-in{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+html.js .fade-in.in{opacity:1;transform:none}
+html.js .stagger>*{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+html.js .stagger.in>*{opacity:1;transform:none}
+html.js .stagger.in>*:nth-child(1){transition-delay:.04s}
+html.js .stagger.in>*:nth-child(2){transition-delay:.12s}
+html.js .stagger.in>*:nth-child(3){transition-delay:.2s}
+html.js .stagger.in>*:nth-child(4){transition-delay:.28s}
+html.js .stagger.in>*:nth-child(5){transition-delay:.36s}
+html.js .stagger.in>*:nth-child(6){transition-delay:.44s}
+html.js .stagger.in>*:nth-child(7){transition-delay:.52s}
+html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
+@media (prefers-reduced-motion:reduce){
+  html.js .rv,html.js .fade-in,html.js .stagger>*{
+    opacity:1!important;transform:none!important;transition:none!important;animation:none!important;
+  }
+  html{scroll-behavior:auto}
+  .member .photo img,.isp-card .ph img{transition:none!important}
+}
+</style>
+<link rel="stylesheet" href="stile-hjck.css" />
+<!-- Dati strutturati: recuperati dal sito precedente, il logo aggiornato
+     a quello definitivo. Servono a Google per capire chi siamo. -->
+<script type="application/ld+json">
+{
     "@context": "https://schema.org",
     "@type": "MusicGroup",
     "name": "Hot Joe & The Coffeekillers",
@@ -50,64 +601,279 @@
       "https://www.youtube.com/@thecoffeekillers"
     ]
   }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Smokum&family=Rye&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Alfa+Slab+One&family=Libre+Caslon+Text:ital@0;1&family=Big+Shoulders+Display:wght@500;700;900&family=Bricolage+Grotesque:wght@400;500;700&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="styles.css" />
-
-  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</script>
 </head>
-<body style="font-size: 15px">
-  <div id="root">
-    <div style="display:none">
-    <header>
-      <nav>
-        <a href="index.html">Hot Joe &amp; The Coffeekillers</a>
-        <ul>
-          <li><a href="chi-siamo.html">Chi siamo</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="date.html">Date</a></li>
-          <li><a href="country.html">Il country</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="preventivo.html">Richiedi un preventivo</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <h1>Chi siamo — Hot Joe &amp; The Coffeekillers, band country di Brescia</h1>
-      <p>Hot Joe &amp; The Coffeekillers sono una band country live di Brescia con oltre 200 live all'attivo. Sei musicisti con background diversi, accomunati dalla passione per il country americano autentico: twang di chitarra, doppio basso, armonica e voci intrecciate.</p>
-      <h2>La formazione</h2>
-      <ul>
-        <li>Michele Frosio — Guitars &amp; Lead Voice</li>
-        <li>Davide Miglietti — Drums &amp; Vocals</li>
-        <li>Lorenzo Marini — Keys &amp; Harmonica</li>
-        <li>Stefano Martinelli — Guitars &amp; Lap Steel</li>
-        <li>Riccardo Loda — Bass &amp; DoubleBass</li>
-      </ul>
-      <h2>Le ispirazioni artistiche</h2>
-      <p>Il suono dei Coffeekillers è costruito sulle influenze di Zac Brown Band, Luke Combs, Chris Stapleton, Brad Paisley, Carrie Underwood, Zach Top e dei Kruse Brothers. Un mix di country neo-tradizionale e country moderno, con radici saldamente nel genere.</p>
-      <h2>Il repertorio</h2>
-      <p>Oltre 50 brani country tra cover e arrangiamenti originali. Adatti a locali, feste e sagre di paese, festival, eventi corporate e matrimoni. Disponibili per trasferte in tutta Italia e in Europa.</p>
-    </main>
+<body>
+<script>document.documentElement.classList.add("js");</script>
+
+<!-- ==================== NAV (stile home confermato il 01/09) ==================== -->
+<header class="nav">
+  <div class="nav-in">
+    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Apri il menu"><span></span><span></span><span></span></button>
+    <ul class="nav-side sx">
+      <li><a href="chi-siamo.html" aria-current="page">Chi siamo</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="country.html">Il country</a></li>
+    </ul>
+    <a class="nav-logo" href="index.html" aria-label="Hot Joe &amp; The CoffeeKillers &mdash; home">
+      <img src="images/logo/hjck-logo-negativo.svg" alt="Logo Hot Joe &amp; The CoffeeKillers" />
+    </a>
+    <ul class="nav-side dx">
+      <li><a href="date.html">Date</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a class="nav-cta" href="preventivo.html">Preventivo</a></li>
+    </ul>
+  </div>
+  <nav class="nav-drawer" id="nav-drawer" aria-label="Menu">
+    <ul>
+      <li><a href="chi-siamo.html" aria-current="page">Chi siamo</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="country.html">Il country</a></li>
+      <li><a href="date.html">Date</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="preventivo.html">Preventivo</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ==================== 1. PAGE HERO ==================== -->
+<section class="ph-hero" id="top">
+  <div class="wrap">
+    <div class="ph-grid">
+      <div class="rv">
+        <h1>Hot Joe <span class="ph-amp">&amp;</span> The <span class="ph-it">Coffeekillers.</span></h1>
+        <p class="ph-lead">Una band country live nata a Brescia, cresciuta sul palco. Più di <b>200 live</b> all'attivo, musicisti con storie diverse, un unico filo rosso: il country americano suonato con la testa e con il cuore.</p>
+      </div>
+      <figure class="polaroid rv rv--right">
+        <img src="images/band-fiume-v1.webp" alt="I cinque musicisti di Hot Joe &amp; The Coffeekillers in posa in riva al fiume al tramonto, con gli strumenti appoggiati a terra" fetchpriority="high" />
+        <figcaption>★ La band al completo</figcaption>
+      </figure>
+    </div>
+    <div class="hero-stats stagger">
+      <div class="stat"><div class="num" data-count="7">7</div><div class="lbl">Anni di palco</div></div>
+      <div class="stat"><div class="num" data-count="200" data-prefix="+">+200</div><div class="lbl">Live all'attivo</div></div>
+      <div class="stat"><div class="num" data-count="50" data-prefix="+">+50</div><div class="lbl">Brani in repertorio</div></div>
+      <div class="stat"><div class="num" data-count="8">8</div><div class="lbl">Province nel 2026</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="payoff-edge tartan" aria-hidden="true"></div>
+
+<!-- ==================== 2. LA STORIA ==================== -->
+<section class="section lu-sec on-light" id="formazione">
+  <div class="wrap">
+    <h2 class="sec-title fade-in">Chi trovi sul palco.</h2>
+        <div class="lu-grid stagger">
+      <article class="member">
+        <div class="photo">
+          <img src="images/mike-ritratto-muro.webp" alt="Michele Frosio, voce e chitarra dei Coffeekillers, con la chitarra acustica" loading="lazy" />
+        </div>
+        <h4>Michele <span class="nick">“Mike”</span> Frosio</h4>
+        <div class="role">Guitars &amp; Lead Voice</div>
+        <p class="bio">La voce e la chitarra principale della band. Porta sul palco l'anima del country americano con un fraseggio vocale che richiama i grandi cantautori di Nashville, senza mai dimenticare le radici bresciane.</p>
+        <p class="quote">“Cos'ho dimenticato oggi?”</p>
+      </article>
+      <article class="member">
+        <div class="photo">
+          <img src="images/miglio-ritratto-muro.webp" alt="Davide Miglietti, batterista dei Coffeekillers, con la bacchetta in mano" loading="lazy" />
+        </div>
+        <h4>Davide <span class="nick">“Miglio”</span> Miglietti</h4>
+        <div class="role">Drums &amp; Vocals</div>
+        <p class="bio">Il cuore ritmico dei Coffeekillers. Le sue bacchette tengono unito tutto lo show, con groove solidi che sanno essere tanto delicati nelle ballads quanto esplosivi nelle party songs.</p>
+        <p class="quote">“Potevamo fare di meglio.”</p>
+      </article>
+      <article class="member">
+        <div class="photo">
+          <img src="images/larry-ritratto-muro.webp" alt="Lorenzo Marini, tastierista dei Coffeekillers, con cappellino e occhiali da sole dietro la sua tastiera rossa" loading="lazy" />
+        </div>
+        <h4>Lorenzo <span class="nick">“Larry”</span> Marini</h4>
+        <div class="role">Keys &amp; Harmonica</div>
+        <p class="bio">Tastiere e armonica: il tocco che allarga il suono della band verso le grandi produzioni di Nashville. La sua armonica è il dettaglio che trasforma una serata in un'esperienza country autentica.</p>
+        <p class="quote">“Raga questo è troppo country!”</p>
+      </article>
+      <article class="member">
+        <div class="photo">
+          <img src="images/ste-ritratto-muro.webp" alt="Stefano Martinelli, chitarrista solista dei Coffeekillers, con la Telecaster" loading="lazy" />
+        </div>
+        <h4>Stefano <span class="nick">“Ste”</span> Martinelli</h4>
+        <div class="role">Guitars &amp; Lap Steel</div>
+        <p class="bio">La chitarra solista e la lap steel che firmano il sound distintivo dei Coffeekillers. Il suo stile spazia dal picking country al twang elettrico, con influenze che vanno da Brad Paisley a Chris Stapleton.</p>
+        <p class="quote">“Lo facciamo ancora una volta?”</p>
+      </article>
+      <article class="member">
+        <div class="photo">
+          <img src="images/richi-ritratto-muro.webp" alt="Riccardo Loda, bassista e contrabbassista dei Coffeekillers, che punta il basso verso l'obiettivo" loading="lazy" />
+        </div>
+        <h4>Riccardo <span class="nick">“Richi”</span> Loda</h4>
+        <div class="role">Bass &amp; DoubleBass</div>
+        <p class="bio">Il basso e il contrabbasso che danno profondità e calore a ogni serata. Riccardo porta la tradizione del country acustico e del rockabilly direttamente sul palco, con un groove che muove i piedi.</p>
+        <p class="quote">“Birretta?”</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 4. LE ISPIRAZIONI ==================== -->
+<footer class="footer footer--ridotta">
+  <div class="payoff-edge tartan"></div>
+
+  <!-- la newsletter e' la prima riga del footer, non una fascia sospesa sopra -->
+  <div class="foot-nl" id="newsletter">
+    <div class="foot-nl-in">
+      <div>
+        <h3 class="foot-nl-tit">Ti aggiorniamo sulle <span class="nl-accent">date.</span></h3>
+      </div>
+      <form class="newsletter">
+        <input required type="email" placeholder="la-tua-mail@example.com" aria-label="La tua email" />
+        <button type="submit">Iscriviti</button>
+      </form>
     </div>
   </div>
 
-  <script>
-    window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-      "palette": "brand",
-      "type": "brand",
-      "hero": "cinematic"
-    }/*EDITMODE-END*/;
-  </script>
+  <div class="footer-cam">
+    <span class="ico i-camaleonte" role="img" aria-label="Il camaleonte, simbolo dei CoffeeKillers"></span>
+    <p class="footer-payoff">Long Live Country Music</p>
+  </div>
+  <div class="footer-rule" aria-hidden="true">
+    <span class="line"></span>
+    <span class="ico i-stella"></span>
+    <span class="line"></span>
+  </div>
+  <div class="footer-grid">
+    <div>
+      <h5>Hot Joe &amp; The CoffeeKillers</h5>
+      <p class="footer-big">Country live<br />since 2018.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6c-2.6 0-2.9 0-3.9.06-1 .05-1.7.2-2.3.45-.63.24-1.16.57-1.7 1.1-.53.53-.86 1.06-1.1 1.7-.24.6-.4 1.3-.45 2.3C2.5 9.2 2.5 9.5 2.5 12s0 2.9.06 3.9c.05 1 .2 1.7.45 2.3.24.63.57 1.16 1.1 1.7.53.53 1.06.86 1.7 1.1.6.24 1.3.4 2.3.45 1 .05 1.3.06 3.9.06s2.9 0 3.9-.06c1-.05 1.7-.2 2.3-.45.63-.24 1.16-.57 1.7-1.1.53-.53.86-1.06 1.1-1.7.24-.6.4-1.3.45-2.3.05-1 .06-1.3.06-3.9s0-2.9-.06-3.9c-.05-1-.2-1.7-.45-2.3a4.7 4.7 0 0 0-1.1-1.7 4.7 4.7 0 0 0-1.7-1.1c-.6-.24-1.3-.4-2.3-.45-1-.05-1.3-.06-3.9-.06zm0 1.7c2.5 0 2.8 0 3.8.06 1 .05 1.5.2 1.9.35.5.18.8.4 1.2.77.36.36.6.7.77 1.16.14.37.3.92.34 1.92.05 1 .06 1.3.06 3.84s0 2.8-.06 3.8c-.05 1-.2 1.5-.34 1.9-.18.5-.4.8-.78 1.2-.36.36-.7.6-1.16.77-.37.14-.92.3-1.92.34-1 .05-1.3.06-3.84.06s-2.8 0-3.8-.06c-1-.05-1.5-.2-1.9-.34-.5-.18-.8-.4-1.2-.78-.36-.36-.6-.7-.77-1.16-.14-.37-.3-.92-.34-1.92-.05-1-.06-1.3-.06-3.84s0-2.8.06-3.8c.05-1 .2-1.5.34-1.9.18-.5.4-.8.78-1.2.36-.36.7-.6 1.16-.77.37-.14.92-.3 1.92-.34 1-.05 1.3-.06 3.84-.06zm0 2.9a4.9 4.9 0 1 0 0 9.7 4.9 4.9 0 0 0 0-9.7zm0 8a3.1 3.1 0 1 1 0-6.3 3.1 3.1 0 0 1 0 6.3zm6.2-8.2a1.14 1.14 0 1 1-2.3 0 1.14 1.14 0 0 1 2.3 0z"/></svg><span>Instagram</span></a>
+        <a href="https://m.facebook.com/hotjoeandthecoffeekillers" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3-.04-1.3-.13-2.5-.13-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5z"/></svg><span>Facebook</span></a>
+        <a href="https://www.youtube.com/@thecoffeekillers" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2s-.22-1.55-.9-2.23c-.85-.9-1.8-.9-2.24-.95C16.74 3.8 12 3.8 12 3.8h-.01s-4.73 0-7.86.22c-.44.05-1.39.05-2.24.95C1.2 5.65 1 7.2 1 7.2S.77 9 .77 10.83v1.7C.77 14.3 1 16.13 1 16.13s.22 1.55.89 2.23c.85.9 1.97.87 2.47.96 1.8.17 7.64.22 7.64.22s4.74-.01 7.87-.23c.44-.05 1.39-.06 2.24-.95.67-.68.9-2.23.9-2.23s.22-1.82.22-3.65v-1.7C23.22 9 23 7.2 23 7.2zM9.7 14.6V8.4l6.05 3.11L9.7 14.6z"/></svg><span>YouTube</span></a>
+      </div>
+    </div>
+    <div>
+      <h5>Contatti</h5>
+      <ul>
+        <li><a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a></li>
+        <li><a href="tel:+393937011409">+39 393 7011409</a></li>
+        <li>Brescia — Italia</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Naviga</h5>
+      <ul>
+        <li><a href="chi-siamo.html">Chi siamo</a></li>
+        <li><a href="country.html">Il country</a></li>
+        <li><a href="date.html">Date</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="preventivo.html">Richiedi preventivo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2026 Hot Joe &amp; The CoffeeKillers — All rights reserved. · Sviluppato con <a href="https://emporionelbosco.it" target="_blank" rel="noopener">Emporio nel Bosco</a>
+  </div>
+</footer>
 
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="components.jsx"></script>
-  <script type="text/babel" src="app-chi-siamo.jsx"></script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9aebd7c8eb4d4dd29a6c1f9c9f03d7f4"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+
+// Reveal allo scroll (traduzione vanilla dell'hook useReveal del sito live).
+(function(){
+  var els=document.querySelectorAll(".fade-in, .rv, .stagger");
+  if(!("IntersectionObserver" in window)){
+    els.forEach(function(el){el.classList.add("in");});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el);});
+})();
+
+// CountUp sulle statistiche (come sul sito live: 1400ms, una volta sola).
+(function(){
+  var nums=document.querySelectorAll(".stat .num[data-count]");
+  if(!nums.length)return;
+  var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function run(el){
+    var end=parseInt(el.getAttribute("data-count"),10);
+    var prefix=el.getAttribute("data-prefix")||"";
+    if(reduced||!("requestAnimationFrame" in window)){el.textContent=prefix+end;return;}
+    var t0=null,DUR=1400;
+    function frame(t){
+      if(t0===null)t0=t;
+      var p=Math.min((t-t0)/DUR,1);
+      var eased=1-Math.pow(1-p,3);
+      el.textContent=prefix+Math.round(end*eased);
+      if(p<1)requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  if(!("IntersectionObserver" in window)){nums.forEach(run);return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){run(e.target);io.unobserve(e.target);}
+    });
+  },{threshold:.4});
+  nums.forEach(function(el){io.observe(el);});
+})();
+</script>
+<script>
+// Formazione: sul telefono il mouse non c'è, quindi il cambio foto si attiva
+// al tocco (e da tastiera con Invio/Spazio). Sui dispositivi col mouse non
+// tocchiamo niente: lì continua a funzionare il :hover del CSS.
+(function(){
+  var touch = window.matchMedia && window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  if(!touch) return;
+  var foto = document.querySelectorAll(".member .photo");
+  Array.prototype.forEach.call(foto, function(ph){
+    var art = ph.parentNode, h4 = art.querySelector("h4");
+    var nome = h4 ? h4.textContent.replace(/\s+/g," ").trim() : "";
+    ph.setAttribute("role","button");
+    ph.setAttribute("tabindex","0");
+    ph.setAttribute("aria-pressed","false");
+    ph.setAttribute("aria-label", nome ? "Cambia la foto di " + nome : "Cambia la foto");
+    function gira(){
+      var on = ph.classList.toggle("girata");
+      ph.setAttribute("aria-pressed", on ? "true" : "false");
+    }
+    ph.addEventListener("click", gira);
+    ph.addEventListener("keydown", function(e){
+      if(e.key === "Enter" || e.key === " " || e.key === "Spacebar"){ e.preventDefault(); gira(); }
+    });
+  });
+})();
+</script>
+<script>
+// Menu mobile: apre/chiude il panetto a tendina
+(function(){
+  var b=document.querySelector(".nav-burger"), d=document.getElementById("nav-drawer");
+  if(!b||!d) return;
+  b.addEventListener("click",function(){
+    var open=d.classList.toggle("open");
+    b.setAttribute("aria-expanded", open?"true":"false");
+  });
+})();
+</script>
+
+<script>
+// Newsletter: nessun backend, solo la conferma (come in home)
+document.querySelectorAll("form.newsletter").forEach(function(form){
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    form.innerHTML='<span class="nl-done">★ Iscritto. Ci sentiamo presto.</span>';
+  });
+});
+</script>
+<!-- Cloudflare Web Analytics — privacy-friendly, niente cookie, niente banner.
+     Era solo su index e preventivo: adesso e' su TUTTE le pagine, se no i
+     numeri raccontano meta' storia (e sulla landing delle inserzioni serve
+     per capire se la campagna converte). -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9aebd7c8eb4d4dd29a6c1f9c9f03d7f4"}'></script>
 </body>
 </html>

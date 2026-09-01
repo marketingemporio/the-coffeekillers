@@ -3,15 +3,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Hot Joe &amp; The CoffeeKillers — band country dal vivo a Brescia</title>
-<meta name="description" content="Band country live di Brescia: audio e luci nostri, dai locali alle sagre, dai ranch ai matrimoni. Guarda i video, scopri le date e chiedi un preventivo." />
-<link rel="canonical" href="https://thecoffeekillers.com/" />
+<title>Musica country dal vivo per il tuo locale — The CoffeeKillers</title>
+<meta name="description" content="Proposta di redesign A per Hot Joe & The CoffeeKillers: locandina notturna honky-tonk." />
+<!-- ⚠️ PAGINA NASCOSTA AI MOTORI: ci si arriva SOLO dalle inserzioni.
+     Se finisse su Google farebbe concorrenza alla home per le stesse parole
+     (contenuto quasi uguale) e sporcherebbe i dati della campagna. -->
+<meta name="robots" content="noindex,nofollow" />
+<!-- niente canonical: la pagina e' noindex, un canonical darebbe un segnale contraddittorio -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Hot Joe &amp; The CoffeeKillers" />
 <meta property="og:locale" content="it_IT" />
-<meta property="og:url" content="https://thecoffeekillers.com/" />
-<meta property="og:title" content="Hot Joe &amp; The CoffeeKillers — band country dal vivo a Brescia" />
-<meta property="og:description" content="Band country live di Brescia: audio e luci nostri, dai locali alle sagre, dai ranch ai matrimoni. Guarda i video, scopri le date e chiedi un preventivo." />
+<meta property="og:url" content="https://thecoffeekillers.com/musica-country-dal-vivo.html" />
+<meta property="og:title" content="Musica country dal vivo per il tuo locale — The CoffeeKillers" />
+<meta property="og:description" content="Proposta di redesign A per Hot Joe & The CoffeeKillers: locandina notturna honky-tonk." />
 <!-- ⚠️ jpg e non webp: Facebook e WhatsApp gestiscono male il webp nelle anteprime -->
 <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -1876,150 +1880,217 @@ body::before{
 .member .photo img[src$="ste-ritratto-muro.webp"]{object-position:center 6%}
 .member .photo img[src$="richi-ritratto-muro.webp"]{object-position:center 2%}
 
-/* ⚠️ L'attributo `hidden` da solo non basta: il browser gli da' `display:none`
-   con la specificita' piu' bassa, e qualunque regola che imposti un display
-   (`.ticket{display:grid}`, `.cal-row{display:grid}`, `.tickets{display:grid}`)
-   lo sovrascrive. Le date passate restavano a schermo pur avendo l'attributo.
-   Con `!important` il nascondi vale davvero. */
-[hidden]{display:none !important}
+
+
+
+/* ============================================================================
+   LANDING DELLE INSERZIONI — stile della home, struttura da conversione
+   ----------------------------------------------------------------------------
+   Chi arriva qui ha appena visto uno spezzone video con un aggancio del tipo
+   "hai un locale e vorresti musica country?". Ha tre secondi di attenzione e
+   una domanda sola in testa: «questi fanno al caso mio, e quanto mi costano?»
+   Percio' la pagina e' fatta cosi':
+     · nessun menu di navigazione. Le vie di fuga in una landing costano
+       conversioni: l'unica strada e' il modulo.
+     · la promessa dell'inserzione ripetuta IDENTICA nel titolo (se la pagina
+       dice un'altra cosa rispetto al video, la persona se ne va);
+     · il video intero subito, perche' la prova sta li';
+     · le quattro obiezioni che bloccano davvero (costo, durata, service,
+       spazio) sciolte PRIMA del modulo, non dopo;
+     · un modulo corto: sei campi. Ogni campo in piu' e' gente che se ne va.
+   ============================================================================ */
+
+/* --- testata ridotta al solo logo: niente link che portino via --- */
+.lp-top{
+  position:relative;z-index:10;display:flex;justify-content:center;
+  padding:18px 20px 6px;background:var(--espresso);
+}
+.lp-top img{height:74px;width:auto}
+
+/* --- hero --- */
+.lp-hero{position:relative;overflow:hidden;background:var(--espresso)}
+.lp-hero-bg{
+  position:absolute;inset:0;z-index:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 38%;filter:saturate(1.06) contrast(1.04);
+}
+.lp-velo{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(to top,rgba(73,36,10,.96) 0%,rgba(73,36,10,.9) 26%,rgba(73,36,10,.6) 48%,rgba(73,36,10,.2) 70%,rgba(73,36,10,0) 88%),
+    linear-gradient(to right,rgba(73,36,10,.7) 0%,rgba(73,36,10,.34) 42%,rgba(73,36,10,0) 66%);
+}
+.lp-hero-in{
+  position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;
+  padding:clamp(56px,7vw,90px) clamp(20px,4vw,48px) clamp(44px,5vw,68px);
+}
+.lp-hero-testo{max-width:min(720px,64%)}
+.lp-hero h1{
+  font-family:var(--bronco);font-weight:400;font-synthesis:none;text-transform:uppercase;
+  color:var(--panna);font-size:clamp(34px,4.4vw,62px);line-height:1.14;letter-spacing:.012em;
+  margin:0;text-shadow:0 2px 18px rgba(73,36,10,.5);
+}
+.lp-hero h1 .acc{
+  background:var(--arancio);color:var(--panna);
+  padding:0 .14em .04em;box-decoration-break:clone;-webkit-box-decoration-break:clone;text-shadow:none;
+}
+.lp-sub{
+  font-family:var(--sans);font-size:clamp(16px,1.5vw,19px);line-height:1.55;
+  color:var(--panna);max-width:52ch;margin:22px 0 0;
+}
+.lp-cta-row{display:flex;align-items:center;gap:clamp(14px,2vw,24px);flex-wrap:wrap;margin-top:30px}
+.lp-btn{
+  display:inline-block;font-family:var(--btn);font-weight:900;
+  font-size:clamp(16px,1.6vw,20px);letter-spacing:.1em;text-transform:uppercase;
+  background:var(--panna);color:var(--espresso);text-decoration:none;
+  padding:16px 34px;border-radius:10px;box-shadow:5px 5px 0 var(--arancio);
+  transition:transform .16s,box-shadow .16s;
+}
+.lp-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--arancio);color:var(--espresso)}
+.lp-rassicura{
+  font-family:var(--sans);font-size:13.5px;font-weight:700;color:var(--beige);
+  letter-spacing:.02em;
+}
+.lp-prove{
+  position:relative;z-index:3;background:var(--espresso);
+  border-top:3px solid var(--arancio);
+}
+.lp-prove-in{
+  max-width:var(--wrap);margin:0 auto;padding:16px clamp(20px,4vw,48px);
+  display:flex;gap:clamp(20px,3vw,48px);flex-wrap:wrap;list-style:none;
+}
+.lp-prove li{display:flex;flex-direction:column-reverse;gap:1px}
+.lp-prove b{font-family:var(--bronco);font-weight:400;font-synthesis:none;font-size:clamp(19px,1.9vw,24px);line-height:1;color:var(--panna)}
+.lp-prove span{font-family:var(--sans);font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--tan)}
+@media (max-width:1000px){
+  .lp-hero-testo{max-width:100%}
+  .lp-velo{background:linear-gradient(to top,rgba(73,36,10,.96) 0%,rgba(73,36,10,.92) 36%,rgba(73,36,10,.64) 58%,rgba(73,36,10,.24) 78%,rgba(73,36,10,0) 94%)}
+}
+
+/* --- i punti concreti --- */
+.lp-punti{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.8vw,20px)}
+.lp-punto{
+  background:var(--panna);color:var(--espresso);border-radius:12px;
+  padding:clamp(20px,2.4vw,26px);text-align:left;
+  box-shadow:0 0 0 1px rgba(73,36,10,.28), 0 18px 34px -20px rgba(73,36,10,.55);
+}
+.lp-punto .ico{height:38px;width:auto;max-width:74px;margin:0 0 12px;display:block;color:var(--arancio)}
+.lp-punto h3{font-size:clamp(18px,1.8vw,21px);line-height:1.06;color:var(--espresso)}
+.lp-punto p{font-family:var(--sans);font-size:14px;line-height:1.5;color:var(--caffe);margin-top:8px}
+@media (max-width:900px){.lp-punti{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.lp-punti{grid-template-columns:1fr}}
+
+/* --- le obiezioni --- */
+.lp-obiezioni{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(14px,2vw,22px);max-width:940px;margin:0 auto}
+.lp-ob{background:var(--panna);color:var(--espresso);border-radius:12px;padding:clamp(20px,2.4vw,26px)}
+.lp-ob h3{font-size:clamp(17px,1.7vw,20px);line-height:1.1;color:var(--espresso)}
+.lp-ob p{font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--caffe);margin-top:8px}
+@media (max-width:700px){.lp-obiezioni{grid-template-columns:1fr}}
+
+/* --- il modulo --- */
+.lp-form-sec{background:var(--arancio)}
+.lp-form-box{
+  max-width:820px;margin:0 auto;background:var(--espresso);color:var(--panna);
+  border:3px solid var(--espresso);outline:2px solid var(--espresso);outline-offset:6px;
+  border-radius:14px;padding:clamp(28px,4vw,48px);
+}
+.lp-form-box .sec-title{color:var(--panna);text-align:center;margin-bottom:10px}
+.lp-form-intro{font-family:var(--sans);text-align:center;color:var(--beige);margin:0 auto 28px;max-width:46ch;font-size:clamp(15px,1.6vw,17px)}
+.lp-campi{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.lp-campo{display:flex;flex-direction:column;gap:7px;min-width:0}
+.lp-campo.full{grid-column:1/-1}
+.lp-campo label{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--tan)}
+.lp-campo input,.lp-campo select,.lp-campo textarea{
+  font-family:var(--sans);font-size:15.5px;color:var(--espresso);
+  background:var(--panna);border:2px solid var(--panna);border-radius:9px;
+  padding:13px 14px;width:100%;outline:0;
+}
+.lp-campo textarea{resize:vertical;min-height:96px}
+.lp-campo input:focus,.lp-campo select:focus,.lp-campo textarea:focus{border-color:var(--arancio)}
+.lp-campo input::placeholder,.lp-campo textarea::placeholder{color:#8d6a4d}
+@media (max-width:640px){.lp-campi{grid-template-columns:1fr}}
+.lp-consenso{display:flex;align-items:flex-start;gap:12px;margin-top:22px}
+.lp-consenso input{
+  appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin-top:2px;cursor:pointer;
+  background:var(--panna);border:2px solid var(--panna);border-radius:5px;
+}
+.lp-consenso input:checked{background:var(--arancio);border-color:var(--arancio)}
+.lp-consenso input:checked::after{content:"✓";display:block;text-align:center;line-height:18px;color:var(--panna);font-weight:900;font-size:14px}
+.lp-consenso label{font-family:var(--sans);font-size:13.5px;line-height:1.5;color:var(--beige)}
+/* l'arancio sul marrone fa 3.25:1 e a 14px non basta: il turchese fa 5.6 */
+.lp-consenso a{color:var(--azz)}
+.lp-invia{
+  display:block;width:100%;margin-top:22px;cursor:pointer;
+  font-family:var(--btn);font-weight:900;font-size:clamp(16px,1.8vw,20px);
+  letter-spacing:.12em;text-transform:uppercase;
+  background:var(--panna);color:var(--espresso);border:2px solid var(--panna);
+  border-radius:10px;padding:17px 24px;
+  transition:background .2s,color .2s,opacity .2s;
+}
+.lp-invia:hover:not(:disabled){background:var(--arancio);border-color:var(--arancio);color:var(--panna)}
+/* spento ma ancora leggibile: a .45 la scritta scendeva a 1.5:1 */
+.lp-invia:disabled{opacity:.72;cursor:not-allowed}
+.lp-nota{font-family:var(--sans);font-size:12.5px;color:var(--tan);text-align:center;margin-top:14px}
+.lp-grazie{text-align:center;padding:clamp(20px,4vw,40px) 0}
+.lp-grazie h3{font-family:var(--bronco);font-weight:400;font-synthesis:none;text-transform:uppercase;font-size:clamp(26px,3.4vw,40px);color:var(--panna);margin-bottom:12px}
+.lp-grazie p{font-family:var(--sans);color:var(--beige)}
+
+/* --- footer minimo --- */
+.lp-foot{background:var(--espresso);text-align:center;padding:34px 20px 30px}
+.lp-foot .ico{width:min(150px,34vw);height:auto;aspect-ratio:272.48/160.07;color:var(--azz);display:block;margin:0 auto 10px}
+.lp-foot p{font-family:var(--bronco);font-weight:400;font-synthesis:none;text-transform:uppercase;color:var(--panna);font-size:clamp(18px,2.4vw,26px);letter-spacing:.05em}
+.lp-foot small{display:block;font-family:var(--sans);font-size:12px;color:var(--tan);margin-top:12px}
+.lp-foot a{color:var(--azz)}
 
 </style>
-<!-- Dati strutturati: recuperati dal sito precedente, il logo aggiornato
-     a quello definitivo. Servono a Google per capire chi siamo. -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "MusicGroup",
-    "name": "Hot Joe & The Coffeekillers",
-    "alternateName": "The Coffeekillers",
-    "url": "https://thecoffeekillers.com",
-    "logo": "https://thecoffeekillers.com/images/logo/hjck-logo-positivo.svg",
-    "image": "https://thecoffeekillers.com/images/og-image.jpg",
-    "description": "Band country live da Brescia. Locali, feste e sagre di paese, festival, eventi corporate e matrimoni. Repertorio di 50+ brani con Nashville mood e cuore italiano.",
-    "genre": ["Country", "Country Rock", "Americana"],
-    "foundingLocation": {
-      "@type": "Place",
-      "name": "Brescia",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Brescia",
-        "addressRegion": "Lombardia",
-        "addressCountry": "IT"
-      }
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Italia"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "Booking",
-      "email": "music@thecoffeekillers.com",
-      "telephone": "+393937011409"
-    },
-    "sameAs": [
-      "https://www.instagram.com/thecoffeekillers/",
-      "https://m.facebook.com/hotjoeandthecoffeekillers",
-      "https://www.youtube.com/@thecoffeekillers"
-    ],
-    "member": [
-      { "@type": "Person", "name": "Michele Frosio", "roleName": "Guitars & Lead Voice" },
-      { "@type": "Person", "name": "Davide Miglietti", "roleName": "Drums & Vocals" },
-      { "@type": "Person", "name": "Lorenzo Marini", "roleName": "Keys & Harmonica" },
-      { "@type": "Person", "name": "Stefano Martinelli", "roleName": "Guitars & Lap Steel" },
-      { "@type": "Person", "name": "Riccardo Loda", "roleName": "Bass & DoubleBass" }
-    ]
-  }
-</script>
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Guitar - Zach Top (cover by The Coffeekillers)",
-    "description": "Hot Joe & The Coffeekillers suonano dal vivo \"Guitar\" di Zach Top: una canzone intera, registrata durante un live all'aperto.",
-    "thumbnailUrl": "https://i.ytimg.com/vi/mwindsVYrmo/maxresdefault.jpg",
-    "uploadDate": "2026-08-11",
-    "duration": "PT3M10S",
-    "embedUrl": "https://www.youtube.com/embed/mwindsVYrmo",
-    "contentUrl": "https://www.youtube.com/watch?v=mwindsVYrmo",
-    "publisher": {
-      "@type": "MusicGroup",
-      "name": "Hot Joe & The Coffeekillers",
-      "url": "https://thecoffeekillers.com"
-    }
-  }
-</script>
 </head>
+
 <body>
 <script>document.documentElement.classList.add("js");</script>
 
-<!-- ==================== NAV (replica testata Kruse Brothers, senza striscia annuncio) ==================== -->
-<header class="nav">
-  <div class="nav-in">
-    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Apri il menu"><span></span><span></span><span></span></button>
-    <ul class="nav-side sx">
-      <li><a href="chi-siamo.html">Chi siamo</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="country.html">Il country</a></li>
-    </ul>
-    <a class="nav-logo" href="index.html" aria-label="Hot Joe &amp; The CoffeeKillers &mdash; home">
-      <img src="images/logo/hjck-logo-negativo.svg" alt="Logo Hot Joe &amp; The CoffeeKillers" />
-    </a>
-    <ul class="nav-side dx">
-      <li><a href="date.html">Date</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a class="nav-cta" href="preventivo.html">Preventivo</a></li>
-    </ul>
-  </div>
-  <nav class="nav-drawer" id="nav-drawer" aria-label="Menu">
-    <ul>
-      <li><a href="chi-siamo.html">Chi siamo</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="country.html">Il country</a></li>
-      <li><a href="date.html">Date</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="preventivo.html">Preventivo</a></li>
-    </ul>
-  </nav>
-</header>
+<!-- Testata ridotta al solo logo, che NON e' un link: da una landing non si
+     esce, si compila. -->
+<div class="lp-top">
+  <img src="images/logo/hjck-logo-negativo.svg" alt="Hot Joe &amp; The CoffeeKillers" />
+</div>
 
-<!-- ==================== 1. HERO (stile sito live, senza logo grande) ==================== -->
-<section class="hero-cine" id="top">
-  <div class="hero6 kb">
-
-    <!-- la fotografia sta sotto, a tutto campo e a colori veri -->
-    <img class="hero6-bg" src="images/band-giardino-hero.webp"
-         alt="Hot Joe &amp; The Coffeekillers, i cinque musicisti della band country di Brescia abbracciati in giardino, tra cappelli da cowboy, camicie a quadri e salopette"
-         fetchpriority="high" decoding="async">
-    <!-- il velo non copre tutto: scende da sinistra e dal basso, dove sta il
-         testo, e lascia libero l'angolo in alto a destra della foto -->
-    <span class="hero6-velo" aria-hidden="true"></span>
-
-    <div class="hero6-in">
-      <div class="hero6-testo rise">
-        <h1>Vivi l&rsquo;energia <span class="hero6-acc">travolgente</span> del country live.</h1>
-        <p class="hero6-sub">Una band bresciana dall&rsquo;anima internazionale, pronta a regalarti
-          eventi country indimenticabili.</p>
+<!-- ==================== 1. HERO — la promessa dell'inserzione, uguale ==================== -->
+<section class="lp-hero">
+  <img class="lp-hero-bg" src="images/terrazza-live.webp"
+       alt="Hot Joe &amp; The CoffeeKillers dal vivo al tramonto: chitarre, batteria e tastiere sul palco allestito in terrazza"
+       fetchpriority="high" decoding="async">
+  <span class="lp-velo" aria-hidden="true"></span>
+  <div class="lp-hero-in">
+    <div class="lp-hero-testo rise">
+      <h1>Hai un locale e vorresti musica <span class="acc">country</span> dal vivo?</h1>
+      <p class="lp-sub">Siamo una band country di Brescia. Arriviamo con audio e luci nostri, montiamo,
+        suoniamo un paio d&rsquo;ore e smontiamo: tu devi solo aprire le porte.
+        Raccontaci che serata hai in mente e ti diciamo subito come la faremmo &mdash; e quanto costa.</p>
+      <div class="lp-cta-row">
+        <a class="lp-btn" href="#richiesta">Chiedi la tua proposta</a>
+        <span class="lp-rassicura">Risposta entro 24 ore &middot; nessun impegno</span>
       </div>
     </div>
-
   </div>
 </section>
+<div class="lp-prove">
+  <ul class="lp-prove-in">
+    <li><b>2018</b><span>dal</span></li>
+    <li><b>+200</b><span>serate suonate</span></li>
+    <li><b>5</b><span>sul palco</span></li>
+    <li><b>Tutto il Nord Italia</b><span>base Brescia</span></li>
+  </ul>
+</div>
 
-<!-- ==================== 2. ASCOLTACI DAL VIVO (video incorporato) ==================== -->
+<!-- ==================== 2. IL VIDEO — la prova, subito ==================== -->
 <section class="section video-b sporco strappo" id="video">
   <div class="wrap rv">
-    <h2 class="sec-title">Ascoltaci dal vivo!</h2>
-    <p class="lead-p">Questo &egrave; ci&ograve; che ti aspetta al tuo prossimo evento: chitarre, armonie vocali,
-      solide basi ritmiche e quella sensazione di un viaggio negli U.S.A. che solo il country sa dare.</p>
+    <h2 class="sec-title">Questo &egrave; come suoniamo davvero.</h2>
+    <p class="lead-p">Non trenta secondi montati bene: una canzone dall&rsquo;inizio alla fine, registrata dal vivo.
+      Se ti piace quello che senti, il resto della serata suona cos&igrave;.</p>
     <div class="vframe">
-      <!-- Facciata: si vede la copertina locale e l'iframe di YouTube nasce
-           SOLO al primo clic, dentro la pagina (non si va piu' su YouTube).
-           Un embed a freddo pesa quasi 1 MB di script di terze parti: cosi'
-           lo paga solo chi il video lo guarda davvero. -->
       <div class="inner" id="vb-inner" data-yt="mwindsVYrmo">
-        <img src="images/video-guitar-cover.webp" alt="Hot Joe &amp; The CoffeeKillers dal vivo al tramonto in riva al fiume: Mike canta con la chitarra acustica, la band suona alle sue spalle" loading="lazy" />
-        <button class="vb-play" type="button" aria-label="Riproduci il video: Guitar (Zach Top) &mdash; Hot Joe &amp; The CoffeeKillers">
+        <img src="images/video-guitar-cover.webp" alt="Hot Joe &amp; The CoffeeKillers dal vivo: Mike canta con la chitarra acustica, la band suona alle sue spalle" loading="lazy" />
+        <button class="vb-play" type="button" aria-label="Riproduci il video">
           <svg viewBox="0 0 24 24" width="38" height="38" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
         </button>
         <span class="vcap">Guitar &middot; Zach Top</span>
@@ -2028,207 +2099,39 @@ body::before{
   </div>
 </section>
 
-<!-- ==================== 3. COSA FACCIAMO ==================== -->
-<section class="section birra2 on-light sporco poco" id="cosa-facciamo">
+<!-- ==================== 3. COSA TI TROVI, IN CONCRETO ==================== -->
+<section class="section birra2 on-light sporco poco">
   <div class="wrap rv">
-    <div class="birra2-grid">
-      <div>
-        <h2 class="sec-title">Cosa facciamo?</h2>
-        <p class="lead-p">Che tu voglia ascoltare un buon concerto, rilassarti con ballads romantiche davanti
-          a un cocktail o scatenarti sui tavoli con le party songs pi&ugrave; ritmate, creiamo la colonna sonora
-          ideale per il tuo evento. Tra inediti e cover dei giganti di Nashville &mdash; come <b>Zach Top</b>,
-          <b>Chris Stapleton</b>, <b>Brad Paisley</b>, <b>The Zac Brown Band</b>, <b>The Kruse Brothers</b>,
-          <b>Blake Shelton</b> &mdash; portiamo in scena l&rsquo;autentico spirito americano. Il nostro sound
-          unisce sonorit&agrave; rustiche, solide basi ritmiche, intrecci di strumenti a corda e ricche armonie
-          vocali, il tutto condito dall&rsquo;inconfondibile carattere coffee-killer. Ogni performance diventa
-          cos&igrave; un viaggio travolgente nel cuore del neo-traditional country.</p>
+    <h2 class="sec-title" style="text-align:center;max-width:22ch;margin:0 auto clamp(30px,4vw,44px)">Cosa ti trovi in casa</h2>
+    <div class="lp-punti stagger">
+      <div class="lp-punto">
+        <span class="ico i-stella" aria-hidden="true"></span>
+        <h3>Audio e luci nostri</h3>
+        <p>Non devi noleggiare niente. Montiamo, suoniamo e smontiamo: fino a 250 persone siamo autosufficienti.</p>
       </div>
-      <div class="photo-r">
-        <img src="images/terrazza-live.webp" alt="Hot Joe &amp; The CoffeeKillers dal vivo sulla terrazza al tramonto: chitarre, batteria e tastiere sul palco, con la collina e i cipressi sullo sfondo" loading="lazy" />
+      <div class="lp-punto">
+        <span class="ico i-cappello" aria-hidden="true"></span>
+        <h3>Ci basta poco spazio</h3>
+        <p>5 &times; 3 metri e una presa di corrente. Ci siamo infilati in palchetti, cortili e angoli dietro il bancone.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== 4. DOVE DIAMO IL MEGLIO (sezione sua, sei card) ==================== -->
-<section class="section dove-sec sporco specchio strappo" id="dove">
-  <div class="wrap rv">
-    <h2 class="sec-title">Dove diamo il meglio?</h2>
-    <div class="ctx-cards stagger">
-      <div class="ctx-card">
-        <span class="ico i-chitarra c-rug" aria-hidden="true"></span>
-        <h3>Locali &amp; Pub</h3>
-        <p>Due set dentro spazi anche piccoli: ci bastano 5 &times; 3 m e una presa di corrente.
-          Volume calibrato sul locale, cos&igrave; al bancone si continua a ordinare e a parlare.</p>
+      <div class="lp-punto">
+        <span class="ico i-chitarra" aria-hidden="true"></span>
+        <h3>Volume su misura</h3>
+        <p>Set da 1h30 a 2h30. Calibriamo sul locale: al bancone si continua a ordinare e a parlare.</p>
       </div>
-      <div class="ctx-card">
-        <span class="ico i-ferri c-azs" aria-hidden="true"></span>
-        <h3>Ranch &amp; Maneggi</h3>
-        <p>Il nostro habitat naturale: balle di fieno, stivali e line dance. Scaletta pensata
-          per chi balla, con i tempi giusti per le coreografie country.</p>
-      </div>
-      <div class="ctx-card">
-        <span class="ico i-stella c-rug" aria-hidden="true"></span>
-        <h3>Feste &amp; Sagre</h3>
-        <p>Piazze, oratori e feste di paese, dal pomeriggio a notte. Audio e luci sono nostri:
-          montiamo, suoniamo e smontiamo senza far pensare a niente il comitato.</p>
-      </div>
-      <div class="ctx-card">
-        <span class="ico i-teschio c-azs" aria-hidden="true"></span>
-        <h3>Festival &amp; Rassegne</h3>
-        <p>Palchi grandi e cambi rapidi: stage plan e input list arrivano al service in anticipo,
-          cos&igrave; il soundcheck non mangia la serata.</p>
-      </div>
-      <div class="ctx-card">
-        <span class="ico i-cappello c-rug" aria-hidden="true"></span>
-        <h3>Aziende &amp; Privati</h3>
-        <p>Inaugurazioni, cene e feste in villa. Set acustico e leggero durante l&rsquo;aperitivo,
-          band al completo dopo cena: il volume segue il momento.</p>
-      </div>
-      <div class="ctx-card">
-        <span class="ico i-stivale c-azs" aria-hidden="true"></span>
-        <h3>Matrimoni</h3>
-        <p>Cerimonia, aperitivo e festa: dalle ballads sotto il pergolato alle party song sui tavoli.
-          Il brano del vostro ingresso lo prepariamo su richiesta.</p>
+      <div class="lp-punto">
+        <span class="ico i-ferri" aria-hidden="true"></span>
+        <h3>Scaletta su misura</h3>
+        <p>Circa 50 brani in repertorio, ne suoniamo 20: ballads davanti al cocktail o party song sui tavoli, decidi tu.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== 5. IL PALCO — solo il video, niente altro ==================== -->
-<section class="palco-solo" id="palco" aria-label="Il palco allestito: ripresa dall'alto">
-  <div class="palco-video rv">
-    <video src="images/palco-villa-gussago.mp4" poster="images/palco-villa-gussago.webp"
-      autoplay muted loop playsinline preload="none" width="1280" height="720"
-      aria-label="Ripresa dall'alto del palco allestito dei Coffeekillers nel giardino di una villa a Gussago: batteria, tastiere, chitarre, casse e luci, con le file di sedie del pubblico e i vigneti sullo sfondo"></video>
-  </div>
-</section>
-
-<!-- ==================== 6. CALENDARIO (impianto della A7: scheda + elenco) ====================
-     Ogni data porta con se' i suoi dati negli attributi data-*: sono quelli
-     che il popup legge. Per aggiungere o cambiare una data si tocca SOLO
-     l'HTML qui sotto, il JavaScript non va aperto.
-       data-ics-inizio / data-ics-fine : ora locale, formato AAAAMMGGThhmmss
-       data-maps                       : indirizzo o link Google Maps
-       data-dettagli                   : il testo del popup (vuoto = "in arrivo")
-     ============================================================================ -->
-<section class="section cal-sec on-light sporco strappo" id="date">
-  <div class="wrap rv">
-    <h2 class="sec-title">Dove ci trovi nel 2026.</h2>
-
-    <div class="next-card">
-      <div class="when">
-        <div class="d">23</div>
-        <div class="m">Ago</div>
-      </div>
-      <div>
-        <h3>Evento Country &mdash; B Wild Ranch</h3>
-        <div class="where">Belluno (BL) &middot; 2026</div>
-      </div>
-      <button class="btn-dark dt-open" type="button"
-        data-titolo="Evento Country — B Wild Ranch"
-        data-quando="Domenica 23 agosto 2026, dalle 21:00"
-        data-dove="B Wild Ranch — Belluno (BL)"
-        data-maps="B Wild Ranch, Belluno BL"
-        data-dettagli=""
-        data-ics-inizio="20260823T210000" data-ics-fine="20260823T233000">Dettagli</button>
-    </div>
-
-    <div class="cal-rows">
-      <div class="cal-row">
-        <span class="dd">28 Ago</span><span class="nm">Evento Country</span><span class="pv">Modena (MO)</span>
-        <button class="cal-dett dt-open" type="button"
-          data-titolo="Evento Country"
-          data-quando="Venerdì 28 agosto 2026"
-          data-dove="Modena (MO)"
-          data-maps="Modena MO"
-          data-dettagli=""
-          data-ics-inizio="20260828T210000" data-ics-fine="20260828T233000">Dettagli</button>
-      </div>
-      <div class="cal-row">
-        <span class="dd">29 Ago</span><span class="nm">Serata in montagna</span><span class="pv">Aosta (AO)</span>
-        <button class="cal-dett dt-open" type="button"
-          data-titolo="Serata in montagna"
-          data-quando="Sabato 29 agosto 2026"
-          data-dove="Aosta (AO)"
-          data-maps="Aosta AO"
-          data-dettagli=""
-          data-ics-inizio="20260829T210000" data-ics-fine="20260829T233000">Dettagli</button>
-      </div>
-      <div class="cal-row">
-        <span class="dd">05 Set</span><span class="nm">Matrimonio</span><span class="pv">Siena (SI)</span>
-        <button class="cal-dett dt-open" type="button"
-          data-titolo="Matrimonio"
-          data-quando="Sabato 5 settembre 2026"
-          data-dove="Siena (SI)"
-          data-maps="Siena SI"
-          data-dettagli="Evento privato: si suona solo per gli invitati."
-          data-ics-inizio="20260905T210000" data-ics-fine="20260905T233000">Dettagli</button>
-      </div>
-      <div class="cal-row">
-        <span class="dd">10 Ott</span><span class="nm">Inaugurazione Beach Fly</span><span class="pv">Brescia (BS)</span>
-        <button class="cal-dett dt-open" type="button"
-          data-titolo="Inaugurazione Beach Fly"
-          data-quando="Sabato 10 ottobre 2026"
-          data-dove="Beach Fly — Brescia (BS)"
-          data-maps="Beach Fly Brescia"
-          data-dettagli=""
-          data-ics-inizio="20261010T210000" data-ics-fine="20261010T233000">Dettagli</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== 7. LINEUP (dal sito live) ==================== -->
-<section class="section lu-sec on-light sporco poco specchio" id="lineup">
+<!-- ==================== 4. HANNO GIA' BALLATO CON NOI ==================== -->
+<section class="section brands-sec sporco">
   <div class="wrap">
-    <div class="lu-head fade-in">
-      <h2 class="sec-title">La nostra <span class="lu-it">LineUp</span></h2>
-    </div>
-    <div class="lu-grid stagger">
-      <article class="member">
-        <div class="photo"><img src="images/mike-ritratto-muro.webp" alt="Michele &ldquo;Mike&rdquo; Frosio con cappello da cowboy e chitarra acustica, davanti a un muro arancio" loading="lazy" /></div>
-        <h4>Michele &ldquo;Mike&rdquo; Frosio</h4>
-        <div class="role">Guitars &amp; Lead Voice</div>
-        <p class="bio">Carisma ed energia. Frontman spiccato, ha trovato nel country il palcoscenico ideale per unire tecnica e grande passione. Commerciale, esuberante, spirito libero, fatto di conoscenza musicale e autenticità.</p>
-        <p class="quote">“Ma l'hamburger c'è anche vegetale?”</p>
-      </article>
-      <article class="member">
-        <div class="photo"><img src="images/miglio-ritratto-muro.webp" alt="Davide &ldquo;Miglio&rdquo; Miglietti con le bacchette in bocca, davanti a un muro arancio" loading="lazy" /></div>
-        <h4>Davide &ldquo;Miglio&rdquo; Miglietti</h4>
-        <div class="role">Drums &amp; Vocals</div>
-        <p class="bio">Precisione, creatività ed equilibrio. Gigante buono, ma testardo come un mulo. Aggiusta persone di professione, rompe le scatole per hobby.</p>
-        <p class="quote">“Potevamo fare di meglio.”</p>
-      </article>
-      <article class="member">
-        <div class="photo"><img src="images/larry-ritratto-muro.webp" alt="Lorenzo &ldquo;Larry&rdquo; Marini appoggiato alla sua tastiera rossa, davanti a un muro arancio" loading="lazy" /></div>
-        <h4>Lorenzo &ldquo;Larry&rdquo; Marini</h4>
-        <div class="role">Keys</div>
-        <p class="bio">Colore e positività. Silenzioso, ma non servono parole quando le sue mani creano melodie che sembrano venire dal cuore del Tennessee.</p>
-        <p class="quote">“Raga questo è troppo country!”</p>
-      </article>
-      <article class="member">
-        <div class="photo"><img src="images/ste-ritratto-muro.webp" alt="Stefano &ldquo;Ste&rdquo; Martinelli con la Telecaster bianca e la salopette, davanti a un muro arancio" loading="lazy" /></div>
-        <h4>Stefano &ldquo;Ste&rdquo; Martinelli</h4>
-        <div class="role">Guitars &amp; Lap Steel</div>
-        <p class="bio">Le mani più veloci del west. Il chitarrista di cui ogni country band ha bisogno: tecnica, salopette e ricambi di ogni genere, finalmente il color country è nella nostra palette.</p>
-        <p class="quote">“Ti serve «qualunque cosa»? Ce l'ho.”</p>
-      </article>
-      <article class="member">
-        <div class="photo"><img src="images/richi-ritratto-muro.webp" alt="Riccardo &ldquo;Richi&rdquo; Loda che alza il basso con la lingua di fuori, davanti a un muro arancio" loading="lazy" /></div>
-        <h4>Riccardo &ldquo;Richi&rdquo; Loda</h4>
-        <div class="role">Bass &amp; DoubleBass</div>
-        <p class="bio">Tecnica, talento e groove. Timing svizzero, orologio un po' meno: arriverà sempre in ritardo, ma mai senza una birra in mano e il basso pronto a incantare.</p>
-        <p class="quote">“Birretta?”</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== 8. BRANDS (dal sito live) ==================== -->
-<section class="section brands-sec sporco" id="brands">
-  <div class="wrap">
-    <h2 class="sec-title rv">Abbiamo fatto <span class="brands-accent">ballare</span>.</h2>
+    <h2 class="sec-title rv" style="text-align:center">Hanno gi&agrave; ballato con noi.</h2>
     <div class="brand-grid stagger">
       <div class="brand-cell"><img class="brand-logo" src="images/Coca-Cola.svg" alt="Coca-Cola" loading="lazy" /></div>
       <div class="brand-cell"><img class="brand-logo" src="images/Ca-del-Bosco.svg" alt="Ca' del Bosco" loading="lazy" /></div>
@@ -2239,317 +2142,187 @@ body::before{
   </div>
 </section>
 
-<!-- ==================== 9. SOCIALS (dal sito live) ==================== -->
-<section class="section socials-sec on-light sporco poco" id="socials">
-  <div class="wrap">
-    <h2 class="sec-title rv">Seguici sui <span class="socials-accent">social.</span></h2>
-    <div class="split">
-      <div class="rv">
-        <div class="ig-card">
-          <div class="ig-card-head">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-            <div class="ig-handle">@thecoffeekillers</div>
-          </div>
-          <p class="ig-card-sub">I nostri ultimi scatti e aggiornamenti live:</p>
-          <div class="ig-strip">
-            <a href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noreferrer"><img src="images/live-notte.webp" alt="The Coffeekillers dopo un live serale in piazza" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noreferrer"><img src="images/band-giardino-salopette.webp" alt="La band in giardino, prima del live" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noreferrer"><img src="images/live-allaperto-pomeriggio.webp" alt="Live country all'aperto, di pomeriggio" loading="lazy" /></a>
-            <a href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noreferrer"><img src="images/band-fiume-o2.webp" alt="Risate tra i cinque musicisti in riva al fiume" loading="lazy" /></a>
-          </div>
-          <a class="btn-dark" href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noreferrer">Vai al profilo</a>
-        </div>
+<!-- ==================== 5. LE QUATTRO DOMANDE CHE BLOCCANO ====================
+     Vanno sciolte PRIMA del modulo: se restano in testa, il modulo non si
+     compila. -->
+<section class="section socials-sec on-light sporco poco">
+  <div class="wrap rv">
+    <h2 class="sec-title" style="text-align:center;max-width:24ch;margin:0 auto clamp(28px,4vw,42px)">Le domande che ci fanno tutti</h2>
+    <div class="lp-obiezioni stagger">
+      <div class="lp-ob">
+        <h3>Quanto costa?</h3>
+        <p>Dipende da quanto &egrave; grande la serata, da quanto dobbiamo viaggiare e dal service.
+          Nella maggior parte dei casi si sta fra <b>1.000&nbsp;&euro; e 2.500&nbsp;&euro;</b>. Te lo diciamo prima,
+          per iscritto, senza sorprese.</p>
       </div>
-      <div class="rv rv--right socials-right">
-        <div class="yt-wrapper">
-          <iframe src="https://www.youtube.com/embed/yKFP1AAzxFM?rel=0&amp;modestbranding=1" title="The Coffeekillers — YouTube" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          <a class="yt-fallback" href="https://www.youtube.com/@thecoffeekillers" target="_blank" rel="noopener" aria-label="Apri il canale YouTube">
-            <span class="yt-play">▶</span>
-            <span class="yt-label">Guarda su YouTube</span>
-          </a>
-        </div>
+      <div class="lp-ob">
+        <h3>Quanto suonate?</h3>
+        <p>Da <b>un&rsquo;ora e mezza a due ore e mezza</b>, di solito in due set. Se la serata gira,
+          restiamo volentieri qualcosa in pi&ugrave;.</p>
+      </div>
+      <div class="lp-ob">
+        <h3>Devo procurarvi il service?</h3>
+        <p>No. <b>Audio e luci sono nostri</b> e li portiamo noi. Sopra le 250 persone chiamiamo il nostro
+          service di fiducia, e ce ne occupiamo comunque noi.</p>
+      </div>
+      <div class="lp-ob">
+        <h3>Venite anche fuori zona?</h3>
+        <p>Siamo di <b>Brescia</b> e giriamo tutto il Nord Italia. Per il resto d&rsquo;Italia si fa,
+          basta metterlo in conto nella proposta.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== 10. CTA INSEGNA — RICHIEDI UN PREVENTIVO ==================== -->
-<section class="section cta sporco" id="contact">
+<!-- ==================== 6. IL MODULO — sei campi, non uno di piu' ==================== -->
+<section class="section lp-form-sec sporco" id="richiesta">
   <div class="wrap">
-    <div class="cta-panel rv">
-      <span class="cta-corner tl ico i-stella" aria-hidden="true"></span>
-      <span class="cta-corner tr ico i-stella" aria-hidden="true"></span>
-      <span class="cta-corner bl ico i-stella" aria-hidden="true"></span>
-      <span class="cta-corner br ico i-stella" aria-hidden="true"></span>
-      <p class="cta-eyebrow">— Richiedi un preventivo —</p>
-      <h2 class="sec-title">Una serata con noi?</h2>
-      <p class="cta-lead">Raccontaci il tuo evento, compila i dettagli e ti facciamo la nostra proposta!</p>
-      <a class="cta-btn" href="preventivo.html">Richiedi un preventivo</a>
-    </div>
-  </div>
-</section>
+    <div class="lp-form-box rv">
+      <h2 class="sec-title">Raccontaci la serata</h2>
+      <p class="lp-form-intro">Bastano trenta secondi. Ti rispondiamo entro 24 ore con proposta,
+        scaletta tipo e cachet &mdash; senza impegno.</p>
 
-<!-- ==================== 12. FOOTER (variante ridotta) ==================== -->
-<footer class="footer footer--ridotta">
-  <div class="payoff-edge tartan"></div>
+      <form id="lp-form" novalidate>
+        <div class="lp-campi">
+          <div class="lp-campo">
+            <label for="lp-nome">Come ti chiami</label>
+            <input id="lp-nome" name="nome" type="text" autocomplete="name" placeholder="Nome e cognome" required />
+          </div>
+          <div class="lp-campo">
+            <label for="lp-luogo">Locale o evento</label>
+            <input id="lp-luogo" name="luogo" type="text" placeholder="es. Osteria del Ponte, Brescia" required />
+          </div>
+          <div class="lp-campo">
+            <label for="lp-tipo">Che tipo di serata &egrave;</label>
+            <select id="lp-tipo" name="tipo" required>
+              <option value="">Scegli&hellip;</option>
+              <option>Locale o pub</option>
+              <option>Ranch o maneggio</option>
+              <option>Festa o sagra</option>
+              <option>Festival o rassegna</option>
+              <option>Evento aziendale o privato</option>
+              <option>Matrimonio</option>
+              <option>Altro</option>
+            </select>
+          </div>
+          <div class="lp-campo">
+            <label for="lp-data">Quando, all&rsquo;incirca</label>
+            <input id="lp-data" name="data" type="text" placeholder="es. sabato 13 giugno, o «primavera»" />
+          </div>
+          <div class="lp-campo">
+            <label for="lp-contatto">Dove ti rispondiamo</label>
+            <input id="lp-contatto" name="contatto" type="text" autocomplete="email" placeholder="E-mail o telefono" required />
+          </div>
+          <div class="lp-campo">
+            <label for="lp-persone">Quante persone, pi&ugrave; o meno</label>
+            <input id="lp-persone" name="persone" type="text" placeholder="es. un centinaio" />
+          </div>
+          <div class="lp-campo full">
+            <label for="lp-note">C&rsquo;&egrave; altro che dovremmo sapere?</label>
+            <textarea id="lp-note" name="note" placeholder="Spazio a disposizione, orari, se c'e' gi&agrave; un impianto&hellip; scrivi pure a braccio."></textarea>
+          </div>
+        </div>
 
-  <!-- la newsletter non e' piu' una fascia sospesa sopra il footer: e' la
-       prima riga del footer, dentro la stessa gabbia delle altre colonne
-       e chiusa da un filetto. -->
-  <div class="foot-nl" id="newsletter">
-    <div class="foot-nl-in">
-      <div>
-        <h3 class="foot-nl-tit">Ti aggiorniamo sulle <span class="nl-accent">date.</span></h3>
-      </div>
-      <form class="newsletter">
-        <input required type="email" placeholder="la-tua-mail@example.com" aria-label="La tua email" />
-        <button type="submit">Iscriviti</button>
+        <div class="lp-consenso">
+          <input type="checkbox" id="lp-privacy" required />
+          <label for="lp-privacy">Ho letto l&rsquo;<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a>
+            e acconsento al trattamento dei miei dati per ricevere una risposta.</label>
+        </div>
+
+        <button class="lp-invia" type="submit" id="lp-invia" disabled>Mandaci la richiesta</button>
+        <p class="lp-nota">Nessun impegno, nessuna telefonata a sorpresa: ti scriviamo e basta.</p>
       </form>
-    </div>
-  </div>
 
-  <div class="footer-cam">
-    <span class="ico i-camaleonte" role="img" aria-label="Il camaleonte, simbolo dei CoffeeKillers"></span>
-    <p class="footer-payoff">Long Live Country Music</p>
-  </div>
-  <div class="footer-rule" aria-hidden="true">
-    <span class="line"></span>
-    <span class="ico i-stella"></span>
-    <span class="line"></span>
-  </div>
-  <div class="footer-grid">
-    <div>
-      <h5>Hot Joe &amp; The CoffeeKillers</h5>
-      <p class="footer-big">Country live<br />since 2018.</p>
-      <!-- le icone social stanno solo qui: dal 01/09 sono uscite dalla testata -->
-      <div class="footer-social">
-        <a href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6c-2.6 0-2.9 0-3.9.06-1 .05-1.7.2-2.3.45-.63.24-1.16.57-1.7 1.1-.53.53-.86 1.06-1.1 1.7-.24.6-.4 1.3-.45 2.3C2.5 9.2 2.5 9.5 2.5 12s0 2.9.06 3.9c.05 1 .2 1.7.45 2.3.24.63.57 1.16 1.1 1.7.53.53 1.06.86 1.7 1.1.6.24 1.3.4 2.3.45 1 .05 1.3.06 3.9.06s2.9 0 3.9-.06c1-.05 1.7-.2 2.3-.45.63-.24 1.16-.57 1.7-1.1.53-.53.86-1.06 1.1-1.7.24-.6.4-1.3.45-2.3.05-1 .06-1.3.06-3.9s0-2.9-.06-3.9c-.05-1-.2-1.7-.45-2.3a4.7 4.7 0 0 0-1.1-1.7 4.7 4.7 0 0 0-1.7-1.1c-.6-.24-1.3-.4-2.3-.45-1-.05-1.3-.06-3.9-.06zm0 1.7c2.5 0 2.8 0 3.8.06 1 .05 1.5.2 1.9.35.5.18.8.4 1.2.77.36.36.6.7.77 1.16.14.37.3.92.34 1.92.05 1 .06 1.3.06 3.84s0 2.8-.06 3.8c-.05 1-.2 1.5-.34 1.9-.18.5-.4.8-.78 1.2-.36.36-.7.6-1.16.77-.37.14-.92.3-1.92.34-1 .05-1.3.06-3.84.06s-2.8 0-3.8-.06c-1-.05-1.5-.2-1.9-.34-.5-.18-.8-.4-1.2-.78-.36-.36-.6-.7-.77-1.16-.14-.37-.3-.92-.34-1.92-.05-1-.06-1.3-.06-3.84s0-2.8.06-3.8c.05-1 .2-1.5.34-1.9.18-.5.4-.8.78-1.2.36-.36.7-.6 1.16-.77.37-.14.92-.3 1.92-.34 1-.05 1.3-.06 3.84-.06zm0 2.9a4.9 4.9 0 1 0 0 9.7 4.9 4.9 0 0 0 0-9.7zm0 8a3.1 3.1 0 1 1 0-6.3 3.1 3.1 0 0 1 0 6.3zm6.2-8.2a1.14 1.14 0 1 1-2.3 0 1.14 1.14 0 0 1 2.3 0z"/></svg><span>Instagram</span></a>
-        <a href="https://m.facebook.com/hotjoeandthecoffeekillers" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3-.04-1.3-.13-2.5-.13-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5z"/></svg><span>Facebook</span></a>
-        <a href="https://www.youtube.com/@thecoffeekillers" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2s-.22-1.55-.9-2.23c-.85-.9-1.8-.9-2.24-.95C16.74 3.8 12 3.8 12 3.8h-.01s-4.73 0-7.86.22c-.44.05-1.39.05-2.24.95C1.2 5.65 1 7.2 1 7.2S.77 9 .77 10.83v1.7C.77 14.3 1 16.13 1 16.13s.22 1.55.89 2.23c.85.9 1.97.87 2.47.96 1.8.17 7.64.22 7.64.22s4.74-.01 7.87-.23c.44-.05 1.39-.06 2.24-.95.67-.68.9-2.23.9-2.23s.22-1.82.22-3.65v-1.7C23.22 9 23 7.2 23 7.2zM9.7 14.6V8.4l6.05 3.11L9.7 14.6z"/></svg><span>YouTube</span></a>
+      <div class="lp-grazie" id="lp-grazie" hidden>
+        <h3>Ricevuto, grazie!</h3>
+        <p>Ti rispondiamo entro 24 ore. Se hai fretta, scrivici su WhatsApp al
+          <a href="tel:+393937011409" style="color:var(--arancio)">+39 393 7011409</a>.</p>
       </div>
     </div>
-    <div>
-      <h5>Contatti</h5>
-      <ul>
-        <li><a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a></li>
-        <li><a href="tel:+393937011409">+39 393 7011409</a></li>
-        <li>Brescia — Italia</li>
-      </ul>
-    </div>
-    <div>
-      <h5>Naviga</h5>
-      <ul>
-        <li><a href="chi-siamo.html">Chi siamo</a></li>
-        <li><a href="country.html">Il country</a></li>
-        <li><a href="date.html">Date</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="preventivo.html">Richiedi preventivo</a></li>
-      </ul>
-    </div>
   </div>
-  <div class="footer-copy">
-    © 2026 Hot Joe &amp; The CoffeeKillers — All rights reserved. · Sviluppato con <a href="https://emporionelbosco.it" target="_blank" rel="noopener">Emporio nel Bosco</a>
-  </div>
+</section>
+
+<footer class="lp-foot">
+  <span class="ico i-camaleonte" role="img" aria-label="Il camaleonte, simbolo dei CoffeeKillers"></span>
+  <p>Long Live Country Music</p>
+  <small>&copy; 2026 Hot Joe &amp; The CoffeeKillers &mdash; Brescia, Italia</small>
 </footer>
 
-<!-- ==================== POPUP "DETTAGLI DATA" ====================
-     Uno solo per tutta la pagina: si riempie al volo con i data-* del
-     bottone che l'ha aperto. -->
-<div class="dt-modal" id="dt-modal" hidden>
-  <div class="dt-velo" data-chiudi></div>
-  <div class="dt-panel" role="dialog" aria-modal="true" aria-labelledby="dt-titolo">
-    <button class="dt-x" type="button" data-chiudi aria-label="Chiudi">&times;</button>
-    <span class="dt-kicker">Dettagli della data</span>
-    <h3 id="dt-titolo"></h3>
-    <ul class="dt-meta">
-      <li><span class="k">Quando</span><b id="dt-quando"></b></li>
-      <li><span class="k">Dove</span><b id="dt-dove"></b></li>
-    </ul>
-    <p class="dt-note" id="dt-note"></p>
-    <div class="dt-azioni">
-      <a class="btn-poster" id="dt-maps" href="#" target="_blank" rel="noopener">Indicazioni su Google&nbsp;Maps</a>
-      <button class="btn-dark" type="button" id="dt-ricorda">Ricordamela</button>
-    </div>
-    <!-- il pannellino del promemoria: compare solo dopo il clic -->
-    <div class="dt-ricorda-box" id="dt-ricorda-box" hidden>
-      <p class="dt-ricorda-tit">Ti mandiamo la sveglia 3 giorni prima.</p>
-      <p class="dt-ricorda-p">Scarica l&rsquo;evento: si aggiunge al calendario del telefono con un
-        promemoria gi&agrave; impostato <b>3 giorni prima</b>. Non ci lasci nessun dato.</p>
-      <div class="dt-azioni">
-        <a class="btn-dark" id="dt-ics" href="#" download="coffeekillers.ics">Aggiungi al mio calendario</a>
-        <a class="btn-poster" id="dt-gcal" href="#" target="_blank" rel="noopener">Apri in Google&nbsp;Calendar</a>
-      </div>
-      <p class="dt-ricorda-nota">Su Google Calendar il promemoria a 3 giorni va confermato a mano:
-        il file da scaricare ce l&rsquo;ha gi&agrave; dentro.</p>
-    </div>
-  </div>
-</div>
-
 <script>
-/* ====== POPUP DETTAGLI DATA + "RICORDAMELA" ==========================
-   Il promemoria non passa da noi: generiamo al volo un file .ics (lo
-   standard dei calendari) con dentro un allarme VALARM a -P3D, cioe'
-   TRE GIORNI PRIMA. Lo apre il calendario del telefono ed e' lui a
-   suonare. Zero backend, zero dati raccolti, zero privacy da gestire.
-   ==================================================================== */
+// Il video nasce dentro la pagina al primo clic: un embed a freddo pesa quasi
+// 1 MB di script di terze parti, e su una landing da inserzioni il tempo di
+// caricamento e' conversioni.
 (function(){
-  var modale = document.getElementById("dt-modal");
-  if(!modale) return;
-  var box = document.getElementById("dt-ricorda-box");
-  var apertoDa = null;
-
-  function esc(t){ return String(t||"").replace(/([,;\\])/g,"\\$1").replace(/\n/g,"\\n"); }
-
-  function ics(d){
-    var uid = "hjck-" + d.icsInizio + "@thecoffeekillers.com";
-    var ora = new Date().toISOString().replace(/[-:]/g,"").split(".")[0] + "Z";
-    return [
-      "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Hot Joe & The CoffeeKillers//Date//IT","CALSCALE:GREGORIAN",
-      "BEGIN:VEVENT",
-      "UID:"+uid,
-      "DTSTAMP:"+ora,
-      "DTSTART:"+d.icsInizio,
-      "DTEND:"+d.icsFine,
-      "SUMMARY:"+esc("Hot Joe & The CoffeeKillers — "+d.titolo),
-      "LOCATION:"+esc(d.dove),
-      "DESCRIPTION:"+esc(((d.dettagli||"")+" Info: thecoffeekillers.com").trim()),
-      "BEGIN:VALARM",
-      "TRIGGER:-P3D",
-      "ACTION:DISPLAY",
-      "DESCRIPTION:"+esc("Fra 3 giorni: "+d.titolo+" — Hot Joe & The CoffeeKillers"),
-      "END:VALARM",
-      "END:VEVENT","END:VCALENDAR"
-    ].map(piega).join("\r\n");
-  }
-
-  /* RFC 5545: nessuna riga oltre 75 ottetti. Si conta in BYTE, non in
-     caratteri: i trattini lunghi e le accentate ne occupano piu' di uno. */
-  function piega(riga){
-    var enc = new TextEncoder(), out = "", riga_ = riga, primo = true;
-    while(enc.encode(riga_).length > 75){
-      var n = 75 - (primo ? 0 : 1), taglio = n;
-      while(enc.encode(riga_.slice(0, taglio)).length > n) taglio--;
-      out += (primo ? "" : " ") + riga_.slice(0, taglio) + "\r\n";
-      riga_ = riga_.slice(taglio); primo = false;
-    }
-    return out + (primo ? "" : " ") + riga_;
-  }
-
-  function apri(btn){
-    var d = btn.dataset;
-    document.getElementById("dt-titolo").textContent = d.titolo || "";
-    document.getElementById("dt-quando").textContent = d.quando || "Da confermare";
-    document.getElementById("dt-dove").textContent   = d.dove   || "Da confermare";
-    var note = document.getElementById("dt-note");
-    note.textContent = d.dettagli || "I dettagli di questa serata (orario preciso, ingresso, come arrivare) arrivano a breve.";
-    document.getElementById("dt-maps").href =
-      "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(d.maps || d.dove || "");
-    // file .ics con l'allarme a 3 giorni
-    var a = document.getElementById("dt-ics");
-    a.href = URL.createObjectURL(new Blob([ics(d)], {type:"text/calendar;charset=utf-8"}));
-    a.setAttribute("download", (d.titolo||"data").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"") + ".ics");
-    // alternativa: Google Calendar
-    document.getElementById("dt-gcal").href =
-      "https://calendar.google.com/calendar/render?action=TEMPLATE"
-      + "&text=" + encodeURIComponent("Hot Joe & The CoffeeKillers — " + (d.titolo||""))
-      + "&dates=" + d.icsInizio + "/" + d.icsFine
-      + "&location=" + encodeURIComponent(d.dove || "")
-      + "&details=" + encodeURIComponent((d.dettagli||"") + " Info: thecoffeekillers.com");
-
-    box.hidden = true;
-    modale.hidden = false;
-    document.body.style.overflow = "hidden";
-    apertoDa = btn;
-    modale.querySelector(".dt-x").focus();
-  }
-
-  function chiudi(){
-    modale.hidden = true;
-    document.body.style.overflow = "";
-    if(apertoDa){ apertoDa.focus(); apertoDa = null; }
-  }
-
-  document.querySelectorAll(".dt-open").forEach(function(b){
-    b.addEventListener("click", function(){ apri(b); });
-  });
-  modale.querySelectorAll("[data-chiudi]").forEach(function(x){
-    x.addEventListener("click", chiudi);
-  });
-  document.addEventListener("keydown", function(e){
-    if(e.key === "Escape" && !modale.hidden) chiudi();
-  });
-  document.getElementById("dt-ricorda").addEventListener("click", function(){
-    box.hidden = !box.hidden;
+  var box=document.getElementById("vb-inner"); if(!box) return;
+  var btn=box.querySelector(".vb-play"); if(!btn) return;
+  btn.addEventListener("click",function(){
+    var f=document.createElement("iframe");
+    f.src="https://www.youtube.com/embed/"+box.dataset.yt+"?autoplay=1&rel=0&modestbranding=1";
+    f.title="Guitar (Zach Top) — Hot Joe & The CoffeeKillers, dal vivo";
+    f.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    f.referrerPolicy="strict-origin-when-cross-origin"; f.allowFullscreen=true;
+    box.classList.add("vb-on"); box.appendChild(f);
   });
 })();
 
-// Video "Ascoltaci dal vivo": la copertina lascia il posto all'iframe di
-// YouTube al primo clic, DENTRO la pagina. Prima del clic non parte
-// nessuno script di terze parti.
+// Modulo: il bottone resta spento finche' non c'e' il consenso privacy, poi
+// la richiesta parte verso Formspree — lo stesso destinatario del modulo di
+// preventivo, cosi' le richieste arrivano tutte nella stessa casella.
+// Nel corpo va anche "Origine: inserzione", per distinguerle dalle altre.
 (function(){
-  var box = document.getElementById("vb-inner");
-  if(!box) return;
-  var btn = box.querySelector(".vb-play");
-  if(!btn) return;
-  btn.addEventListener("click", function(){
-    var f = document.createElement("iframe");
-    f.src = "https://www.youtube.com/embed/" + box.dataset.yt + "?autoplay=1&rel=0&modestbranding=1";
-    f.title = "Guitar (Zach Top) — Hot Joe & The CoffeeKillers, dal vivo";
-    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-    f.referrerPolicy = "strict-origin-when-cross-origin";
-    f.allowFullscreen = true;
-    box.classList.add("vb-on");
-    box.appendChild(f);
-  });
-})();
-</script>
+  var form=document.getElementById("lp-form");
+  var privacy=document.getElementById("lp-privacy");
+  var invia=document.getElementById("lp-invia");
+  if(!form) return;
+  function sync(){ invia.disabled=!privacy.checked; }
+  privacy.addEventListener("change",sync); sync();
 
-<script>
-// Nav stile Kruse: trasparente in cima, scura e compatta scendendo
-(function(){
-  var nav=document.querySelector(".nav");
-  if(!nav) return;
-  function onScroll(){ nav.classList.toggle("solid", window.scrollY>60); }
-  window.addEventListener("scroll", onScroll, {passive:true});
-  onScroll();
-})();
-
-// Newsletter: replica il comportamento del sito live (nessun backend, solo conferma).
-document.querySelectorAll("form.newsletter").forEach(function(form){
   form.addEventListener("submit",function(e){
     e.preventDefault();
-    form.innerHTML='<span class="nl-done">★ Iscritto. Ci sentiamo presto.</span>';
-  });
-});
+    if(!privacy.checked){ privacy.focus(); return; }
+    if(!form.checkValidity()){ form.reportValidity(); return; }
 
-// Reveal allo scroll (traduzione vanilla dell'hook useReveal del sito live).
+    var v=function(id){ return (document.getElementById(id).value||"").trim(); };
+    var etichetta=invia.textContent;
+    invia.disabled=true; invia.textContent="Invio in corso\u2026";
+
+    fetch("https://formspree.io/f/xdabrrrr",{
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify({
+        Origine:"Landing inserzioni \u2014 musica-country-dal-vivo",
+        Nome:v("lp-nome"),
+        LocaleOEvento:v("lp-luogo"),
+        TipoDiSerata:v("lp-tipo"),
+        Quando:v("lp-data"),
+        Contatto:v("lp-contatto"),
+        Persone:v("lp-persone"),
+        Note:v("lp-note"),
+        ConsensoPrivacy:"S\u00ec \u2014 informativa letta e accettata il "+new Date().toLocaleString("it-IT")
+      })
+    }).then(function(res){
+      if(res.ok){
+        form.hidden=true;
+        document.getElementById("lp-grazie").hidden=false;
+        document.getElementById("richiesta").scrollIntoView({behavior:"smooth",block:"center"});
+      }else{
+        alert("Ops, l'invio non e' riuscito. Riprova, oppure scrivici su WhatsApp al +39 393 7011409.");
+      }
+    }).catch(function(){
+      alert("Errore di connessione. Controlla la rete e riprova.");
+    }).finally(function(){
+      invia.textContent=etichetta; sync();
+    });
+  });
+})();
+
+// Comparsa allo scorrimento, come in home
 (function(){
   var els=document.querySelectorAll(".fade-in, .rv, .stagger");
-  if(!("IntersectionObserver" in window)){
-    els.forEach(function(el){el.classList.add("in");});
-    return;
-  }
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.classList.add("in");
-        io.unobserve(e.target);
-      }
-    });
-  },{threshold:0.12});
-  els.forEach(function(el){io.observe(el);});
-})();
-</script>
-<script>
-// Menu mobile: apre/chiude il panetto a tendina
-(function(){
-  var b=document.querySelector(".nav-burger"), d=document.getElementById("nav-drawer");
-  if(!b||!d) return;
-  b.addEventListener("click",function(){
-    var open=d.classList.toggle("open");
-    b.setAttribute("aria-expanded", open?"true":"false");
-  });
+  if(!("IntersectionObserver" in window)){ els.forEach(function(el){el.classList.add("in")}); return; }
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }})},{threshold:.12});
+  els.forEach(function(el){io.observe(el)});
 })();
 </script>
 
@@ -2558,64 +2331,5 @@ document.querySelectorAll("form.newsletter").forEach(function(form){
      numeri raccontano meta' storia (e sulla landing delle inserzioni serve
      per capire se la campagna converte). -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9aebd7c8eb4d4dd29a6c1f9c9f03d7f4"}'></script>
-
-<script>
-/* ============================================================================
-   ANCHE IN HOME LE DATE PASSATE SPARISCONO DA SOLE
-   ----------------------------------------------------------------------------
-   Stessa idea della pagina Date: la data del giorno viene confrontata con
-   quella di ogni riga (che ce l'ha gia' dentro, in `data-ics-inizio`, perche'
-   serve al file .ics del promemoria). Le passate escono, e la scheda grande
-   in cima prende sempre la prima serata davvero futura.
-   Le date restano scritte nell'HTML: il JavaScript non va aperto.
-   ============================================================================ */
-(function(){
-  var MESI=["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"];
-  var oggi=new Date(); oggi.setHours(0,0,0,0);
-  function dataDi(b){
-    var v=b && b.dataset ? b.dataset.icsInizio : null;   // AAAAMMGGThhmmss
-    if(!v) return null;
-    return new Date(+v.slice(0,4), +v.slice(4,6)-1, +v.slice(6,8));
-  }
-
-  var future=[];
-  document.querySelectorAll(".cal-row").forEach(function(r){
-    var d=dataDi(r.querySelector(".dt-open"));
-    if(!d || d<oggi){ r.hidden=true; return; }
-    future.push({riga:r, d:d});
-  });
-  future.sort(function(a,b){ return a.d-b.d; });
-
-  var card=document.querySelector(".next-card");
-  if(!card) return;
-  var propria=dataDi(card.querySelector(".dt-open"));
-
-  if(propria && propria>=oggi) return;      // la scheda e' gia' aggiornata
-
-  if(!future.length){
-    // niente date in calendario: si toglie la scheda invece di mostrarne una scaduta
-    card.hidden=true;
-    var elenco=document.querySelector(".cal-rows");
-    if(elenco && !elenco.querySelector(".cal-row:not([hidden])")){
-      var avviso=document.createElement("p");
-      avviso.className="lead-p";
-      avviso.innerHTML='Stiamo chiudendo le prossime serate. Se vuoi portarci al tuo evento, <a href="preventivo.html">raccontacelo qui</a>.';
-      elenco.parentNode.insertBefore(avviso, elenco);
-    }
-    return;
-  }
-
-  var p=future[0], b=p.riga.querySelector(".dt-open");
-  card.querySelector(".when .d").textContent=String(p.d.getDate()).padStart(2,"0");
-  card.querySelector(".when .m").textContent=MESI[p.d.getMonth()];
-  card.querySelector("h3").textContent=b.dataset.titolo||p.riga.querySelector(".nm").textContent.trim();
-  card.querySelector(".where").textContent=
-    (b.dataset.dove||p.riga.querySelector(".pv").textContent.trim())+" · "+p.d.getFullYear();
-  // il bottone della scheda eredita i dati della data promossa
-  var bc=card.querySelector(".dt-open");
-  if(bc) Object.keys(b.dataset).forEach(function(k){ bc.dataset[k]=b.dataset[k]; });
-  p.riga.hidden=true;
-})();
-</script>
 </body>
 </html>

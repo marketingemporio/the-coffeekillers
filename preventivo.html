@@ -1,105 +1,1025 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Una serata con noi? — Richiedi un preventivo — The Coffeekillers</title>
-  <meta name="description" content="Richiedi un preventivo per Hot Joe & The Coffeekillers, band country live da Brescia. Locali, feste e sagre, festival, eventi privati, corporate e matrimoni: raccontaci la tua serata e ti ricontattiamo." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Una serata con noi? — Richiedi un preventivo — The Coffeekillers</title>
+<meta name="description" content="Richiedi un preventivo per Hot Joe & The Coffeekillers, band country live da Brescia. Locali, feste e sagre, festival, eventi privati, corporate e matrimoni: raccontaci la tua serata e ti ricontattiamo." />
+<link rel="canonical" href="https://thecoffeekillers.com/preventivo.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Hot Joe &amp; The CoffeeKillers" />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:url" content="https://thecoffeekillers.com/preventivo.html" />
+<meta property="og:title" content="Una serata con noi? — Richiedi un preventivo — The Coffeekillers" />
+<meta property="og:description" content="Richiedi un preventivo per Hot Joe & The Coffeekillers, band country live da Brescia. Locali, feste e sagre, festival, eventi privati, corporate e matrimoni: raccontaci la tua serata e ti ricontattiamo." />
+<!-- ⚠️ jpg e non webp: Facebook e WhatsApp gestiscono male il webp nelle anteprime -->
+<meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Rye&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ContactPage","name":"Richiedi un preventivo — The Coffeekillers","description":"Richiedi un preventivo per Hot Joe & The Coffeekillers, band country live da Brescia.","mainEntity":{"@type":"MusicGroup","name":"Hot Joe & The CoffeeKillers","email":"music@thecoffeekillers.com","telephone":"+39 393 7011409"}}
+</script>
+<style>
+/* ============ FONT ============ */
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Light.ttf");font-weight:300;font-display:swap}
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Medium.ttf");font-weight:500;font-display:swap}
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Bold.ttf");font-weight:700;font-display:swap}
+@font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Black.ttf");font-weight:900;font-display:swap}
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="images/HJCK_Logo2.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png" />
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+/* ============ TOKENS ============ */
+:root{
+  --espresso:#241005;
+  --espresso-2:#2E1509;
+  --nero:#180A02;
+  --caffe:#49240A;
+  --panna:#FBF5EA;
+  --beige:#EDDABD;
+  --tan:#BD8B65;
+  --arancio:#FA8600;
+  --ruggine:#CD5812;
+  --azz:#8BAEA4;
+  --azz-scuro:#5F837A;
+  --azz-testo:#3F5C55;    /* azzurro leggibile per i TESTI su fondo chiaro */
+  --azz-wash:#D8E5E0;
+  --bronco:"Bronco Valley","Rye",serif;
+  --serif:"LT Cushion",serif;
+  --sans:"Manrope",sans-serif;
+  --valley:"Valley","Rye",serif;
+  --cushion:"LT Cushion",serif;
+  --wrap:1180px;
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
+}
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://thecoffeekillers.com/preventivo.html" />
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:130px}
+body{
+  font-family:var(--sans);
+  background:var(--espresso);
+  color:var(--panna);
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Richiedi un preventivo — Hot Joe & The Coffeekillers",
-    "description": "Richiedi un preventivo per Hot Joe & The Coffeekillers, band country live da Brescia: locali, feste e sagre, festival, eventi privati.",
-    "url": "https://thecoffeekillers.com/preventivo.html",
-    "about": {
-      "@type": "MusicGroup",
-      "name": "Hot Joe & The Coffeekillers",
-      "url": "https://thecoffeekillers.com",
-      "email": "music@thecoffeekillers.com"
-    }
+/* il velluto: grana su tutta la pagina */
+body::after{
+  content:"";position:fixed;inset:0;z-index:80;pointer-events:none;
+  background:var(--grain);opacity:.07;
+}
+
+h1,h2,h3{
+  font-family:var(--bronco);
+  font-weight:400;
+  font-synthesis:none;
+  letter-spacing:.03em;
+  line-height:1.04;
+  text-transform:uppercase;
+}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+
+/* ============ ICONE (mask) ============ */
+.ico{
+  display:inline-block;background:currentColor;flex:none;
+  -webkit-mask:no-repeat center/contain;mask:no-repeat center/contain;
+}
+.i-teschio  {-webkit-mask-image:url("images/icone/teschio-longhorn.svg");mask-image:url("images/icone/teschio-longhorn.svg");aspect-ratio:373.99/176.81}
+.i-cactus   {-webkit-mask-image:url("images/icone/cactus.svg");mask-image:url("images/icone/cactus.svg");aspect-ratio:140.28/229.85}
+.i-cappello {-webkit-mask-image:url("images/icone/cappello-cowboy.svg");mask-image:url("images/icone/cappello-cowboy.svg");aspect-ratio:266.88/132.43}
+.i-ferri    {-webkit-mask-image:url("images/icone/ferri-di-cavallo.svg");mask-image:url("images/icone/ferri-di-cavallo.svg");aspect-ratio:267.1/184.4}
+.i-stivale  {-webkit-mask-image:url("images/icone/stivale.svg");mask-image:url("images/icone/stivale.svg");aspect-ratio:169.63/240.37}
+.i-camaleonte{-webkit-mask-image:url("images/icone/camaleonte.svg");mask-image:url("images/icone/camaleonte.svg");aspect-ratio:272.48/160.07}
+.i-stella   {-webkit-mask-image:url("images/icone/stella-sceriffo.svg");mask-image:url("images/icone/stella-sceriffo.svg");aspect-ratio:187.62/203.89}
+.i-chitarra {-webkit-mask-image:url("images/icone/chitarra.svg");mask-image:url("images/icone/chitarra.svg");aspect-ratio:128.45/317.28}
+
+/* ============ TARTAN ============ */
+.tartan{
+  background-color:var(--espresso-2);
+  background-image:
+    repeating-linear-gradient(90deg,
+      transparent 0 16px, rgba(205,88,18,.5) 16px 23px,
+      transparent 23px 40px, rgba(251,245,234,.22) 40px 41.5px,
+      transparent 41.5px 56px),
+    repeating-linear-gradient(0deg,
+      transparent 0 16px, rgba(205,88,18,.5) 16px 23px,
+      transparent 23px 40px, rgba(251,245,234,.22) 40px 41.5px,
+      transparent 41.5px 56px);
+}
+.payoff-edge{height:12px}
+
+/* ============ NAV ============ */
+/* ============ NAV stile sito Kruse Brothers, replica fedele:
+   striscia annuncio in cima, menu maiuscoletto a sinistra, logo grande
+   centrale, icone social a destra; nav trasparente con gradiente sull'hero,
+   scendendo si stacca e diventa barra fissa scura (JS in fondo) ============ */
+.annuncio{
+  background:var(--caffe);color:var(--panna);text-align:center;
+  font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  padding:9px 16px;position:relative;z-index:61;
+}
+.annuncio a{color:inherit;text-decoration:none}
+.annuncio a:hover{color:var(--arancio)}
+.nav{
+  position:absolute;top:36px;left:0;right:0;z-index:60;
+  background:linear-gradient(180deg,rgba(8,4,1,.94) 0%,rgba(8,4,1,.72) 46%,rgba(8,4,1,.28) 80%,transparent 100%);
+  padding-bottom:26px;
+  transition:background .3s,box-shadow .3s;
+}
+.nav.solid{
+  position:fixed;top:0;
+  background:var(--caffe);            /* stesso marrone della striscia annuncio, come nel riferimento */
+  padding-bottom:0;
+  border-bottom:1px solid rgba(237,218,189,.14);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+.nav-in{
+  max-width:1320px;margin:0 auto;padding:10px clamp(20px,4vw,48px) 14px;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;
+}
+.nav-logo{justify-self:center}
+.nav-logo img{
+  height:118px;width:auto;transition:height .3s;
+}
+.nav.solid .nav-logo img{height:74px}
+.nav-side{display:flex;align-items:center;gap:clamp(12px,1.8vw,26px);list-style:none;margin:0;padding:0}
+.nav-side.dx{justify-content:flex-end}
+.nav-side a{
+  color:#fff;text-decoration:none;font-weight:700;font-size:12.5px;
+  letter-spacing:.16em;text-transform:uppercase;
+}
+.nav-side a:hover{color:var(--arancio)}
+.nav-side a{white-space:nowrap}
+.nav-soc{display:flex;align-items:center;gap:14px}
+.nav-soc a{display:flex}
+.nav-soc svg{width:18px;height:18px;fill:#fff;transition:fill .2s}
+.nav-soc a:hover svg{fill:var(--arancio)}
+
+/* ---- Menu mobile (sotto i 720px): panetto a tendina con tutte le voci ---- */
+.nav-burger{
+  display:none;background:none;border:0;cursor:pointer;padding:8px 6px;
+  flex-direction:column;gap:5px;width:38px;
+}
+.nav-burger span{display:block;height:2px;width:26px;background:var(--beige);transition:transform .25s,opacity .2s}
+.nav-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer{
+  display:none;background:var(--caffe);border-top:1px solid rgba(237,218,189,.16);
+  padding:10px clamp(20px,5vw,32px) 22px;
+}
+.nav-drawer.open{display:block}
+.nav-drawer ul{list-style:none;margin:0;padding:0}
+.nav-drawer a{
+  display:block;padding:14px 2px;color:var(--beige);text-decoration:none;
+  font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;
+  border-bottom:1px solid rgba(237,218,189,.12);
+}
+.nav-drawer a[aria-current="page"]{color:var(--arancio)}
+.nav-drawer .dr-soc{display:flex;gap:20px;padding-top:18px}
+.nav-drawer .dr-soc a{border-bottom:0;padding:0}
+.nav-drawer .dr-soc svg{width:20px;height:20px;fill:var(--beige)}
+
+
+/* Pagine interne: niente foto a tutta pagina dietro la nav → barra marrone
+   piena fin da subito, come la pagina MERCH del riferimento. */
+.nav{
+  position:sticky;top:0;
+  background:var(--caffe);
+  padding-bottom:0;
+  border-bottom:1px solid rgba(237,218,189,.14);
+}
+.nav .nav-logo img{height:74px}
+.nav-cta{
+  font-family:var(--valley)!important;font-size:17px!important;font-weight:400!important;
+  color:var(--azz)!important;border:1.5px solid var(--azz);border-radius:8px;
+  padding:6px 16px;letter-spacing:.05em!important;
+}
+.nav-cta:hover{color:var(--espresso)!important;background:var(--azz)}
+.nav-side a[aria-current="page"]{color:var(--arancio)}
+/* pagina corrente: il bottone "Preventivo" si accende in arancio come le altre
+   voci (serve !important perché .nav-cta imposta il colore con !important) */
+.nav-side a.nav-cta[aria-current="page"]{color:var(--arancio)!important;border-color:var(--arancio)}
+.nav-side a.nav-cta[aria-current="page"]:hover{color:var(--espresso)!important;background:var(--arancio)}
+.nav-burger{display:none}
+
+/* ============ SEZIONI COMUNI ============ */
+.section{position:relative;padding:clamp(72px,9vw,120px) 0}
+.sec-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  gap:12px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,44px);
+}
+.eyebrow{
+  display:flex;align-items:center;gap:12px;
+  font-size:13.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--azz);
+}
+.eyebrow .ico{color:var(--azz)}
+.eyebrow-r{font-size:12.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--tan)}
+.on-light .eyebrow{color:var(--azz-testo)}          /* testo: tono leggibile */
+.on-light .eyebrow .ico{color:var(--azz-scuro)}      /* icona: tono originale */
+.on-light .eyebrow-r{color:var(--caffe);opacity:.75}
+.sec-title{
+  font-size:clamp(34px,4.6vw,60px);
+  color:var(--panna);
+  margin-bottom:18px;
+}
+.on-light .sec-title{color:var(--espresso)}
+.lead-p{font-size:clamp(16px,1.9vw,19px);color:var(--beige)}
+.on-light .lead-p{color:var(--caffe)}
+.it{color:var(--arancio)}
+
+/* ============ BOTTONI — VESTE POSTER (da A2) ============ */
+.btn-poster,.btn-dark{
+  display:inline-block;font-family:var(--valley);
+  text-decoration:none;letter-spacing:.04em;cursor:pointer;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.btn-poster{
+  font-size:clamp(19px,2.2vw,23px);
+  background:var(--beige);color:var(--caffe);
+  border:2px solid var(--beige);border-radius:6px;
+  padding:10px 30px 12px;
+  box-shadow:inset 0 0 0 2px var(--beige),inset 0 0 0 3px rgba(73,36,10,.55);
+}
+.btn-poster::before{content:"★ ";color:var(--ruggine);font-size:.75em}
+.btn-poster::after{content:" ★";color:var(--ruggine);font-size:.75em}
+.btn-poster:hover{
+  background:var(--arancio);border-color:var(--arancio);color:var(--espresso);
+  box-shadow:inset 0 0 0 2px var(--arancio),inset 0 0 0 3px rgba(24,10,2,.55);
+}
+.btn-poster:disabled{opacity:.6;cursor:not-allowed}
+.btn-poster.is-sending{cursor:wait}
+.btn-dark{
+  font-weight:300;font-size:20px;letter-spacing:.08em;
+  background:var(--espresso);color:var(--panna);border-radius:6px;
+  padding:10px 26px 12px;border:2px solid var(--espresso);
+}
+.btn-dark:hover{background:transparent;color:var(--espresso)}
+/* .btn-dark sulle sezioni scure diventa ghost beige (stile A) */
+.ph .btn-dark{background:transparent;color:var(--beige);border-color:rgba(237,218,189,.7)}
+.ph .btn-dark:hover{border-color:var(--beige);background:transparent;color:var(--beige)}
+
+/* ============ PAGE HERO (Preventivo) ============ */
+.ph{background:var(--espresso);padding:clamp(58px,8vw,96px) 0 clamp(64px,8vw,104px);text-align:center}
+.orna{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  color:var(--azz);font-size:12.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+}
+.orna .ico{width:17px;height:18px}
+.orna-line{width:clamp(28px,6vw,84px);height:1px;background:var(--azz);opacity:.55}
+.ph-eyebrow{
+  font-family:var(--serif);font-style:italic;color:var(--arancio);
+  font-size:clamp(18px,2.4vw,25px);margin:26px 0 10px;letter-spacing:.01em;
+}
+.ph h1{
+  color:var(--panna);
+  font-size:clamp(44px,7.4vw,96px);
+  margin:6px 0 22px;
+}
+.ph h1 .it{color:var(--arancio);font-size:.92em}
+.ph-lead{
+  color:var(--beige);max-width:56ch;margin:0 auto;
+  font-size:clamp(16px,1.9vw,19px);
+}
+@media (min-width:900px){.orna .ico{width:24px;height:25px}}
+
+/* — passi "Come funziona" — */
+.ph-foot{max-width:var(--wrap);margin:clamp(40px,6vw,64px) auto 0;padding:0 clamp(20px,4vw,48px)}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left}
+.step-card{
+  background:rgba(24,10,2,.35);
+  border:1px solid rgba(139,174,164,.32);border-radius:12px;
+  padding:26px 24px 24px;
+}
+.st-num{
+  font-family:var(--valley);font-size:26px;color:var(--arancio);
+  display:block;margin-bottom:10px;letter-spacing:.06em;
+}
+.step-card h3{font-size:21px;color:var(--panna);letter-spacing:.04em;margin-bottom:8px}
+.step-card p{font-size:14.5px;color:var(--beige);line-height:1.55}
+.assure-row{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:10px clamp(14px,3vw,20px);
+  margin-top:clamp(26px,4vw,38px);
+}
+.assure-row span{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--beige);border:1px solid rgba(139,174,164,.4);border-radius:99px;
+  padding:9px 18px;
+}
+.assure-row .ico{width:13px;height:14px;color:var(--azz)}
+@media (min-width:900px){.assure-row .ico{width:17px;height:18px}}
+@media (max-width:860px){.steps-grid{grid-template-columns:1fr}}
+
+/* ============ CONTACT — modulo ============ */
+.contact{background:var(--panna);color:var(--espresso)}
+.contact-head{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(24px,4vw,56px);
+  align-items:end;margin-bottom:clamp(30px,4vw,44px);
+}
+.contact-head .sec-title{margin-top:14px}
+.contact-head .sec-title .it{color:var(--ruggine)}
+.contact-lead{color:var(--caffe);font-size:clamp(15.5px,1.8vw,18px);max-width:46ch}
+.contact-meta{list-style:none;display:grid;gap:12px;justify-self:end}
+.contact-meta li{display:flex;flex-direction:column}
+.contact-meta .ck{
+  font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--azz-testo);
+}
+.contact-meta b{font-size:15.5px;color:var(--espresso)}
+.contact-meta a{color:inherit;text-decoration:none}
+.contact-meta a:hover{color:var(--ruggine)}
+@media (max-width:820px){
+  .contact-head{grid-template-columns:1fr}
+  .contact-meta{justify-self:start;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));width:100%}
+}
+/* sotto i 560px: contatti su una sola colonna e l'email che va a capo,
+   altrimenti l'indirizzo lungo sfonda la pagina di qualche pixel */
+@media (max-width:560px){
+  .contact-meta{grid-template-columns:1fr}
+  .contact-meta b,.contact-meta a{overflow-wrap:anywhere;word-break:break-word}
+}
+
+.quote-form,.qf-success{
+  background:var(--beige);border-radius:14px;
+  padding:clamp(24px,4vw,44px);
+  box-shadow:0 26px 50px -16px rgba(73,36,10,.38);
+}
+.qf-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px clamp(20px,3vw,32px)}
+.qf-field--full{grid-column:1/-1}
+.qf-label{
+  display:block;
+  font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--caffe);margin-bottom:10px;
+}
+.qf-label .opt{
+  font-family:var(--cushion);font-weight:500;font-style:italic;text-transform:none;
+  letter-spacing:.03em;font-size:13px;color:var(--azz-testo);margin-left:6px;
+}
+.qf-input{
+  width:100%;font-family:var(--sans);font-size:15px;color:var(--espresso);
+  background:var(--panna);border:1.5px solid rgba(73,36,10,.28);border-radius:8px;
+  padding:12px 14px;outline:none;transition:border-color .2s;
+}
+/* testi-guida: più scuri del tan (che sul fondo panna spariva), ma comunque
+   distinguibili dal testo digitato (var(--espresso), pieno) */
+.qf-input::placeholder{color:rgba(73,36,10,.7);opacity:1}
+.qf-input:focus{border-color:var(--azz-scuro)}
+textarea.qf-input{
+  display:block;min-height:96px;line-height:1.5;resize:vertical;
+}
+
+/* chips a scelta singola */
+.qf-chips{display:flex;flex-wrap:wrap;gap:8px}
+.qf-chip{
+  font-family:var(--valley);font-size:17px;letter-spacing:.05em;cursor:pointer;
+  color:var(--caffe);background:var(--panna);
+  border:1.5px solid rgba(73,36,10,.35);border-radius:99px;
+  padding:7px 18px 8px;transition:background .18s,color .18s,border-color .18s;
+}
+.qf-chip--sm{font-size:15px;padding:6px 15px 7px}
+.qf-chip:hover{border-color:var(--caffe)}
+.qf-chip.on{background:var(--espresso);border-color:var(--espresso);color:var(--panna)}
+
+/* stepper ospiti */
+.qf-stepper{
+  display:flex;align-items:center;gap:16px;
+  background:var(--panna);border:1.5px solid rgba(73,36,10,.28);border-radius:99px;
+  padding:6px 8px;width:max-content;
+}
+.qf-stepper button{
+  font-family:var(--valley);font-size:22px;line-height:1;cursor:pointer;
+  width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(73,36,10,.35);
+  background:var(--beige);color:var(--caffe);
+  transition:background .18s,color .18s;
+}
+.qf-stepper button:hover{background:var(--espresso);color:var(--panna);border-color:var(--espresso)}
+.qf-stepper .val{
+  font-family:var(--valley);font-size:24px;color:var(--espresso);min-width:96px;text-align:center;
+  letter-spacing:.04em;
+}
+.qf-stepper .val small{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--azz-testo);margin-left:7px}
+
+/* slider durata */
+.qf-range-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+.qf-range-val .it{font-size:21px;color:var(--ruggine)}
+.qf-range{
+  width:100%;appearance:none;-webkit-appearance:none;height:6px;border-radius:99px;
+  background:rgba(73,36,10,.25);outline:none;accent-color:var(--ruggine);cursor:pointer;
+}
+.qf-range::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;
+  background:var(--ruggine);border:3px solid var(--panna);
+  box-shadow:0 2px 8px rgba(73,36,10,.4);cursor:grab;
+}
+.qf-range::-moz-range-thumb{
+  width:18px;height:18px;border-radius:50%;background:var(--ruggine);
+  border:3px solid var(--panna);box-shadow:0 2px 8px rgba(73,36,10,.4);cursor:grab;
+}
+
+/* tile servizi */
+.qf-tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:560px}
+.qf-tile{
+  position:relative;display:flex;flex-direction:column;gap:2px;cursor:pointer;
+  background:var(--panna);border:1.5px solid rgba(73,36,10,.28);border-radius:10px;
+  padding:16px 18px;transition:border-color .18s,box-shadow .18s;
+}
+.qf-tile:hover{border-color:var(--caffe)}
+.qf-tile.on{border-color:var(--espresso);box-shadow:inset 0 0 0 1.5px var(--espresso)}
+.qf-tile input{position:absolute;opacity:0;pointer-events:none}
+.qf-tile .tlbl{font-weight:800;font-size:15px;color:var(--espresso)}
+.qf-tile .tsub{font-family:var(--cushion);font-weight:500;font-style:italic;font-size:13.5px;color:var(--azz-testo)}
+.qf-tile.on .tlbl::after{content:" ★";color:var(--ruggine);font-size:.8em}
+@media (max-width:560px){.qf-tiles{grid-template-columns:1fr}}
+
+.qf-divider{grid-column:1/-1;height:1px;background:rgba(73,36,10,.22);margin:6px 0}
+
+/* barra di invio: plinto espresso in fondo alla card beige. Serve perché il
+   bottone poster è crema e sul beige della card spariva; su fondo scuro è la
+   stessa combinazione dell'hero della home. Ospita anche il consenso privacy. */
+.qf-submit-row{
+  display:flex;justify-content:space-between;align-items:center;gap:18px clamp(18px,3vw,28px);
+  margin-top:clamp(24px,4vw,34px);flex-wrap:wrap;
+  background:var(--espresso);border-radius:12px;
+  padding:clamp(20px,3vw,26px) clamp(18px,3vw,28px);
+  box-shadow:0 16px 30px -18px rgba(36,16,5,.65);
+}
+.qf-consent{display:flex;align-items:flex-start;gap:12px;flex:1 1 300px}
+.qf-consent input{
+  appearance:none;-webkit-appearance:none;
+  flex:none;width:22px;height:22px;margin-top:1px;cursor:pointer;
+  background-color:var(--panna);border:1.5px solid rgba(251,245,234,.55);border-radius:5px;
+  transition:background-color .18s,border-color .18s;
+}
+.qf-consent input:checked{
+  background-color:var(--arancio);border-color:var(--arancio);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 12.4l4.6 4.6L19 7.2' fill='none' stroke='%23241005' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat:no-repeat;background-position:center;background-size:15px 15px;
+}
+.qf-consent input:focus-visible{outline:2px solid var(--azz);outline-offset:3px}
+.qf-consent label{font-size:13.5px;line-height:1.5;color:var(--beige);cursor:pointer}
+.qf-consent a{color:var(--azz);text-decoration:underline;text-underline-offset:3px}
+.qf-consent a:hover{color:var(--arancio)}
+
+/* pannello di conferma */
+.qf-success{text-align:center;padding:clamp(40px,6vw,72px) clamp(24px,4vw,44px)}
+.qf-success h3{font-size:clamp(28px,3.6vw,44px);color:var(--espresso)}
+.qf-success h3 .it{color:var(--ruggine)}
+.qf-success p{
+  color:var(--caffe);max-width:52ch;margin:16px auto 28px;
+  font-size:clamp(15px,1.8vw,17px);
+}
+@media (max-width:720px){
+  .qf-grid{grid-template-columns:1fr}
+  .qf-submit-row{flex-direction:column;align-items:stretch}
+  .qf-submit-row .btn-poster{width:100%;text-align:center}
+}
+
+/* ============ FOOTER (variante ridotta) ============ */
+.footer{background:var(--nero);position:relative;padding:0 0 40px}
+.footer-cam{
+  display:flex;flex-direction:column;align-items:center;
+  padding:clamp(64px,9vw,110px) 20px 0;text-align:center;
+}
+.footer-cam .ico{
+  width:min(400px,72vw);height:auto;aspect-ratio:272.48/160.07;
+  color:var(--azz);
+}
+.footer-payoff{
+  font-family:var(--bronco);font-weight:400;font-synthesis:none;text-transform:uppercase;
+  color:var(--panna);font-size:clamp(30px,5.4vw,64px);letter-spacing:.06em;
+  margin-top:26px;line-height:1.08;
+}
+.footer-sub{
+  font-family:var(--serif);font-style:italic;color:var(--azz);
+  font-size:clamp(16px,2vw,20px);margin-top:10px;
+}
+.footer-rule{
+  display:flex;align-items:center;gap:18px;
+  max-width:var(--wrap);margin:clamp(44px,6vw,64px) auto 0;padding:0 clamp(20px,4vw,48px);
+  color:var(--azz);
+}
+.footer-rule .line{flex:1;height:1px;background:rgba(139,174,164,.35)}
+.footer-rule .ico{width:20px;height:22px}
+.footer-grid{
+  max-width:var(--wrap);margin:40px auto 0;padding:0 clamp(20px,4vw,48px);
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,4vw,56px);
+}
+.footer h5{
+  font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--azz);margin-bottom:16px;
+}
+.footer-big{font-family:var(--bronco);font-size:clamp(24px,3vw,32px);color:var(--beige);line-height:1.15;letter-spacing:.04em}
+.footer ul{list-style:none}
+.footer ul li{margin-bottom:9px;font-size:14.5px;color:var(--beige)}
+.footer ul a{color:var(--beige);text-decoration:none}
+.footer ul a:hover{color:var(--azz)}
+.footer-social{display:flex;gap:14px;margin-top:18px}
+.footer-social a{
+  font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--azz);
+  text-decoration:none;border:1px solid rgba(139,174,164,.4);border-radius:99px;
+  padding:7px 16px;
+}
+.footer-social a:hover{background:var(--azz);color:var(--nero)}
+.footer-copy{
+  max-width:var(--wrap);margin:44px auto 0;padding:20px clamp(20px,4vw,48px) 0;
+  border-top:1px solid rgba(139,174,164,.18);
+  font-size:12.5px;color:var(--tan);text-align:center;
+}
+.footer-copy a{color:var(--azz);text-decoration:none}
+/* variante ridotta (-1/3 sulle spaziature verticali) */
+.footer--ridotta{padding:0 0 26px}
+.footer--ridotta .footer-cam{padding:clamp(42px,6vw,72px) 20px 0}
+.footer--ridotta .footer-payoff{margin-top:17px}
+.footer--ridotta .footer-sub{margin-top:7px}
+.footer--ridotta .footer-rule{margin:clamp(29px,4vw,42px) auto 0}
+.footer--ridotta .footer-grid{margin:26px auto 0}
+.footer--ridotta h5{margin-bottom:11px}
+.footer--ridotta ul li{margin-bottom:6px}
+.footer--ridotta .footer-social{margin-top:12px}
+.footer--ridotta .footer-copy{margin:29px auto 0;padding-top:13px}
+@media (max-width:720px){
+  .footer--ridotta .footer-grid{gap:22px}
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:960px){
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:1000px){
+  .nav-side.sx{display:none}
+  .nav-soc{display:none}
+  .nav-in{grid-template-columns:auto 1fr auto;gap:10px}
+  .nav-logo{grid-column:2}
+  .nav .nav-logo img{height:52px}
+  .nav-burger{display:flex;grid-column:1;justify-self:start}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+}
+
+/* ---- REVEAL allo scroll (dal sito live) --------------------------
+   Gating con html.js: senza JavaScript la classe .js non c'è e tutto
+   resta visibile (fallback obbligatorio). */
+html.js .rv{
+  opacity:0;transform:translateY(26px);
+  transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1);
+  will-change:opacity,transform;
+}
+html.js .rv.in{opacity:1;transform:none}
+html.js .fade-in{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+html.js .fade-in.in{opacity:1;transform:none}
+html.js .stagger>*{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+html.js .stagger.in>*{opacity:1;transform:none}
+html.js .stagger.in>*:nth-child(1){transition-delay:.04s}
+html.js .stagger.in>*:nth-child(2){transition-delay:.12s}
+html.js .stagger.in>*:nth-child(3){transition-delay:.2s}
+html.js .stagger.in>*:nth-child(4){transition-delay:.28s}
+html.js .stagger.in>*:nth-child(5){transition-delay:.36s}
+html.js .stagger.in>*:nth-child(6){transition-delay:.44s}
+html.js .stagger.in>*:nth-child(7){transition-delay:.52s}
+html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  html.js .rv,html.js .fade-in,html.js .stagger>*{
+    opacity:1!important;transform:none!important;transition:none!important;animation:none!important;
   }
-  </script>
-
-  <!-- Open Graph / Social sharing -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://thecoffeekillers.com/preventivo.html" />
-  <meta property="og:title" content="Richiedi un preventivo — The Coffeekillers" />
-  <meta property="og:description" content="Band country live da Brescia per locali, feste e sagre, festival, eventi e matrimoni. Raccontaci la tua serata e ti ricontattiamo." />
-  <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="it_IT" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Richiedi un preventivo — The Coffeekillers" />
-  <meta name="twitter:description" content="Band country live da Brescia per locali, feste e sagre, festival, eventi privati, corporate e matrimoni." />
-  <meta name="twitter:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Smokum&family=Rye&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Alfa+Slab+One&family=Libre+Caslon+Text:ital@0;1&family=Big+Shoulders+Display:wght@500;700;900&family=Bricolage+Grotesque:wght@400;500;700&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="styles.css" />
-
-  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+}
+</style>
+<link rel="stylesheet" href="stile-hjck.css" />
 </head>
-<body style="font-size: 15px">
-  <div id="root">
-    <!-- Contenuto statico per crawler senza JS (React lo sostituisce all'avvio). -->
-    <div style="display:none">
-    <header>
-      <nav>
-        <a href="index.html">Hot Joe &amp; The Coffeekillers</a>
-        <ul>
-          <li><a href="chi-siamo.html">Chi siamo</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="date.html">Date</a></li>
-          <li><a href="country.html">Il country</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="preventivo.html">Richiedi un preventivo</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <h1>Richiedi un preventivo — Hot Joe &amp; The Coffeekillers</h1>
-      <p>Band country live da Brescia per locali, feste e sagre di paese, festival, eventi corporate e privati (anche matrimoni). Compila il modulo con tipo di evento, data, location e numero di ospiti: ti rispondiamo con proposta, scaletta tipo e cachet personalizzato.</p>
-      <h2>Come funziona</h2>
-      <ol>
-        <li>Raccontaci l'evento: tipo di serata, data, luogo e pubblico previsto.</li>
-        <li>Ricevi la proposta con cachet e dettagli tecnici (service audio/luci incluso fino a 250 persone).</li>
-        <li>Confermi la data e al resto pensiamo noi.</li>
-      </ol>
-      <h2>Contatti diretti</h2>
-      <p>Email: music@thecoffeekillers.com · WhatsApp: +39 393 7011409 · Cachet indicativo: 1.000–2.500 €.</p>
-    </main>
+<body>
+<script>document.documentElement.classList.add("js");</script>
+
+<!-- ==================== NAV (stile home confermato il 01/09) ==================== -->
+<header class="nav">
+  <div class="nav-in">
+    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Apri il menu"><span></span><span></span><span></span></button>
+    <ul class="nav-side sx">
+      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="country.html">Il country</a></li>
+    </ul>
+    <a class="nav-logo" href="index.html" aria-label="Hot Joe &amp; The CoffeeKillers &mdash; home">
+      <img src="images/logo/hjck-logo-negativo.svg" alt="Logo Hot Joe &amp; The CoffeeKillers" />
+    </a>
+    <ul class="nav-side dx">
+      <li><a href="date.html">Date</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a class="nav-cta" href="preventivo.html">Preventivo</a></li>
+    </ul>
+  </div>
+  <nav class="nav-drawer" id="nav-drawer" aria-label="Menu">
+    <ul>
+      <li><a href="chi-siamo.html">Chi siamo</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="country.html">Il country</a></li>
+      <li><a href="date.html">Date</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="preventivo.html">Preventivo</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ==================== PAGE HERO — Come funziona ==================== -->
+<section class="ph" id="top">
+  <div class="wrap">
+    <div class="orna" aria-hidden="true">
+      <span class="orna-line"></span>
+      <span class="ico i-stella"></span>
+      <span>Risposta rapida</span>
+      <span class="ico i-stella"></span>
+      <span class="orna-line"></span>
+    </div>
+    <p class="ph-eyebrow">Preventivo</p>
+    <h1>Una serata <span class="it">con noi?</span></h1>
+    <p class="ph-lead">Compila il modulo qui sotto: bastano due minuti. Ti rispondiamo con proposta, scaletta tipo e cachet personalizzato per il tuo evento.</p>
+  </div>
+  <div class="ph-foot">
+    <div class="steps-grid stagger">
+      <div class="step-card">
+        <span class="st-num">01</span>
+        <h3>Raccontaci l'evento</h3>
+        <p>Tipo di serata, data, luogo e dimensione del pubblico: più dettagli ci dai, più preciso sarà il preventivo.</p>
+      </div>
+      <div class="step-card">
+        <span class="st-num">02</span>
+        <h3>Ricevi la proposta</h3>
+        <p>Ti rispondiamo con cachet, scaletta tipo e i dettagli tecnici (service audio/luci incluso fino a 250 persone).</p>
+      </div>
+      <div class="step-card">
+        <span class="st-num">03</span>
+        <h3>Si suona</h3>
+        <p>Confermi la data e al resto pensiamo noi: arriviamo, montiamo e facciamo ballare i tuoi ospiti.</p>
+      </div>
+    </div>
+    <div class="assure-row rv">
+      <span><span class="ico i-stella" aria-hidden="true"></span> Repertorio costruito sulla serata</span>
+      <span><span class="ico i-stella" aria-hidden="true"></span> Service audio autonomo fino a 250 pax</span>
+      <span><span class="ico i-stella" aria-hidden="true"></span> Trasferte in tutta Italia</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT — il modulo ==================== -->
+<section class="section contact on-light" id="contact">
+  <div class="wrap">
+    <div class="contact-head rv">
+      <div>
+        <h2 class="sec-title">Raccontaci la tua <span class="it">serata.</span></h2>
+        <p class="contact-lead">Due minuti, niente impegno: ti rispondiamo con proposta, scaletta tipo e cachet personalizzato.</p>
+      </div>
+      <ul class="contact-meta">
+        <li><span class="ck">Cachet</span><b>1.000 € — 2.500 € circa</b></li>
+        <li><span class="ck">Email</span><b><a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a></b></li>
+        <li><span class="ck">WhatsApp</span><b><a href="tel:+393937011409">+39 393 7011409</a></b></li>
+      </ul>
+    </div>
+
+    <!-- pannello di conferma (nascosto finché l'invio non riesce) -->
+    <div class="qf-success" id="qf-success" hidden>
+      <h3>Richiesta <span class="it">ricevuta.</span></h3>
+      <p id="qf-success-msg">Grazie — ti ricontattiamo con proposta dettagliata, scaletta tipo e cachet personalizzato per la data che ci hai indicato.</p>
+      <button type="button" class="btn-dark" id="qf-reset">↺ Nuova richiesta</button>
+    </div>
+
+    <form class="quote-form rv" id="quote-form" novalidate="">
+      <div class="qf-grid">
+
+        <div class="qf-field qf-field--full">
+          <div class="qf-label" id="lbl-evt">Tipo di evento</div>
+          <div class="qf-chips" id="chips-evt" role="group" aria-labelledby="lbl-evt">
+            <button type="button" class="qf-chip on">Locale</button>
+            <button type="button" class="qf-chip">Feste &amp; Sagre</button>
+            <button type="button" class="qf-chip">Festival</button>
+            <button type="button" class="qf-chip">Privato</button>
+            <button type="button" class="qf-chip">Corporate</button>
+            <button type="button" class="qf-chip">Altro</button>
+            <button type="button" class="qf-chip">Matrimonio</button>
+          </div>
+        </div>
+
+        <div class="qf-field">
+          <label class="qf-label" for="f-date">Data presunta</label>
+          <input class="qf-input" id="f-date" name="data" type="text" placeholder="es. 21 giugno 2026" required />
+        </div>
+        <div class="qf-field">
+          <label class="qf-label" for="f-location">Location</label>
+          <input class="qf-input" id="f-location" name="location" type="text" placeholder="Città / provincia" required />
+        </div>
+
+        <div class="qf-field">
+          <div class="qf-label" id="lbl-setting">Ambiente</div>
+          <div class="qf-chips" id="chips-setting" role="group" aria-labelledby="lbl-setting">
+            <button type="button" class="qf-chip qf-chip--sm">Indoor</button>
+            <button type="button" class="qf-chip qf-chip--sm on">Outdoor</button>
+            <button type="button" class="qf-chip qf-chip--sm">Sala</button>
+            <button type="button" class="qf-chip qf-chip--sm">Cascina</button>
+            <button type="button" class="qf-chip qf-chip--sm">Da definire</button>
+          </div>
+        </div>
+        <div class="qf-field">
+          <div class="qf-label" id="lbl-guests">Ospiti <span class="opt">stima</span></div>
+          <div class="qf-stepper" role="group" aria-labelledby="lbl-guests">
+            <button type="button" id="hc-minus" aria-label="Diminuisci">−</button>
+            <span class="val"><span id="hc-val">120</span><small>pax</small></span>
+            <button type="button" id="hc-plus" aria-label="Aumenta">+</button>
+          </div>
+        </div>
+
+        <div class="qf-field qf-field--full">
+          <div class="qf-range-row">
+            <label class="qf-label" style="margin:0" for="f-duration">Durata del live</label>
+            <div class="qf-range-val"><span class="it" id="dur-val">2h</span></div>
+          </div>
+          <input class="qf-range" id="f-duration" type="range" min="1" max="3" step="0.5" value="2" aria-label="Durata del live in ore" />
+        </div>
+
+        <div class="qf-field qf-field--full">
+          <div class="qf-label" id="lbl-srv">Servizi <span class="opt">selezione multipla</span></div>
+          <div class="qf-tiles" role="group" aria-labelledby="lbl-srv">
+            <label class="qf-tile on">
+              <input type="checkbox" id="srv-audio" checked />
+              <span class="tlbl">Service audio</span>
+              <span class="tsub">Suggerito</span>
+            </label>
+            <label class="qf-tile">
+              <input type="checkbox" id="srv-lights" />
+              <span class="tlbl">Luci sceniche</span>
+              <span class="tsub">Opzionale</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="qf-field qf-field--full">
+          <div class="qf-label" id="lbl-budget">Budget orientativo <span class="opt">in euro, non vincolante</span></div>
+          <!-- etichette senza «&lt;», «&gt;» e «€»: il font Valley non ha quei segni
+               e finivano su un font di ripiego -->
+          <div class="qf-chips" id="chips-budget" role="group" aria-labelledby="lbl-budget">
+            <button type="button" class="qf-chip qf-chip--sm">Fino a 1.000</button>
+            <button type="button" class="qf-chip qf-chip--sm on">1.000-1.500</button>
+            <button type="button" class="qf-chip qf-chip--sm">1.500-2.000</button>
+            <button type="button" class="qf-chip qf-chip--sm">2.000-2.500</button>
+            <button type="button" class="qf-chip qf-chip--sm">Oltre 2.500</button>
+          </div>
+        </div>
+
+        <div class="qf-divider"></div>
+
+        <div class="qf-field">
+          <label class="qf-label" for="f-name">Nome e cognome</label>
+          <input class="qf-input" id="f-name" name="nome" type="text" placeholder="Mario Rossi" autocomplete="name" required />
+        </div>
+        <div class="qf-field">
+          <label class="qf-label" for="f-email">Email</label>
+          <input class="qf-input" id="f-email" name="email" type="email" placeholder="mario@example.com" autocomplete="email" required />
+        </div>
+        <div class="qf-field">
+          <label class="qf-label" for="f-phone">Telefono <span class="opt">opzionale</span></label>
+          <input class="qf-input" id="f-phone" name="telefono" type="tel" placeholder="+39 333 1234567" autocomplete="tel" />
+        </div>
+        <div class="qf-field">
+          <label class="qf-label" for="f-notes">Note <span class="opt">opzionale</span></label>
+          <textarea class="qf-input" id="f-notes" name="note" rows="3" placeholder="Spazio, orari, mood…"></textarea>
+        </div>
+
+      </div>
+
+      <div class="qf-submit-row">
+        <div class="qf-consent">
+          <input type="checkbox" id="f-privacy" name="privacy" required />
+          <label for="f-privacy">Ho letto l'<a href="privacy.html">informativa privacy</a> e acconsento al trattamento dei miei dati.</label>
+        </div>
+        <button type="submit" class="btn-poster" id="qf-submit" disabled>Invia richiesta</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ==================== FOOTER (variante ridotta) ==================== -->
+<footer class="footer footer--ridotta">
+  <div class="payoff-edge tartan"></div>
+
+  <!-- la newsletter e' la prima riga del footer, non una fascia sospesa sopra -->
+  <div class="foot-nl" id="newsletter">
+    <div class="foot-nl-in">
+      <div>
+        <h3 class="foot-nl-tit">Ti aggiorniamo sulle <span class="nl-accent">date.</span></h3>
+      </div>
+      <form class="newsletter">
+        <input required type="email" placeholder="la-tua-mail@example.com" aria-label="La tua email" />
+        <button type="submit">Iscriviti</button>
+      </form>
     </div>
   </div>
 
-  <script>
-    window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-      "palette": "brand",
-      "type": "brand",
-      "hero": "cinematic"
-    }/*EDITMODE-END*/;
-  </script>
+  <div class="footer-cam">
+    <span class="ico i-camaleonte" role="img" aria-label="Il camaleonte, simbolo dei CoffeeKillers"></span>
+    <p class="footer-payoff">Long Live Country Music</p>
+  </div>
+  <div class="footer-rule" aria-hidden="true">
+    <span class="line"></span>
+    <span class="ico i-stella"></span>
+    <span class="line"></span>
+  </div>
+  <div class="footer-grid">
+    <div>
+      <h5>Hot Joe &amp; The CoffeeKillers</h5>
+      <p class="footer-big">Country live<br />since 2018.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/thecoffeekillers/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6c-2.6 0-2.9 0-3.9.06-1 .05-1.7.2-2.3.45-.63.24-1.16.57-1.7 1.1-.53.53-.86 1.06-1.1 1.7-.24.6-.4 1.3-.45 2.3C2.5 9.2 2.5 9.5 2.5 12s0 2.9.06 3.9c.05 1 .2 1.7.45 2.3.24.63.57 1.16 1.1 1.7.53.53 1.06.86 1.7 1.1.6.24 1.3.4 2.3.45 1 .05 1.3.06 3.9.06s2.9 0 3.9-.06c1-.05 1.7-.2 2.3-.45.63-.24 1.16-.57 1.7-1.1.53-.53.86-1.06 1.1-1.7.24-.6.4-1.3.45-2.3.05-1 .06-1.3.06-3.9s0-2.9-.06-3.9c-.05-1-.2-1.7-.45-2.3a4.7 4.7 0 0 0-1.1-1.7 4.7 4.7 0 0 0-1.7-1.1c-.6-.24-1.3-.4-2.3-.45-1-.05-1.3-.06-3.9-.06zm0 1.7c2.5 0 2.8 0 3.8.06 1 .05 1.5.2 1.9.35.5.18.8.4 1.2.77.36.36.6.7.77 1.16.14.37.3.92.34 1.92.05 1 .06 1.3.06 3.84s0 2.8-.06 3.8c-.05 1-.2 1.5-.34 1.9-.18.5-.4.8-.78 1.2-.36.36-.7.6-1.16.77-.37.14-.92.3-1.92.34-1 .05-1.3.06-3.84.06s-2.8 0-3.8-.06c-1-.05-1.5-.2-1.9-.34-.5-.18-.8-.4-1.2-.78-.36-.36-.6-.7-.77-1.16-.14-.37-.3-.92-.34-1.92-.05-1-.06-1.3-.06-3.84s0-2.8.06-3.8c.05-1 .2-1.5.34-1.9.18-.5.4-.8.78-1.2.36-.36.7-.6 1.16-.77.37-.14.92-.3 1.92-.34 1-.05 1.3-.06 3.84-.06zm0 2.9a4.9 4.9 0 1 0 0 9.7 4.9 4.9 0 0 0 0-9.7zm0 8a3.1 3.1 0 1 1 0-6.3 3.1 3.1 0 0 1 0 6.3zm6.2-8.2a1.14 1.14 0 1 1-2.3 0 1.14 1.14 0 0 1 2.3 0z"/></svg><span>Instagram</span></a>
+        <a href="https://m.facebook.com/hotjoeandthecoffeekillers" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3-.04-1.3-.13-2.5-.13-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.7v8h3.5z"/></svg><span>Facebook</span></a>
+        <a href="https://www.youtube.com/@thecoffeekillers" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2s-.22-1.55-.9-2.23c-.85-.9-1.8-.9-2.24-.95C16.74 3.8 12 3.8 12 3.8h-.01s-4.73 0-7.86.22c-.44.05-1.39.05-2.24.95C1.2 5.65 1 7.2 1 7.2S.77 9 .77 10.83v1.7C.77 14.3 1 16.13 1 16.13s.22 1.55.89 2.23c.85.9 1.97.87 2.47.96 1.8.17 7.64.22 7.64.22s4.74-.01 7.87-.23c.44-.05 1.39-.06 2.24-.95.67-.68.9-2.23.9-2.23s.22-1.82.22-3.65v-1.7C23.22 9 23 7.2 23 7.2zM9.7 14.6V8.4l6.05 3.11L9.7 14.6z"/></svg><span>YouTube</span></a>
+      </div>
+    </div>
+    <div>
+      <h5>Contatti</h5>
+      <ul>
+        <li><a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a></li>
+        <li><a href="tel:+393937011409">+39 393 7011409</a></li>
+        <li>Brescia — Italia</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Naviga</h5>
+      <ul>
+        <li><a href="chi-siamo.html">Chi siamo</a></li>
+        <li><a href="country.html">Il country</a></li>
+        <li><a href="date.html">Date</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="preventivo.html">Richiedi preventivo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2026 Hot Joe &amp; The CoffeeKillers — All rights reserved. · Sviluppato con <a href="https://emporionelbosco.it" target="_blank" rel="noopener">Emporio nel Bosco</a>
+  </div>
+</footer>
 
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="components.jsx"></script>
-  <script type="text/babel" src="app-preventivo.jsx"></script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9aebd7c8eb4d4dd29a6c1f9c9f03d7f4"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+
+// Reveal allo scroll (traduzione vanilla dell'hook useReveal del sito live).
+(function(){
+  var els=document.querySelectorAll(".fade-in, .rv, .stagger");
+  if(!("IntersectionObserver" in window)){
+    els.forEach(function(el){el.classList.add("in");});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el);});
+})();
+
+// ==================== FORM PREVENTIVO ====================
+// Stesso comportamento del sito live (components.jsx → Contact):
+// invio REALE via fetch POST JSON a Formspree, stesse chiavi, stessi messaggi.
+(function(){
+  var form=document.getElementById("quote-form");
+  if(!form)return;
+  form.removeAttribute("novalidate"); // validazione HTML5 attiva (required su data, location, nome, email)
+
+  // — chips a scelta singola —
+  function chipGroup(id){
+    var box=document.getElementById(id);
+    box.addEventListener("click",function(e){
+      var btn=e.target.closest(".qf-chip");
+      if(!btn)return;
+      box.querySelectorAll(".qf-chip").forEach(function(c){c.classList.remove("on");});
+      btn.classList.add("on");
+    });
+    return function(){return box.querySelector(".qf-chip.on").textContent;};
+  }
+  var getEvt=chipGroup("chips-evt");
+  var getSetting=chipGroup("chips-setting");
+  var getBudget=chipGroup("chips-budget");
+
+  // — stepper ospiti (default 120, passo 20, min 20, max 600) —
+  var headcount=120;
+  var hcVal=document.getElementById("hc-val");
+  document.getElementById("hc-minus").addEventListener("click",function(){
+    headcount=Math.max(20,headcount-20);hcVal.textContent=headcount;
+  });
+  document.getElementById("hc-plus").addEventListener("click",function(){
+    headcount=Math.min(600,headcount+20);hcVal.textContent=headcount;
+  });
+
+  // — slider durata —
+  var durInput=document.getElementById("f-duration");
+  var durVal=document.getElementById("dur-val");
+  durInput.addEventListener("input",function(){
+    durVal.textContent=parseFloat(durInput.value)+"h";
+  });
+
+  // — tile servizi (checkbox) —
+  document.querySelectorAll(".qf-tile input").forEach(function(cb){
+    cb.addEventListener("change",function(){
+      cb.closest(".qf-tile").classList.toggle("on",cb.checked);
+    });
+  });
+
+  // — invio —
+  var submitBtn=document.getElementById("qf-submit");
+  var success=document.getElementById("qf-success");
+  var successMsg=document.getElementById("qf-success-msg");
+
+  // — consenso privacy: senza spunta il bottone resta disattivato —
+  var privacy=document.getElementById("f-privacy");
+  function syncPrivacy(){submitBtn.disabled=!privacy.checked;}
+  privacy.addEventListener("change",syncPrivacy);
+  syncPrivacy();
+
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    if(!privacy.checked){privacy.focus();return;}
+    submitBtn.disabled=true;
+    submitBtn.classList.add("is-sending");
+    submitBtn.textContent="Invio in corso...";
+
+    var emailVal=document.getElementById("f-email").value;
+    var data={
+      Nome:document.getElementById("f-name").value,
+      email:emailVal,          // chiave standard per gli autoresponder di Formspree
+      _replyto:emailVal,       // chiave esplicita di fallback
+      Telefono:document.getElementById("f-phone").value,
+      Note:document.getElementById("f-notes").value,
+      Data:document.getElementById("f-date").value,
+      Location:document.getElementById("f-location").value,
+      TipoEvento:getEvt(),
+      Ambiente:getSetting(),
+      Ospiti:headcount,
+      Durata:parseFloat(durInput.value)+"h",
+      Budget:getBudget().trim()+" €",
+      ServiziAudio:document.getElementById("srv-audio").checked?"Sì":"No",
+      ServiziLuci:document.getElementById("srv-lights").checked?"Sì":"No",
+      ConsensoPrivacy:"Sì — informativa privacy letta e accettata il "+new Date().toLocaleString("it-IT")
+    };
+
+    fetch("https://formspree.io/f/xdabrrrr",{
+      method:"POST",
+      headers:{"Accept":"application/json","Content-Type":"application/json"},
+      body:JSON.stringify(data)
+    }).then(function(res){
+      if(res.ok){
+        var dataDetta=(document.getElementById("f-date").value||"").trim();
+        successMsg.textContent="Grazie — ti ricontattiamo con proposta dettagliata, scaletta tipo e cachet personalizzato per la data che ci hai indicato"
+          +(dataDetta?" ("+dataDetta+")":"")+".";
+        form.hidden=true;
+        success.hidden=false;
+        window.scrollTo({top:document.getElementById("contact").offsetTop-40,behavior:"smooth"});
+      }else{
+        alert("Ops, si è verificato un errore nell'invio. Riprova più tardi o inviaci un'email!");
+      }
+    }).catch(function(){
+      alert("Errore di connessione. Verifica la tua rete e riprova.");
+    }).finally(function(){
+      submitBtn.classList.remove("is-sending");
+      submitBtn.textContent="Invia richiesta";
+      syncPrivacy();   // resta disattivato se la spunta non c'è più
+    });
+  });
+
+  // — "Nuova richiesta": riapre il form (i valori restano, come nel live) —
+  document.getElementById("qf-reset").addEventListener("click",function(){
+    success.hidden=true;
+    form.hidden=false;
+  });
+})();
+</script>
+<script>
+// Menu mobile: apre/chiude il panetto a tendina
+(function(){
+  var b=document.querySelector(".nav-burger"), d=document.getElementById("nav-drawer");
+  if(!b||!d) return;
+  b.addEventListener("click",function(){
+    var open=d.classList.toggle("open");
+    b.setAttribute("aria-expanded", open?"true":"false");
+  });
+})();
+</script>
+
+<script>
+// Newsletter: nessun backend, solo la conferma (come in home)
+document.querySelectorAll("form.newsletter").forEach(function(form){
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    form.innerHTML='<span class="nl-done">★ Iscritto. Ci sentiamo presto.</span>';
+  });
+});
+</script>
+<!-- Cloudflare Web Analytics — privacy-friendly, niente cookie, niente banner.
+     Era solo su index e preventivo: adesso e' su TUTTE le pagine, se no i
+     numeri raccontano meta' storia (e sulla landing delle inserzioni serve
+     per capire se la campagna converte). -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9aebd7c8eb4d4dd29a6c1f9c9f03d7f4"}'></script>
 </body>
 </html>

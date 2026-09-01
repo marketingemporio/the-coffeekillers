@@ -1,13 +1,13 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-09-01
-> **Stato in una riga:** sito **ONLINE** (invariato); **in locale c'è la maquette del sito nuovo**
-> e, dal **20/08**, la **cartella cliente definitiva con il logo nuovo** (caricata, non ancora montata)
-> — vedi la sezione qui sotto. Il 12/08 era entrato il **brand rev.2** (palette, font, icone —
-> **non** il logo, vedi sotto), il **video della prima canzone intera** in home, la sezione
-> **"Il palco"** col video del drone, i **link ai siti ufficiali** degli artisti citati e il fix
-> dell'**overflow su mobile**. Data Beach Fly spostata al **10 ottobre**.
+> **Ultimo aggiornamento:** 2026-09-02
+> **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
+> il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
+> **Restano aperti due nodi**: la licenza commerciale di **Bonzana** e l'**informativa privacy**
+> da far validare. E le **date in calendario sono ancora quelle di prova**.
+> (Cronologia: 20/08 cartella cliente col logo definitivo · 12/08 brand rev.2, video della prima
+> canzone intera, sezione «Il palco», link agli artisti, fix overflow mobile.)
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
 
 ---
@@ -746,6 +746,94 @@ Tre contrasti trovati e corretti per strada, tutti lo stesso caso (arancio o bei
 sbagliato): i ruoli dei musicisti, il tondo play sulla fascia arancio, e — solo su telefono — gli
 anni della linea del tempo del country, che scendendo a 22px smettono di contare come "testo
 grande" e non arrivano piu' a 4,5:1.
+
+---
+
+
+# 🚀 IL SITO NUOVO È ONLINE — 02/09/2026
+
+La maquette **è diventata il sito**. Il React di prima non c'è più.
+
+## Cosa è successo ai file
+| Prima | Adesso |
+|---|---|
+| `proposta-a6.html` | **`index.html`** — la home |
+| `proposta-chi-siamo/country/date/gallery/faq/preventivo.html` | stessi nomi, senza `proposta-` |
+| `proposta-informativa-privacy.html` | **`privacy.html`** |
+| `proposta-landing-ads.html` | **`musica-country-dal-vivo.html`** (landing inserzioni, `noindex`) |
+| `_stile-hjck.css` | **`stile-hjck.css`** (l'underscore era la convenzione dei file esclusi) |
+| il sito React (`index.html`, `components.jsx`, `styles.css`, gli `app-*.jsx`) | in `_parcheggio/sito-react-precedente/`, **fuori dal repo** — recuperabile anche dalla cronologia git |
+| le maquette scartate (A, A2…A7, B, C, D), `_switch-proposte.js`, le pagine `_diag-*` | in `_parcheggio/maquette-di-lavoro/` |
+
+Le URL pubbliche **non cambiano** (`/chi-siamo.html`, `/date.html`…): nessun redirect da fare.
+
+## 🔤 I caratteri — un guasto trovato in extremis
+Michele: *"bronco non esiste più, se ce l'hai ancora in giro è un errore tuo."* Vero, e in due punti:
+1. in `fonts/` c'erano ancora `bronco-valley.ttf`, `BroncoPersonalUse.ttf` e lo zip → in
+   `_parcheggio/font-bronco-non-piu-usato/`;
+2. ⚠️ **le pagine interne non montavano Bonzana.** Nascono dalle proposte A2/A4, dove
+   `--bronco` e `--valley` puntavano a *"Bronco Valley"* e *"Valley"*. Tolte quelle due
+   `@font-face`, i titoli **cadevano su Rye** — cioè **sette pagine su nove avevano un
+   carattere diverso dalla home**, e a occhio non si notava perché anche Rye è un western.
+   Trovato solo interrogando il `font-family` calcolato in un browser vero, non guardando
+   gli screenshot. Adesso `stile-hjck.css` dichiara Bonzana e rimappa i due token.
+
+**Font online**: `fonts/bonzana.otf` + i quattro tagli di `LTCushion-*.ttf`. Manrope e Rye da
+Google. Tolto **Valley** (`ValleyPersonalUse.ttf`): era Personal Use, su un sito non si usa —
+e non lo richiamava nessuna regola.
+⚠️ **Resta da confermare la licenza commerciale di BONZANA**: lo zip viene da un sito di font
+gratuiti e non contiene un file di licenza. È l'ultimo nodo aperto sui caratteri.
+
+## 📅 Le date passate spariscono da sole
+Il problema che si sarebbe visto online il primo giorno: la home e la pagina Date mostravano
+*"★ Prossima data — 23 Ago"* con il **conto alla rovescia fermo a zero**. Un calendario scritto a
+mano invecchia in silenzio, e se ne accorge il cliente prima di te.
+
+Adesso il browser confronta ogni data con oggi: le passate escono dall'elenco, un mese rimasto
+vuoto sparisce con la sua intestazione, e la scheda in cima prende **sempre la prima data futura
+vera** col countdown giusto. Se non ci fosse più nessuna data, al posto della scheda scaduta
+compare un invito a scrivere.
+📌 **Le date restano scritte nell'HTML**: per aggiungerne una si copia un blocco `.ticket`
+(pagina Date) o `.cal-row` (home) e si mette la sua data. **Il JavaScript non va aperto.**
+
+⚠️ **Trappola costata un giro**: l'attributo `hidden` **da solo non nasconde niente** se il CSS
+imposta un display (`.ticket{display:grid}`) — il `display:none` di `hidden` ha la specificità
+più bassa e perde. Il test diceva "nascosto" (l'attributo c'era) ma lo **screenshot** mostrava
+tutte le date. Serve `[hidden]{display:none !important}`, che ora c'è.
+👉 Morale: sulle cose visive, credere allo screenshot, non al DOM.
+
+⚠️ **Le date sono ancora quelle di prova** (28/29 ago, 5 set, 10 ott) e i dettagli del popup sono
+vuoti. Online oggi si vedono solo *Matrimonio, Siena — 5 settembre* e *Beach Fly, Brescia —
+10 ottobre*, perché le altre sono già passate. **Da caricare le vere.**
+
+## 🔎 SEO — cosa c'era e cosa mancava
+- **`<title>` e description**: la home era rimasta *"Proposta A6 — Bonzana"*. Riscritti.
+- **canonical, Open Graph e Twitter card**: **non c'erano su nessuna pagina**. Aggiunti tutti,
+  con `images/og-image.jpg` (jpg e non webp: Facebook e WhatsApp gestiscono male il webp nelle
+  anteprime).
+- **Dati strutturati**: le maquette ne avevano solo due, il sito vecchio sette. Recuperati tutti
+  e aggiornato il logo a quello definitivo. Due **rigenerati dal contenuto vero**, perché
+  mentivano: il `FAQPage` aveva 9 domande e la pagina ne ha **11**; l'`ItemList` elencava **12
+  date già passate** del vecchio sito, ora sono le 4 in calendario.
+- **`robots.txt`**: `Disallow` sulla landing delle inserzioni. **`sitemap.xml`**: aggiunta
+  `privacy.html`, date aggiornate, la landing esclusa.
+- **Analytics**: lo snippet Cloudflare era solo su home e preventivo → ora su **tutte** le pagine
+  (serve anche per capire se la campagna converte).
+  📌 In locale il beacon dà `net::ERR_FAILED`: normale, `localhost` non è un dominio registrato.
+
+## 📨 Il modulo
+`preventivo.html` e la landing mandano allo **stesso** Formspree (`formspree.io/f/xdabrrrr`).
+La landing marca le richieste con `Origine: Landing inserzioni`, così si distinguono nella casella.
+Su entrambi il consenso privacy è obbligatorio (bottone spento finché non è spuntato) e viene
+incluso nei dati inviati.
+⚠️ **L'informativa privacy è ancora una bozza da far validare** — mancano forma giuridica, sede
+legale e la verifica sui server di Formspree. Era il primo punto aperto di questo documento ed è
+ancora aperto, ma almeno adesso il consenso c'è.
+
+## ✅ Come è stato verificato prima di pubblicare
+Tutte e nove le pagine in Chrome vero, desktop e telefono:
+**0 testi sotto soglia di contrasto · 0 errori JavaScript · 0 immagini rotte · 0 link interni
+rotti · nessun trabocco orizzontale · font caricati e verificati sul `font-family` calcolato.**
 
 # ⏳ DA DECIDERE — titoli maiuscoli o minuscoli (con la band)
 

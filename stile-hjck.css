@@ -1,0 +1,216 @@
+/* ============================================================================
+   HJCK — LO STRATO DI STILE DELLA HOME, PORTATO SULLE PAGINE INTERNE
+   ----------------------------------------------------------------------------
+   Michele ha confermato lo stile della home (proposta-a6.html) il 01/09/2026.
+   Questo file e' la fotografia di quello stile, tenuta in UN POSTO SOLO invece
+   che ricopiata in sei pagine: si aggancia con una riga in ognuna.
+
+   ⚠️ La sorgente di verita' resta `proposta-a6.html`, che ha tutto in linea.
+      Se lo stile della home cambia, questo file va riallineato a mano.
+
+   Cosa porta:
+     1. la sporcatura del brand, disegnata dal browser (non sgrana mai)
+     2. la testata senza striscia annuncio e senza social, voci addosso al logo
+     3. il bottone "Preventivo" leggibile anche sul trasparente
+     4. il footer basso, con la newsletter dentro e i social con l'icona
+     5. la formazione senza card, con i ritratti tondi
+   ============================================================================ */
+
+/* ---------- 1 · LA SPORCATURA (tre strati, tutti procedurali) ----------
+   Tasselli disegnati con feTurbulence: si ripetono a misura fissa e non
+   vengono mai scalati, quindi non possono sgranare a nessuna larghezza.
+   `stitchTiles='stitch'` fa combaciare i bordi del tassello. */
+:root{
+  --sporco-grana:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='190' height='190'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch' seed='5'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0.85'/></feComponentTransfer></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+  --sporco-fibra:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='340' height='340'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.14' numOctaves='4' stitchTiles='stitch' seed='23'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0.18'/></feComponentTransfer></filter><rect width='100%25' height='100%25' filter='url(%23f)'/></svg>");
+  --sporco-nuvole:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='620' height='620'><filter id='n2'><feTurbulence type='fractalNoise' baseFrequency='0.013' numOctaves='4' stitchTiles='stitch' seed='41'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0.22'/></feComponentTransfer></filter><rect width='100%25' height='100%25' filter='url(%23n2)'/></svg>");
+}
+/* si applica a tutte le sezioni senza dover toccare l'HTML pagina per pagina */
+.section, .page-hero, .ph-hero, .faq-sec, .gal-sec{ position:relative; isolation:isolate }
+.section > *, .page-hero > *, .ph-hero > *, .faq-sec > *, .gal-sec > *{ position:relative; z-index:1 }
+.section::before, .ph-hero::before, .faq-sec::before, .gal-sec::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    var(--sporco-grana)  repeat 0 0 / 190px 190px,
+    var(--sporco-fibra)  repeat 0 0 / 340px 340px,
+    var(--sporco-nuvole) repeat 0 0 / 620px 620px;
+  opacity:1;mix-blend-mode:multiply;
+  background-size:190px 190px,340px 340px,620px 620px;
+}
+/* sui fondi chiari basta un'ombra di grana, se no sembra muffa */
+.on-light::before, .section[style*="--panna"]::before{ opacity:.4 }
+/* sezioni alterne: si sfalsa il tassello, cosi' due fasce vicine non hanno
+   la stessa identica sporcatura */
+.section:nth-of-type(even)::before{ background-position:95px 60px, 170px 130px, 310px 240px }
+
+/* ---------- 2 · TESTATA ----------
+   La striscia annuncio non c'e' piu' (via anche dall'HTML): la nav parte da 0.
+   Il velo e' piu' fitto e piu' lungo perche' prima le voci del menu cadevano
+   nella zona chiara del gradiente e sopra una foto non si leggevano. */
+.annuncio{ display:none !important }
+.nav{
+  top:0 !important;
+  background:linear-gradient(180deg,rgba(73,36,10,.96) 0%,rgba(73,36,10,.92) 38%,rgba(73,36,10,.74) 62%,rgba(73,36,10,.34) 84%,transparent 100%);
+  padding-bottom:30px;
+}
+.nav-side a{
+  font-weight:800;font-size:13px;letter-spacing:.14em;
+  text-shadow:0 1px 2px rgba(73,36,10,.95), 0 0 14px rgba(73,36,10,.85);
+}
+.nav.solid .nav-side a{ text-shadow:none }
+/* le voci stanno addosso al logo centrale, non ai bordi dello schermo */
+.nav-side{ gap:clamp(14px,1.4vw,22px) }
+.nav-side.sx{ justify-content:flex-end }
+.nav-side.dx{ justify-content:flex-start }
+.nav-in{ gap:clamp(20px,2.6vw,38px) }
+@media (max-width:1000px){
+  .nav-side.dx{ justify-content:flex-end }
+  .nav-side.dx li:not(:last-child){ display:none }
+}
+/* ---------- 3 · IL BOTTONE PREVENTIVO ----------
+   Era turchese contornato e sul velo della testata spariva. Pieno di beige
+   con la scritta marrone fa 10:1 sempre, sul trasparente e sulla barra piena. */
+.nav-cta{
+  font-family:var(--valley)!important;font-size:13px!important;font-weight:900!important;
+  color:var(--espresso)!important;background:var(--panna);
+  border:2px solid var(--espresso);border-radius:8px;
+  padding:8px 18px 9px;letter-spacing:.12em!important;text-transform:uppercase;
+  box-shadow:3px 3px 0 var(--arancio);
+  transition:transform .16s,box-shadow .16s,background .2s,color .2s;
+}
+.nav-cta:hover{
+  color:var(--panna)!important;background:var(--espresso);
+  transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--arancio);
+}
+/* i bottoni in LT Cushion, come in home */
+:root{ --btn:"LT Cushion","Manrope",system-ui,sans-serif }
+.btn-poster,.btn-dark,.cta-btn,.nav-cta,.cal-badge{
+  font-family:var(--btn) !important;font-weight:900;letter-spacing:.09em;text-transform:uppercase;
+}
+.btn-poster{font-size:clamp(15px,1.5vw,18px)}
+.cta-btn{font-size:clamp(16px,1.7vw,20px)}
+.btn-dark{font-size:15.5px}
+.nav-cta{font-size:13px !important;letter-spacing:.12em}
+
+/* ---------- 4 · IL FOOTER ----------
+   Piu' basso (il camaleonte da solo faceva 235px), con la newsletter come
+   prima riga invece che sospesa sopra, e i social con l'icona accanto. */
+.footer-cam .ico{ width:min(230px,44vw) }
+.footer-payoff{ font-size:clamp(26px,3.8vw,46px) }
+.footer--ridotta{ padding-bottom:20px }
+.footer--ridotta .footer-cam{ padding:clamp(22px,3vw,36px) 20px 0 }
+.footer--ridotta .footer-payoff{ margin-top:10px }
+.footer--ridotta .footer-rule{ margin:clamp(20px,2.6vw,28px) auto 0 }
+.footer--ridotta .footer-grid{ margin:20px auto 0 }
+.footer--ridotta .footer-copy{ margin:20px auto 0;padding-top:12px }
+.footer-social a{ display:inline-flex;align-items:center;gap:8px }
+.footer-social svg{ width:15px;height:15px;fill:currentColor;flex:none }
+
+.foot-nl{
+  max-width:var(--wrap);margin:0 auto;
+  padding:clamp(24px,3vw,36px) clamp(20px,4vw,48px) clamp(22px,2.8vw,32px);
+  border-bottom:1px solid rgba(139,174,164,.22);
+}
+.foot-nl-in{
+  display:grid;grid-template-columns:1fr min(460px,44%);gap:clamp(20px,3vw,44px);
+  align-items:center;min-width:0;
+}
+.foot-nl-in > *{ min-width:0 }
+.foot-nl-tit{
+  font-family:var(--bronco);font-weight:400;font-synthesis:none;text-transform:uppercase;
+  /* sotto i 24px la parola in arancio non e' piu' un "testo grande" e a
+     3.25:1 non basterebbe: 25px la tiene sopra la soglia */
+  font-size:clamp(25px,2.8vw,34px);line-height:1.06;letter-spacing:.02em;
+  color:var(--panna);margin:0;
+}
+.nl-accent{ color:var(--arancio) }
+.foot-nl .newsletter{ width:100%;max-width:none }
+@media (max-width:800px){ .foot-nl-in{grid-template-columns:1fr} }
+.newsletter{
+  display:flex;align-items:center;gap:16px;
+  border:1px solid rgba(139,174,164,.45);border-radius:999px;
+  padding:8px 8px 8px 22px;background:rgba(73,36,10,.35);
+}
+.newsletter input{
+  flex:1;min-width:0;background:transparent;border:0;outline:0;
+  font-family:var(--sans);font-size:14px;color:var(--panna);padding:12px 0;
+}
+.newsletter input::placeholder{ color:var(--tan) }
+.newsletter button{
+  font-family:var(--btn);font-weight:900;font-size:13px;letter-spacing:.12em;
+  text-transform:uppercase;cursor:pointer;
+  background:var(--beige);color:var(--caffe);
+  border:2px solid var(--beige);border-radius:6px;padding:10px 20px;
+  box-shadow:inset 0 0 0 2px var(--beige),inset 0 0 0 3px rgba(73,36,10,.55);
+  transition:background .2s,border-color .2s,color .2s;
+}
+.newsletter button:hover{
+  background:var(--arancio);border-color:var(--arancio);color:var(--espresso);
+  box-shadow:inset 0 0 0 2px var(--arancio),inset 0 0 0 3px rgba(73,36,10,.55);
+}
+.nl-done{ font-family:var(--cushion);font-weight:500;font-size:15px;padding:12px 0;color:var(--panna) }
+
+/* ---------- 5 · LA FORMAZIONE SENZA CARD ----------
+   Le schede a "manifesto" sono state tolte in home: restano i ritratti tondi
+   su fondo pulito. Le percentuali sono calcolate una per una perche' il viso
+   cada sempre a circa un terzo dall'alto del cerchio. */
+.member{ background:none;border:0;outline:0;box-shadow:none !important;padding:0;text-align:center }
+.member .photo{
+  width:230px;height:230px;max-width:100%;border-radius:50%;
+  overflow:hidden;border:0;background:var(--beige);margin:0 auto 22px;
+}
+.member .photo img{ width:100%;height:100%;object-fit:cover;object-position:center 22% }
+.member .photo img[src$="mike-ritratto-muro.webp"]{ object-position:center 25% }
+.member .photo img[src$="miglio-ritratto-muro.webp"]{ object-position:center 21% }
+.member .photo img[src$="larry-ritratto-muro.webp"]{ object-position:center 4% }
+.member .photo img[src$="ste-ritratto-muro.webp"]{ object-position:center 6% }
+.member .photo img[src$="richi-ritratto-muro.webp"]{ object-position:center 2% }
+.member .quote{ margin:14px auto 0;padding-top:12px;max-width:28ch;border-top:2px dashed rgba(73,36,10,.28) }
+@media (max-width:560px){ .member .photo{width:200px;height:200px} }
+
+/* ---------- 6 · I LOGHI DEI CLIENTI, IN SCALA ----------
+   Dentro il file il disegno non riempie il riquadro, e ognuno lo riempie in
+   modo diverso: con una regola sola venivano di sette misure. */
+.brand-cell{ padding:14px }
+.brand-logo{ max-width:96%;max-height:none;height:auto;width:auto;opacity:.9 }
+.brand-logo[src$="Coca-Cola.svg"]{ height:47px }
+.brand-logo[src$="Ca-del-Bosco.svg"]{ height:55px }
+.brand-logo[src$="Porsche.svg"]{ height:50px }
+.brand-logo[src$="Logo-Thun.svg"]{ height:36px }
+.brand-logo[src$="Lombarda-Ceramica-v2.svg"]{ height:44px }
+
+/* ---------- 7 · CONTRASTI CHIUSI DOPO LA MISURA A SCHERMO ----------
+   Sono tutti lo stesso caso: arancio e beige, uno sull'altro, fanno 3.07:1 —
+   abbastanza per un titolone, non per una scritta piccola. */
+.member .role, .m-role{ color:var(--espresso) }          /* 13px in arancio sul beige: 3.87 */
+.yt-play{ background:var(--espresso);color:var(--panna) }/* il tondo play su fascia arancio */
+.on-light .it, .on-light .ph-it, .rep .it{ color:var(--espresso) }
+/* i numeroni dei capitoli: sono grandi ma restavano sotto il 3:1 */
+.chap-num{ color:var(--tan);opacity:1 }
+.on-light .chap-num{ color:var(--caffe);opacity:.55 }
+
+
+/* ---------- 8 · I CARATTERI, ALLINEATI ALLA HOME (01/09) ----------
+   ⚠️ Qui c'era un buco vero: le pagine interne nascono dalle proposte A2/A4,
+   dove `--bronco` e `--valley` puntavano a "Bronco Valley" e "Valley".
+   Bronco non si usa piu' e Valley era Personal Use: tolte le due @font-face,
+   i titoli cadevano su **Rye** — cioe' sette pagine su nove avevano un
+   carattere diverso dalla home, e a occhio non si notava perche' anche Rye
+   e' un western.
+   Qui si rimettono in riga: Bonzana per i titoli, LT Cushion per i bottoni. */
+@font-face{
+  font-family:"Bonzana";
+  src:url("fonts/bonzana.otf") format("opentype");
+  font-weight:400; font-display:swap;
+}
+:root{
+  --bronco:"Bonzana","Rye",serif;
+  --valley:"Bonzana","Rye",serif;
+}
+
+/* ⚠️ L'attributo `hidden` da solo non basta: il browser gli da' `display:none`
+   con la specificita' piu' bassa, e qualunque regola che imposti un display
+   (`.ticket{display:grid}`, `.cal-row{display:grid}`, `.tickets{display:grid}`)
+   lo sovrascrive. Le date passate restavano a schermo pur avendo l'attributo.
+   Con `!important` il nascondi vale davvero. */
+[hidden]{display:none !important}

@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>FAQ — Hot Joe &amp; The Coffeekillers | Cachet, service, trasferte</title>
-<meta name="description" content="Domande frequenti sulla band country Hot Joe & The Coffeekillers: cachet (fascia 1.000 € — 2.500 €), durata dello show, service audio/luci, spazio palco e trasferte in tutta Italia." />
-<link rel="canonical" href="https://thecoffeekillers.com/faq.html" />
+<title>Informativa privacy — Hot Joe &amp; The Coffeekillers</title>
+<meta name="description" content="Come Hot Joe &amp; The Coffeekillers trattano i dati raccolti dal modulo di richiesta preventivo: quali dati, per quale scopo, per quanto tempo e quali diritti hai." />
+<link rel="canonical" href="https://thecoffeekillers.com/privacy.html" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Hot Joe &amp; The CoffeeKillers" />
 <meta property="og:locale" content="it_IT" />
-<meta property="og:url" content="https://thecoffeekillers.com/faq.html" />
-<meta property="og:title" content="FAQ — Hot Joe &amp; The Coffeekillers | Cachet, service, trasferte" />
-<meta property="og:description" content="Domande frequenti sulla band country Hot Joe & The Coffeekillers: cachet (fascia 1.000 € — 2.500 €), durata dello show, service audio/luci, spazio palco e trasferte in tutta Italia." />
+<meta property="og:url" content="https://thecoffeekillers.com/privacy.html" />
+<meta property="og:title" content="Informativa privacy — Hot Joe &amp; The Coffeekillers" />
+<meta property="og:description" content="Come Hot Joe &amp; The Coffeekillers trattano i dati raccolti dal modulo di richiesta preventivo: quali dati, per quale scopo, per quanto tempo e quali diritti hai." />
 <!-- ⚠️ jpg e non webp: Facebook e WhatsApp gestiscono male il webp nelle anteprime -->
 <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -474,139 +474,41 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
   .qa-ind{transition:none!important}
   .qa[open] .qa-a{animation:none!important}
 }
-
-/* ============================================================
-   FAQ AL CENTRO DELLA PAGINA (01/09)
-   ------------------------------------------------------------
-   Erano due colonne — introduzione appiccicata a sinistra,
-   domande a destra — e in mezzo restava poca aria. Michele:
-   "centra le faq in mezzo alla pagina, dagli molto risalto".
-   Ora e' una colonna sola, incolonnata al centro: titolo grande
-   sopra, domande sotto, e niente altro a contendere lo spazio
-   (bottone preventivo, e-mail, telefono e camaleonte sono usciti).
-   ============================================================ */
-.faq-sec{padding-top:clamp(48px,6vw,84px)}
-.faq-grid{
-  display:block;max-width:900px;margin:0 auto;
+/* ============ INFORMATIVA PRIVACY ============ */
+.pv-sec{background:var(--espresso);padding:clamp(48px,6vw,84px) 0 clamp(56px,7vw,96px)}
+.pv-sec h1{color:var(--panna);font-size:clamp(34px,5vw,64px);margin:12px 0 18px}
+.pv-it{color:var(--arancio)}
+.pv-lead{font-family:var(--sans);color:var(--beige);font-size:clamp(16px,2vw,19px);max-width:60ch;line-height:1.6}
+.pv-avviso{
+  margin:28px 0 40px;max-width:70ch;
+  background:rgba(250,134,0,.12);border-left:3px solid var(--arancio);
+  border-radius:0 10px 10px 0;padding:16px 20px;
+  font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--beige);
 }
-.faq-intro{position:static;text-align:center;margin-bottom:clamp(36px,4.5vw,56px)}
-.faq-intro .sec-title{font-size:clamp(38px,5.4vw,68px);margin-bottom:16px}
-.faq-intro .lead-p{max-width:52ch;margin:0 auto;font-size:clamp(16px,1.8vw,19px)}
-
-/* le domande: piu' grandi e piu' distanziate, si leggono da lontano */
-.qa-list{gap:16px}
-.qa summary{padding:22px 26px;gap:18px}
-.qa-num{font-size:24px;min-width:40px}
-.qa-q{font-size:clamp(18px,2.1vw,22px)}
-.qa-a{margin:0 26px;padding:16px 0 22px;font-size:16px}
-
-@media (max-width:960px){
-  /* la griglia non e' piu' a due colonne: il riordino di prima non serve */
-  .faq-grid{display:block}
-  .faq-intro{display:block}
-  .qa-list{margin-top:0}
+.pv-avviso strong{color:var(--panna)}
+.pv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,32px)}
+@media (max-width:820px){.pv-grid{grid-template-columns:1fr}}
+.pv-blocco{
+  background:var(--panna);color:var(--espresso);border-radius:14px;
+  padding:clamp(22px,3vw,30px);box-shadow:0 20px 44px -22px rgba(0,0,0,.5);
 }
+.pv-blocco h2{font-family:var(--bronco);font-weight:400;font-synthesis:none;text-transform:uppercase;
+  font-size:clamp(21px,2.4vw,27px);letter-spacing:.02em;margin-bottom:12px;color:var(--espresso)}
+.pv-blocco p{font-family:var(--sans);font-size:15.5px;line-height:1.62;color:var(--caffe);margin-bottom:12px}
+.pv-blocco p:last-child{margin-bottom:0}
+.pv-blocco b{color:var(--espresso)}
+.pv-blocco a{color:var(--azz-testo);text-decoration:underline;text-underline-offset:3px}
+.pv-lista{list-style:none;margin:0 0 12px;display:grid;gap:8px}
+.pv-lista li{
+  font-family:var(--sans);font-size:15px;line-height:1.5;color:var(--caffe);
+  padding-left:20px;position:relative;
+}
+.pv-lista li::before{content:"★";position:absolute;left:0;top:0;color:var(--ruggine);font-size:11px;line-height:1.9}
+.pv-nota{font-family:var(--cushion);font-weight:500;font-style:italic;font-size:14.5px;color:var(--azz-testo)}
+.pv-fondo{margin-top:clamp(32px,4vw,48px);text-align:center}
 
 </style>
 <link rel="stylesheet" href="stile-hjck.css" />
-<!-- Dati strutturati: recuperati dal sito precedente, il logo aggiornato
-     a quello definitivo. Servono a Google per capire chi siamo. -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Qual è il vostro cachet?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Dipende dalla dimensione dell'evento, dalla trasferta e dal service audio/luci richiesto. Nella maggior parte dei casi rientriamo nella fascia 1.000 € — 2.500 €. Eccezioni? Solo per eccesso 😬"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quanto dura una vostra performance?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Tendenzialmente da 1h e 30 a 2h e 30. Vuoi che suoniamo di più? Vedi sopra, alle «eccezioni» 🤓"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Avete un service a seguito?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sì, siamo noi! 😉 A protezione delle tue tasche, fino a un'audience di 250 persone siamo autonomi; sopra le 250 persone abbiamo il nostro service di fiducia."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Di dove siete? Fino a dove vi spostate?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Siamo di Brescia, ma anche se sei di Canicattì veniamo a farti ballare. Disponibili per spostamenti nazionali e internazionali. 🕺🏻"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Cosa significa il vostro nome?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La nostra routine nei giorni delle prove è sempre stata: una bella moka di caffè bollente e un bicchierino di amaro, poi tutti a suonare. Letteralmente «Caffè bollente» (Joe in slang americano) & gli ammazzacaffè (the Coffeekillers). ☕️🥃"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Uscite anche in altre formazioni?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Prediligiamo uscire in 6, la nostra unica vera formazione da show. In casi eccezionali usciamo anche con formazioni ridotte."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Di quanto spazio avete bisogno?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "5 metri per 3 è il nostro spazio minimo."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quante persone sono troppe per uno show dei Coffeekillers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Finché ce n'è, viva il re."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Avete una scaletta fissa?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Lo show è composto da circa 20 brani. Abbiamo un repertorio di circa 50 canzoni che costruiamo sull'esigenza della serata."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Avete bisogno di cibo o bevande?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ci piace suonare a stomaco pieno e gomito alzato, if you know what we mean."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "C'è qualcos'altro che dobbiamo sapere prima di ingaggiarvi?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Siate pronti a entrare nel mondo del Country americano. 🤠"
-      }
-    }
-  ]
-}
-</script>
 </head>
 <body>
 <script>document.documentElement.classList.add("js");</script>
@@ -625,7 +527,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
     </a>
     <ul class="nav-side dx">
       <li><a href="date.html">Date</a></li>
-      <li><a href="faq.html" aria-current="page">FAQ</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a class="nav-cta" href="preventivo.html">Preventivo</a></li>
     </ul>
   </div>
@@ -635,88 +537,92 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="country.html">Il country</a></li>
       <li><a href="date.html">Date</a></li>
-      <li><a href="faq.html" aria-current="page">FAQ</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="preventivo.html">Preventivo</a></li>
     </ul>
   </nav>
 </header>
-
-<!-- ==================== 1. FAQ (intro + accordion) ==================== -->
-<main class="section faq-sec" id="faq">
+<!-- ==================== 1. INFORMATIVA ==================== -->
+<section class="section pv-sec" id="top">
   <div class="wrap">
-    <div class="faq-grid">
-      <div class="faq-intro rv">
-        <h1 class="sec-title">Tutto quello che ci chiedete.</h1>
-        <p class="lead-p">Cachet, durata, service, spazio, trasferte: le risposte alle domande che ci fanno pi&ugrave; spesso.</p>
-      </div>
 
-      <div class="qa-list stagger">
-        <details class="qa" open>
-          <summary><span class="qa-num">01</span><span class="qa-q">Qual è il vostro cachet?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Dipende dalla dimensione dell'evento, dalla trasferta e dal service audio/luci richiesto. Nella maggior parte dei casi rientriamo nella fascia 1.000&nbsp;€&nbsp;—&nbsp;2.500&nbsp;€. Eccezioni? Solo per eccesso 😬</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">02</span><span class="qa-q">Quanto dura una vostra performance?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Tendenzialmente da 1h e 30 a 2h e 30. Vuoi che suoniamo di più? Vedi sopra, alle «eccezioni» 🤓</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">03</span><span class="qa-q">Avete un service a seguito?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Sì, siamo noi! 😉 A protezione delle tue tasche, fino a un'audience di 250 persone siamo autonomi; sopra le 250 persone abbiamo il nostro service di fiducia.</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">04</span><span class="qa-q">Di dove siete? Fino a dove vi spostate?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Siamo di Brescia, ma anche se sei di Canicattì veniamo a farti ballare. Disponibili per spostamenti nazionali e internazionali. 🕺🏻</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">05</span><span class="qa-q">Cosa significa il vostro nome?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">La nostra routine nei giorni delle prove è sempre stata: una bella moka di caffè bollente e un bicchierino di amaro, poi tutti a suonare. Letteralmente «Caffè bollente» (Joe in slang americano) &amp; gli ammazzacaffè (the Coffeekillers). ☕️🥃</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">06</span><span class="qa-q">Uscite anche in altre formazioni?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Prediligiamo uscire in 6, la nostra unica vera formazione da show. In casi eccezionali usciamo anche con formazioni ridotte.</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">07</span><span class="qa-q">Di quanto spazio avete bisogno?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">5 metri per 3 è il nostro spazio minimo.</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">08</span><span class="qa-q">Quante persone sono troppe per uno show dei Coffeekillers?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Finché ce n'è, viva il re.</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">09</span><span class="qa-q">Avete una scaletta fissa?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Lo show è composto da circa 20 brani. Abbiamo un repertorio di circa 50 canzoni che costruiamo sull'esigenza della serata.</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">10</span><span class="qa-q">Avete bisogno di cibo o bevande?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Ci piace suonare a stomaco pieno e gomito alzato, if you know what we mean.</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">11</span><span class="qa-q">C'è qualcos'altro che dobbiamo sapere prima di ingaggiarvi?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Siate pronti a entrare nel mondo del Country americano. 🤠</p>
-        </details>
-      </div>
+    <h1 class="rv">Informativa <span class="pv-it">privacy.</span></h1>
+    <p class="pv-lead rv">Quando ci scrivi per un preventivo ci lasci qualche dato personale. Qui trovi
+       spiegato, in parole semplici, che cosa ne facciamo — senza formule incomprensibili.</p>
+
+    <div class="pv-avviso rv">
+      <strong>Bozza da far validare.</strong> Questo testo è una traccia preparata per il sito nuovo:
+      prima di pubblicarlo va controllato da chi si occupa degli adempimenti (in particolare i dati
+      del titolare e i tempi di conservazione), e vanno inseriti i dati fiscali corretti della band.
+    </div>
+
+    <div class="pv-grid">
+      <article class="pv-blocco rv">
+        <h2>Chi tratta i tuoi dati</h2>
+        <p>Il titolare del trattamento è <b>Hot Joe &amp; The Coffeekillers</b>, Brescia (Italia).
+           Per qualsiasi richiesta scrivi a <a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a>
+           o chiama il <a href="tel:+393937011409">+39 393 7011409</a>.</p>
+        <p class="pv-nota">Da completare con la forma giuridica e la sede legale esatta.</p>
+      </article>
+
+      <article class="pv-blocco rv">
+        <h2>Quali dati raccogliamo</h2>
+        <p>Solo quelli che scrivi tu nel modulo di richiesta preventivo:</p>
+        <ul class="pv-lista">
+          <li><b>Nome e cognome</b> — per sapere con chi parliamo</li>
+          <li><b>Email</b> — per risponderti</li>
+          <li><b>Telefono</b> (facoltativo) — se preferisci essere richiamato</li>
+          <li><b>Dettagli dell'evento</b> — tipo di serata, data, luogo, numero di ospiti, durata, budget orientativo, servizi richiesti</li>
+          <li><b>Note libere</b> — quello che ci racconti tu</li>
+        </ul>
+        <p>Non usiamo cookie di profilazione e non ti tracciamo per pubblicità.</p>
+      </article>
+
+      <article class="pv-blocco rv">
+        <h2>A cosa ci servono</h2>
+        <p>Per un motivo solo: <b>rispondere alla tua richiesta</b> e prepararti una proposta con
+           cachet, scaletta tipo e dettagli tecnici. La base giuridica è l'esecuzione di misure
+           precontrattuali richieste da te, insieme al consenso che dai spuntando la casella nel modulo.</p>
+        <p>Non mandiamo comunicazioni commerciali a chi ci ha solo chiesto un preventivo, e non
+           cediamo né vendiamo i dati a nessuno.</p>
+      </article>
+
+      <article class="pv-blocco rv">
+        <h2>Dove finiscono</h2>
+        <p>Il modulo è gestito da <b>Formspree</b>, un servizio che raccoglie l'invio e ce lo recapita
+           via email: è nostro responsabile del trattamento. I messaggi arrivano poi nella nostra
+           casella di posta.</p>
+        <p class="pv-nota">Da verificare prima della pubblicazione: la sede dei server di Formspree e
+           le garanzie per l'eventuale trasferimento dei dati fuori dall'Unione Europea.</p>
+      </article>
+
+      <article class="pv-blocco rv">
+        <h2>Per quanto tempo li teniamo</h2>
+        <p>Conserviamo la richiesta per il tempo necessario a risponderti e a gestire l'eventuale
+           serata. Se dalla richiesta non nasce nulla, cancelliamo i dati entro <b>24 mesi</b>.
+           Se invece suoniamo insieme, teniamo quanto serve per gli obblighi fiscali e contabili.</p>
+      </article>
+
+      <article class="pv-blocco rv">
+        <h2>I tuoi diritti</h2>
+        <p>Puoi chiederci in qualsiasi momento di <b>vedere</b> i dati che abbiamo su di te, di
+           <b>correggerli</b>, di <b>cancellarli</b>, di limitarne l'uso o di riceverli in un file.
+           Puoi anche revocare il consenso: basta una mail a
+           <a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a> e ce ne occupiamo.</p>
+        <p>Se pensi che qualcosa non sia stato fatto correttamente, puoi rivolgerti al
+           <b>Garante per la protezione dei dati personali</b>.</p>
+      </article>
+    </div>
+
+    <div class="pv-fondo rv">
+      <a class="btn-poster" href="preventivo.html">Torna alla richiesta</a>
     </div>
   </div>
-</main>
+</section>
 
-<!-- ==================== 2. CTA INSEGNA (condivisa) ==================== -->
+<!-- ==================== 3. FOOTER (variante ridotta, condivisa) ==================== -->
 <footer class="footer footer--ridotta">
   <div class="payoff-edge tartan"></div>
-
-  <!-- la newsletter e' la prima riga del footer, non una fascia sospesa sopra -->
-  <div class="foot-nl" id="newsletter">
-    <div class="foot-nl-in">
-      <div>
-        <h3 class="foot-nl-tit">Ti aggiorniamo sulle <span class="nl-accent">date.</span></h3>
-      </div>
-      <form class="newsletter">
-        <input required type="email" placeholder="la-tua-mail@example.com" aria-label="La tua email" />
-        <button type="submit">Iscriviti</button>
-      </form>
-    </div>
-  </div>
-
   <div class="footer-cam">
     <span class="ico i-camaleonte" role="img" aria-label="Il camaleonte, simbolo dei CoffeeKillers"></span>
     <p class="footer-payoff">Long Live Country Music</p>
@@ -793,15 +699,6 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
 })();
 </script>
 
-<script>
-// Newsletter: nessun backend, solo la conferma (come in home)
-document.querySelectorAll("form.newsletter").forEach(function(form){
-  form.addEventListener("submit",function(e){
-    e.preventDefault();
-    form.innerHTML='<span class="nl-done">★ Iscritto. Ci sentiamo presto.</span>';
-  });
-});
-</script>
 <!-- Cloudflare Web Analytics — privacy-friendly, niente cookie, niente banner.
      Era solo su index e preventivo: adesso e' su TUTTE le pagine, se no i
      numeri raccontano meta' storia (e sulla landing delle inserzioni serve
