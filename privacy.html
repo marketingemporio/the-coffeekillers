@@ -16,9 +16,26 @@
 <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Rye&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================================
+   MANROPE, OSPITATO QUI E NON PRESO DA GOOGLE
+   ----------------------------------------------------------------------------
+   Prima arrivava da fonts.googleapis.com: ogni visita mandava l'indirizzo IP
+   del visitatore ai server di Google, senza che nessuno l'avesse chiesto — e
+   in Europa e' proprio il punto su cui i garanti hanno gia' dato torto a dei
+   siti. Ospitandolo qui il problema sparisce del tutto: nessun terzo viene
+   contattato per mostrare una pagina, e l'informativa privacy ha una voce in
+   meno da dichiarare. In piu' si risparmiano due connessioni esterne.
+   E' il file VARIABILE: un file solo copre tutti i pesi da 400 a 800.
+   ⚠️ Rye e' uscito: era solo il fallback dopo Bonzana e veniva anch'esso da
+      Google. Al suo posto il serif di sistema, che non chiama nessuno.
+   ============================================================================ */
+@font-face{
+  font-family:"Manrope";
+  src:url("fonts/Manrope-Variable.ttf") format("truetype-variations");
+  font-weight:200 800; font-style:normal; font-display:swap;
+}
+</style>
 <style>
 /* ============ FONT ============ */
 /* Valley = taglio pulito senza trattini (demo personal-use, come Bronco);
@@ -45,10 +62,10 @@
   --azz-scuro:#5F837A;     /* azzurro leggibile su chiaro */
   --azz-testo:#3F5C55;    /* azzurro leggibile per i TESTI su fondo chiaro */
   --azz-wash:#D8E5E0;
-  --bronco:"Bronco Valley","Rye",serif;
+  --bronco:"Bronco Valley",serif;
   --serif:"LT Cushion",serif;
   --sans:"Manrope",sans-serif;
-  --valley:"Valley","Rye",serif;
+  --valley:"Valley",serif;
   --cushion:"LT Cushion",serif;
   --wrap:1180px;
   --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
@@ -543,86 +560,169 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
   </nav>
 </header>
 <!-- ==================== 1. INFORMATIVA ==================== -->
+<!-- ============================================================================
+     ⚠️ CHI E' IL TITOLARE DEL TRATTAMENTO
+     ----------------------------------------------------------------------------
+     Il GDPR NON richiede una forma giuridica: l'art. 4.7 dice "la persona fisica
+     o giuridica" che decide finalita' e mezzi. Una band di amici puo' quindi
+     essere in regola indicando una PERSONA.
+     Qui e' indicato Michele Frosio come referente del gruppo. Le alternative,
+     se un giorno cambia l'assetto:
+       · CONTITOLARITA' (art. 26) — tutti i membri titolari insieme, con un
+         accordo interno che dica chi fa cosa. Piu' corretto se le decisioni
+         sono davvero collegiali, ma piu' pesante da gestire.
+       · ASSOCIAZIONE CULTURALE / APS — se nascera'. Un'associazione, anche non
+         riconosciuta, e' gia' un soggetto valido come titolare: subentra lei.
+     In pratica: il titolare naturale e' chi emette le ricevute per i cachet.
+     Se non e' Michele, si cambia il nome nel blocco "Chi tratta i tuoi dati"
+     qui sotto — e' l'unico punto da toccare.
+     ============================================================================ -->
 <section class="section pv-sec" id="top">
   <div class="wrap">
 
     <h1 class="rv">Informativa <span class="pv-it">privacy.</span></h1>
-    <p class="pv-lead rv">Quando ci scrivi per un preventivo ci lasci qualche dato personale. Qui trovi
-       spiegato, in parole semplici, che cosa ne facciamo — senza formule incomprensibili.</p>
-
-    <div class="pv-avviso rv">
-      <strong>Bozza da far validare.</strong> Questo testo è una traccia preparata per il sito nuovo:
-      prima di pubblicarlo va controllato da chi si occupa degli adempimenti (in particolare i dati
-      del titolare e i tempi di conservazione), e vanno inseriti i dati fiscali corretti della band.
-    </div>
+    <p class="pv-lead rv">Quando ci scrivi per un preventivo, o ti iscrivi per sapere le date, ci lasci
+       qualche dato personale. Qui c&rsquo;&egrave; scritto che cosa ne facciamo, in parole normali.
+       Ultimo aggiornamento: <b>2 settembre 2026</b>.</p>
 
     <div class="pv-grid">
+
       <article class="pv-blocco rv">
         <h2>Chi tratta i tuoi dati</h2>
-        <p>Il titolare del trattamento è <b>Hot Joe &amp; The Coffeekillers</b>, Brescia (Italia).
-           Per qualsiasi richiesta scrivi a <a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a>
-           o chiama il <a href="tel:+393937011409">+39 393 7011409</a>.</p>
-        <p class="pv-nota">Da completare con la forma giuridica e la sede legale esatta.</p>
+        <p>Hot Joe &amp; The CoffeeKillers &egrave; un gruppo musicale senza personalit&agrave;
+           giuridica. Il <b>titolare del trattamento</b> &mdash; cio&egrave; chi decide cosa farne e
+           chi ne risponde &mdash; &egrave; quindi una persona in carne e ossa:</p>
+        <p><b>Michele Frosio</b>, in qualit&agrave; di referente del gruppo &mdash; Brescia, Italia.<br />
+           <a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a> &middot;
+           <a href="tel:+393937011409">+39 393 7011409</a></p>
+        <p class="pv-nota">Se hai bisogno dei dati anagrafici completi per una richiesta formale,
+           scrivici e te li forniamo. Non abbiamo un responsabile della protezione dei dati (DPO):
+           non siamo tenuti ad averlo.</p>
       </article>
 
       <article class="pv-blocco rv">
         <h2>Quali dati raccogliamo</h2>
-        <p>Solo quelli che scrivi tu nel modulo di richiesta preventivo:</p>
+        <p><b>Se chiedi un preventivo</b>, solo quello che scrivi tu nel modulo: nome, un recapito
+           (e-mail o telefono), e i dettagli della serata &mdash; tipo di evento, data, luogo, quante
+           persone, durata, budget orientativo, servizi richiesti e le note che ci lasci.</p>
+        <p><b>Se ti iscrivi agli aggiornamenti sulle date</b>, solo il tuo indirizzo e-mail.</p>
+        <p><b>Mentre navighi</b> non ti chiediamo niente e non ti riconosciamo. Raccogliamo solo dati
+           statistici anonimi: quante visite riceve una pagina, da che Paese, con che tipo di
+           dispositivo. Non sono collegati a te.</p>
+        <p class="pv-nota">Non usiamo cookie di profilazione. Anzi: <b>non installiamo nessun
+           cookie</b>. Per questo non vedi nessun banner da accettare.</p>
+      </article>
+
+      <article class="pv-blocco rv">
+        <h2>A cosa ci servono, e perch&eacute; possiamo trattarli</h2>
         <ul class="pv-lista">
-          <li><b>Nome e cognome</b> — per sapere con chi parliamo</li>
-          <li><b>Email</b> — per risponderti</li>
-          <li><b>Telefono</b> (facoltativo) — se preferisci essere richiamato</li>
-          <li><b>Dettagli dell'evento</b> — tipo di serata, data, luogo, numero di ospiti, durata, budget orientativo, servizi richiesti</li>
-          <li><b>Note libere</b> — quello che ci racconti tu</li>
+          <li><b>Risponderti e farti una proposta.</b> Base giuridica: le misure precontrattuali che
+              hai chiesto tu scrivendoci (art. 6.1.b GDPR).</li>
+          <li><b>Mandarti gli aggiornamenti sulle date</b>, se ti sei iscritto. Base giuridica: il tuo
+              consenso (art. 6.1.a), che puoi ritirare quando vuoi.</li>
+          <li><b>Capire come va il sito</b> con statistiche anonime. Base giuridica: il nostro
+              legittimo interesse a sapere se il sito funziona (art. 6.1.f), senza inciderti addosso
+              perch&eacute; i dati non ti identificano.</li>
         </ul>
-        <p>Non usiamo cookie di profilazione e non ti tracciamo per pubblicità.</p>
+        <p>Non usiamo i tuoi dati per profilarti, non prendiamo decisioni automatiche sul tuo conto e
+           <b>non li vendiamo n&eacute; li cediamo a nessuno</b> per scopi commerciali.</p>
       </article>
 
       <article class="pv-blocco rv">
-        <h2>A cosa ci servono</h2>
-        <p>Per un motivo solo: <b>rispondere alla tua richiesta</b> e prepararti una proposta con
-           cachet, scaletta tipo e dettagli tecnici. La base giuridica è l'esecuzione di misure
-           precontrattuali richieste da te, insieme al consenso che dai spuntando la casella nel modulo.</p>
-        <p>Non mandiamo comunicazioni commerciali a chi ci ha solo chiesto un preventivo, e non
-           cediamo né vendiamo i dati a nessuno.</p>
+        <h2>Chi altro li vede</h2>
+        <p>Solo i cinque della band e i fornitori tecnici che ci servono per far funzionare il sito.
+           Ognuno tratta i dati per nostro conto, con un contratto che glielo impone:</p>
+        <ul class="pv-lista">
+          <li><b>Formspree</b> (Formspree Inc., Stati Uniti) &mdash; riceve e ci recapita quello che
+              scrivi nei moduli.</li>
+          <li><b>Netlify</b> (Netlify Inc., Stati Uniti) &mdash; ospita il sito; i suoi server
+              registrano gli accessi, come fa qualunque server web.</li>
+          <li><b>Cloudflare</b> (Cloudflare Inc., Stati Uniti) &mdash; fornisce le statistiche anonime
+              di visita, senza cookie e senza riconoscere i singoli visitatori.</li>
+        </ul>
+        <p><b>Trasferimento fuori dall&rsquo;Unione Europea.</b> Questi fornitori sono statunitensi, quindi
+           i dati possono essere trattati fuori dall&rsquo;UE. Il trasferimento avviene sulla base delle
+           <b>clausole contrattuali tipo</b> approvate dalla Commissione europea e, dove applicabile,
+           dell&rsquo;adesione al <b>EU&ndash;US Data Privacy Framework</b>. Se vuoi copia delle garanzie,
+           chiedicela.</p>
+        <p class="pv-nota">I caratteri tipografici del sito sono ospitati sui nostri stessi server:
+           aprendo una pagina <b>non contatti Google n&eacute; altri servizi esterni</b>.</p>
       </article>
 
       <article class="pv-blocco rv">
-        <h2>Dove finiscono</h2>
-        <p>Il modulo è gestito da <b>Formspree</b>, un servizio che raccoglie l'invio e ce lo recapita
-           via email: è nostro responsabile del trattamento. I messaggi arrivano poi nella nostra
-           casella di posta.</p>
-        <p class="pv-nota">Da verificare prima della pubblicazione: la sede dei server di Formspree e
-           le garanzie per l'eventuale trasferimento dei dati fuori dall'Unione Europea.</p>
+        <h2>Il video di YouTube</h2>
+        <p>Nelle pagine c&rsquo;&egrave; un video. Finch&eacute; non lo fai partire vedi soltanto
+           un&rsquo;immagine ospitata da noi: <b>YouTube non viene contattato e non sa che sei qui</b>.
+           Nel momento in cui premi play, il lettore di YouTube si carica e da quel momento
+           <b>Google pu&ograve; raccogliere dati e installare i suoi cookie</b>, secondo le proprie
+           regole (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy di Google</a>).
+           &Egrave; una scelta che resta tua: se non premi play, non succede.</p>
       </article>
 
       <article class="pv-blocco rv">
         <h2>Per quanto tempo li teniamo</h2>
-        <p>Conserviamo la richiesta per il tempo necessario a risponderti e a gestire l'eventuale
-           serata. Se dalla richiesta non nasce nulla, cancelliamo i dati entro <b>24 mesi</b>.
-           Se invece suoniamo insieme, teniamo quanto serve per gli obblighi fiscali e contabili.</p>
+        <ul class="pv-lista">
+          <li><b>Richieste di preventivo</b>: fino a <b>24 mesi</b> dall&rsquo;ultimo scambio. Se poi
+              suoniamo davvero da te, teniamo quel che serve agli obblighi fiscali per il tempo che
+              la legge impone.</li>
+          <li><b>Iscrizione agli aggiornamenti</b>: finch&eacute; resti iscritto. Se ti cancelli,
+              togliamo l&rsquo;indirizzo.</li>
+          <li><b>Statistiche anonime</b>: le conserva Cloudflare per un periodo limitato, e comunque
+              non sono riferibili a te.</li>
+        </ul>
+      </article>
+
+      <article class="pv-blocco rv">
+        <h2>&Egrave; obbligatorio darceli?</h2>
+        <p>No. Ma senza un nome e un recapito non possiamo risponderti, e senza l&rsquo;e-mail non
+           possiamo mandarti gli aggiornamenti. Il resto (data, luogo, numero di ospiti, budget)
+           serve solo a farti una proposta sensata: se non lo scrivi, te la faremo pi&ugrave; vaga.</p>
       </article>
 
       <article class="pv-blocco rv">
         <h2>I tuoi diritti</h2>
         <p>Puoi chiederci in qualsiasi momento di <b>vedere</b> i dati che abbiamo su di te, di
-           <b>correggerli</b>, di <b>cancellarli</b>, di limitarne l'uso o di riceverli in un file.
-           Puoi anche revocare il consenso: basta una mail a
-           <a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a> e ce ne occupiamo.</p>
-        <p>Se pensi che qualcosa non sia stato fatto correttamente, puoi rivolgerti al
-           <b>Garante per la protezione dei dati personali</b>.</p>
+           <b>correggerli</b>, di <b>cancellarli</b>, di <b>limitarne</b> l&rsquo;uso, di
+           <b>riceverli</b> in un formato leggibile o di <b>opporti</b> al trattamento. Se ci hai dato
+           un consenso, puoi <b>ritirarlo</b> quando vuoi, senza che questo tocchi quello che abbiamo
+           fatto prima.</p>
+        <p>Basta una mail a <a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a>:
+           rispondiamo entro <b>un mese</b>.</p>
+        <p>Se pensi che stiamo sbagliando puoi rivolgerti al
+           <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">Garante per la
+           protezione dei dati personali</a> (Piazza Venezia 11, 00187 Roma) oppure al giudice.</p>
       </article>
-    </div>
 
-    <div class="pv-fondo rv">
-      <a class="btn-poster" href="preventivo.html">Torna alla richiesta</a>
+      <article class="pv-blocco rv">
+        <h2>Se questa informativa cambia</h2>
+        <p>La aggiorniamo quando cambia qualcosa nel sito o nei servizi che usiamo, e la data in cima
+           dice sempre a quando risale la versione che stai leggendo. Se il cambiamento &egrave;
+           importante e ci hai lasciato un contatto, te lo diciamo.</p>
+      </article>
+
     </div>
   </div>
 </section>
 
-<!-- ==================== 3. FOOTER (variante ridotta, condivisa) ==================== -->
 <footer class="footer footer--ridotta">
   <div class="payoff-edge tartan"></div>
+
+  <!-- la newsletter e' la prima riga del footer, non una fascia sospesa sopra -->
+  <div class="foot-nl" id="newsletter">
+    <div class="foot-nl-in">
+      <div>
+        <h3 class="foot-nl-tit">Ti aggiorniamo sulle <span class="nl-accent">date.</span></h3>
+      </div>
+      <div>
+      <form class="newsletter">
+        <input required type="email" name="email" placeholder="la-tua-mail@example.com" aria-label="La tua email" />
+        <button type="submit">Iscriviti</button>
+      </form>
+      <p class="nl-consenso">Iscrivendoti accetti l&rsquo;<a href="privacy.html">informativa privacy</a>.
+        Ti scriviamo solo per le date, e ti cancelli quando vuoi.</p>
+      </div>
+    </div>
+  </div>
   <div class="footer-cam">
     <span class="ico i-camaleonte" role="img" aria-label="Il camaleonte, simbolo dei CoffeeKillers"></span>
     <p class="footer-payoff">Long Live Country Music</p>
@@ -663,7 +763,9 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
     </div>
   </div>
   <div class="footer-copy">
-    © 2026 Hot Joe &amp; The CoffeeKillers — All rights reserved. · Sviluppato con <a href="https://emporionelbosco.it" target="_blank" rel="noopener">Emporio nel Bosco</a>
+    © 2026 Hot Joe &amp; The CoffeeKillers — All rights reserved. ·
+    <a href="privacy.html">Informativa privacy</a> ·
+    Sviluppato con <a href="https://emporionelbosco.it" target="_blank" rel="noopener">Emporio nel Bosco</a>
   </div>
 </footer>
 
@@ -704,5 +806,37 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
      numeri raccontano meta' storia (e sulla landing delle inserzioni serve
      per capire se la campagna converte). -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9aebd7c8eb4d4dd29a6c1f9c9f03d7f4"}'></script>
+<script>
+/* Newsletter — fino al 02/09/2026 questo modulo NON mandava niente a nessuno:
+   raccoglieva l'indirizzo e scriveva "Iscritto", e basta. Adesso l'iscrizione
+   arriva davvero, nella stessa casella dei preventivi (Formspree), marcata
+   "Origine: Newsletter". Quando ci sara' un servizio vero si cambia qui. */
+document.querySelectorAll("form.newsletter").forEach(function(form){
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var campo=form.querySelector("input[type=email]");
+    if(!campo || !campo.checkValidity()){ form.reportValidity(); return; }
+    var bottone=form.querySelector("button");
+    var etichetta=bottone.textContent;
+    bottone.disabled=true; bottone.textContent="\u2026";
+    fetch("https://formspree.io/f/xdabrrrr",{
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify({
+        Origine:"Newsletter \u2014 aggiornamenti sulle date",
+        Email:campo.value.trim(),
+        ConsensoPrivacy:"S\u00ec \u2014 informativa accettata il "+new Date().toLocaleString("it-IT")
+      })
+    }).then(function(res){
+      if(res.ok){ form.innerHTML='<span class="nl-done">\u2605 Iscritto. Ci sentiamo presto.</span>'; }
+      else{ bottone.disabled=false; bottone.textContent=etichetta;
+            alert("Ops, l'iscrizione non e' riuscita. Riprova piu' tardi."); }
+    }).catch(function(){
+      bottone.disabled=false; bottone.textContent=etichetta;
+      alert("Errore di connessione. Controlla la rete e riprova.");
+    });
+  });
+});
+</script>
 </body>
 </html>

@@ -4,29 +4,58 @@
 > **Ultimo aggiornamento:** 2026-09-02
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
-> **Restano aperti due nodi**: la licenza commerciale di **Bonzana** e l'**informativa privacy**
-> da far validare. E le **date in calendario sono ancora quelle di prova**.
+> **Resta aperto un nodo**: la licenza di **Bonzana** comprata è **Desktop**, che NON copre l'uso
+> su un sito — vedi «I caratteri» qui sotto. L'**informativa privacy** è stata scritta (02/09).
+> Le **date in calendario sono ancora quelle di prova**, per scelta: non ne abbiamo altre.
 > (Cronologia: 20/08 cartella cliente col logo definitivo · 12/08 brand rev.2, video della prima
 > canzone intera, sezione «Il palco», link agli artisti, fix overflow mobile.)
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
 
 ---
 
-# ⚠️ DA FARE — il sito ONLINE raccoglie dati senza informativa privacy
+# ✅ RISOLTO — la privacy (02/09/2026)
 
-Scoperto il 2026-08-16 controllando il form: `preventivo.html` + `components.jsx` mandano
-**nome, email, telefono e note a Formspree** (`formspree.io/f/xdabrrrr`) e **non c'è né una
-casella di consenso né una pagina di informativa** — cercando "privacy" nel codice del sito
-pubblicato non esce nulla. Riguarda il sito **vivo**, non solo la maquette.
+Era il primo punto aperto di questo documento dal 16/08: il sito raccoglieva nome, e-mail e
+telefono e li mandava a Formspree **senza informativa e senza consenso**. Adesso:
+- `privacy.html` è un'**informativa vera**, scritta sul funzionamento reale del sito;
+- il **consenso è obbligatorio** su tutti e tre i moduli (preventivo, landing, newsletter) e
+  viene **incluso nei dati inviati**, con data e ora;
+- il link all'informativa è nel piede di **tutte** le pagine.
 
-Cosa serve per sistemarlo:
-1. una pagina di informativa (bozza gia' pronta nella maquette: `proposta-informativa-privacy.html`,
-   da far validare — mancano forma giuridica, sede legale e la verifica sui server di Formspree);
-2. nel form, una spunta obbligatoria di consenso col link all'informativa (nella maquette c'e' gia':
-   il bottone di invio resta disattivato finche' non e' spuntata);
-3. il consenso incluso nei dati inviati.
+⚠️ **Non è stata scritta da un avvocato.** È tecnicamente completa e rispecchia quello che il sito
+fa davvero, ma una lettura da parte di chi segue gli adempimenti resta la cosa giusta da fare.
 
-Michele deve dare l'ok prima di toccare il sito pubblicato.
+## 🧑 Il titolare del trattamento, senza forma giuridica
+Michele: *"non abbiamo una forma giuridica, siamo 4 amici che suonano, come facciamo?"*
+
+**Non serve una forma giuridica.** L'art. 4.7 del GDPR dice «la persona fisica **o** giuridica» che
+decide finalità e mezzi: una **persona in carne e ossa** può essere titolare. Nell'informativa è
+indicato **Michele Frosio, referente del gruppo**, con l'e-mail e il telefono già pubblici.
+
+Le alternative, se un giorno cambia l'assetto:
+| Strada | Quando ha senso |
+|---|---|
+| **Una persona fisica** (adesso) | il caso attuale: semplice, valido, nessun adempimento in più |
+| **Contitolarità** (art. 26) | se le decisioni sono davvero collegiali; serve un accordo interno che dica chi fa cosa |
+| **Associazione culturale / APS** | se un giorno nascerà: un'associazione, **anche non riconosciuta**, è già un soggetto valido e subentra come titolare |
+
+📌 **Regola pratica**: il titolare naturale è **chi emette le ricevute per i cachet**. Se non è
+Michele, si cambia il nome in un punto solo — il blocco «Chi tratta i tuoi dati» in `privacy.html`,
+dove c'è un commento nel codice che lo spiega.
+
+## 🔒 Cosa è cambiato nel sito per la privacy
+- **Via Google Fonts.** Manrope arrivava da `fonts.googleapis.com`: ogni visita mandava l'IP del
+  visitatore a Google, che è esattamente il punto su cui i garanti europei hanno già dato torto a
+  dei siti. Ora è ospitato in `fonts/` (file variabile, un file per tutti i pesi). **Rye è uscito**:
+  era solo il fallback dopo Bonzana e veniva anch'esso da Google.
+  → Aprendo una pagina il browser **non contatta più nessun terzo** tranne Cloudflare Analytics.
+- **Niente cookie.** Il sito non ne installa nessuno → **nessun banner da accettare**.
+- **YouTube** parte solo al clic (era già così): finché non premi play, Google non sa che sei lì.
+- ⚠️ **La newsletter prometteva e non manteneva.** Il modulo raccoglieva l'indirizzo e scriveva
+  «Iscritto», ma **non mandava niente a nessuno**: un dato chiesto senza uno scopo, cioè la cosa
+  che un'informativa non può coprire. Ora l'iscrizione arriva davvero (Formspree, marcata
+  `Origine: Newsletter`) e sotto il campo c'è la riga di consenso col link all'informativa.
+  Quando ci sarà un servizio vero (Brevo, Mailchimp) si cambia solo l'indirizzo nello script.
 
 ---
 
@@ -778,11 +807,27 @@ Michele: *"bronco non esiste più, se ce l'hai ancora in giro è un errore tuo."
    Trovato solo interrogando il `font-family` calcolato in un browser vero, non guardando
    gli screenshot. Adesso `stile-hjck.css` dichiara Bonzana e rimappa i due token.
 
-**Font online**: `fonts/bonzana.otf` + i quattro tagli di `LTCushion-*.ttf`. Manrope e Rye da
-Google. Tolto **Valley** (`ValleyPersonalUse.ttf`): era Personal Use, su un sito non si usa —
-e non lo richiamava nessuna regola.
-⚠️ **Resta da confermare la licenza commerciale di BONZANA**: lo zip viene da un sito di font
-gratuiti e non contiene un file di licenza. È l'ultimo nodo aperto sui caratteri.
+**Font online**, tutti ospitati in `fonts/` e nessuno preso da terzi: `bonzana.otf`, i quattro
+tagli di `LTCushion-*.ttf` e `Manrope-Variable.ttf`. Tolto **Valley** (`ValleyPersonalUse.ttf`):
+era Personal Use, su un sito non si usa — e non lo richiamava nessuna regola. Tolto anche **Rye**.
+
+## ⚠️ BONZANA: la licenza comprata è quella sbagliata
+Michele ha comprato Bonzana su **Creative Market** il 28/08/2026 (ordine 148202709, $17+IVA).
+La fattura dice però: **`LICENSE: Desktop`**.
+
+**La licenza Desktop non copre l'uso come webfont.** Serve per Illustrator, Canva, le locandine —
+non per una `@font-face` su un sito. È **esattamente la stessa trappola** già annotata per Bronco
+Valley (Desktop $21 vs Webfont $31), solo su un altro font.
+Lo zip scaricato contiene **solo l'`.otf`**, nessun file di licenza: l'unico documento è la fattura.
+
+**Le due strade:**
+1. comprare su Creative Market la licenza **Webfont** di Bonzana (di solito si aggiunge sull'ordine
+   già fatto, poche decine di dollari) — e il problema è chiuso;
+2. passare a **Smokum**: è **uno dei quattro font ufficiali del brand book** (pagina 6), sta su
+   Google Fonts con licenza **OFL** — uso web libero e gratuito — e ha tutti gli accenti italiani.
+   Non sarebbe un ripiego, è una scelta già prevista dal brand.
+
+⏳ **Fino ad allora Bonzana è online con una licenza che non lo copre.** Decisione di Michele.
 
 ## 📅 Le date passate spariscono da sole
 Il problema che si sarebbe visto online il primo giorno: la home e la pagina Date mostravano

@@ -204,8 +204,8 @@
   font-weight:400; font-display:swap;
 }
 :root{
-  --bronco:"Bonzana","Rye",serif;
-  --valley:"Bonzana","Rye",serif;
+  --bronco:"Bonzana",serif;
+  --valley:"Bonzana",serif;
 }
 
 /* ⚠️ L'attributo `hidden` da solo non basta: il browser gli da' `display:none`
@@ -214,3 +214,9 @@
    lo sovrascrive. Le date passate restavano a schermo pur avendo l'attributo.
    Con `!important` il nascondi vale davvero. */
 [hidden]{display:none !important}
+
+.nl-consenso{
+  font-family:var(--sans);font-size:12px;line-height:1.45;
+  color:var(--tan);margin:10px 0 0;max-width:46ch;
+}
+.nl-consenso a{color:var(--azz)}

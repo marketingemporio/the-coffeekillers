@@ -16,9 +16,32 @@
 <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Rye&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================================
+   MANROPE, OSPITATO QUI E NON PRESO DA GOOGLE
+   ----------------------------------------------------------------------------
+   Prima arrivava da fonts.googleapis.com: ogni visita mandava l'indirizzo IP
+   del visitatore ai server di Google, senza che nessuno l'avesse chiesto — e
+   in Europa e' proprio il punto su cui i garanti hanno gia' dato torto a dei
+   siti. Ospitandolo qui il problema sparisce del tutto: nessun terzo viene
+   contattato per mostrare una pagina, e l'informativa privacy ha una voce in
+   meno da dichiarare. In piu' si risparmiano due connessioni esterne.
+   E' il file VARIABILE: un file solo copre tutti i pesi da 400 a 800.
+   ⚠️ Rye e' uscito: era solo il fallback dopo Bonzana e veniva anch'esso da
+      Google. Al suo posto il serif di sistema, che non chiama nessuno.
+   ============================================================================ */
+@font-face{
+  font-family:"Manrope";
+  src:url("fonts/Manrope-Variable.ttf") format("truetype-variations");
+  font-weight:200 800; font-style:normal; font-display:swap;
+}
+.nl-consenso{
+  font-family:var(--sans);font-size:12px;line-height:1.45;
+  color:var(--tan);margin:10px 0 0;max-width:46ch;
+}
+.nl-consenso a{color:var(--azz)}
+
+</style>
 <style>
 /* ============ FONT ============ */
 @font-face{
@@ -27,9 +50,9 @@
   font-weight:400; font-display:swap;
 }
 
-/* I due font del brand che stanno nei file: BONZANA per i titoli e
-   LT CUSHION per bottoni e testi di supporto. Manrope e Rye arrivano da
-   Google Fonts (link in testa).
+/* I tre font del brand, tutti ospitati in fonts/ e nessuno preso da terzi:
+   BONZANA per i titoli, LT CUSHION per bottoni e testi di supporto,
+   MANROPE per i testi (dichiarato nel blocco qui sopra).
    ⚠️ Bronco Valley e' fuori: non si usa piu'. Anche il taglio "Valley"
       (ValleyPersonalUse) e' stato tolto — era Personal Use, su un sito
       non si puo' usare, e comunque non lo richiamava nessuna regola.
@@ -56,10 +79,10 @@
   --azz-scuro:#CD5812;     /* sul chiaro il turchese sparisce (1.8:1): al suo posto l'arancio */
   --azz-testo:#49240A;     /* testo piccolo su fondo chiaro: solo marrone regge (10:1) */
   --azz-wash:#BD8B65;
-  --bronco:"Bonzana","Rye",serif;
+  --bronco:"Bonzana",serif;
   --serif:"LT Cushion",serif;
   --sans:"Manrope",sans-serif;
-  --valley:"Bonzana","Rye",serif;
+  --valley:"Bonzana",serif;
   --cushion:"LT Cushion",serif;
   --wrap:1180px;
   --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>");
@@ -2300,10 +2323,14 @@ body::before{
       <div>
         <h3 class="foot-nl-tit">Ti aggiorniamo sulle <span class="nl-accent">date.</span></h3>
       </div>
+      <div>
       <form class="newsletter">
-        <input required type="email" placeholder="la-tua-mail@example.com" aria-label="La tua email" />
+        <input required type="email" name="email" placeholder="la-tua-mail@example.com" aria-label="La tua email" />
         <button type="submit">Iscriviti</button>
       </form>
+      <p class="nl-consenso">Iscrivendoti accetti l&rsquo;<a href="privacy.html">informativa privacy</a>.
+        Ti scriviamo solo per le date, e ti cancelli quando vuoi.</p>
+      </div>
     </div>
   </div>
 
@@ -2348,7 +2375,9 @@ body::before{
     </div>
   </div>
   <div class="footer-copy">
-    © 2026 Hot Joe &amp; The CoffeeKillers — All rights reserved. · Sviluppato con <a href="https://emporionelbosco.it" target="_blank" rel="noopener">Emporio nel Bosco</a>
+    © 2026 Hot Joe &amp; The CoffeeKillers — All rights reserved. ·
+    <a href="privacy.html">Informativa privacy</a> ·
+    Sviluppato con <a href="https://emporionelbosco.it" target="_blank" rel="noopener">Emporio nel Bosco</a>
   </div>
 </footer>
 
@@ -2514,11 +2543,40 @@ body::before{
   onScroll();
 })();
 
-// Newsletter: replica il comportamento del sito live (nessun backend, solo conferma).
+/* Newsletter — ⚠️ fino al 02/09/2026 questo modulo NON mandava niente a
+   nessuno: raccoglieva l'indirizzo e scriveva "Iscritto", e basta. Una
+   promessa non mantenuta, e un indirizzo e-mail chiesto senza uno scopo:
+   proprio la cosa che un'informativa privacy non puo' coprire.
+   Adesso l'iscrizione arriva davvero, nella stessa casella dei preventivi
+   (Formspree), marcata "Origine: Newsletter". Quando ci sara' un servizio
+   vero (Brevo, Mailchimp) si cambia solo l'indirizzo qui sotto. */
 document.querySelectorAll("form.newsletter").forEach(function(form){
   form.addEventListener("submit",function(e){
     e.preventDefault();
-    form.innerHTML='<span class="nl-done">★ Iscritto. Ci sentiamo presto.</span>';
+    var campo=form.querySelector("input[type=email]");
+    if(!campo || !campo.checkValidity()){ form.reportValidity(); return; }
+    var bottone=form.querySelector("button");
+    var etichetta=bottone.textContent;
+    bottone.disabled=true; bottone.textContent="\u2026";
+    fetch("https://formspree.io/f/xdabrrrr",{
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify({
+        Origine:"Newsletter \u2014 aggiornamenti sulle date",
+        Email:campo.value.trim(),
+        ConsensoPrivacy:"S\u00ec \u2014 informativa accettata il "+new Date().toLocaleString("it-IT")
+      })
+    }).then(function(res){
+      if(res.ok){
+        form.innerHTML='<span class="nl-done">\u2605 Iscritto. Ci sentiamo presto.</span>';
+      }else{
+        bottone.disabled=false; bottone.textContent=etichetta;
+        alert("Ops, l'iscrizione non e' riuscita. Riprova piu' tardi.");
+      }
+    }).catch(function(){
+      bottone.disabled=false; bottone.textContent=etichetta;
+      alert("Errore di connessione. Controlla la rete e riprova.");
+    });
   });
 });
 
