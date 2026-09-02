@@ -968,6 +968,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
 
     var emailVal=document.getElementById("f-email").value;
     var data={
+      Origine:"Preventivo \u2014 modulo del sito",
       Nome:document.getElementById("f-name").value,
       email:emailVal,          // chiave standard per gli autoresponder di Formspree
       _replyto:emailVal,       // chiave esplicita di fallback
@@ -1047,6 +1048,8 @@ document.querySelectorAll("form.newsletter").forEach(function(form){
       body:JSON.stringify({
         Origine:"Newsletter \u2014 aggiornamenti sulle date",
         Email:campo.value.trim(),
+        email:campo.value.trim(),      /* chiavi che fanno funzionare il */
+        _replyto:campo.value.trim(),   /* tasto "Rispondi" nella casella */
         ConsensoPrivacy:"S\u00ec \u2014 informativa accettata il "+new Date().toLocaleString("it-IT")
       })
     }).then(function(res){

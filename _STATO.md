@@ -4,9 +4,9 @@
 > **Ultimo aggiornamento:** 2026-09-02
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
-> **Resta aperto un nodo**: la licenza di **Bonzana** comprata è **Desktop**, che NON copre l'uso
-> su un sito — vedi «I caratteri» qui sotto. L'**informativa privacy** è stata scritta (02/09).
-> Le **date in calendario sono ancora quelle di prova**, per scelta: non ne abbiamo altre.
+> **Tutto in regola sui font**: il 02/09 Michele ha comprato anche la licenza **Webfont** di
+> Bonzana. L'**informativa privacy** è scritta. Le **date in calendario sono ancora quelle di
+> prova**, per scelta: non ne abbiamo altre.
 > (Cronologia: 20/08 cartella cliente col logo definitivo · 12/08 brand rev.2, video della prima
 > canzone intera, sezione «Il palco», link agli artisti, fix overflow mobile.)
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
@@ -811,23 +811,47 @@ Michele: *"bronco non esiste più, se ce l'hai ancora in giro è un errore tuo."
 tagli di `LTCushion-*.ttf` e `Manrope-Variable.ttf`. Tolto **Valley** (`ValleyPersonalUse.ttf`):
 era Personal Use, su un sito non si usa — e non lo richiamava nessuna regola. Tolto anche **Rye**.
 
-## ⚠️ BONZANA: la licenza comprata è quella sbagliata
-Michele ha comprato Bonzana su **Creative Market** il 28/08/2026 (ordine 148202709, $17+IVA).
-La fattura dice però: **`LICENSE: Desktop`**.
+## ✅ BONZANA: risolto, comprata anche la Webfont (02/09)
+Il primo acquisto (Creative Market, ordine 148202709 del 28/08, $17) era **`LICENSE: Desktop`**,
+che copre Illustrator e Canva ma **non** una `@font-face` su un sito — la stessa trappola già
+annotata per Bronco Valley. Michele ha comprato la **Webfont** lo stesso giorno in cui gliel'ho
+segnalato, e nello zip nuovo c'è la cartella **`Web Fonts/`** con `.woff2` e `.woff`.
 
-**La licenza Desktop non copre l'uso come webfont.** Serve per Illustrator, Canva, le locandine —
-non per una `@font-face` su un sito. È **esattamente la stessa trappola** già annotata per Bronco
-Valley (Desktop $21 vs Webfont $31), solo su un altro font.
-Lo zip scaricato contiene **solo l'`.otf`**, nessun file di licenza: l'unico documento è la fattura.
+Online ora c'è **`fonts/bonzana.woff2`** (con `.woff` di riserva per i browser vecchi):
+**25 KB invece di 136**, un quinto del peso dell'OTF. L'`.otf` è uscito da `fonts/` ed è in
+`_brand-def/font-bonzana-licenza-web/` insieme allo zip originale — serve ancora, ma per Canva
+e le locandine, non per il sito.
 
-**Le due strade:**
-1. comprare su Creative Market la licenza **Webfont** di Bonzana (di solito si aggiunge sull'ordine
-   già fatto, poche decine di dollari) — e il problema è chiuso;
-2. passare a **Smokum**: è **uno dei quattro font ufficiali del brand book** (pagina 6), sta su
-   Google Fonts con licenza **OFL** — uso web libero e gratuito — e ha tutti gli accenti italiani.
-   Non sarebbe un ripiego, è una scelta già prevista dal brand.
+⚠️ **Regola da ricordare**: quando si compra un font per il sito, controllare sulla **fattura**
+che la licenza sia **Webfont**. Gli zip dei font non contengono quasi mai il file di licenza:
+l'unico documento è la ricevuta.
 
-⏳ **Fino ad allora Bonzana è online con una licenza che non lo copre.** Decisione di Michele.
+## 📨 Tutti i moduli in una casella sola
+Le tre cose che il sito può mandare finiscono **tutte allo stesso Formspree**
+(`formspree.io/f/xdabrrrr`, quello del preventivo già attivo da prima). Verificato che risponde.
+Si distinguono dal campo **`Origine`**, che è la prima riga di ogni messaggio:
+
+| Da dove arriva | `Origine` |
+|---|---|
+| il modulo di `preventivo.html` | `Preventivo — modulo del sito` |
+| il modulo della landing inserzioni | `Landing inserzioni — musica-country-dal-vivo` |
+| l'iscrizione agli aggiornamenti (piede di ogni pagina) | `Newsletter — aggiornamenti sulle date` |
+
+Tutti e tre mandano anche il **consenso privacy con data e ora**.
+
+📌 **Tutti e tre impostano `email` e `_replyto`**: sono le chiavi che fanno funzionare il tasto
+**«Rispondi»** nella casella. Ce l'aveva solo il preventivo; senza, si finisce a copiare
+l'indirizzo a mano da dentro il messaggio. Nella landing il campo contatto accetta e-mail **o**
+telefono, quindi il reply-to viene impostato solo se il testo contiene una chiocciola.
+
+## 🎨 Il brand kit per Canva
+`~/Desktop/HJCK-Brand-Kit-Canva.zip` — i font del brand pronti da caricare in
+Canva → Brand → Brand Kit → Caratteri (uno alla volta): Bonzana (l'`.otf`, licenza Desktop, che è
+quella giusta per Canva), i quattro tagli di LT Cushion, Manrope variabile e Smokum.
+Dentro c'è un `LEGGIMI.txt` con a cosa serve ognuno, la licenza di ciascuno, i sei colori del
+brand con gli hex e l'avvertenza sul contrasto dell'arancio.
+⚠️ Manrope è il file **variabile**: se Canva non lo digerisce, i tagli singoli stanno su
+Google Fonts.
 
 ## 📅 Le date passate spariscono da sole
 Il problema che si sarebbe visto online il primo giorno: la home e la pagina Date mostravano

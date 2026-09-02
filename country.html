@@ -954,6 +954,8 @@ document.querySelectorAll("form.newsletter").forEach(function(form){
       body:JSON.stringify({
         Origine:"Newsletter \u2014 aggiornamenti sulle date",
         Email:campo.value.trim(),
+        email:campo.value.trim(),      /* chiavi che fanno funzionare il */
+        _replyto:campo.value.trim(),   /* tasto "Rispondi" nella casella */
         ConsensoPrivacy:"S\u00ec \u2014 informativa accettata il "+new Date().toLocaleString("it-IT")
       })
     }).then(function(res){

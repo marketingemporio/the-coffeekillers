@@ -44,7 +44,10 @@
 /* ============ FONT ============ */
 @font-face{
   font-family:"Bonzana";
-  src:url("fonts/bonzana.otf") format("opentype");
+  /* woff2 prima: 25 KB contro i 136 dell'otf, cioe' un quinto del peso.
+     Il woff resta per i browser vecchi; l'otf non serve piu' online. */
+  src:url("fonts/bonzana.woff2") format("woff2"),
+      url("fonts/bonzana.woff")  format("woff");
   font-weight:400; font-display:swap;
 }
 
@@ -2299,6 +2302,11 @@ body::before{
     if(!form.checkValidity()){ form.reportValidity(); return; }
 
     var v=function(id){ return (document.getElementById(id).value||"").trim(); };
+    /* Il campo contatto accetta e-mail O telefono. Se e' un'e-mail la passiamo
+       anche come `email`/`_replyto`: sono le chiavi che fanno funzionare il
+       tasto "Rispondi" nella casella, come gia' fa il modulo di preventivo.
+       Senza, si finisce a copiare l'indirizzo a mano da dentro il messaggio. */
+    var contatto=v("lp-contatto"), pare_email=contatto.indexOf("@")>0;
     var etichetta=invia.textContent;
     invia.disabled=true; invia.textContent="Invio in corso\u2026";
 
@@ -2311,7 +2319,9 @@ body::before{
         LocaleOEvento:v("lp-luogo"),
         TipoDiSerata:v("lp-tipo"),
         Quando:v("lp-data"),
-        Contatto:v("lp-contatto"),
+        Contatto:contatto,
+        email:pare_email?contatto:undefined,
+        _replyto:pare_email?contatto:undefined,
         Persone:v("lp-persone"),
         Note:v("lp-note"),
         ConsensoPrivacy:"S\u00ec \u2014 informativa letta e accettata il "+new Date().toLocaleString("it-IT")

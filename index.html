@@ -46,7 +46,10 @@
 /* ============ FONT ============ */
 @font-face{
   font-family:"Bonzana";
-  src:url("fonts/bonzana.otf") format("opentype");
+  /* woff2 prima: 25 KB contro i 136 dell'otf, cioe' un quinto del peso.
+     Il woff resta per i browser vecchi; l'otf non serve piu' online. */
+  src:url("fonts/bonzana.woff2") format("woff2"),
+      url("fonts/bonzana.woff")  format("woff");
   font-weight:400; font-display:swap;
 }
 
@@ -2564,6 +2567,8 @@ document.querySelectorAll("form.newsletter").forEach(function(form){
       body:JSON.stringify({
         Origine:"Newsletter \u2014 aggiornamenti sulle date",
         Email:campo.value.trim(),
+        email:campo.value.trim(),      /* chiavi che fanno funzionare il */
+        _replyto:campo.value.trim(),   /* tasto "Rispondi" nella casella */
         ConsensoPrivacy:"S\u00ec \u2014 informativa accettata il "+new Date().toLocaleString("it-IT")
       })
     }).then(function(res){
