@@ -860,8 +860,15 @@ vuoti. Online oggi si vedono solo *Matrimonio, Siena — 5 settembre* e *Beach F
   e aggiornato il logo a quello definitivo. Due **rigenerati dal contenuto vero**, perché
   mentivano: il `FAQPage` aveva 9 domande e la pagina ne ha **11**; l'`ItemList` elencava **12
   date già passate** del vecchio sito, ora sono le 4 in calendario.
-- **`robots.txt`**: `Disallow` sulla landing delle inserzioni. **`sitemap.xml`**: aggiunta
-  `privacy.html`, date aggiornate, la landing esclusa.
+- **`robots.txt`**: la landing **non** è bloccata, di proposito. Aveva un `Disallow` che ho tolto:
+  messo insieme al `noindex` sarebbe stato controproducente — se il crawler non può aprire la
+  pagina non legge il `noindex`, e l'URL può finire in indice lo stesso. Il `noindex` da solo è il
+  segnale più forte, purché la pagina resti leggibile. **`sitemap.xml`**: aggiunta `privacy.html`,
+  date aggiornate, la landing esclusa.
+- 📌 **Netlify riscrive gli URL**: online gli href diventano `/chi-siamo` invece di
+  `chi-siamo.html` (funzionano entrambi, 200). I `canonical` puntano alla forma con `.html`, che
+  consolida le due varianti su una sola. Da sapere quando si cerca un link nell'HTML pubblicato:
+  la forma online **non** è quella scritta nel file.
 - **Analytics**: lo snippet Cloudflare era solo su home e preventivo → ora su **tutte** le pagine
   (serve anche per capire se la campagna converte).
   📌 In locale il beacon dà `net::ERR_FAILED`: normale, `localhost` non è un dominio registrato.

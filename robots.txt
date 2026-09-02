@@ -1,8 +1,11 @@
 User-agent: *
 Allow: /
 
-# Pagina di atterraggio delle inserzioni: ci si arriva solo dagli annunci.
-# In indice farebbe concorrenza alla home sulle stesse parole.
-Disallow: /musica-country-dal-vivo.html
+# La landing delle inserzioni (musica-country-dal-vivo) NON e' bloccata qui
+# di proposito: porta gia' <meta name="robots" content="noindex,nofollow">,
+# e mettere anche un Disallow sarebbe controproducente — se il crawler non
+# puo' aprire la pagina, non legge il noindex, e l'URL puo' finire in indice
+# lo stesso (senza descrizione, ma indicizzato). Il noindex da solo e' il
+# segnale piu' forte, purche' la pagina resti leggibile ai crawler.
 
 Sitemap: https://thecoffeekillers.com/sitemap.xml
