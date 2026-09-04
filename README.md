@@ -19,6 +19,7 @@ CSS in linea; l'unico file condiviso è `stile-hjck.css`.
 | `preventivo.html` | il modulo di richiesta preventivo |
 | `privacy.html` | informativa privacy |
 | `musica-country-dal-vivo.html` | **landing delle inserzioni** — `noindex`, ci si arriva solo dagli annunci |
+| `en/` | **il sito in inglese**: le stesse 8 pagine tradotte (vedi sotto) |
 | `stile-hjck.css` | lo strato di stile condiviso dalle pagine interne |
 | `fonts/` · `images/` | caratteri e fotografie |
 
@@ -34,10 +35,54 @@ sito di font gratuiti e non contiene un file di licenza.
 Bronco Valley **non si usa più**, e il taglio "Valley" è stato tolto perché era
 Personal Use — su un sito non si può usare.
 
+## Le due lingue (dal 03/09/2026)
+
+Il sito esiste in **italiano** (radice) e in **inglese** (cartella `en/`), per chi
+arriva dall'estero. Non c'e' nessun reindirizzamento automatico: **l'indirizzo
+resta lo stesso per tutti** e la lingua la sceglie chi legge.
+
+| Italiano | Inglese |
+|---|---|
+| `index.html` | `en/index.html` |
+| `chi-siamo.html` | `en/about.html` |
+| `country.html` | `en/country-music.html` |
+| `date.html` | `en/dates.html` |
+| `gallery.html` | `en/gallery.html` |
+| `faq.html` | `en/faq.html` |
+| `preventivo.html` | `en/quote.html` |
+| `privacy.html` | `en/privacy.html` |
+
+**Come ci si arriva.** Ogni pagina ha in testata un bottoncino **`EN`** (nelle
+pagine inglesi **`IT`**), e nel menu del telefono la voce **English** / **Italiano**.
+In piu', a chi ha il **browser impostato su un'altra lingua** compare in basso una
+strisciolina — *«This site is also available in English»* sulle pagine italiane,
+*«Questo sito e' disponibile anche in italiano»* su quelle inglesi. Si chiude con la
+&times; e non ricompare per il resto della visita (se lo ricorda con `sessionStorage`,
+che **non e' un cookie**: nessun banner da aggiungere).
+
+**Come lo capisce Google.** Ogni pagina dichiara la sua gemella con `hreflang`
+(`it`, `en`, `x-default` = l'italiano), e `sitemap.xml` contiene entrambe le versioni
+con gli stessi rimandi: le due lingue non vengono lette come contenuto duplicato.
+
+**⚠️ Da sapere quando si lavora.** Le pagine inglesi sono **copie tradotte**, non
+generate da un motore: se cambi un testo in italiano **va cambiato anche in `en/`**.
+Vale soprattutto per le **date dei concerti**, che sono scritte a mano in due posti
+(`date.html` **e** `en/dates.html`, piu' il calendario in home su `index.html` **e**
+`en/index.html`).
+- I percorsi in `en/` salgono di un livello: `../images/`, `../fonts/`, `../stile-hjck.css`.
+  Lo stile e i font sono gli stessi, non ci sono file duplicati.
+- I **commenti nel codice restano in italiano** anche nelle pagine inglesi: servono a
+  chi le mantiene, non a chi le legge.
+- La **landing delle inserzioni** (`musica-country-dal-vivo.html`) **non e' tradotta**:
+  gli annunci sono in italiano e puntati su Brescia. Il giorno che servira' si fa.
+
 ## Il modulo
 `preventivo.html` e la landing mandano a **Formspree** (`formspree.io/f/xdabrrrr`),
 lo stesso destinatario per entrambi. La landing marca le richieste con
-`Origine: Landing inserzioni`, così si distinguono.
+`Origine: Landing inserzioni`, così si distinguono. Il modulo inglese
+(`en/quote.html`) marca `Origine: Preventivo — modulo del sito INGLESE (/en/)`:
+in casella si vede subito che va risposto in inglese. **Le mail di notifica
+restano in italiano** — le legge la band, non il cliente.
 Il consenso privacy è **obbligatorio**: finché non è spuntato il bottone resta spento,
 e il consenso viene incluso nei dati inviati.
 

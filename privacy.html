@@ -6,9 +6,13 @@
 <title>Informativa privacy — Hot Joe &amp; The Coffeekillers</title>
 <meta name="description" content="Come Hot Joe &amp; The Coffeekillers trattano i dati raccolti dal modulo di richiesta preventivo: quali dati, per quale scopo, per quanto tempo e quali diritti hai." />
 <link rel="canonical" href="https://thecoffeekillers.com/privacy.html" />
+<link rel="alternate" hreflang="it" href="https://thecoffeekillers.com/privacy.html" />
+<link rel="alternate" hreflang="en" href="https://thecoffeekillers.com/en/privacy.html" />
+<link rel="alternate" hreflang="x-default" href="https://thecoffeekillers.com/privacy.html" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Hot Joe &amp; The CoffeeKillers" />
 <meta property="og:locale" content="it_IT" />
+<meta property="og:locale:alternate" content="en_US" />
 <meta property="og:url" content="https://thecoffeekillers.com/privacy.html" />
 <meta property="og:title" content="Informativa privacy — Hot Joe &amp; The Coffeekillers" />
 <meta property="og:description" content="Come Hot Joe &amp; The Coffeekillers trattano i dati raccolti dal modulo di richiesta preventivo: quali dati, per quale scopo, per quanto tempo e quali diritti hai." />
@@ -526,6 +530,34 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
 
 </style>
 <link rel="stylesheet" href="stile-hjck.css" />
+<style>
+/* ===== SELETTORE DI LINGUA (aggiunto con la versione inglese) =====
+   Il bottone IT/EN vive nella lista di destra della testata: su mobile quella
+   lista mostra solo l'ultimo elemento (il bottone "preventivo"), quindi la
+   voce della lingua sparisce da sola e resta quella nel menu a tendina. */
+.nav-lang{
+  border:1px solid rgba(237,218,189,.55);border-radius:6px;
+  padding:5px 9px 4px;font-size:11.5px!important;letter-spacing:.16em;
+}
+.nav-lang:hover{background:rgba(237,218,189,.14)}
+/* strisciolina in basso: appare solo a chi ha il browser nell'altra lingua */
+.lang-bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:95;display:none;
+  background:var(--caffe,#49240A);color:var(--panna,#EDDABD);
+  border-top:1px solid rgba(237,218,189,.22);
+  box-shadow:0 -8px 24px rgba(73,36,10,.4);
+  font-family:var(--sans,system-ui,sans-serif);font-size:13.5px;line-height:1.4;
+  padding:11px clamp(14px,4vw,28px);
+}
+.lang-bar.on{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.lang-bar a{color:var(--arancio,#CD5812);font-weight:800;text-decoration:underline}
+.lang-bar b{color:var(--panna,#EDDABD)}
+.lang-bar button{
+  background:none;border:1px solid rgba(237,218,189,.45);border-radius:6px;
+  color:inherit;font:inherit;line-height:1;padding:6px 9px;cursor:pointer;
+}
+.lang-bar button:hover{background:rgba(237,218,189,.14)}
+</style>
 </head>
 <body>
 <script>document.documentElement.classList.add("js");</script>
@@ -543,6 +575,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       <img src="images/logo/hjck-logo-negativo.svg" alt="Logo Hot Joe &amp; The CoffeeKillers" />
     </a>
     <ul class="nav-side dx">
+      <li><a class="nav-lang" href="en/privacy.html" hreflang="en" lang="en" title="Read this page in English">EN</a></li>
       <li><a href="date.html">Date</a></li>
       <li><a href="faq.html">FAQ</a></li>
       <li><a class="nav-cta" href="preventivo.html">Preventivo</a></li>
@@ -556,6 +589,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       <li><a href="date.html">Date</a></li>
       <li><a href="faq.html">FAQ</a></li>
       <li><a href="preventivo.html">Preventivo</a></li>
+      <li><a href="en/privacy.html" hreflang="en" lang="en">English</a></li>
     </ul>
   </nav>
 </header>
@@ -839,6 +873,34 @@ document.querySelectorAll("form.newsletter").forEach(function(form){
     });
   });
 });
+</script>
+
+<!-- ===== AVVISO DI LINGUA =====
+     Compare solo a chi ha il browser impostato sull'altra lingua, e solo
+     finche' non lo chiude (se lo ricorda per la sessione, senza cookie:
+     sessionStorage non e' un cookie e non va nel banner). -->
+<div class="lang-bar" id="lang-bar" lang="en">
+  <span>This site is also available in <b>English</b>.</span>
+  <a href="en/privacy.html" hreflang="en">Read it in English &rarr;</a>
+  <button type="button" id="lang-bar-x" aria-label="Dismiss">&times;</button>
+</div>
+<script>
+(function(){
+  var barra = document.getElementById("lang-bar");
+  if(!barra) return;
+  var lingue = (navigator.languages && navigator.languages.length)
+             ? navigator.languages : [navigator.language || ""];
+  var parlaItaliano = lingue.some(function(l){
+    return String(l).toLowerCase().indexOf("it") === 0;
+  });
+  var chiusa = false;
+  try{ chiusa = sessionStorage.getItem("hjck-lingua") === "chiusa"; }catch(e){}
+  if(!parlaItaliano && !chiusa) barra.classList.add("on");
+  document.getElementById("lang-bar-x").addEventListener("click", function(){
+    barra.classList.remove("on");
+    try{ sessionStorage.setItem("hjck-lingua", "chiusa"); }catch(e){}
+  });
+})();
 </script>
 </body>
 </html>

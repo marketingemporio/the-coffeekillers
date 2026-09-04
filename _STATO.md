@@ -1,15 +1,108 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-09-02
+> **Ultimo aggiornamento:** 2026-09-04
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
+> Dal **04/09/2026 è online anche la versione inglese** in `en/`, per chi si connette
+> dall'estero: vedi **«IL SITO IN INGLESE»** qui sotto.
 > **Tutto in regola sui font**: il 02/09 Michele ha comprato anche la licenza **Webfont** di
 > Bonzana. L'**informativa privacy** è scritta. Le **date in calendario sono ancora quelle di
 > prova**, per scelta: non ne abbiamo altre.
 > (Cronologia: 20/08 cartella cliente col logo definitivo · 12/08 brand rev.2, video della prima
 > canzone intera, sezione «Il palco», link agli artisti, fix overflow mobile.)
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+---
+
+# 🇬🇧 IL SITO IN INGLESE — ONLINE dal 04/09/2026
+
+Michele: *"creami una versione del sito anche in inglese per chi si connette dall'estero,
+quindi tutta tradotta"*.
+
+**Tradotto il 03/09, pubblicato il 04/09**: `git push` su `main` → Netlify ha messo online.
+Da adesso chi arriva su `thecoffeekillers.com` trova il bottone `EN` in testata, e chi ha il
+browser in un'altra lingua vede la strisciolina che porta a `/en/`.
+
+## Cosa c'è adesso
+**8 pagine tradotte** nella cartella `en/` — tutte tranne la landing delle inserzioni:
+
+| Italiano | Inglese |
+|---|---|
+| `index.html` | `en/index.html` |
+| `chi-siamo.html` | `en/about.html` |
+| `country.html` | `en/country-music.html` |
+| `date.html` | `en/dates.html` |
+| `gallery.html` | `en/gallery.html` |
+| `faq.html` | `en/faq.html` |
+| `preventivo.html` | `en/quote.html` |
+| `privacy.html` | `en/privacy.html` |
+
+È tradotto **tutto quello che si legge**: testi, titoli delle finestre del browser, descrizioni
+per Google, i 34 `alt` delle foto della gallery, le etichette del modulo, i messaggi del
+JavaScript (conto alla rovescia, popup delle date, file `.ics` del promemoria, avvisi di errore).
+**I commenti nel codice restano in italiano**, di proposito: servono a chi mantiene il sito.
+
+## Come ci arriva chi viene da fuori
+Scelta di Michele: **niente reindirizzamento automatico**. L'indirizzo resta
+`thecoffeekillers.com` per tutti, e la lingua la sceglie chi legge:
+- un bottoncino **`EN`** nella testata di ogni pagina italiana (e **`IT`** su quelle inglesi);
+  sul telefono la voce **English** / **Italiano** in fondo al menu a tendina;
+- a chi ha il **browser in un'altra lingua**, in basso compare una strisciolina chiudibile
+  («This site is also available in English» / «Questo sito è disponibile anche in italiano»).
+  Se la chiude non la rivede per il resto della visita: se lo ricorda con `sessionStorage`,
+  che **non è un cookie** — quindi **nessun banner nuovo da accettare**.
+
+⚠️ **Perché non il reindirizzamento automatico** (l'altra strada, scartata): Netlify saprebbe
+farlo leggendo la lingua del browser, ma per far tornare indietro chi vuole l'italiano serve un
+**cookie** (`nf_lang`) — e oggi il sito non installa nessun cookie, per scelta; andrebbe
+riscritta l'informativa e messo un banner. In più c'è il rischio del rimpallo IT↔EN.
+
+## SEO
+- Ogni pagina dichiara la gemella con `hreflang` (`it`, `en`, `x-default` = l'italiano);
+- `sitemap.xml` riscritta: **16 URL** (8+8), ognuno con i rimandi alle due lingue. Così Google
+  capisce che non sono pagine duplicate ma la stessa pagina in due lingue.
+
+## Il modulo e la posta
+`en/quote.html` manda allo **stesso** Formspree, marcato
+`Origine: Preventivo — modulo del sito INGLESE (/en/)`: in casella si vede subito che va
+risposto in inglese. Le mail di notifica **restano in italiano**, le legge la band.
+Il consenso privacy è obbligatorio anche lì, e viene registrato come
+«informativa privacy (versione inglese) letta e accettata il …».
+
+## L'informativa in inglese
+`en/privacy.html` è la traduzione fedele di quella italiana, con **in cima la riga che dice che
+fa fede la versione italiana** (è la prassi corretta per le traduzioni di cortesia: si evita di
+creare due testi legali che potrebbero divergere). Il titolare resta Michele Frosio, e si
+aggiunge il rimando all'autorità del Paese di chi legge, oltre al Garante italiano.
+
+## ⚠️ La cosa da ricordare quando si lavora
+Le pagine inglesi sono **copie tradotte a mano**, non generate da un motore: **ogni testo
+cambiato in italiano va cambiato anche in `en/`**. Vale soprattutto per le **date dei concerti**,
+che ora stanno in quattro posti: `date.html`, `en/dates.html`, e i calendari in home di
+`index.html` e `en/index.html`.
+
+## Verificato in un browser vero (Chrome headless + CDP)
+Su tutte e 8 le pagine EN, da computer e da telefono (390×844): `lang="en"`, un solo `h1`,
+3 `hreflang` per pagina, **nessun errore JavaScript**, **nessuna immagine rotta**, nessun `alt`
+mancante, **nessun overflow orizzontale**, titoli col font **Bonzana** (non il fallback).
+Provato a mano: il consenso che accende il bottone «Send request», il popup delle date
+(«Wedding / Saturday 5 September 2026»), il file `.ics` in inglese («In 3 days: …»), le date
+passate che spariscono e il conto alla rovescia in inglese.
+
+## Cosa resta da fare
+1. ✅ **Pubblicato** il 04/09/2026.
+2. **Controllare che le pagine EN rispondano** sul dominio vero: `thecoffeekillers.com/en/`
+   e, a campione, `/en/quote.html`. Netlify ci mette un minuto dal push.
+3. Mandare la **sitemap** a Google Search Console (stesso URL di sempre:
+   `thecoffeekillers.com/sitemap.xml`, ora contiene entrambe le lingue) e, se compare,
+   controllare la sezione **Internazionalizzazione / hreflang** per eventuali segnalazioni.
+4. Far **leggere i testi inglesi a un madrelingua** (o a Michele): sono traduzioni curate, ma il
+   tono di voce della band lo conosce lui. I punti dove ho interpretato: il nome «ammazzacaffè»
+   nelle FAQ (spiegato per chi non sa cos'è), «Finché ce n'è, viva il re» → «The more the
+   merrier», e i soprannomi/battute della LineUp.
+5. La **landing delle inserzioni** resta in italiano: si traduce il giorno che partono campagne
+   in inglese.
 
 ---
 
