@@ -758,6 +758,138 @@ textarea.qf-input{display:block;min-height:96px;line-height:1.5;resize:vertical}
   </div>
 </header>
 
+<script>
+/* ============================================================================
+   LE VARIANTI — il titolo segue l'annuncio da cui arrivi
+   ----------------------------------------------------------------------------
+   ⚠️ Questo script sta QUI, subito dopo l'hero, e non in fondo alla pagina:
+   se la fotografia dell'hero si cambia in fondo, il browser ha gia' iniziato
+   a scaricare quella di partenza e poi la butta. Su traffico a pagamento —
+   dove l'indirizzo ha SEMPRE un ?tipo= — era banda buttata a ogni clic.
+   ----------------------------------------------------------------------------
+   Regola numero uno di una landing: chi clicca deve ritrovare in pagina le
+   stesse parole che ha letto nell'inserzione. Un rifugista e un imprenditore
+   non comprano la stessa cosa, e leggere "il tuo locale" quando hai un rifugio
+   fa chiudere la pagina.
+
+   COME SI USA NELLE ADS: si aggiunge ?tipo=XXX in fondo al link.
+     https://thecoffeekillers.com/musica-country-dal-vivo.html?tipo=rifugio
+   I parametri della campagna (utm_*, fbclid) possono restare: convivono, e
+   finiscono nella mail del preventivo dentro il campo "Campagna".
+
+   PER AGGIUNGERE UN HOOK: si copia un blocco qui sotto. Niente altro da
+   toccare. Senza ?tipo= resta quello che c'e' scritto nell'HTML, che parla a
+   tutti e tre i pubblici.
+   ============================================================================ */
+(function(){
+  var VARIANTI = {
+    rifugio: {
+      occhiello: "Band country dal vivo &middot; gi&agrave; suonato in Cadore, a Recoaro e a Issime",
+      titolo:    "Country dal vivo al tuo rifugio.",
+      sotto:     "Casse, luci, banco e chi li fa funzionare salgono con noi: a te servono una presa da " +
+                 "220V e cinque metri per tre. Montiamo nel pomeriggio, suoniamo due ore e smontiamo noi, " +
+                 "anche quando la strada &egrave; quella che &egrave;.",
+      prova:     "<span>Rifugio Colomb&egrave;, Cadore, Recoaro, <b>Issime</b></span>" +
+                 "<span>Impianto e luci <b>nostri</b></span>" +
+                 "<span>Dal <b>2018</b>, oltre <b>200 serate</b></span>",
+      foto:      "images/live-allaperto-pomeriggio.webp",
+      alt:       "I Coffeekillers dal vivo su un palco all'aperto al tramonto, con le colline sullo sfondo",
+      chip:      "Rifugio o baita"
+    },
+    azienda: {
+      occhiello: "Band country dal vivo &middot; Conti Thun, Ca&rsquo; del Bosco, Ford",
+      titolo:    "La festa che si ricordano a gennaio.",
+      sotto:     "Set acustico leggero durante l&rsquo;aperitivo, band al completo dopo cena: il volume " +
+                 "segue il momento e i tuoi continuano a parlarsi. Impianto, luci e service sono nostri, " +
+                 "e la parte amministrativa la chiariamo prima che tu confermi.",
+      prova:     "<span><b>Conti Thun</b> due volte, <b>Ca&rsquo; del Bosco</b>, <b>Ford</b></span>" +
+                 "<span>Aperitivo, cena e festa</span>" +
+                 "<span>Preventivo scritto in <b>24 ore</b></span>",
+      foto:      "images/acustico-cortile.webp",
+      alt:       "Set acustico country in un cortile per un evento aziendale: chitarra dreadnought, cappello country e contrabbasso",
+      chip:      "Festa aziendale"
+    },
+    ristorante: {
+      occhiello: "Band country dal vivo &middot; Brescia",
+      titolo:    "Country dal vivo nel tuo locale.",
+      sotto:     "Arriviamo nel pomeriggio, montiamo in un angolo da cinque metri per tre e teniamo il " +
+                 "volume su misura della sala: al bancone si continua a ordinare e a parlare. " +
+                 "A fine serata smontiamo noi, tu chiudi la cassa.",
+      prova:     "<span>C&rsquo;&egrave; chi ci richiama <b>ogni anno dal 2021</b></span>" +
+                 "<span>Impianto e luci <b>nostri</b></span>" +
+                 "<span>Dal <b>2018</b>, oltre <b>200 serate</b></span>",
+      foto:      "images/prato-palco-pubblico.webp",
+      alt:       "I Coffeekillers visti dal palco mentre suonano davanti ai tavoli pieni, di sera",
+      chip:      "Locale o ristorante"
+    },
+    sagra: {
+      occhiello: "Band country dal vivo &middot; feste e sagre in sette regioni",
+      titolo:    "La serata che la gente si ricorda.",
+      sotto:     "Piazze, oratori e feste di paese: impianto e luci sono nostri, montiamo, suoniamo e " +
+                 "smontiamo senza far pensare a niente il comitato. Fino a 250 persone siamo autonomi, " +
+                 "sopra chiamiamo il nostro service.",
+      prova:     "<span>Feste di comunit&agrave; e sagre <b>dal 2021</b></span>" +
+                 "<span>Impianto e luci <b>nostri</b></span>" +
+                 "<span>Dal <b>2018</b>, oltre <b>200 serate</b></span>",
+      foto:      "images/prato-palco-pubblico.webp",
+      alt:       "I Coffeekillers visti dal palco mentre suonano davanti al pubblico di una festa, di sera",
+      chip:      "Festa o sagra"
+    },
+    matrimonio: {
+      occhiello: "Band country dal vivo &middot; Brescia",
+      titolo:    "Non la solita band da matrimonio.",
+      sotto:     "Ballads sotto il pergolato durante l&rsquo;aperitivo, party song sui tavoli dopo cena. " +
+                 "Il brano del vostro ingresso lo prepariamo noi: fino a tre richieste, concordate entro " +
+                 "tre mesi dalla data.",
+      prova:     "<span>Matrimoni <b>ogni anno dal 2022</b></span>" +
+                 "<span>Aperitivo, cena e festa</span>" +
+                 "<span>Impianto e luci <b>nostri</b></span>",
+      foto:      "images/acustico-cortile.webp",
+      alt:       "Set acustico country in un cortile: chitarra dreadnought, cappello country e contrabbasso",
+      chip:      "Matrimonio"
+    },
+    festival: {
+      occhiello: "Band country dal vivo &middot; palchi e rassegne dal 2018",
+      titolo:    "Al soundcheck non perdi la serata.",
+      sotto:     "Stage plan e input list arrivano al service in anticipo, saliamo con gli in-ear e i " +
+                 "cambi sono rapidi. Se il palco &egrave; tuo usiamo il tuo impianto, se non c&rsquo;&egrave; " +
+                 "portiamo il nostro.",
+      prova:     "<span>Country village e rassegne</span>" +
+                 "<span>Stage plan e input list <b>in anticipo</b></span>" +
+                 "<span>Dal <b>2018</b>, oltre <b>200 serate</b></span>",
+      foto:      "images/prato-palco-pubblico.webp",
+      alt:       "I Coffeekillers visti dal palco mentre suonano davanti al pubblico, di sera",
+      chip:      "Festival"
+    }
+  };
+
+  var tipo = new URLSearchParams(location.search).get("tipo");
+  var v = tipo ? VARIANTI[tipo.toLowerCase()] : null;
+  if(!v) return;
+
+  function scrivi(id, html){ var el=document.getElementById(id); if(el) el.innerHTML = html; }
+  scrivi("v-occhiello", v.occhiello);
+  scrivi("v-titolo", v.titolo);
+  scrivi("v-sottotitolo", v.sotto);
+  scrivi("v-prova", v.prova);
+
+  var foto = document.getElementById("v-hero-foto");
+  if(foto && v.foto){ foto.setAttribute("src", v.foto); foto.setAttribute("alt", v.alt); }
+
+  /* la scelta si porta avanti nel modulo: il cliente non deve ridire una cosa
+     che sapevamo gia' dall'annuncio */
+  /* la chip del modulo si tocca a DOM pronto: questo script gira in cima alla
+     pagina, dove il modulo non esiste ancora */
+  if(v.chip) document.addEventListener("DOMContentLoaded", function(){
+    var box = document.getElementById("chips-evt");
+    if(!box) return;
+    [].forEach.call(box.querySelectorAll(".qf-chip"), function(c){
+      c.classList.toggle("on", c.textContent.trim() === v.chip);
+    });
+  });
+})();
+</script>
+
 <!-- ============================================================================
      2 · ASCOLTA — la prova migliore, subito, e poi le DUE ARIE che puoi
      scegliere. E' questo che si compra: che aria tira nel tuo posto quella sera.
@@ -1309,129 +1441,7 @@ textarea.qf-input{display:block;min-height:96px;line-height:1.5;resize:vertical}
 })();
 
 /* ============================================================================
-   2 · LE VARIANTI — il titolo segue l'annuncio da cui arrivi
-   ----------------------------------------------------------------------------
-   Regola numero uno di una landing: chi clicca deve ritrovare in pagina le
-   stesse parole che ha letto nell'inserzione. Un rifugista e un imprenditore
-   non comprano la stessa cosa, e leggere "il tuo locale" quando hai un rifugio
-   fa chiudere la pagina.
-
-   COME SI USA NELLE ADS: si aggiunge ?tipo=XXX in fondo al link.
-     https://thecoffeekillers.com/musica-country-dal-vivo.html?tipo=rifugio
-   I parametri della campagna (utm_*, fbclid) possono restare: convivono, e
-   finiscono nella mail del preventivo dentro il campo "Campagna".
-
-   PER AGGIUNGERE UN HOOK: si copia un blocco qui sotto. Niente altro da
-   toccare. Senza ?tipo= resta quello che c'e' scritto nell'HTML, che parla a
-   tutti e tre i pubblici.
-   ============================================================================ */
-(function(){
-  var VARIANTI = {
-    rifugio: {
-      occhiello: "Band country dal vivo &middot; gi&agrave; suonato in Cadore, a Recoaro e a Issime",
-      titolo:    "Country dal vivo al tuo rifugio.",
-      sotto:     "Casse, luci, banco e chi li fa funzionare salgono con noi: a te servono una presa da " +
-                 "220V e cinque metri per tre. Montiamo nel pomeriggio, suoniamo due ore e smontiamo noi, " +
-                 "anche quando la strada &egrave; quella che &egrave;.",
-      prova:     "<span>Rifugio Colomb&egrave;, Cadore, Recoaro, <b>Issime</b></span>" +
-                 "<span>Impianto e luci <b>nostri</b></span>" +
-                 "<span>Dal <b>2018</b>, oltre <b>200 serate</b></span>",
-      foto:      "images/live-allaperto-pomeriggio.webp",
-      alt:       "I Coffeekillers dal vivo su un palco all'aperto al tramonto, con le colline sullo sfondo",
-      chip:      "Rifugio o baita"
-    },
-    azienda: {
-      occhiello: "Band country dal vivo &middot; Conti Thun, Ca&rsquo; del Bosco, Ford",
-      titolo:    "La festa che si ricordano a gennaio.",
-      sotto:     "Set acustico leggero durante l&rsquo;aperitivo, band al completo dopo cena: il volume " +
-                 "segue il momento e i tuoi continuano a parlarsi. Impianto, luci e service sono nostri, " +
-                 "e la parte amministrativa la chiariamo prima che tu confermi.",
-      prova:     "<span><b>Conti Thun</b> due volte, <b>Ca&rsquo; del Bosco</b>, <b>Ford</b></span>" +
-                 "<span>Aperitivo, cena e festa</span>" +
-                 "<span>Preventivo scritto in <b>24 ore</b></span>",
-      foto:      "images/acustico-cortile.webp",
-      alt:       "Set acustico country in un cortile per un evento aziendale: chitarra dreadnought, cappello country e contrabbasso",
-      chip:      "Festa aziendale"
-    },
-    ristorante: {
-      occhiello: "Band country dal vivo &middot; Brescia",
-      titolo:    "Country dal vivo nel tuo locale.",
-      sotto:     "Arriviamo nel pomeriggio, montiamo in un angolo da cinque metri per tre e teniamo il " +
-                 "volume su misura della sala: al bancone si continua a ordinare e a parlare. " +
-                 "A fine serata smontiamo noi, tu chiudi la cassa.",
-      prova:     "<span>C&rsquo;&egrave; chi ci richiama <b>ogni anno dal 2021</b></span>" +
-                 "<span>Impianto e luci <b>nostri</b></span>" +
-                 "<span>Dal <b>2018</b>, oltre <b>200 serate</b></span>",
-      foto:      "images/prato-palco-pubblico.webp",
-      alt:       "I Coffeekillers visti dal palco mentre suonano davanti ai tavoli pieni, di sera",
-      chip:      "Locale o ristorante"
-    },
-    sagra: {
-      occhiello: "Band country dal vivo &middot; feste e sagre in sette regioni",
-      titolo:    "La serata che la gente si ricorda.",
-      sotto:     "Piazze, oratori e feste di paese: impianto e luci sono nostri, montiamo, suoniamo e " +
-                 "smontiamo senza far pensare a niente il comitato. Fino a 250 persone siamo autonomi, " +
-                 "sopra chiamiamo il nostro service.",
-      prova:     "<span>Feste di comunit&agrave; e sagre <b>dal 2021</b></span>" +
-                 "<span>Impianto e luci <b>nostri</b></span>" +
-                 "<span>Dal <b>2018</b>, oltre <b>200 serate</b></span>",
-      foto:      "images/prato-palco-pubblico.webp",
-      alt:       "I Coffeekillers visti dal palco mentre suonano davanti al pubblico di una festa, di sera",
-      chip:      "Festa o sagra"
-    },
-    matrimonio: {
-      occhiello: "Band country dal vivo &middot; Brescia",
-      titolo:    "Non la solita band da matrimonio.",
-      sotto:     "Ballads sotto il pergolato durante l&rsquo;aperitivo, party song sui tavoli dopo cena. " +
-                 "Il brano del vostro ingresso lo prepariamo noi: fino a tre richieste, concordate entro " +
-                 "tre mesi dalla data.",
-      prova:     "<span>Matrimoni <b>ogni anno dal 2022</b></span>" +
-                 "<span>Aperitivo, cena e festa</span>" +
-                 "<span>Impianto e luci <b>nostri</b></span>",
-      foto:      "images/acustico-cortile.webp",
-      alt:       "Set acustico country in un cortile: chitarra dreadnought, cappello country e contrabbasso",
-      chip:      "Matrimonio"
-    },
-    festival: {
-      occhiello: "Band country dal vivo &middot; palchi e rassegne dal 2018",
-      titolo:    "Al soundcheck non perdi la serata.",
-      sotto:     "Stage plan e input list arrivano al service in anticipo, saliamo con gli in-ear e i " +
-                 "cambi sono rapidi. Se il palco &egrave; tuo usiamo il tuo impianto, se non c&rsquo;&egrave; " +
-                 "portiamo il nostro.",
-      prova:     "<span>Country village e rassegne</span>" +
-                 "<span>Stage plan e input list <b>in anticipo</b></span>" +
-                 "<span>Dal <b>2018</b>, oltre <b>200 serate</b></span>",
-      foto:      "images/prato-palco-pubblico.webp",
-      alt:       "I Coffeekillers visti dal palco mentre suonano davanti al pubblico, di sera",
-      chip:      "Festival"
-    }
-  };
-
-  var tipo = new URLSearchParams(location.search).get("tipo");
-  var v = tipo ? VARIANTI[tipo.toLowerCase()] : null;
-  if(!v) return;
-
-  function scrivi(id, html){ var el=document.getElementById(id); if(el) el.innerHTML = html; }
-  scrivi("v-occhiello", v.occhiello);
-  scrivi("v-titolo", v.titolo);
-  scrivi("v-sottotitolo", v.sotto);
-  scrivi("v-prova", v.prova);
-
-  var foto = document.getElementById("v-hero-foto");
-  if(foto && v.foto){ foto.setAttribute("src", v.foto); foto.setAttribute("alt", v.alt); }
-
-  /* la scelta si porta avanti nel modulo: il cliente non deve ridire una cosa
-     che sapevamo gia' dall'annuncio */
-  var box = document.getElementById("chips-evt");
-  if(box && v.chip){
-    [].forEach.call(box.querySelectorAll(".qf-chip"), function(c){
-      c.classList.toggle("on", c.textContent.trim() === v.chip);
-    });
-  }
-})();
-
-/* ============================================================================
-   3 · LA BARRA APPICCICATA
+   2 · LA BARRA APPICCICATA
    Compare quando l'hero e' passato e si toglie di mezzo quando arriva il
    modulo, che se no copre i campi proprio mentre si compilano.
    ============================================================================ */
@@ -1454,7 +1464,7 @@ textarea.qf-input{display:block;min-height:96px;line-height:1.5;resize:vertical}
 })();
 
 /* ============================================================================
-   4 · IL VIDEO DEL PALCO — parte quando lo si guarda, non prima.
+   3 · IL VIDEO DEL PALCO — parte quando lo si guarda, non prima.
    preload="none": chi non arriva fin li' non se lo scarica.
    ============================================================================ */
 (function(){
@@ -1468,7 +1478,7 @@ textarea.qf-input{display:block;min-height:96px;line-height:1.5;resize:vertical}
 })();
 
 /* ============================================================================
-   5 · I NUMERI che si contano da soli
+   4 · I NUMERI che si contano da soli
    Stesso meccanismo della pagina "chi siamo": 1400ms, una volta sola, e con
    prefers-reduced-motion il numero ci arriva direttamente.
    L'anno (data-secco) non si conta: un anno che parte da zero non vuol dire niente.
@@ -1500,7 +1510,7 @@ textarea.qf-input{display:block;min-height:96px;line-height:1.5;resize:vertical}
 })();
 
 /* ============================================================================
-   6 · IL MODULO
+   5 · IL MODULO
    E' quello di preventivo.html: stessi comportamenti (chips a scelta singola,
    contapersone, cursore, tile) e stesse chiavi verso Formspree. In piu' i due
    passi, perche' otto caselle in faccia da telefono fanno chiudere la pagina.
@@ -1626,7 +1636,7 @@ textarea.qf-input{display:block;min-height:96px;line-height:1.5;resize:vertical}
 })();
 
 /* ============================================================================
-   7 · Comparsa allo scorrimento
+   6 · Comparsa allo scorrimento
    ============================================================================ */
 (function(){
   var els = document.querySelectorAll(".rv");
