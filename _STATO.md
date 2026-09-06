@@ -201,6 +201,16 @@ blacklist, dove c'è **«chiavi in mano»**), `02-colore-di-pagina.md`.
   `live-telecaster-notte`, `vigna-live-voce`, `vigna-live-chitarra`: ci sono **Eli e Matteo**.
 - **Gli accenti nei titoli si scrivono**: il divieto veniva dal font Bronco. **Bonzana ha le
   maiuscole accentate** (verificate glifo per glifo), la `&`, l'apostrofo curvo e il `€`.
+- ⚠️ **Una piccola inefficienza nota, misurata e accettata.** Lo script delle varianti sta subito
+  dopo l'hero (non in fondo, dove era: prima buttava molta piu' banda), ma il *preload scanner*
+  del browser legge il `src` nell'HTML prima di qualunque JavaScript. Quindi su tre varianti su
+  sei — `rifugio`, `azienda`, `matrimonio`, le uniche con una fotografia diversa da quella di
+  partenza — il browser scarica **34 KB** della fotografia di default e poi la annulla.
+  Il rimedio sarebbe togliere il `src` dall'HTML e metterlo da JavaScript: costerebbe la
+  fotografia dell'hero a chi ha il JavaScript spento e un LCP peggiore per tutti. **34 KB su un
+  clic non valgono quel prezzo**, quindi resta cosi'. Se un giorno le varianti con foto propria
+  diventassero la maggioranza del traffico, la cosa da fare e' cambiare la fotografia di partenza
+  dell'HTML, non il meccanismo.
 - Il file è **86 KB**, contro i 173 della v2: non porta più il CSS della home.
 
 ## Verificato in browser vero (Chrome + CDP, 1440×900 e 390×844)
