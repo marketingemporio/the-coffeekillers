@@ -1,11 +1,15 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-09-04
+> **Ultimo aggiornamento:** 2026-09-06
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
 > Dal **04/09/2026 è online anche la versione inglese** in `en/`, per chi si connette
 > dall'estero: vedi **«IL SITO IN INGLESE»** qui sotto.
+> Il **06/09 la landing delle inserzioni è stata rifatta tre volte**, e la terza ha cambiato
+> quello che vende: non il fatturato del locale né l'attrezzatura, ma **l'intrattenimento — una
+> serata divertente**. Vedi **«LANDING DELLE INSERZIONI»** qui sotto: la prima cosa da leggere
+> prima di scrivere qualunque testo per questa band.
 > **Tutto in regola sui font**: il 02/09 Michele ha comprato anche la licenza **Webfont** di
 > Bonzana. L'**informativa privacy** è scritta. Le **date in calendario sono ancora quelle di
 > prova**, per scelta: non ne abbiamo altre.
@@ -103,6 +107,132 @@ passate che spariscono e il conto alla rovescia in inglese.
    merrier», e i soprannomi/battute della LineUp.
 5. La **landing delle inserzioni** resta in italiano: si traduce il giorno che partono campagne
    in inglese.
+
+---
+
+# 🆕 LANDING DELLE INSERZIONI (06/09/2026) — TRE RIFACIMENTI IN DUE GIORNI
+
+`musica-country-dal-vivo.html`. Le versioni precedenti sono in `_parcheggio/` (solo in locale):
+`landing-prima-del-2026-09-04.html` e `landing-v2-del-2026-09-04.html`.
+
+## ⚠️ LEGGI PRIMA QUESTO: cosa si vende
+Michele, 06/09, dopo aver bocciato la v3:
+
+> *"un imprenditore non vuole sapere al dettaglio ogni questione tecnica, altrimenti non faceva
+> l'imprenditore. […] noi comunque non vogliamo puntare per forza sul ritorno dell'investimento
+> del locale, è un rischio che non ci prendiamo. Cioè non è «chiama i Coffeekillers così fatturi
+> di più», o «chiama i Coffeekillers che vengono con un camion di tools professionali». Non è
+> questo il criterio di valutazione. **È l'intrattenimento, una serata divertente, qualcosa che
+> fanno per portare uno spirito di divertimento e leggerezza.**"*
+
+Le tre regole che ne derivano, e che valgono per qualunque cosa si scriva per questa band:
+
+1. **Non si promette un ritorno economico.** Niente «ti riempie il locale», «i tavoli restano
+   occupati», «si ordina di più». È un rischio che la band non si prende, ed è anche la cosa
+   sbagliata da vendere.
+2. **Non si vende la logistica.** Le sigle dell'attrezzatura (casse RCF, banco Allen & Heath,
+   in-ear, 3,5 × 3,5 m, stage plan, input list) sono uscite dalla pagina. Restano tre righe:
+   *arriviamo, montiamo, smontiamo — a te bastano un angolo e una presa*.
+3. **Non si fanno elenchi dei difetti degli altri.** La v3 apriva con sei righe su come vanno
+   male le serate con le altre band. Michele: *"hai fatto un elenco di cosa fanno gli altri e
+   così sminuiamo il resto della concorrenza, non ha un vero senso di marketing"*. Sezione tolta.
+
+E il difetto di forma, detto senza giri: *"questo è letteralmente un muro di testo… una
+spennellata di marrone con del testo sopra"*. Da qui il rifacimento grafico: **le fotografie
+fanno il lavoro e il testo si fa da parte**. Il testo che si legge è passato da **10.054 a 5.948
+caratteri** e le immagini in pagina da 8 a **23**.
+
+## Com'è fatta adesso
+**Parte 1, scuro:** hero (*«Una sera che sembra Nashville.»*) · **il video subito** + le **due
+arie** che si possono scegliere, con due fotografie grandi (*quando serve atmosfera* / *quando
+serve far ballare*) · una **fascia a tutto campo** che è solo una fotografia (le lucine in vigna)
+· **cosa ti portiamo** (tre righe: non la solita band · l'aria giusta al momento giusto · zero
+pensieri) · **la serata in quattro momenti** (quattro fotografie e quattro righe: aperitivo,
+cena, primo set, si balla) · **il palco** (il video del palco di Gussago e tre righe) · **i numeri**.
+
+**⟶ cambio a panna:** **ci hanno chiamati** (il muro dei marchi + sei posti veri) · **i cinque**
+(le facce con la battuta di ognuno, quelle della home) · **il mosaico** (sei fotografie e zero parole).
+
+**⟶ cambio a scuro:** **tre passi** · **sei domande** · **il modulo** · il piede.
+
+## Il meccanismo: colore di pagina, non fasce
+Resta quello della v3, ed è la risposta al «sembra la home»: le sezioni **non hanno un fondo**,
+dichiarano il tema (`data-pg="scuro"` / `data-pg="panna"`) e un pezzetto di JavaScript scrive
+quattro colori su `:root` quando una sezione attraversa metà schermo. La transizione di `.6s` fa
+il resto: **niente cuciture**, la pagina è un foglio unico che cambia colore. **Due cambi**
+(scuro → panna → scuro), verificati sezione per sezione.
+
+⚠️ **`@property` non è opzionale**: senza, la transizione non interpola e il fondo salta.
+⚠️ **L'arancio `#CD5812` non fa mai da fondo a un testo**: beige su arancio è 3.07:1, marrone su
+arancio 3.25:1, e per il testo serve 4.5. Sta negli occhielli, nei numeri, nei fili e nelle pill.
+
+Il metodo viene dal design system di casa (Michele è socio di Beamlight):
+`brains/beamlight-brain-vault/clienti/beamlight/Design system Beamliight con prompt/` —
+`08-comporre-una-pagina.md` (le sette regole di Dane, lo scheletro racconto → prove → azione),
+`09-voce-e-copy.md` (il titolo è una frase, non un'etichetta; il microtesto sotto ogni CTA; la
+blacklist, dove c'è **«chiavi in mano»**), `02-colore-di-pagina.md`.
+
+## Le decisioni di Michele — non ribaltarle senza chiedergli
+| Punto | Decisione |
+|---|---|
+| **Cosa si vende** | **l'intrattenimento**: una serata divertente. Non il fatturato del locale, non l'attrezzatura |
+| **Il prezzo in pagina** | **nessuna cifra**: *"non lo dici, perché c'è già il compilatore sotto"*. Qualifica la fascia di budget dentro il modulo |
+| **Il muro dei marchi** | **c'è**, e sono veri: *"coca cola, porsche e quanto ti confermo che li abbiamo fatti, non sono bufale"*. Coca-Cola, Ca' del Bosco, Porsche, Thun, Lombarda Ceramica |
+| **«oltre 200 serate», «dal 2018»** | **confermati da Michele** anche se il registro del brain ne conta ~97: il conto vero include gli anni non registrati nel cruscotto. **Non "correggerli"** |
+| **Il telefono** | **393 701 1409**, confermato da lui. ⚠️ Il brain lo dava a Yolomitas: è la nota del brain che è vecchia, ed è stata corretta |
+| **La SIAE** | **confermata**: in capo a chi organizza, noi diamo l'elenco brani per il borderò |
+| **Il modulo** | quello di `preventivo.html` verso Formspree, in due passi |
+
+⚠️ **Fuori dalle referenze**, perché il brain li smentisce: **Lecconeria** (solo un preventivo del
+26/05, mai suonata) e **Beach Fly** (10/10/2026, futura e gratis).
+
+## Sotto il cofano
+- **Il titolo segue l'annuncio.** `?tipo=` cambia occhiello, titolo, sottotitolo e **la fotografia
+  dell'hero**, e preseleziona la casella nel modulo. Sei varianti: `rifugio`, `azienda`,
+  `ristorante`, `sagra`, `matrimonio`, `festival`. Gli `utm_*` e il `fbclid` convivono e finiscono
+  nel campo `Campagna` della mail. Per aggiungerne una si copia un blocco sotto «LE VARIANTI».
+- **Il muro dei marchi è monocromatico, con la maschera CSS** (la tecnica delle icone del brand):
+  due loghi su cinque sono **bianchi dentro il file** e sul panna sparivano, due sono neri e sullo
+  scuro sparivano. Con la maschera il colore lo decide la pagina.
+- **Fotografie mai usate prima**: `prato-palco-pubblico` (hero), `acustico-cortile` (l'unica che
+  dice «evento aziendale», è la variante azienda), `vigna-live-panoramica` (la fascia piena),
+  `band-fiume-o2` (le risate, nel mosaico).
+  ⚠️ Evitare `live-palco-luci-calde`, `vigna-live-palco`, `live-controluce-voce`,
+  `live-telecaster-notte`, `vigna-live-voce`, `vigna-live-chitarra`: ci sono **Eli e Matteo**.
+- **Gli accenti nei titoli si scrivono**: il divieto veniva dal font Bronco. **Bonzana ha le
+  maiuscole accentate** (verificate glifo per glifo), la `&`, l'apostrofo curvo e il `€`.
+- Il file è **86 KB**, contro i 173 della v2: non porta più il CSS della home.
+
+## Verificato in browser vero (Chrome + CDP, 1440×900 e 390×844)
+Zero errori JavaScript · zero immagini rotte · zero `alt` mancanti · zero sbordamento orizzontale
+· Bonzana montato davvero · **nessun titolo oltre due righe** (default e sei varianti, su entrambi
+gli schermi) · i due cambi di colore verificati sezione per sezione · chip del modulo a 44px.
+
+Il modulo: blocca l'avanzamento con la data vuota, costruisce il riepilogo, il bottone resta
+spento senza consenso, e il corpo che parte ha le **18 chiavi** giuste verso
+`formspree.io/f/xdabrrrr` con `Origine`, `Variante` e `Campagna`. **L'invio vero non è stato
+provato**, per non far arrivare una richiesta finta nella casella.
+
+⚠️ **Cinque difetti trovati solo guardando gli screenshot**, in tre giri: il velo dell'hero si
+mangiava la fotografia · i numeri `01-06` a 15px erano trattini illeggibili · sul telefono il filo
+del nastro correva nel margine staccato dai pallini (due misure scritte in due punti diversi: ora
+stanno in **una variabile sola**, `--ora-col`) · il bottone del play era senza stile, perché
+arrivava dal CSS della home · il mosaico chiudeva a buco, e due loghi su cinque erano invisibili.
+
+## 🔜 Cosa manca, in ordine di quanto pesa
+1. **Le testimonianze.** L'unico ingrediente che non si può inventare: tre frasi vere di tre
+   gestori, **con nome, locale e città**. Nel codice c'è il commento che segna il punto, dentro la
+   sezione «ci hanno chiamati». Si chiedono su WhatsApp **il giorno dopo la serata**. Nel frattempo
+   il buco è coperto onestamente col **comportamento** dei clienti (Pietracavalla ogni anno dal
+   2021, Cascinetto tre serate nel 2026) e la riga «Un cliente che ti richiama è la recensione che conta».
+2. **La fattura.** La pagina promette una conversazione, non una fattura: è l'unica cosa onesta
+   finché non c'è una forma giuridica. ⚠️ Per il pubblico «imprenditori» è **il blocco numero uno**.
+3. **Il pixel di Meta non c'è**, per scelta (nessun terzo, nessun banner cookie). Senza pixel Meta
+   non ottimizza sulle conversioni. Il playbook di casa dice anche di ottimizzare per **visite alla
+   pagina** e non per clic, e di mettere `utm_content={{ad.name}}`: il campo `Campagna` lo legge.
+4. **Cinque o sei elementi?** La pagina dice cinque; `chi-siamo.html` dice ancora «6 musicisti» e
+   le FAQ «prediligiamo uscire in 6». Da allineare.
+5. **`date.html` mostra ancora Fanano (28 ago, Modena)**, che il brain dà come **saltata**.
 
 ---
 

@@ -44,3 +44,8 @@ _switch-proposte.js
 BONZANA-*.zip
 Font Bonzana/
 HJCK_Brand*.pdf
+
+# Collegamento alla cartella del brand kit sul Desktop, comodo in locale.
+# Se finisse in un commit, Netlify pubblicherebbe la radice del repo e il
+# materiale interno del brand sarebbe scaricabile dal dominio del sito.
+_bk
