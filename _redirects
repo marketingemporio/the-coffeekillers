@@ -1,3 +1,4 @@
 # Blocca l'accesso pubblico ai documenti interni (deploy Netlify publish=".")
 /_STATO.md   /   301!
 /README.md   /   301!
+/CLAUDE.md   /   301!
