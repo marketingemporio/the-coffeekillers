@@ -1,7 +1,7 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-09-06
+> **Ultimo aggiornamento:** 2026-09-07
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
 > Dal **04/09/2026 è online anche la versione inglese** in `en/`, per chi si connette
@@ -10,6 +10,10 @@
 > quello che vende: non il fatturato del locale né l'attrezzatura, ma **l'intrattenimento — una
 > serata divertente**. Vedi **«LANDING DELLE INSERZIONI»** qui sotto: la prima cosa da leggere
 > prima di scrivere qualunque testo per questa band.
+> Il **07/09 le è stata rifatta la GRAFICA**, nel registro **«locandina»** scelto da Michele fra
+> tre bozzetti: vedi **«LA GRAFICA DELLA LANDING»**, che viene prima. Lì c'è anche la regola che
+> ha dovuto ripetere due volte — **niente micro-scritte** — e i sette difetti che sono usciti
+> solo guardando gli screenshot.
 > **Tutto in regola sui font**: il 02/09 Michele ha comprato anche la licenza **Webfont** di
 > Bonzana. L'**informativa privacy** è scritta. Le **date in calendario sono ancora quelle di
 > prova**, per scelta: non ne abbiamo altre.
@@ -110,6 +114,171 @@ passate che spariscono e il conto alla rovescia in inglese.
 
 ---
 
+# 🎨 LA GRAFICA DELLA LANDING — registro «LOCANDINA» (07/09/2026)
+
+Il **contenuto** della landing era approvato (vedi la sezione sotto). La **grafica** no.
+Michele, dopo la v3:
+
+> *"la grafica è ancora di bassissima lega. tutto sfondo marrone o bianco, piattissimo."*
+> *"tutte le micro scritte non sono belle, sei tornato al tuo vecchio stile nativo, senza
+> minimamente concentrarti sullo stile della band."*
+> *"la foto nella hero va bene, ma c'è una patina troppo scura e non si capisce niente."*
+> *"hai usato foto anche vecchie con Elisa etc."*
+
+**La causa, accertata:** riscrivendo il CSS da zero era stato buttato via **l'apparato visivo
+del brand**. La home ha bordi di carta strappata, strisce di tartan, sporcatura su ogni campo,
+schede crema sui fondi pieni, foto incorniciate, titoli con la parola timbrata. La landing non
+aveva niente di tutto questo: due campi di colore piatti con del testo sopra.
+
+## Come si è scelto: tre bozzetti, non una discussione
+In `_bozzetti/` (fuori dal repo) tre file con le **stesse tre sezioni** e tre registri diversi —
+`a-locandina` · `b-notturno` · `c-editoriale` + `comune.css`. Si guardano con
+`python3 -m http.server 8913` e si sceglie a colpo d'occhio. **Michele ha scelto la A.**
+I bozzetti restano lì: servono la prossima volta che si discute di stile.
+
+## Che cos'è il registro «locandina», in pratica
+Il brand book lo prescrive a parole: *"l'estetica delle vecchie locandine di concerti, dai
+manifesti consumati dal tempo"*. Tradotto in cinque gesti, che sono quelli che tengono insieme
+la pagina:
+
+1. **Fogli di colore sovrapposti**, non fasce che si toccano. Le fasce piene (arancio, tan) sono
+   fogli incollati sopra la pagina, col **bordo strappato** sopra e sotto.
+2. **Sporcatura ovunque**, tre strati disegnati dal browser con `feTurbulence`.
+3. **Icona gigante in filigrana** dietro i titoli, tono su tono (ricetta di pag. 25 del brand book).
+4. **Le foto si incorniciano** come stampe appese, col cartoncino crema e l'ombra marrone.
+5. **La parola chiave del titolo è timbrata**: blocco arancio dietro, non testo colorato.
+
+Più il **sesto colore**: il **tan `#BD8B65`**, che nel brand book è il terzo fondo pieno (pag. 22)
+e sul sito non era mai stato usato. I fondi ora sono quattro: marrone, tan, panna, arancio.
+
+## ⚠️ NIENTE MICRO-SCRITTE — la cosa che Michele ha dovuto dire due volte
+> *"tu ti impunti sempre a lasciarmi le scrittine, ma io non le voglio, non riesco proprio a
+> farti memorizzare questo terribile tuo difetto."*
+
+**Sono uscite dalla pagina, tutte:**
+
+| Cos'era | Dove stava | Cosa c'è adesso |
+|---|---|---|
+| **occhiello di sezione** (12px maiuscolo spaziato arancio sopra ogni titolo) | 11 sezioni | **niente**: il titolo sta da solo, con l'icona in filigrana dietro |
+| **riga in corsivo sotto la CTA** (*"Preventivo scritto in 24 ore, e ti risponde Mike…"*) | hero, modulo | **niente** |
+| **fila di prove a stelline** (13,5px) sotto i bottoni dell'hero | hero | **la fascia arancio dei fatti**, numeri Bonzana grandi ed etichette a 19px/700 |
+| **etichette dei numeri a 10,5px** spaziate | fascia numeri | idem (la fascia numeri e quella delle prove sono diventate una cosa sola) |
+| **due righe di testo** nella barra appiccicata | barra | **logo + due bottoni**, e basta |
+| «Passo 1/2/3» a 10,5px | tre passi | **numeroni `01 02 03`** in Bonzana |
+
+**La regola che resta scritta nel CSS**: corpo minimo **13px**; sotto i 15px solo le etichette
+dei campi del modulo (senza, non si capisce cosa scrivere) — e in **LT Cushion Bold**, non in
+sans spaziato. Le uniche scritte piccole ammesse sono quelle **dentro una composizione**: la
+pastiglia appoggiata su una fotografia e il titolo del brano sul video. E stanno **dentro una
+pastiglia marrone**, mai nude sul colore.
+✅ Verificato a macchina su entrambi gli schermi: **zero elementi sotto i 13px**.
+
+## Le foto: quattro fuori, e tutte guardate una per una
+`prato-palco-pubblico` (hero e tre varianti), `acustico-cortile` (due varianti + mosaico),
+`live-sera-pubblico`, `vigna-live-panoramica` sono **uscite**: c'erano Eli o Matteo.
+
+⚠️ **Non ci si fida della lista**: ogni fotografia candidata è stata **aperta e guardata** prima
+di metterla in pagina (`sips` → png piccolo → si guarda). È l'unico modo. La lista nera completa
+sta più sotto, nella sezione del contenuto.
+
+**Le nuove:** `terrazza-live` (hero), `band-fiume-o4` (la fascia a tutto campo e la variante
+sagra), `band-completo-strumenti`, `live-notte`, `vigna-chitarra`, `mike-telecaster-live`,
+`live-blu-batteria`, `live-allaperto-pomeriggio`, `targa-band`, `mike-miglio-banjo`,
+`prato-batteria-blu`, `live-blu-tastiere`, `vigna-contrabbasso-live-b`, `palco-villa-gussago`.
+
+## Com'è fatta adesso, sezione per sezione
+**Scuro:** hero (fotografia intera, velo direzionale, titolo timbrato) · **fascia arancio dei
+fatti** (2018 · +200 · 7 · 5) · il video · **fascia tan** con le due arie in schede crema ·
+**la fotografia a tutto campo** · cosa ti portiamo (tre icone grandi del brand) · **quanto
+suoniamo** (tre stampe incorniciate) · il palco.
+**⟶ panna:** ci hanno chiamati · i cinque (ritratti incorniciati) · il mosaico.
+**⟶ tartan ⟶ scuro:** tre passi · le domande · il modulo · il piede.
+
+Il **colore di pagina** resta il meccanismo di prima e i **cambi restano due**. Le fasce piene
+non partecipano: si dipingono da sole e hanno il bordo strappato, quindi si leggono come carta
+appoggiata e non come un cambio di foglio.
+
+## Il contenuto che è cambiato — e perché
+Michele, stesso giorno:
+> *"stai dando per scontato che suoniamo in diversi momenti, e a orari fissati, ma chi l'ha
+> detto? Magari uno vuole solo un set a pranzo di 2h e quello è. Lascia più apertura e non
+> chiudere così le opzioni."*
+
+- **«La serata in quattro momenti» (17 / 20 / 22 / 23) è stata sostituita** da **«Quanto
+  suoniamo? Quanto ti serve.»**: tre *forme* possibili (un set e basta · due set con la pausa ·
+  tutta la serata) e la riga che dice chiaro *"non abbiamo una formula fissa e non ci sono orari
+  da rispettare"*.
+- **Nel modulo** il cursore della durata arriva a **4h** (era 3) e l'etichetta dice *"un set solo
+  o tutta la sera, si decide insieme"*.
+- **Nelle FAQ** «Quanto suonate?» è diventata **«Quanto suonate, e a che ora?»**, e risponde
+  *"quanto e quando ti serve"*.
+- **Nelle varianti** sono state tolte le frasi che davano per scontato più momenti (azienda e
+  matrimonio), e «Arriviamo nel pomeriggio» è diventato «Arriviamo prima».
+- ⚠️ **Una variante ha il titolo cambiato**: `azienda` era *«La festa che si ricordano a
+  gennaio.»* → **«La festa di cui parlano a gennaio.»**. Motivo tecnico, non di gusto: era
+  l'unico titolo su sette che **da telefono andava a tre righe**. Se il titolo di prima piace di
+  più, si rimette e si accettano le tre righe.
+- Sono spariti **l'occhiello e la riga di prove** delle sei varianti (erano scritte piccole).
+  Adesso ogni variante cambia **titolo, sottotitolo, fotografia e casella del modulo**.
+
+## Il peso: da 5,46 MB a 3,40 MB
+Su traffico a pagamento ogni megabyte si paga a ogni clic.
+- **Le fotografie sono state tagliate alla misura in cui si vedono**, in `images/land/`.
+  ⚠️ **Gli originali non sono stati toccati**: `images/land/` sono copie, il resto del sito usa
+  ancora quelle grandi. I cinque ritratti pesavano **170 KB l'uno** per essere mostrati a 207px:
+  ora 45.
+- **Il video del palco**: 2,23 MB → **1,11 MB**, ricodificato senza traccia audio (era già muto),
+  `crf 34`. Confrontato fotogramma per fotogramma: alla misura in cui si vede non si distingue.
+  Sta in `images/land/palco-villa-gussago.mp4`, l'originale resta.
+- **I font in woff2**: i quattro `.ttf` viaggiavano **non compressi**, 333 KB, e sul percorso
+  critico. In woff2 fanno **120 KB**. I `.ttf` restano come riserva.
+  📌 **Le altre pagine del sito usano ancora i `.ttf`**: i woff2 sono già in `fonts/`, adottarli
+  altrove è un cambio di due righe per pagina e vale ~210 KB a visita.
+
+## ⚠️ I difetti usciti SOLO guardando gli screenshot
+Nessuno di questi si vedeva dal DOM. È il motivo per cui la verifica è obbligatoria.
+1. **Gli attributi `width`/`height` sull'`<img>` battono `aspect-ratio`.** Le stampe incorniciate
+   venivano fuori **alte 1200px** invece che 4:5, e le due schede della fascia tan avevano
+   fotografie di due altezze diverse. Serve **`height:auto`**, se no `aspect-ratio` non fa niente.
+2. **La maschera `bordo-strappato.webp` non si vedeva.** È 1200×90 e il frastaglio sta solo negli
+   ultimi 13px: stirata su una fascia di 30px il dente diventa alto 4px, cioè una riga dritta.
+   Ora il bordo lo **disegna il browser** (`feTurbulence` + `feDisplacementMap`), come la
+   sporcatura. La home usa ancora il file, e infatti lì lo strappo quasi non si nota.
+3. **La fotografia a tutto campo tagliava alle gambe**: fascia 2,2:1 e foto 4:3, ritaglio al
+   centro. Serve `object-position` per ogni fotografia.
+4. **Didascalie doppie**: sotto ogni stampa c'erano la didascalia crema *e* l'h3 in Bonzana con
+   le stesse parole.
+5. **Le filigrane sbordavano** e allargavano la pagina di 29px. `overflow-x:clip` sulle sezioni
+   (non `hidden`: `clip` lascia passare il bordo strappato, che sborda in verticale).
+6. **Il ch di Bonzana inganna**: è molto più stretto delle maiuscole che il font disegna davvero.
+   I `max-width` in `ch` vanno **misurati con `Range.getClientRects`**, mai stimati.
+7. **Una pastiglia crema su arancio a 15px** (3,07:1). Il controllo automatico non l'aveva presa
+   perché **cercavo `rgb(205,88,12)` invece di `rgb(205,88,18)`**: l'arancio del brand è `#CD5812`.
+
+## ✅ Come è stata verificata (Chrome headless + CDP, 1440×900 e 390×844)
+Zero errori JavaScript · zero immagini rotte · zero `alt` mancanti · zero richieste fallite ·
+zero sbordamento orizzontale · Bonzana e LT Cushion **montati davvero** · **due** cambi di colore
+· **tutti i 14 titoli entro due righe**, misurati, su entrambi gli schermi · **nessun testo
+piccolo sull'arancio** · **nessun testo sotto i 13px** · **nessuna foto della lista nera**.
+**Le sette varianti** (default + sei) provate su entrambi gli schermi: titolo, sottotitolo,
+fotografia e casella del modulo cambiano, e i titoli restano in due righe.
+**Il modulo**: blocca l'avanzamento con la data vuota, costruisce il riepilogo, il bottone resta
+spento senza consenso, chip a 44px, e il corpo che parte ha le **18 chiavi** giuste con
+`Origine`, `Variante` e `Campagna`. **L'invio vero non è stato provato**, per non far arrivare
+una richiesta finta nella casella.
+
+Gli attrezzi della verifica stanno nello scratchpad della sessione (`check.mjs`, `var.mjs`,
+`form.mjs`, `peso.mjs`, `sez.mjs`): sono node puro senza dipendenze, si rifanno in cinque minuti.
+
+## 🔜 Cosa manca ancora, qui
+1. **Le testimonianze** restano il buco numero uno (vedi sotto). Il posto nel codice è segnato.
+2. **`_bozzetti/` non è pubblicato** ed è fuori dal repo: se serve mostrarlo a qualcuno, va copiato.
+3. **Il video del palco è ancora 1,11 MB** e parte da solo quando lo si scorre. Se il costo per
+   clic risulta alto, la cosa da provare è farlo partire **al clic** come quello di YouTube.
+
+---
+
+
 # 🆕 LANDING DELLE INSERZIONI (06/09/2026) — TRE RIFACIMENTI IN DUE GIORNI
 
 `musica-country-dal-vivo.html`. Le versioni precedenti sono in `_parcheggio/` (solo in locale):
@@ -142,7 +311,9 @@ spennellata di marrone con del testo sopra"*. Da qui il rifacimento grafico: **l
 fanno il lavoro e il testo si fa da parte**. Il testo che si legge è passato da **10.054 a 5.948
 caratteri** e le immagini in pagina da 8 a **23**.
 
-## Com'è fatta adesso
+## Com'era fatta la v3 (07/09: la grafica è stata rifatta — vedi la sezione «LA GRAFICA DELLA LANDING»)
+⚠️ **Questo paragrafo descrive la v3 e resta solo per storia.** Le sezioni di oggi, le
+fotografie di oggi e i quattro fondi stanno nella sezione della grafica, più sopra.
 **Parte 1, scuro:** hero (*«Una sera che sembra Nashville.»*) · **il video subito** + le **due
 arie** che si possono scegliere, con due fotografie grandi (*quando serve atmosfera* / *quando
 serve far ballare*) · una **fascia a tutto campo** che è solo una fotografia (le lucine in vigna)
@@ -194,11 +365,17 @@ blacklist, dove c'è **«chiavi in mano»**), `02-colore-di-pagina.md`.
 - **Il muro dei marchi è monocromatico, con la maschera CSS** (la tecnica delle icone del brand):
   due loghi su cinque sono **bianchi dentro il file** e sul panna sparivano, due sono neri e sullo
   scuro sparivano. Con la maschera il colore lo decide la pagina.
-- **Fotografie mai usate prima**: `prato-palco-pubblico` (hero), `acustico-cortile` (l'unica che
-  dice «evento aziendale», è la variante azienda), `vigna-live-panoramica` (la fascia piena),
-  `band-fiume-o2` (le risate, nel mosaico).
-  ⚠️ Evitare `live-palco-luci-calde`, `vigna-live-palco`, `live-controluce-voce`,
-  `live-telecaster-notte`, `vigna-live-voce`, `vigna-live-chitarra`: ci sono **Eli e Matteo**.
+- ⚠️ **LA LISTA NERA DELLE FOTOGRAFIE** (ci sono **Eli o Matteo**, che non sono più in
+  formazione — e quindi non vanno mai in una pagina che vende serate di oggi):
+  `prato-palco-pubblico` · `acustico-cortile` · `live-sera-pubblico` · `vigna-live-panoramica` ·
+  `live-palco-luci-calde` · `vigna-live-palco` · `live-controluce-voce` · `live-telecaster-notte` ·
+  `vigna-live-voce` · `vigna-live-chitarra` · `studio-lapsteel` · `vigna-lapsteel`.
+  Da evitare anche `live-tastiere` e `live-voce`: dietro c'è un furgone con l'insegna di
+  un'impresa edile.
+  ⚠️ **La lista non basta**: prima di mettere in pagina una fotografia la si apre e la si
+  guarda. Il 06/09 le prime quattro di questo elenco erano finite in pagina proprio perché
+  qualcuno si era fidato di una lista invece di guardare.
+  Le fotografie in uso oggi sono nella sezione «LA GRAFICA DELLA LANDING».
 - **Gli accenti nei titoli si scrivono**: il divieto veniva dal font Bronco. **Bonzana ha le
   maiuscole accentate** (verificate glifo per glifo), la `&`, l'apostrofo curvo e il `€`.
 - ⚠️ **Una piccola inefficienza nota, misurata e accettata.** Lo script delle varianti sta subito
@@ -1671,5 +1848,11 @@ Sito vetrina della band **Hot Joe & The Coffeekillers** (country live, Brescia).
 - Repo GitHub: `marketingemporio/the-coffeekillers`, branch **`main`** (= produzione, vedi avviso).
 
 ## 📎 Documenti collegati
-- Nel Brain: `emporio-brain/The CoffeeKillers/Sito - Workflow di lavoro.md`, `Date Live 2026.md`, e `Testi di Riferimento/` (libreria testi country).
+- **Nel Brain** — `World/brains/the-coffeekillers-brain/` (repo suo dal 21/07/2026):
+  [`Sito - Workflow di lavoro.md`](../../brains/the-coffeekillers-brain/Sito%20-%20Workflow%20di%20lavoro.md)
+  (le **decisioni** sul sito: foto, due lingue, flusso di pubblicazione) ·
+  `Date Live 2026.md` · `Identità e Formazione.md` (chi è chi, ex membri) ·
+  `Brand Book rev.2 — Palette, Font e Icone.md` · `Testi di Riferimento/` (libreria testi country).
+  ⚠️ Il percorso `emporio-brain/The CoffeeKillers/` scritto qui prima del 07/09/2026 **non esiste più**:
+  il vault è stato scorporato il 21/07/2026 e chi lo seguiva non trovava niente.
 - ⚠️ **`Leads Coffee Killers - Date.pdf`** (nel Brain) è **PRIVATO** (cachet/acconti): non pubblicarne i dati sul sito.

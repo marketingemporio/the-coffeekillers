@@ -17,6 +17,10 @@ HJCK brand*.pdf
 *.mov
 # ...ma i video già compressi per il sito devono essere pubblicati:
 !images/*.mp4
+# ⚠️ l'eccezione qui sopra vale UN livello solo: senza questa riga il video
+# alleggerito della landing (images/land/) resterebbe fuori da git e sul sito
+# pubblicato darebbe 404.
+!images/land/*.mp4
 
 # Pagine di prova/confronto usate durante il lavoro: servono in locale, non
 # devono finire online (Netlify pubblica la radice del repo).
@@ -49,3 +53,6 @@ HJCK_Brand*.pdf
 # Se finisse in un commit, Netlify pubblicherebbe la radice del repo e il
 # materiale interno del brand sarebbe scaricabile dal dominio del sito.
 _bk
+
+# Bozzetti di grafica: servono solo per far scegliere a Michele, non vanno online.
+_bozzetti/
