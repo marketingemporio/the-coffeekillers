@@ -77,12 +77,31 @@ sembravano libere. Apri e guarda ogni immagine, non fidarti di una lista.
 **I claim sulla band: sei erano falsi e pubblicati.** Il brain dà **~97 serate documentate**
 (non «oltre 200») e la cronologia vera è **2013 Yolomitas → 2017 la svolta country → 2021 la
 prima data registrata → 2022 il nome attuale** (quindi «dal 2018» non combacia con niente —
-Michele lo conferma comunque: **non correggerlo senza chiederglielo**). Il telefono della band
-è **331 870 6356**: il **393 701 1409 era su 27 punti del sito ed è di Yolomitas Eventi**,
-che è **un'altra azienda** (repo `yolomitas-brain`). Email pubblica `music@thecoffeekillers.com`.
+Michele lo conferma comunque: **non correggerlo senza chiederglielo**).
+
+**Il telefono pubblico è 393 701 1409, e ci resta.** Deciso da Michele il 07/09: *«quello che
+c'è su tutto il sito»*. Il numero è intestato a **Yolomitas Eventi**, che è un'altra azienda
+(repo `yolomitas-brain`) — è un fatto vero, e per un attimo era stato preso per un errore da
+correggere. Non lo è: è una **scelta**, perché è il numero su cui la band risponde davvero.
+Il 331 870 6356 sta nel brain ma **non va sul sito**, e questo file diceva il contrario fino al
+07/09. Email pubblica `music@thecoffeekillers.com`.
 **Lecconeria** non è un cliente (solo un preventivo, mai suonato) e **Beach Fly** è una data
 futura e gratis. **Coca-Cola, Ca' del Bosco, Porsche, Thun, Lombarda Ceramica** sì, confermati
 da Michele — ma anno e occasione non sono ancora nel brain.
+
+**Lo show dura «circa due ore» — un'ora e 45 di musica.** Deciso da Michele il 07/09 e vero:
+i set misurati dal mixer fanno **1h53 · 2h03 · 2h15**. Il vecchio *«da 1h e 30 a 2h e 30»* delle
+FAQ non aveva riscontro. Set acustico e basi/impianto acceso esistono, ma **solo per chi deve
+coprire una giornata intera**, e non si mettono mai sullo stesso piano dello show: *«c'è una
+gerarchia, ciò che conta è lo show»*.
+
+**Il repertorio si dice in positivo, e MAI con la parola «non».** Perimetro pubblico: country
+americano neotradizionale e contemporaneo, **dagli anni Novanta in poi**, con *Country Roads* di
+John Denver e *Jolene* di Dolly Parton come eccezioni dichiarate (sono davvero in scaletta).
+Artisti citabili: Zach Top · Chris Stapleton · Brad Paisley · Zac Brown Band · Blake Shelton ·
+Darius Rucker · The Kruse Brothers · Keith Whitley. **Luke Combs no** (brano in cassetto dal
+06/09). **Nessun numero di brani in pubblico.** Johnny Cash non si nomina nemmeno per escluderlo:
+il perimetro lo fa da sé. Dettagli in `Repertorio e Scalette 2026.md`.
 
 **La band non ha forma giuridica.** Mai scrivere «fatturiamo»: nel 2026 solo 3 date su 17
 hanno toccato una fattura. Nell'informativa privacy il titolare è **Michele Frosio persona

@@ -11,9 +11,13 @@
 > serata divertente**. Vedi **«LANDING DELLE INSERZIONI»** qui sotto: la prima cosa da leggere
 > prima di scrivere qualunque testo per questa band.
 > Il **07/09 le è stata rifatta la GRAFICA**, nel registro **«locandina»** scelto da Michele fra
-> tre bozzetti: vedi **«LA GRAFICA DELLA LANDING»**, che viene prima. Lì c'è anche la regola che
+> tre bozzetti: vedi **«LA GRAFICA DELLA LANDING»**. Lì c'è anche la regola che
 > ha dovuto ripetere due volte — **niente micro-scritte** — e i sette difetti che sono usciti
 > solo guardando gli screenshot.
+> Sempre il **07/09, a grafica finita, è stato rifatto il CONTENUTO** sulle vere leve d'acquisto:
+> via «Nashville» dal titolo, dentro **che country arriva** e **cosa c'è dentro al preventivo**.
+> Vedi **«IL CONTENUTO DELLA LANDING SULLE LEVE D'ACQUISTO»**, che è la sezione più recente e
+> **viene prima di tutte le altre** se devi scrivere un testo per questa band.
 > **Tutto in regola sui font**: il 02/09 Michele ha comprato anche la licenza **Webfont** di
 > Bonzana. L'**informativa privacy** è scritta. Le **date in calendario sono ancora quelle di
 > prova**, per scelta: non ne abbiamo altre.
@@ -111,6 +115,143 @@ passate che spariscono e il conto alla rovescia in inglese.
    merrier», e i soprannomi/battute della LineUp.
 5. La **landing delle inserzioni** resta in italiano: si traduce il giorno che partono campagne
    in inglese.
+
+---
+
+# 🎯 IL CONTENUTO DELLA LANDING SULLE LEVE D'ACQUISTO (07/09/2026)
+
+Con la grafica a posto è emerso il difetto vero: la pagina **descriveva come lavoriamo** invece
+di toccare le leve su cui il cliente decide. Michele:
+
+> *"Nashville il più delle persone non sanno neanche cosa sia, siamo in Italia, stanno comprando
+> una serata di musica country. Io direi subito qualcosa invece come porta la musica country al
+> tuo evento."*
+> *"Gli imprenditori pensano: ah viene il country e quindi tutti si vestono col cappello e
+> ballano la tarantella. È importante fargli capire un po' che cosa portiamo noi."*
+> *"Cita anche gli artisti di riferimento, in modo da far capire anche il nostro country, che non
+> ci vengano a chiedere poi Johnny Cash."*
+> *"Tutti questi qua sono dettagli importanti che vanno scritti, ma non devono essere il punto
+> centrale. **Il punto centrale è lavorare sulle leve d'acquisto.**"*
+
+## Le sue decisioni, alla lettera
+| Punto | Decisione |
+|---|---|
+| **Titolo** | **«Porta la musica country al tuo evento.»** Nashville si può citare **nel corpo**, mai nel titolo |
+| **Durata da dichiarare** | **«circa due ore»**, cioè **un'ora e 45 di musica** |
+| **I formati per le giornate lunghe** | si dichiarano tutti e tre, ma *"deve essere MOLTO MOLTO chiaro che è solo per chi ha bisogno di coprire una data intera. Cioè prima di tutto lo show. Poi, se devi coprire la giornata, allora sappiamo come aiutarti. Ma c'è una gerarchia, ciò che conta è lo show"* |
+| **Perimetro del repertorio** | *"non dire la parola «non», basta che il perimetro sia in generale dagli anni 90 in poi con qualche accezione tipo john denver, dolly parton, e pochi altri"* |
+| **Numeri del repertorio** | **nessuno**: *"solo gli artisti, senza numeri"* |
+| **Il video** | *"come video sostituisci il presente con questo short: più breve, più immediato"* → **Jolene**, 62″, verticale |
+| **Coerenza** | *"sì, allineo tutto in questo giro"* → corrette anche le altre pagine, IT e EN |
+
+## Com'è la pagina adesso, in ordine
+1. **Hero** — H1 «Porta la musica country al tuo evento.», *country* è la parola timbrata.
+2. **Fascia dei fatti** (2018 / +200 / 7 regioni / 5 sul palco).
+3. **«Prima di tutto, ascolta.»** — 🆕 lo **short verticale di Jolene** in colonna, col testo di
+   fianco. Un minuto, non una canzone intera.
+4. **🆕 «Che country ti arriva.»** — la sezione che mancava, ed era il buco più grosso: il
+   perimetro + i dieci artisti in fila, e sotto le due schede ascolto/ballo (che prima erano una
+   sezione a sé che diceva mezza cosa).
+5. Fascia fotografica · **«Una serata, non un servizio.»**
+6. **«Lo show dura circa due ore.»** — le tre stampe non sono più tre *formati alternativi*: sono
+   **l'arco della serata** (si comincia da ascoltare → si sale → si finisce in piedi). Il blocco
+   per le giornate intere è dentro un **riquadro tratteggiato, più stretto e con un h3**: la
+   gerarchia si deve vedere a occhio, non solo leggere.
+7. **«Quello lo montiamo noi.»** — il tecnico, corto, e non più con la CTA in fondo.
+8. **🆕 «Cosa c'è dentro al preventivo.»** — la leva principale, su un **foglio crema**: show ·
+   trasferta · pernottamento, poi la riga marrone piena con la leva (*se ci ospiti tu, resta solo
+   il rimborso chilometrico*), poi la SIAE. **La CTA sta qui**, dopo il discorso sui soldi.
+9. Le prove (marchi, serate, i cinque, mosaico) · tre passi · FAQ · modulo.
+
+## Le cose vere che hanno retto il contenuto
+- **La durata**: i set misurati dal mixer fanno **1h53 · 2h03 · 2h15** (media 2h04). Il vecchio
+  *«da 1h e 30»* delle FAQ **non aveva riscontro**: la serata più corta registrata è 1h53.
+- **John Denver e Dolly Parton sono davvero in scaletta** (*Country Roads* n.32, *Jolene* n.30):
+  citarli come eccezioni non è una promessa a vuoto.
+- **Johnny Cash: zero occorrenze** in tutto il sito, nel vault e nei 296 testi. Non serve
+  nominarlo per escluderlo — «dagli anni Novanta in poi» lo fa da sé, e infatti nella pagina la
+  parola «non» nel perimetro **non c'è**.
+- **Le basi le hanno già fatte** su date vere (Country Village 11/07, Locanda Obante 09/08).
+- ⚠️ **Vitto/alloggio e pernottamento non erano scritti in nessun documento.** Dettati da Michele
+  il 07/09, pubblicati, e **registrati nel brain** in `Preventivi — Modello e Condizioni
+  Commerciali.md` (con il perimetro del repertorio in `Repertorio e Scalette 2026.md`).
+- **Luke Combs fuori** dall'elenco pubblico: il suo unico brano è in cassetto dal 06/09.
+
+## Il video: uno short, e ha cambiato la sezione
+`AHycDL7d2oU` — *Jolene*, Dolly Parton, alla **Locanda Obante di Recoaro Terme**, 62″, **1080×1920**.
+Doppio guadagno: è **anche la prova** dell'eccezione «Dolly Parton» che il perimetro dichiara
+nella sezione subito sotto. Prima la sentono, poi gliela spieghiamo.
+- **Verticale = layout diverso.** A tutta larghezza sarebbe alto due schermi: sta in una colonna
+  da 344px, inclinato come una stampa appesa, col testo di fianco (`.v-ascolta-griglia`, `.v-vert`).
+- **La copertina**: `images/land/video-jolene-cover.webp`, **406×720**, ritagliata dal centro del
+  fotogramma di YouTube (che è 1280×720 con lo short al centro e i bordi sfocati). ⚠️ È il massimo
+  disponibile: lo short **non si scarica in 1080** (YouTube risponde 403 a yt-dlp; solo il client
+  `mweb` passa, e dà 360×640 — peggio del ritaglio).
+
+## 🐞 Il bug che c'era: **il tasto play non faceva niente**
+Il bottone, il `data-yt` e il CSS `.vb-on` erano in pagina; **il JavaScript che crea l'iframe
+no**. Su traffico a pagamento significa che la prova migliore della pagina era **inerte**. Portato
+dalla home (stesso codice) — e resta una *facciata*: l'iframe di YouTube nasce al primo clic, così
+prima del clic non parte nessuno script di terzi e il sito **continua a non avere il banner cookie**.
+
+## 🔧 Le altre pagine allineate nello stesso giro
+| File | Cosa |
+|---|---|
+| `faq.html` · `en/faq.html` | durata → **«circa due ore»** e formazione **in 6 → cinque**, in **due punti per pagina**: il testo visibile **e il JSON-LD `FAQPage`**, che se lo lasci indietro resta la versione vecchia per Google |
+| `index.html` · `en/index.html` | fuori *«scaletta pensata per chi balla, con i tempi giusti per le coreografie country»*: il brain dà il ballabile puro come **non** la direzione della band, in tre punti, e nessuna nota documenta una line dance a una loro serata |
+| `chi-siamo.html` · `en/about.html` | **«6 musicisti» → 5** in `description` e `og:description` (2 punti per pagina) |
+| `CLAUDE.md` | la riga sul telefono diceva il contrario della tabella delle decisioni **nello stesso repo**: **393 701 1409 è una scelta di Michele**, non un errore da correggere |
+
+## ⚠️ I difetti usciti SOLO guardando gli screenshot (di nuovo)
+1. **Testo panna su fascia tan: 2,18:1.** `.v-lead` nasce con `color:var(--pg-fg)`, cioè il panna
+   della pagina scura; su una fascia piena resta panna. Dal DOM sembra tutto a posto.
+   → `.f-tan .v-lead{color:var(--espresso)}` (marrone su tan = 4,6:1).
+2. **I due nomi-eccezione su arancio a 15px: 3,07:1.** Ci ero ricascato. → pastiglia **marrone**,
+   che è l'unica uscita della palette per una scritta piccola in evidenza (10:1).
+3. **`piu&rsquo;` invece di `pi&ugrave;`** in due punti: il vecchio vizio senza accenti. Bonzana
+   e Manrope le vocali accentate le hanno.
+4. **Titoli spezzati male**: «CHE COUNTRY **TI** / ARRIVA.» e «COSA C'È DENTRO **AL** /
+   PREVENTIVO.» — due lettere appese in cima. Erano *due righe*, quindi il conteggio automatico
+   diceva ok. → `max-width:15ch` sul primo, **`text-wrap:balance`** sul secondo.
+5. **La nota di chiusura spezzava la parola timbrata** («SIAMO / NOI.»): l'unica cosa che non si
+   può mandare a capo. → via la gabbia in `ch`, e frase più corta.
+6. **L'H1 andava su TRE righe** da 820px in su: 38 caratteri contro i 30 di prima, e `25ch` in
+   Bonzana è molto più stretto che in un sans. → `30ch`, misurato a 1440/1180/820/390.
+   ⚠️ **A 390px l'H1 resta su tre righe**, e va bene: spezza pulito («PORTA LA MUSICA / COUNTRY AL
+   TUO / EVENTO.») e per farlo stare in due servirebbero ~22px, che su un hero non si guardano.
+
+## ✅ Come è stata verificata
+Chrome headless + CDP a **1440×900** e **390×844**, screenshot **a fotogrammi** e **guardati** —
+i sei difetti qui sopra sono usciti tutti così, nessuno dal DOM. Più: 0 errori JS, 0 immagini
+rotte, 0 sbordamenti orizzontali, Bonzana montato, **0 testi sotto i 13px**, tutti i titoli entro
+due righe (contando i rettangoli del testo, non a occhio), e le **sei varianti `?tipo=`** ancora
+buone — titolo, sottotitolo, fotografia e casella del modulo, con `utm_*` e `fbclid` in coda.
+
+## 🔜 Cosa resta aperto, qui
+- **Le tre testimonianze vere** con nome, locale e città: è l'unico ingrediente che non si può
+  inventare, e in pagina c'è già lo spazio segnato e vuoto.
+- **Anno e occasione** delle date Coca-Cola / Porsche / Lombarda Ceramica: confermate da Michele,
+  assenti dal registro del brain.
+- Due conflitti **ancora aperti** fra sito e brain, segnalati e non toccati: capienza **250** (sito)
+  contro ~300, e spazio palco **5 × 3 m** (sito) contro **3,5 × 3,5 m** (brain).
+- La fascia dei fatti dice **7 regioni**, la FAQ ne elencava sei: risolto aggiungendo *«oltre alla
+  Lombardia»*, che è la settima. Se un domani il numero cambia, i due punti vanno insieme.
+
+## 🚩 TROVATO STRADA FACENDO, e NON toccato — la gallery pubblica quattro foto proibite
+Cercando le foto della lista nera in tutto il sito è venuto fuori che **`gallery.html` e
+`en/gallery.html` le pubblicano ancora**, e `CLAUDE.md` dava per fatta la ripulitura del 01/09:
+
+| riga | file | perché non va |
+|---|---|---|
+| `gallery.html:653` | `vigna-live-chitarra.webp` | c'è **Matteo**, ex membro — e il testo alternativo lo **nomina**: *«Matteo alla chitarra elettrica…»* |
+| `gallery.html:637` | `vigna-live-tastiere.webp` | stessa serata in vigna, da guardare |
+| `gallery.html:586` | `live-voce.webp` | dietro c'è **il furgone con l'insegna di un'impresa edile** |
+| `gallery.html:595` | `live-tastiere.webp` | stesso furgone |
+
+**Non le ho toccate**: la gallery è una scelta di Michele (l'ha curata lui il 01/09) e togliere
+quattro scatti da una griglia è una sua decisione, non una correzione tecnica. Ma è la stessa
+regola per cui la landing è stata rifatta, e la riga 653 nomina un ex membro in pagina.
+👉 **Da decidere con lui**, e sono otto righe di lavoro (le stesse quattro in `en/gallery.html`).
 
 ---
 

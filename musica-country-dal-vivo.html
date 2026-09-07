@@ -11,13 +11,13 @@
 <!-- niente canonical: la pagina e' noindex, un canonical darebbe un segnale contraddittorio -->
 
 <title>Musica country dal vivo per locali, rifugi ed eventi aziendali — The CoffeeKillers</title>
-<meta name="description" content="Band country dal vivo: cinque musicisti, chitarre e armonie vocali. Un set solo o tutta la serata, con impianto e luci nostri. Preventivo scritto in 24 ore." />
+<meta name="description" content="Country americano dal vivo per locali, rifugi ed eventi: cinque musicisti, brani da ballare e ballad da ascoltare. Circa due ore di show, impianto e luci nostri. Preventivo scritto in 24 ore." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Hot Joe &amp; The CoffeeKillers" />
 <meta property="og:locale" content="it_IT" />
 <meta property="og:url" content="https://thecoffeekillers.com/musica-country-dal-vivo.html" />
-<meta property="og:title" content="Una sera che sembra Nashville" />
-<meta property="og:description" content="Cinque musicisti, chitarre e armonie vocali. Alla gente resta una serata da raccontare. Preventivo scritto in 24 ore." />
+<meta property="og:title" content="Porta la musica country al tuo evento" />
+<meta property="og:description" content="Country americano dal vivo: brani da ballare e ballad da ascoltare, scelti sulla serata che hai in mente. Circa due ore di show. Preventivo scritto in 24 ore." />
 <!-- ⚠️ jpg e non webp: Facebook e WhatsApp gestiscono male il webp nelle anteprime -->
 <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -259,6 +259,11 @@ h1,h2,h3{font-family:var(--display);font-weight:400;font-synthesis:none;
 }
 .v-h--centro{margin-inline:auto;text-align:center}
 .f-tan .v-h,.f-arancio .v-h{color:inherit}
+/* ⚠️ CONTRASTO: .v-lead nasce con color:var(--pg-fg), cioe' il PANNA della
+   pagina scura. Su una fascia tan fa 2,18:1 — illeggibile, e non si vede dal
+   DOM ma solo guardando la schermata. Sulle fasce piene il testo lo decide la
+   fascia: marrone su tan e' 4,6:1. */
+.f-tan .v-lead,.f-tan .v-lead b{color:var(--espresso)}
 .v-lead{
   font-size:clamp(16.5px,1.9vw,19px);line-height:1.6;color:var(--pg-fg);
   max-width:54ch;margin-top:20px;
@@ -398,7 +403,11 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 }
 .al-sito:hover{border-color:var(--arancio);background:rgba(205,88,18,.28)}
 .v-hero .v-h{
-  font-size:clamp(33px,5.2vw,64px);max-width:25ch;
+  /* ⚠️ 30ch, non 25: il titolo nuovo e' di 38 caratteri e a 25ch andava su TRE
+     righe da 820px in su. In Bonzana un "ch" e' molto piu' stretto che in un
+     sans, quindi i valori in ch di un altro font non si possono riusare: sono
+     stati misurati sui rettangoli del testo a 1440, 1180, 820 e 390. */
+  font-size:clamp(33px,5.2vw,64px);max-width:30ch;
   text-shadow:0 3px 26px rgba(30,13,3,.5);
 }
 .v-hero .v-lead{max-width:46ch;color:#F0DEC2;text-shadow:0 2px 12px rgba(30,13,3,.6)}
@@ -481,6 +490,27 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 .v-video-cornice .inner.vb-on .vcap{display:none}
 .v-video-cornice .inner iframe{width:100%;aspect-ratio:16/9;border:0;display:block}
 
+/* ---------- IL CLIP VERTICALE (uno short: 9/16) -----------------------------
+   Un video verticale a tutta larghezza sarebbe alto due schermi. Sta in una
+   colonna sua, come una stampa appesa di traverso, col testo di fianco: e' la
+   composizione che rompe l'incolonnamento di tutta la pagina. */
+.v-ascolta-griglia{
+  display:grid;grid-template-columns:1fr minmax(276px,344px);
+  gap:clamp(30px,5vw,72px);align-items:center;
+}
+.v-ascolta-clip .cornice{padding:12px 12px 14px;transform:rotate(-1.5deg);transition:transform .25s}
+.v-ascolta-clip:hover .cornice{transform:rotate(0)}
+.v-vert img{aspect-ratio:9/16}
+.v-vert .inner iframe{aspect-ratio:9/16}
+/* il cerchio da 92px dentro una colonna da 300px mangia mezza immagine */
+.v-vert .vb-play{width:74px;height:74px;box-shadow:4px 4px 0 var(--arancio)}
+.v-vert .vb-play svg{width:29px;height:29px;margin-left:4px}
+@media (max-width:860px){
+  .v-ascolta-griglia{grid-template-columns:1fr;gap:34px}
+  .v-ascolta-clip{max-width:330px;margin-inline:auto}
+  .v-ascolta-testo .v-tesi{margin-top:clamp(26px,4vw,38px)}
+}
+
 /* ============================================================================
    4 · CHE ARIA VUOI — fascia TAN con due schede crema grandi.
    Le schede crema sono il modo del brand di mettere del testo su un fondo
@@ -502,6 +532,34 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 .v-reg .pastiglia{position:absolute;left:13px;top:13px;z-index:2}
 .v-reg h3{font-size:clamp(21px,2.5vw,29px);margin:20px 0 9px;padding:0 7px;color:var(--espresso)}
 .v-reg p{font-family:var(--testo);font-size:16px;line-height:1.55;color:#5C3315;padding:0 7px}
+
+/* ---------- IL PERIMETRO: i nomi come una fila di targhette stampate --------
+   Non sono etichette decorative: sono LA risposta alla domanda che il cliente
+   non fa e che poi diventa una richiesta sbagliata la sera del concerto.
+   Corpo 15px, LT Cushion: roba della band, non scrittine a 10px. */
+.v-artisti{
+  list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+  gap:10px;margin:clamp(26px,3.4vw,38px) auto 0;max-width:920px;
+}
+.v-artisti li{
+  font-family:var(--btn);font-size:15px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;line-height:1;color:var(--espresso);
+  background:var(--panna);border:2px solid rgba(73,36,10,.55);
+  border-radius:999px;padding:10px 16px 11px;
+  box-shadow:2px 2px 0 rgba(73,36,10,.28);
+}
+/* i due nomi fuori perimetro si vedono che sono un'eccezione: timbrati */
+/* ⚠️ NON su arancio: 15px panna su arancio fa 3,07:1. La pastiglia marrone e'
+   l'unica via d'uscita della palette per una scritta piccola in evidenza
+   (10:1), ed e' anche quella che il brand book usa. */
+.v-artisti li.ecc{background:var(--espresso);color:var(--panna);border-color:var(--espresso)}
+.v-perimetro{
+  font-family:var(--display);font-weight:400;font-synthesis:none;text-transform:uppercase;
+  font-size:clamp(19px,2.2vw,26px);line-height:1.16;letter-spacing:.02em;
+  /* niente gabbia in ch: la frase e' corta e in Bonzana 30ch la spezzava in
+     mezzo alla parola timbrata, che e' l'unica cosa che non si puo' spezzare */
+  text-align:center;max-width:100%;margin:clamp(30px,3.8vw,44px) auto 0;
+}
 
 /* ============================================================================
    5 · LA FASCIA CHE E' SOLO UNA FOTOGRAFIA
@@ -549,6 +607,63 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 @media (prefers-reduced-motion:reduce){.v-forma .cornice{transform:none!important}}
 .v-forma h3{font-size:clamp(21px,2.3vw,27px);margin-top:22px;color:var(--pg-fg);line-height:1.08}
 .v-forma p{font-family:var(--testo);font-size:16px;line-height:1.55;color:var(--pg-mut);margin-top:9px}
+
+/* ---------- IL BLOCCO SECONDARIO: si deve VEDERE che viene dopo -------------
+   ⚠️ Michele, 07/09: "deve essere MOLTO MOLTO chiaro che e' solo per chi ha
+   bisogno di coprire una data intera. Cioe' prima di tutto lo show. Poi, se
+   devi coprire la giornata, allora sappiamo come aiutarti. Ma c'e' una
+   gerarchia, cio' che conta e' lo show."
+   Come si legge la gerarchia a occhio: titolo h3 e non h2, riquadro
+   tratteggiato invece che una fascia sua, larghezza ridotta, rientrato. E'
+   una nota a margine con la sua dignita', non la quarta sezione della pagina. */
+.v-oltre{
+  max-width:760px;margin:clamp(48px,6vw,80px) 0 0;
+  border:2px dashed var(--pg-fil);border-radius:12px;
+  padding:clamp(22px,3vw,34px) clamp(22px,3.4vw,38px) clamp(24px,3.2vw,36px);
+  background:rgba(51,23,5,.22);
+}
+.v-oltre h3{font-size:clamp(19px,2vw,24px);line-height:1.12;color:var(--pg-fg);margin-bottom:13px}
+.v-oltre p{font-family:var(--testo);font-size:16px;line-height:1.6;color:var(--pg-mut)}
+.v-oltre p + p{margin-top:12px}
+.v-oltre p b{color:var(--pg-fg);font-weight:700}
+
+/* ============================================================================
+   8bis · IL PREVENTIVO — un foglio crema appoggiato sul fondo scuro.
+   Sembra un preventivo stampato perche' e' un preventivo: e' la leva
+   d'acquisto piu' forte della pagina e ha bisogno di stare su carta, non su
+   una fascia di colore. Serve anche al ritmo verticale: fra due sezioni
+   scure una scheda chiara e larga cambia il passo.
+   ============================================================================ */
+.v-conto{
+  max-width:900px;margin:clamp(36px,4.6vw,56px) auto 0;
+  background:var(--panna);color:var(--espresso);border-radius:6px;
+  padding:clamp(24px,3.6vw,44px);
+  box-shadow:0 34px 64px -24px rgba(30,13,3,.7),0 0 0 1px rgba(73,36,10,.2);
+}
+.v-voce{display:grid;grid-template-columns:44px 1fr;gap:0 clamp(16px,2.4vw,26px);align-items:start}
+.v-voce + .v-voce{margin-top:clamp(22px,2.8vw,30px);padding-top:clamp(22px,2.8vw,30px);border-top:2px dashed rgba(73,36,10,.3)}
+.v-voce .ico{width:38px;height:auto;color:var(--arancio);margin-top:3px}
+.v-voce h3{font-size:clamp(20px,2.2vw,26px);line-height:1.08;color:var(--espresso);margin-bottom:8px}
+.v-voce p{font-family:var(--testo);font-size:16px;line-height:1.58;color:#5C3315}
+.v-voce p b{color:var(--espresso);font-weight:800}
+@media (max-width:520px){
+  .v-voce{grid-template-columns:1fr}
+  .v-voce .ico{margin-bottom:12px}
+}
+/* LA LEVA: la riga per cui esiste tutta la sezione. Marrone pieno, cosi' e'
+   l'unica cosa scura dentro il foglio chiaro e la si legge per prima. */
+.v-leva{
+  margin-top:clamp(26px,3.2vw,36px);
+  background:var(--espresso);color:var(--panna);border-radius:8px;
+  padding:clamp(18px,2.6vw,26px) clamp(18px,3vw,30px);
+  font-family:var(--testo);font-size:clamp(16.5px,1.9vw,18.5px);line-height:1.55;
+}
+.v-leva b{font-weight:800;color:#F6E3C6}
+.v-conto-piede{
+  max-width:900px;margin:clamp(26px,3.2vw,36px) auto 0;
+  font-family:var(--testo);font-size:16px;line-height:1.62;color:var(--pg-mut);
+}
+.v-conto-piede b{color:var(--pg-fg);font-weight:700}
 
 /* ============================================================================
    8 · IL PALCO
@@ -953,9 +1068,9 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   </div>
 
   <div class="v-hero-in">
-    <h1 class="v-h" id="v-titolo">Una sera che sembra <span class="acc">Nashville.</span></h1>
-    <p class="v-lead" id="v-sottotitolo">Cinque musicisti, chitarre e armonie vocali: al tuo posto arriva
-      lo spirito del country americano. Alla gente resta una serata da raccontare.</p>
+    <h1 class="v-h" id="v-titolo">Porta la musica <span class="acc">country</span> al tuo evento.</h1>
+    <p class="v-lead" id="v-sottotitolo">Cinque musicisti, chitarre e armonie vocali. Portiamo il country
+      americano di oggi: brani da ballare e ballad da ascoltare, scelti sulla serata che hai in mente.</p>
     <div class="v-cta-fila">
       <a class="v-pill" href="#richiesta">Chiedi il preventivo</a>
       <a class="v-wa" href="https://wa.me/393937011409?text=Ciao%2C%20vi%20scrivo%20dal%20sito%3A%20vorrei%20una%20serata%20country." target="_blank" rel="noopener">
@@ -1021,50 +1136,50 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   var VARIANTI = {
     rifugio: {
       titolo: "Country dal vivo al tuo <span class=\"acc\">rifugio.</span>",
-      sotto:  "Casse, luci e chi le fa funzionare salgono con noi: a te servono una presa e cinque " +
-              "metri per tre. Montiamo, suoniamo quanto ti serve e smontiamo noi, anche quando la " +
-              "strada &egrave; quella che &egrave;.",
+      sotto:  "Cinque musicisti, chitarre e armonie vocali: il country americano di oggi, brani da " +
+              "ballare e ballad da ascoltare. Circa due ore di show. Casse e luci salgono con noi, " +
+              "anche quando la strada &egrave; quella che &egrave;.",
       foto:   "images/land/hero-live-allaperto.webp",
       alt:    "I Coffeekillers dal vivo su un palco all'aperto al tramonto, con le colline sullo sfondo",
       chip:   "Rifugio o baita"
     },
     azienda: {
       titolo: "La festa di cui parlano <span class=\"acc\">a gennaio.</span>",
-      sotto:  "Un set solo o tutta la serata, acustico o band al completo: il volume segue il momento " +
-              "e i tuoi continuano a parlarsi. Impianto, luci e service sono nostri, e la parte " +
-              "amministrativa la chiariamo prima che tu confermi.",
+      sotto:  "Circa due ore di country americano dal vivo: si comincia da ascoltare, si finisce in " +
+              "piedi. Il volume segue il momento, cos&igrave; i tuoi continuano a parlarsi. Impianto e " +
+              "luci sono nostri.",
       foto:   "images/palco-villa-gussago.webp",
       alt:    "Il palco dei Coffeekillers allestito nel giardino di una villa, visto dall'alto",
       chip:   "Festa aziendale"
     },
     ristorante: {
       titolo: "Country dal vivo nel tuo <span class=\"acc\">locale.</span>",
-      sotto:  "Arriviamo prima, montiamo in un angolo da cinque metri per tre e teniamo il volume su " +
-              "misura della sala: al bancone si continua a ordinare e a parlare. A fine serata " +
-              "smontiamo noi, tu chiudi la cassa.",
+      sotto:  "Il country americano di oggi, sul volume della tua sala: ballad mentre si mangia, party " +
+              "song quando la gente si scalda. Arriviamo prima, montiamo noi e a fine serata " +
+              "smontiamo noi: tu chiudi la cassa.",
       chip:   "Locale o ristorante"
     },
     sagra: {
       titolo: "La serata che la gente <span class=\"acc\">si ricorda.</span>",
-      sotto:  "Piazze, oratori e feste di paese: impianto e luci sono nostri, montiamo, suoniamo e " +
-              "smontiamo senza far pensare a niente il comitato. Fino a 250 persone siamo autonomi, " +
-              "sopra chiamiamo il nostro service.",
+      sotto:  "Circa due ore di country dal vivo, con i brani che la gente riconosce e quelli che la " +
+              "fanno ballare. Impianto e luci sono nostri: fino a 250 persone siamo autonomi, sopra " +
+              "chiamiamo il nostro service.",
       foto:   "images/land/band-fiume-o4.webp",
       alt:    "I cinque Coffeekillers insieme all'aperto al tramonto, in riva al fiume, prima di suonare",
       chip:   "Festa o sagra"
     },
     matrimonio: {
       titolo: "Non la solita band <span class=\"acc\">da matrimonio.</span>",
-      sotto:  "Ballads sotto il pergolato, party song dopo cena, o solo una delle due: la forma della " +
+      sotto:  "Ballad sotto il pergolato, party song dopo cena, o solo una delle due: la forma della " +
               "serata la decidete voi. Il brano del vostro ingresso lo prepariamo noi &mdash; fino a tre " +
               "richieste, concordate entro tre mesi dalla data.",
       chip:   "Matrimonio"
     },
     festival: {
       titolo: "Al soundcheck non perdi <span class=\"acc\">la serata.</span>",
-      sotto:  "Stage plan e input list arrivano al service in anticipo, saliamo con gli in-ear e i " +
-              "cambi sono rapidi. Se il palco &egrave; tuo usiamo il tuo impianto, se non c&rsquo;&egrave; " +
-              "portiamo il nostro.",
+      sotto:  "Country americano neotradizionale, dal vivo e con cinque strumenti veri. Stage plan e " +
+              "input list arrivano al service in anticipo, saliamo con gli in-ear e i cambi sono " +
+              "rapidi. Se il palco &egrave; tuo usiamo il tuo impianto.",
       foto:   "images/land/hero-targa-band.webp",
       alt:    "L'insegna di legno dipinta a mano dei Coffeekillers davanti al palco allestito su un prato",
       chip:   "Festival"
@@ -1099,57 +1214,108 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 </script>
 
 <!-- ============================================================================
-     3 · ASCOLTA — la prova migliore, subito. Una canzone intera, non un
-     montaggio: e' l'unica cosa che risponde davvero a "ma come suonano?".
+     3 · ASCOLTA — la prova migliore, e subito.
+     ⚠️ Michele, 07/09: "come video sostituisci il presente con questo short:
+     piu' breve, piu' immediato". E' "Jolene" di Dolly Parton, un minuto,
+     ripreso alla Locanda Obante di Recoaro Terme (27/08/2026).
+     Doppio guadagno: e' anche la PROVA di una delle due eccezioni che il
+     perimetro del repertorio dichiara nella sezione qui sotto. Prima la
+     sentono, poi gliela spieghiamo.
+     ⚠️ E' uno SHORT, quindi 9/16: sta in colonna col testo di fianco, non a
+     tutta larghezza (verticale a tutta larghezza = due schermi di altezza).
+     ⚠️ La copertina e' ritagliata dal fotogramma di YouTube: 406x720, e' il
+     massimo disponibile. Lo short non si scarica in 1080 (403 di YouTube).
      ============================================================================ -->
-<section class="v-sez tex" data-pg="scuro">
-  <div class="v-in">
-    <h2 class="v-h rv">Prima di tutto, <span class="acc">ascolta.</span></h2>
-    <p class="v-lead rv">Una canzone intera, dall&rsquo;inizio alla fine, ripresa dal vivo e senza tagli.</p>
+<section class="v-sez v-sez--alta tex" data-pg="scuro">
+  <span class="ico i-stella marchio" aria-hidden="true" style="left:-4%;bottom:6%;width:min(220px,19vw)"></span>
+  <div class="v-in v-in--largo">
+    <div class="v-ascolta-griglia">
+      <div class="v-ascolta-testo">
+        <h2 class="v-h rv">Prima di tutto, <span class="acc">ascolta.</span></h2>
+        <p class="v-lead rv">Un minuto dal vivo, ripreso da chi era davanti al palco.
+          &Egrave; <b>Jolene</b> di Dolly Parton, alla Locanda Obante di Recoaro Terme: cinque strumenti
+          veri, tre voci e nessuna base.</p>
+        <p class="v-tesi rv">Un minuto, e sai <span class="acc">se siamo noi.</span></p>
+      </div>
 
-    <div class="v-video rv">
-      <figure class="cornice">
-        <div class="v-video-cornice">
-          <div class="inner" id="vb-inner" data-yt="mwindsVYrmo">
-            <img src="images/land/video-guitar-cover.webp" alt="Hot Joe &amp; The CoffeeKillers dal vivo al tramonto: Mike canta con la chitarra acustica, la band suona alle sue spalle" loading="lazy" width="1280" height="720" style="width:100%;height:auto;aspect-ratio:16/9;object-fit:cover" />
-            <button class="vb-play" type="button" aria-label="Riproduci il video: Guitar (Zach Top) dal vivo">
-              <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
-            </button>
-            <span class="vcap"><span class="ico i-stella" aria-hidden="true"></span>Guitar &middot; Zach Top</span>
+      <div class="v-ascolta-clip rv">
+        <figure class="cornice">
+          <div class="v-video-cornice v-vert">
+            <div class="inner" id="vb-inner" data-yt="AHycDL7d2oU">
+              <img src="images/land/video-jolene-cover.webp" alt="Mike con il cappello country canta Jolene con la chitarra acustica, di sera, la band alle sue spalle sotto le luci di scena" loading="lazy" width="406" height="720" />
+              <button class="vb-play" type="button" aria-label="Riproduci il video: Jolene (Dolly Parton) dal vivo">
+                <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </button>
+              <span class="vcap"><span class="ico i-stella" aria-hidden="true"></span>Jolene &middot; Dolly Parton</span>
+            </div>
           </div>
-        </div>
-      </figure>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================================
-     4 · CHE ARIA VUOI — fascia TAN, il terzo fondo pieno del brand.
-     E' un FOGLIO INCOLLATO sopra la pagina: si dipinge da solo, non dichiara
-     data-pg e ha il bordo strappato sopra e sotto. Le due schede sono crema:
-     sul fondo pieno il testo non ci va mai direttamente.
+     4 · CHE COUNTRY TI ARRIVA — la sezione che mancava, e il buco piu' grosso
+     della pagina.
+     ⚠️ Michele, 07/09: "gli imprenditori pensano: ah viene il country e quindi
+     tutti si vestono col cappello e ballano la tarantella. E' importante
+     fargli capire che cosa portiamo noi. Cita anche gli artisti di
+     riferimento, in modo che non ci vengano a chiedere Johnny Cash."
+     ⚠️ LA REGOLA DEL PERIMETRO, dettata da lui: "non dire la parola NON,
+     basta che il perimetro sia in generale dagli anni 90 in poi con qualche
+     accezione tipo john denver, dolly parton". Quindi qui non c'e' nessuna
+     frase in negativo, nessun nome scartato: c'e' un recinto, detto in
+     positivo, e chi resta fuori resta fuori da se'.
+     ⚠️ I nomi sono VERI e verificati in scaletta (Repertorio e Scalette 2026):
+     Country Roads di John Denver e Jolene di Dolly Parton ci sono davvero.
+     Luke Combs e' fuori: il suo unico brano e' in cassetto dal 06/09.
+     ⚠️ Niente numeri di repertorio ("oltre 100 brani"): Michele, 07/09,
+     "solo gli artisti, senza numeri".
+     Questa fascia si tiene anche "Che aria vuoi": e' la stessa domanda del
+     cliente, e stavano in due sezioni diverse a dire mezza cosa per uno.
+     Fondo TAN, terzo fondo pieno del brand. Marrone su tan fa 4,6:1: il testo
+     ci sta direttamente, le SCHEDE restano crema perche' contengono foto.
      ============================================================================ -->
 <section class="fascia f-tan tex chiaro v-arie">
   <span class="strappo-su" aria-hidden="true"></span>
   <span class="ico i-cappello marchio" aria-hidden="true" style="right:-2%;top:6%;width:min(320px,28vw)"></span>
   <div class="v-in">
-    <h2 class="v-h v-h--centro rv">Che aria vuoi, <span class="acc">quella sera?</span></h2>
+    <h2 class="v-h v-h--centro rv" style="max-width:15ch">Che country <span class="acc">ti arriva.</span></h2>
+    <p class="v-lead v-lead--centro rv">Country americano, neotradizionale e contemporaneo: quello che
+      a Nashville si suona <b>dagli anni Novanta in poi</b>. Con due o tre eccezioni pi&ugrave; vecchie
+      che valgono il viaggio &mdash; <i>Country Roads</i> di John Denver, <i>Jolene</i> di Dolly Parton.</p>
+    <ul class="v-artisti rv">
+      <li>Zach Top</li>
+      <li>Chris Stapleton</li>
+      <li>Brad Paisley</li>
+      <li>Zac Brown Band</li>
+      <li>Blake Shelton</li>
+      <li>Darius Rucker</li>
+      <li>The Kruse Brothers</li>
+      <li>Keith Whitley</li>
+      <li class="ecc">John Denver</li>
+      <li class="ecc">Dolly Parton</li>
+    </ul>
+    <p class="v-perimetro rv">Se qui trovi i tuoi, <span class="acc">siamo noi.</span></p>
+    <p class="v-lead v-lead--centro rv" style="margin-top:clamp(34px,4.4vw,50px)">Dentro quel recinto ci sono
+      due mondi, e li usiamo entrambi: la scelta la fa la serata, non un formato deciso a tavolino.</p>
     <div class="v-registri">
       <div class="v-reg rv">
         <div class="foto-box">
           <img src="images/land/live-allaperto-pomeriggio.webp" alt="I Coffeekillers dal vivo all&rsquo;aperto al tramonto, luce calda e colline sullo sfondo" loading="lazy" width="1200" height="674" />
           <span class="pastiglia"><span class="ico i-cappello" aria-hidden="true"></span>Country chic</span>
         </div>
-        <h3>Quando serve atmosfera</h3>
-        <p>Ballads e volume basso: si mangia, si chiacchiera e si sta bene.</p>
+        <h3>Ballad da ascolto</h3>
+        <p>Volume da tavolo e brani lenti: si mangia, si chiacchiera e la musica non copre nessuno.</p>
       </div>
       <div class="v-reg rv">
         <div class="foto-box">
           <img src="images/land/live-blu-batteria.webp" alt="La batteria in luce blu e viola durante un concerto serale" loading="lazy" width="1200" height="800" />
           <span class="pastiglia"><span class="ico i-stivale" aria-hidden="true"></span>Party</span>
         </div>
-        <h3>Quando serve far ballare</h3>
-        <p>Party song e ritmo: chi balla balla, e chi non balla batte il piede.</p>
+        <h3>Brani da ballare</h3>
+        <p>Party song e ritmo: chi vuole ballare balla, agli altri resta il piede che batte.</p>
       </div>
     </div>
   </div>
@@ -1202,45 +1368,60 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 </section>
 
 <!-- ============================================================================
-     7 · QUANTO SUONIAMO — sostituisce "la serata in quattro momenti".
-     ⚠️ Michele, 06/09: "stai dando per scontato che suoniamo in diversi
-     momenti, e a orari fissati, ma chi l'ha detto? Magari uno vuole solo un
-     set a pranzo di 2h e quello e'. Lascia piu' apertura e non chiudere cosi'
-     le opzioni."
-     Quindi qui NON ci sono piu' gli orari (17 / 20 / 22 / 23) e non si da' per
-     scontato che la serata abbia piu' momenti: si mostrano tre FORME possibili
-     e si dice chiaro che si sceglie.
+     7 · LO SHOW — una cosa sola, e dura circa due ore.
+     ⚠️ Michele, 07/09: "piuttosto che scandire questi ritmi, io lavorerei
+     molto di piu' sul fargli capire che cosa possiamo portare: il nostro show
+     dura circa un'ora e 45, intorno alle due ore."
+     ⚠️ "CIRCA DUE ORE" e' il numero da pubblicare, e regge sui fatti: i tre
+     set misurati dal mixer fanno 1h53, 2h03 e 2h15 (media 2h04). Il "da 1h e
+     30" che sta nelle FAQ non ha nessun riscontro: la serata piu' corta mai
+     registrata e' 1h53. Corretto anche la' in questo giro.
+     ⚠️ Le tre stampe NON sono piu' tre formati alternativi (era la vecchia
+     scelta: un set / due set / tutta la serata, tutti sullo stesso piano).
+     Ora sono l'ARCO DELLO SHOW: come va una serata dall'inizio alla fine. Il
+     formato non e' una scelta da far fare al cliente in home page.
      ============================================================================ -->
 <section class="v-sez v-sez--alta tex" data-pg="scuro">
   <span class="ico i-chitarra marchio" aria-hidden="true" style="right:-1%;top:6%;width:min(150px,13vw)"></span>
   <div class="v-in v-in--largo">
-    <h2 class="v-h rv">Quanto suoniamo? <span class="acc">Quanto ti serve.</span></h2>
-    <p class="v-lead rv">Un set solo a pranzo, due ore la sera, oppure dall&rsquo;aperitivo a tarda notte.
-      Non abbiamo una formula fissa e non ci sono orari da rispettare: ci dici quando e quanto,
-      e la serata la costruiamo intorno a quello.</p>
+    <h2 class="v-h rv">Lo show dura <span class="acc">circa due ore.</span></h2>
+    <p class="v-lead rv">Un&rsquo;ora e 45 di musica, in uno o due set, con la pausa dove ti serve.
+      <b>&Egrave; questo che portiamo</b>, ed &egrave; quello che la gente si ricorda:
+      nella maggior parte delle serate non serve altro.</p>
     <div class="v-forme">
       <div class="v-forma rv">
         <figure class="cornice">
           <img style="object-position:center 18%" src="images/land/vigna-chitarra.webp" alt="Mike con cappello country e Telecaster tra le vigne, in pieno giorno" loading="lazy" width="800" height="1200" />
         </figure>
-        <h3>Un set e basta</h3>
-        <p>Due ore a pranzo, o una sera sola. Se ti serve questo, facciamo questo.</p>
+        <h3>Si comincia da ascoltare</h3>
+        <p>Ballad e brani lenti, volume da tavolo: si mangia, si parla, si sta bene.</p>
       </div>
       <div class="v-forma rv">
         <figure class="cornice">
           <img style="object-position:center 22%" src="images/mike-telecaster-live.webp" alt="Mike con cappello country e Telecaster durante il concerto, di sera" loading="lazy" width="933" height="1400" />
         </figure>
-        <h3>Due set, con la pausa</h3>
-        <p>Si comincia piano e si sale. In mezzo si respira, e si mangia.</p>
+        <h3>Poi si sale</h3>
+        <p>Entrano le elettriche e il ritmo. La sala capisce che sta cominciando qualcosa.</p>
       </div>
       <div class="v-forma rv">
         <figure class="cornice">
           <img style="object-position:center 30%" src="images/land/live-notte.webp" alt="I Coffeekillers di sera in un cortile, tra le luci viola da concerto" loading="lazy" width="800" height="1067" />
         </figure>
-        <h3>Tutta la serata</h3>
-        <p>Aperitivo, cena e dopo. Si cambia aria a ogni passaggio.</p>
+        <h3>Si finisce in piedi</h3>
+        <p>Party song e cori, e il piede che batte anche a chi resta seduto.</p>
       </div>
     </div>
+
+    <div class="v-oltre rv">
+      <h3>E se devi coprire tutta la giornata?</h3>
+      <p>Capita: una festa che apre a mezzogiorno, una sagra che va avanti fino a notte.
+        Allora allo show si aggiunge <b>un set acustico</b> di circa un&rsquo;ora, oppure
+        <b>lasciamo l&rsquo;impianto acceso</b> con la nostra musica country nelle ore in cui
+        il palco &egrave; vuoto. Si mette a punto quando scriviamo il preventivo.</p>
+      <p>Vale per chi ha una <b>giornata intera</b> da riempire. Per tutti gli altri il conto
+        &egrave; pi&ugrave; semplice: <b>c&rsquo;&egrave; lo show, e lo show basta.</b></p>
+    </div>
+
     <p class="v-tesi rv">Noi la scaletta. <span class="acc">Tu il ritmo.</span></p>
   </div>
 </section>
@@ -1265,6 +1446,71 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
         <figcaption>Il palco allestito in un giardino a Gussago</figcaption>
       </figure>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     8bis · COSA C'E' DENTRO AL PREVENTIVO — la leva d'acquisto principale.
+     ⚠️ Michele, 07/09: "il nostro preventivo e' composto dal nostro show piu'
+     i costi di trasferta ed eventualmente pernottamento, e qua farei sapere
+     anche che se chi ci ospita ci paga il vitto alloggio riesce a farci
+     contenere i costi, e quindi ci sara' soltanto una parte di rimborso
+     chilometrico. Le altre leve d'acquisto possono essere legate alla SIAE."
+     ⚠️ NUOVA CONDIZIONE COMMERCIALE: "vitto e alloggio abbassano il
+     preventivo" e il pernottamento non erano scritti in nessun documento
+     della band. Sono autorizzati da lui il 07/09 e registrati in
+     "Preventivi — Modello e Condizioni Commerciali.md": se un domani qualcuno
+     si chiede da dove viene questa riga, la risposta sta nel brain.
+     ⚠️ La formulazione della SIAE e' quella gia' approvata e NON si tocca:
+     "chi organizza la serata", non "chi acquista".
+     ⚠️ E qui dentro non entra MAI una cifra: nessun cachet, nessun euro. Il
+     numero lo fa il preventivo, che e' privato.
+     ============================================================================ -->
+<section class="v-sez v-sez--alta tex" data-pg="scuro">
+  <span class="ico i-ferri marchio" aria-hidden="true" style="left:-3%;top:7%;width:min(240px,21vw)"></span>
+  <div class="v-in">
+    <!-- ⚠️ text-wrap:balance e non un max-width in ch: a 24ch il titolo andava
+         a capo dopo "AL", lasciando due lettere appese in cima. Balance
+         pareggia le due righe da solo e regge a ogni larghezza. -->
+    <h2 class="v-h v-h--centro rv" style="max-width:24ch;text-wrap:balance">Cosa c&rsquo;&egrave; dentro <span class="acc">al preventivo.</span></h2>
+    <p class="v-lead v-lead--centro rv">Tre voci, scritte separate. Cos&igrave; vedi da dove viene il numero
+      &mdash; e dove puoi intervenire tu.</p>
+
+    <div class="v-conto rv">
+      <div class="v-voce">
+        <span class="ico i-chitarra" aria-hidden="true" style="width:26px"></span>
+        <div>
+          <h3>Lo show</h3>
+          <p>Circa due ore di musica, cinque musicisti, impianto e luci nostri. &Egrave; la voce
+            principale, e dipende da che serata &egrave; e da quanta gente aspetti.</p>
+        </div>
+      </div>
+      <div class="v-voce">
+        <span class="ico i-stivale" aria-hidden="true" style="width:28px"></span>
+        <div>
+          <h3>La trasferta</h3>
+          <p>Voce a parte, scritta prima: mai una sorpresa in fondo al foglio. Sotto i
+            <b>50-60 chilometri</b> &egrave; gi&agrave; dentro.</p>
+        </div>
+      </div>
+      <div class="v-voce">
+        <span class="ico i-cappello" aria-hidden="true"></span>
+        <div>
+          <h3>Il pernottamento</h3>
+          <p>Solo quando la distanza lo chiede davvero: cinque persone e un furgone che, a fine
+            serata, hanno ancora tutta la strada da rifare.</p>
+        </div>
+      </div>
+      <p class="v-leva">Se ci ospiti tu &mdash; un pasto, e un letto quando siamo lontani &mdash;
+        <b>il preventivo si abbassa</b>: della trasferta resta solo il rimborso dei chilometri.</p>
+    </div>
+
+    <div class="v-conto-piede rv">
+      <p><b>SIAE e permessi</b> restano in capo a chi organizza la serata, come per qualsiasi
+        concerto. Noi ti diamo l&rsquo;elenco dei brani, che &egrave; quello che serve per il
+        border&ograve;.</p>
+    </div>
+
     <div class="v-cta-fila rv" style="justify-content:center;margin-top:clamp(42px,5.5vw,64px)">
       <a class="v-pill" href="#richiesta">Chiedi il preventivo</a>
     </div>
@@ -1441,6 +1687,19 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
         <p>Dipende da quanta gente aspetti, da quanto siamo lontani e da quanto suoniamo. Nel modulo
           scegli l&rsquo;ordine di spesa in cui ti muovi e <b>entro 24 ore hai il numero scritto</b>,
           con il viaggio come voce a parte. Il preventivo vale 15 giorni e non cambia dopo.</p>
+        <p>Due cose che lo spostano davvero: se il tuo posto ha gi&agrave; un impianto si fa la
+          versione senza, e <b>se ci ospiti tu &mdash; pasto e letto &mdash; della trasferta resta
+          solo il rimborso dei chilometri</b>.</p>
+      </details>
+      <details class="v-q">
+        <summary>Che tipo di country fate?</summary>
+        <p>Country americano, neotradizionale e contemporaneo: <b>in generale dagli anni Novanta in
+          poi</b>. Zach Top, Chris Stapleton, Brad Paisley, Zac Brown Band, Blake Shelton, Darius
+          Rucker, The Kruse Brothers &mdash; con due o tre eccezioni pi&ugrave; vecchie che valgono il
+          viaggio, tipo <i>Country Roads</i> di John Denver e <i>Jolene</i> di Dolly Parton.</p>
+        <p>Dentro quel recinto ci sono <b>ballad da ascolto e brani da ballare</b>, e la scelta la fa
+          la serata: nessuno &egrave; obbligato a ballare e nessuno deve mettersi il cappello. Se hai
+          due o tre brani del cuore, dilli quando chiedi il preventivo.</p>
       </details>
       <details class="v-q">
         <summary>Devo procurarvi qualcosa?</summary>
@@ -1450,15 +1709,18 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
       </details>
       <details class="v-q">
         <summary>Quanto suonate, e a che ora?</summary>
-        <p><b>Quanto e quando ti serve.</b> Se vuoi un set solo di due ore, a pranzo o la sera,
-          si fa cos&igrave;. Se vuoi due set con la pausa in mezzo, o l&rsquo;aperitivo e poi il dopo cena,
-          si fa cos&igrave;. Non abbiamo una formula fissa: si decide insieme quando scriviamo il
-          preventivo, e resta scritta l&igrave;.</p>
+        <p>Lo show dura <b>circa due ore</b>: un&rsquo;ora e 45 di musica, in uno o due set, con la
+          pausa dove ti serve. L&rsquo;orario lo decidi tu: a pranzo, all&rsquo;aperitivo, dopo cena.</p>
+        <p>Se hai una <b>giornata intera</b> da coprire, allo show si aggiunge un set acustico di
+          circa un&rsquo;ora, oppure lasciamo l&rsquo;impianto acceso con la nostra musica nelle ore in
+          cui il palco &egrave; vuoto. Si decide insieme quando scriviamo il preventivo, e resta
+          scritto l&igrave;.</p>
       </details>
       <details class="v-q">
         <summary>Venite anche lontano da Brescia?</summary>
-        <p>S&igrave;. Nel 2026 ci hanno chiamati da Veneto, Trentino, Friuli, Piemonte, Emilia-Romagna
-          e Liguria. Il rimborso viaggio &egrave; una voce a parte del preventivo, scritta prima.</p>
+        <p>S&igrave;. Nel 2026, oltre alla Lombardia, ci hanno chiamati da Veneto, Trentino, Friuli,
+          Piemonte, Emilia-Romagna e Liguria. Il rimborso viaggio &egrave; una voce a parte del
+          preventivo, scritta prima.</p>
       </details>
       <details class="v-q">
         <summary>E se piove?</summary>
@@ -1700,7 +1962,32 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 })();
 
 /* ============================================================================
-   3 · IL VIDEO DEL PALCO — parte quando lo si guarda, non prima.
+   3 · LA FACCIATA DEL VIDEO — l'iframe di YouTube nasce al primo clic.
+   ⚠️ Questo pezzo MANCAVA: il bottone play era in pagina, con la sua grafica e
+   il suo data-yt, e non faceva niente. Su traffico a pagamento significa che
+   la prova migliore della pagina era inerte. E' lo stesso codice della home.
+   Perche' una facciata e non l'iframe: prima del clic non parte nessuno
+   script di terze parti, quindi il sito resta senza banner cookie.
+   ============================================================================ */
+(function(){
+  var box = document.getElementById("vb-inner");
+  if(!box) return;
+  var btn = box.querySelector(".vb-play");
+  if(!btn) return;
+  btn.addEventListener("click", function(){
+    var f = document.createElement("iframe");
+    f.src = "https://www.youtube.com/embed/" + box.dataset.yt + "?autoplay=1&rel=0&modestbranding=1";
+    f.title = "Jolene (Dolly Parton) \u2014 Hot Joe & The CoffeeKillers, dal vivo";
+    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    f.referrerPolicy = "strict-origin-when-cross-origin";
+    f.allowFullscreen = true;
+    box.classList.add("vb-on");
+    box.appendChild(f);
+  });
+})();
+
+/* ============================================================================
+   3bis · IL VIDEO DEL PALCO — parte quando lo si guarda, non prima.
    preload="none": chi non arriva fin li' non se lo scarica.
    ============================================================================ */
 (function(){
