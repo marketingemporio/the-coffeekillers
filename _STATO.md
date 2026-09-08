@@ -118,6 +118,66 @@ passate che spariscono e il conto alla rovescia in inglese.
 
 ---
 
+# 🧾 IL MODULO, LE FAQ E LA GERARCHIA DEGLI INVITI (07/09/2026, secondo giro)
+
+Michele ha guardato la landing pubblicata e ha chiesto **cinque cose**. Quattro riguardano il
+**modulo**, e valgono su **tutti e tre** quelli del sito (`musica-country-dal-vivo.html`,
+`preventivo.html`, `en/quote.html`): se ne cambi uno, cambi anche gli altri due.
+
+## Le sue parole, e cosa è stato fatto
+
+| ha detto | fatto |
+|---|---|
+| *«il counter delle persone fallo muovere di 50 in cinquanta, vai da 50 a 250 e poi c'è oltre 300»* | scala fissa **50 · 100 · 150 · 200 · 250 · oltre 300**, default 150. Sull'ultimo gradino la scritta «pax» sparisce da sola |
+| *«per il tempo di suonare metti più che altro tipo "solo concerto" o "tutto il giorno", quindi non le ore»* | via il cursore 1h→4h. Tre voci: **Solo il concerto** (predefinita) · **Concerto e set acustico** · **Tutto il giorno**. Sono le stesse della sezione «Lo show dura circa due ore», nello stesso ordine |
+| *«intorno ai 1000€ (per far capire che comunque meno non c'è), riesco ad arrivare a 2000€, oltre 2000€. Non mettere "non lo so"»* | tre voci: **Intorno ai 1.000 €** (predefinita) · **Arrivo a 2.000 €** · **Oltre 2.000 €** |
+| *«le FAQ sono un po' piccole come stile, si vedono poco, devono essere più chiare»* | domanda **17,5 → 21px**, risposta **15,5 → 17px**, «+» in pastiglia arancione tonda, bordo arancione sulla voce aperta |
+| *«non promuovere così tanto il messaggio WhatsApp, vogliamo che compilino il preventivo»* | `.v-wa` da verde pieno a **contorno**; **fuori dall'hero**; nella barra appiccicata il preventivo passa davanti |
+| *«questa parte non metterla subito, non è una vera garanzia di successo, mettila un po' dopo»* (fascia 2018/+200/7/5) | la fascia arancione dei numeri è scesa all'inizio del **blocco delle prove**, subito prima di «Aziende, locali, rifugi» |
+
+## Perché queste modifiche non sono cosmetiche
+
+- **Il contapersone chiedeva una precisione che il cliente non ha.** Saliva di 20 in 20 fino a
+  600: per dire «più o meno duecento» servivano quattro clic e una decisione finta.
+- **Il cursore delle ore chiedeva al cliente una cosa che è nostra.** Lo show dura circa due
+  ore: non è lui a doverlo decidere. L'unica informazione che serve davvero è **se deve
+  coprire una giornata intera**, ed è esattamente quello che ora chiede il campo.
+  ⚠️ La chiave verso Formspree è cambiata: **`Formato`** al posto di `Durata`.
+- **«Fino a 1.000» diceva il contrario di quello che si vuole dire.** Apriva la scala verso il
+  basso. Ora la prima voce è un pavimento. Ed è coerente con la fascia **già pubblicata** nelle
+  FAQ del sito (1.000 € — 2.500 €): non è un prezzo nuovo, è la stessa cosa detta prima.
+- **«Non lo so ancora» era la scelta comoda**: chi la spuntava non dava nessuna informazione,
+  e una richiesta senza ordine di spesa costa lo stesso lavoro di preventivo.
+- **Due bottoni pieni affiancati sono due inviti alla pari**, e uno dei due porta fuori dalla
+  pagina senza lasciare una richiesta scritta. Ora il bottone pieno è **uno solo per schermata**.
+- **La fascia dei numeri**, subito sotto il titolo, era una promessa in cerca di credito. In
+  mezzo ai marchi e alle serate vere è una prova. Stesso contenuto, altro peso.
+
+## 🐞 E un bug vero trovato strada facendo
+
+Il **tasto play del video non faceva niente**. La facciata era completa — copertina, cerchio,
+`data-yt`, e perfino il CSS della classe `vb-on` — ma **lo script che crea l'iframe non c'era**:
+era rimasto nella home e non era stato portato sulla landing. Su traffico a pagamento voleva
+dire che la prova migliore della pagina era inerte. Portato da `index.html`, verificato con un
+clic vero: l'iframe nasce e punta a `AHycDL7d2oU`.
+
+## ✅ Verificato (Chrome headless + CDP, 1440×900 e 390×844)
+
+- I **tre moduli** provati cliccando davvero: contapersone su e giù oltre i due estremi, chip
+  a scelta singola, passaggio al passo 2 col riepilogo giusto (*«… oltre 300 persone · tutto il
+  giorno»*), tasto play che crea l'iframe.
+- Il segno **€** rende nel font vero (LT Cushion sulla landing, Bonzana su preventivo) — misurato
+  sul glifo, non a occhio: il vecchio commento *«il font Valley non ha il €»* si riferiva a un
+  font che il sito non usa più.
+- Zero errori JS (i due `ERR_FAILED` sono il beacon Cloudflare bloccato dal CORS in locale),
+  zero immagini rotte, zero sbordamenti, **zero testo sotto i 13px**, nessuna foto della lista
+  nera, tutti i titoli entro due righe.
+- ⚠️ **Unica eccezione nota:** a 390px l'H1 sta su **tre righe**. Il titolo scelto da Michele è
+  di 38 caratteri e a schermo stretto non c'entra in due; la spezzatura però è pulita
+  (*PORTA LA MUSICA / COUNTRY AL TUO / EVENTO.*) e l'alternativa era rimpicciolirlo.
+
+---
+
 # 🎯 IL CONTENUTO DELLA LANDING SULLE LEVE D'ACQUISTO (07/09/2026)
 
 Con la grafica a posto è emerso il difetto vero: la pagina **descriveva come lavoriamo** invece

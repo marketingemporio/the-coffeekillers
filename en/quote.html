@@ -427,21 +427,6 @@ textarea.qf-input{
 .qf-stepper .val small{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--azz-testo);margin-left:7px}
 
 /* slider durata */
-.qf-range-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
-.qf-range-val .it{font-size:21px;color:var(--ruggine)}
-.qf-range{
-  width:100%;appearance:none;-webkit-appearance:none;height:6px;border-radius:99px;
-  background:rgba(73,36,10,.25);outline:none;accent-color:var(--ruggine);cursor:pointer;
-}
-.qf-range::-webkit-slider-thumb{
-  -webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;
-  background:var(--ruggine);border:3px solid var(--panna);
-  box-shadow:0 2px 8px rgba(73,36,10,.4);cursor:grab;
-}
-.qf-range::-moz-range-thumb{
-  width:18px;height:18px;border-radius:50%;background:var(--ruggine);
-  border:3px solid var(--panna);box-shadow:0 2px 8px rgba(73,36,10,.4);cursor:grab;
-}
 
 /* tile servizi */
 .qf-tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:560px}
@@ -773,20 +758,27 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
           </div>
         </div>
         <div class="qf-field">
+          <!-- ⚠️ fixed scale (07/09): 50 · 100 · 150 · 200 · 250 · over 300.
+               It used to step by 20 up to 600, asking for a precision the
+               client does not have. -->
           <div class="qf-label" id="lbl-guests">Guests <span class="opt">estimate</span></div>
           <div class="qf-stepper" role="group" aria-labelledby="lbl-guests">
             <button type="button" id="hc-minus" aria-label="Decrease">−</button>
-            <span class="val"><span id="hc-val">120</span><small>pax</small></span>
+            <span class="val"><span id="hc-val">150</span><small id="hc-pax">pax</small></span>
             <button type="button" id="hc-plus" aria-label="Increase">+</button>
           </div>
         </div>
 
+        <!-- ⚠️ No longer asking for hours (07/09): the length of the show is
+             ours to know (about two hours). What we need to know is whether the
+             client has a whole day to cover. -->
         <div class="qf-field qf-field--full">
-          <div class="qf-range-row">
-            <label class="qf-label" style="margin:0" for="f-duration">Length of the show</label>
-            <div class="qf-range-val"><span class="it" id="dur-val">2h</span></div>
+          <div class="qf-label" id="lbl-formato">What do you need <span class="opt">if in doubt, leave «the show only»</span></div>
+          <div class="qf-chips" id="chips-formato" role="group" aria-labelledby="lbl-formato">
+            <button type="button" class="qf-chip qf-chip--sm on">The show only</button>
+            <button type="button" class="qf-chip qf-chip--sm">Show and acoustic set</button>
+            <button type="button" class="qf-chip qf-chip--sm">All day long</button>
           </div>
-          <input class="qf-range" id="f-duration" type="range" min="1" max="3" step="0.5" value="2" aria-label="Length of the show in hours" />
         </div>
 
         <div class="qf-field qf-field--full">
@@ -809,12 +801,12 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
           <div class="qf-label" id="lbl-budget">Rough budget <span class="opt">in euro, not binding</span></div>
           <!-- etichette senza «&lt;», «&gt;» e «€»: il font Valley non ha quei segni
                e finivano su un font di ripiego -->
+          <!-- ⚠️ THREE options, and the first one starts at a thousand (07/09).
+               "Up to 1,000" suggested we could go lower. We cannot. -->
           <div class="qf-chips" id="chips-budget" role="group" aria-labelledby="lbl-budget">
-            <button type="button" class="qf-chip qf-chip--sm">Up to 1,000</button>
-            <button type="button" class="qf-chip qf-chip--sm on">1,000-1,500</button>
-            <button type="button" class="qf-chip qf-chip--sm">1,500-2,000</button>
-            <button type="button" class="qf-chip qf-chip--sm">2,000-2,500</button>
-            <button type="button" class="qf-chip qf-chip--sm">Over 2,500</button>
+            <button type="button" class="qf-chip qf-chip--sm on">Around €1,000</button>
+            <button type="button" class="qf-chip qf-chip--sm">Up to €2,000</button>
+            <button type="button" class="qf-chip qf-chip--sm">Over €2,000</button>
           </div>
         </div>
 
@@ -957,23 +949,23 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
   var getEvt=chipGroup("chips-evt");
   var getSetting=chipGroup("chips-setting");
   var getBudget=chipGroup("chips-budget");
+  var getFormato=chipGroup("chips-formato");
 
-  // — stepper ospiti (default 120, passo 20, min 20, max 600) —
-  var headcount=120;
-  var hcVal=document.getElementById("hc-val");
+  // — contapersone a GRADINI (07/09): 50 · 100 · 150 · 200 · 250 · oltre 300 —
+  var SCALINI=["50","100","150","200","250","over 300"];
+  var iPax=2;
+  var hcVal=document.getElementById("hc-val"),hcPax=document.getElementById("hc-pax");
+  function scriviPax(){
+    hcVal.textContent=SCALINI[iPax];
+    hcPax.style.display=(iPax===SCALINI.length-1)?"none":"";
+  }
   document.getElementById("hc-minus").addEventListener("click",function(){
-    headcount=Math.max(20,headcount-20);hcVal.textContent=headcount;
+    iPax=Math.max(0,iPax-1);scriviPax();
   });
   document.getElementById("hc-plus").addEventListener("click",function(){
-    headcount=Math.min(600,headcount+20);hcVal.textContent=headcount;
+    iPax=Math.min(SCALINI.length-1,iPax+1);scriviPax();
   });
-
-  // — slider durata —
-  var durInput=document.getElementById("f-duration");
-  var durVal=document.getElementById("dur-val");
-  durInput.addEventListener("input",function(){
-    durVal.textContent=parseFloat(durInput.value)+"h";
-  });
+  scriviPax();
 
   // — tile servizi (checkbox) —
   document.querySelectorAll(".qf-tile input").forEach(function(cb){
@@ -1012,9 +1004,9 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       Location:document.getElementById("f-location").value,
       TipoEvento:getEvt(),
       Ambiente:getSetting(),
-      Ospiti:headcount,
-      Durata:parseFloat(durInput.value)+"h",
-      Budget:getBudget().trim()+" €",
+      Ospiti:SCALINI[iPax],
+      Formato:getFormato(),
+      Budget:getBudget().trim(),
       ServiziAudio:document.getElementById("srv-audio").checked?"Sì":"No",
       ServiziLuci:document.getElementById("srv-lights").checked?"Sì":"No",
       ConsensoPrivacy:"Sì — informativa privacy (versione inglese) letta e accettata il "+new Date().toLocaleString("it-IT")

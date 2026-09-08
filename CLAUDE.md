@@ -118,6 +118,55 @@ prodotto che è divertimento.
 Michele ha contestato **tre volte** in sei giorni. Corpo minimo **13px**, e c'è un controllo
 automatico che lo verifica. (L'occhiello-*composizione* — la pastiglia `.vcap` — è un'altra
 cosa e va bene.)
+E **13px è il minimo, non la misura giusta**: il 07/09 le FAQ della landing sono state
+ingrandite perché *«si vedono poco, devono essere più chiare»* — domanda da 17,5 a **21px**,
+risposta da 15,5 a **17px**, il «+» dentro una pastiglia arancione tonda e il bordo che
+diventa arancione quando la voce è aperta. Le FAQ tolgono i dubbi appena prima del modulo:
+se non si vedono, non servono a niente.
+
+## 🧾 I MODULI: cosa si chiede al cliente, e cosa non si chiede più
+
+Deciso da Michele il **07/09/2026**, e vale su **tutti e tre i moduli** del sito:
+`musica-country-dal-vivo.html` · `preventivo.html` · `en/quote.html`. Se ne tocchi uno,
+tocchi anche gli altri due (le pagine `en/` sono copie tradotte a mano).
+
+**Quante persone → una scala fissa, non una somma.**
+`50 · 100 · 150 · 200 · 250 · oltre 300`, default **150**. Sull'ultimo gradino la scritta
+«pax» sparisce (*«oltre 300 pax»* non si dice). Prima saliva di 20 in 20 fino a 600: chiedeva
+al cliente una precisione che **non ha**, e gli faceva fare dodici clic.
+
+**Quanto suoniamo → 🚫 non si chiedono le ore.**
+*«Per il tempo di suonare metti più che altro tipo solo concerto o tutto il giorno, quindi
+non le ore.»* Il cursore da 1h a 4h chiedeva al cliente di decidere una durata che **è nostra**
+(lo show dura circa due ore). Al suo posto tre voci, nell'ordine della gerarchia:
+**Solo il concerto** (predefinita) · **Concerto e set acustico** · **Tutto il giorno**.
+La chiave verso Formspree si chiama ora `Formato`, non più `Durata`.
+
+**Ordine di spesa → tre voci, e la prima parte da mille.**
+**Intorno ai 1.000 €** (predefinita) · **Arrivo a 2.000 €** · **Oltre 2.000 €**.
+La prima voce esiste *per far capire che sotto non si va*: la vecchia scaletta apriva con
+«Fino a 1.000» e lasciava credere il contrario. ⚠️ **Il «Non lo so ancora» non si rimette**:
+chi lo spuntava non dava nessuna informazione, ed era la scelta comoda. Coerente con la
+fascia già pubblicata nelle FAQ (1.000 € — 2.500 €).
+
+## 📣 UN SOLO BOTTONE PIENO PER PAGINA, E PORTA AL MODULO
+
+*«Non promuovere così tanto il messaggio WhatsApp, vogliamo che compilino il preventivo»*
+(Michele, 07/09). WhatsApp **resta** — è il canale su cui la band risponde davvero — ma:
+
+- 🚫 **niente verde pieno accanto alla CTA.** `.v-wa` è un **contorno**: fondo trasparente,
+  nessuna ombra colorata, corpo più piccolo dell'invito principale.
+- **Nell'hero WhatsApp non c'è.** Lì l'invito è uno solo, e porta al modulo.
+- Nella barra appiccicata il **preventivo viene prima**, WhatsApp dopo e in secondo piano.
+- Dove WhatsApp ci sta bene: **dopo l'invio** (il riquadro «Ricevuto») e nel footer.
+
+Il motivo, che non è estetico: due bottoni pieni affiancati sono **due inviti alla pari**, e
+uno dei due porta fuori dalla pagina senza lasciare una richiesta scritta.
+
+**E la fascia arancione dei numeri (2018 / +200 / 7 / 5) non sta sotto l'hero.**
+*«Non è una vera garanzia di successo, mettila un po' dopo.»* Sta all'inizio del blocco delle
+**prove** — subito prima di «Aziende, locali, rifugi». Un numero vale se sta in mezzo alle
+cose che lo reggono; subito sotto il titolo era una promessa in cerca di credito.
 
 ## 🔧 Come si verifica il lavoro
 
