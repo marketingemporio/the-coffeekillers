@@ -118,6 +118,152 @@ passate che spariscono e il conto alla rovescia in inglese.
 
 ---
 
+# 🔁 LA LANDING RIFATTA DA CAPO, E IL SITO ALLINEATO (10/09/2026)
+
+Michele ha riguardato la landing **da telefono**, sezione per sezione: *«partiamo da capo,
+così cerchiamo di capire quali sono le sezioni che vogliamo»*. Non è stata una lista di
+ritocchi: è cambiata la scaletta. E vale per tutto il sito — *«le novità di questa revisione
+trasportale anche nella home»*, *«si sovrascrive tutto»*.
+
+**Il risultato in due numeri:** da telefono la landing è passata da **18.100 a 8.760 pixel**
+di altezza, e da **3,40 a 1,87 MB**.
+
+## Cosa è uscito, e perché
+
+| blocco | perché è uscito |
+|---|---|
+| «Una serata, non un servizio» | *«terribile, non è questo il punto, non è una leva d'acquisto»* |
+| «Lo show dura circa due ore» | il contenuto serve, il blocco no: è finito nelle informazioni utili |
+| «Quello lo montiamo noi» | idem, è diventato la card del service. Col suo video da 1,1 MB |
+| «Cosa c'è dentro al preventivo» | *«in verità questo blocco non serve»* |
+| «Tre passi. Il primo non ti costa nulla» | ridondante |
+| Le FAQ a fisarmonica | *«le FAQ la gente non ci si mette lì a leggerle»* |
+| Le card «Ballad da ascolto» / «Brani da ballare» | ridondanti con quello scritto sopra |
+| «Un cliente che ti richiama è la recensione che conta» | via, restano solo i loghi |
+
+## Cosa è entrato
+
+- **«Ascoltaci live»** al posto di «Prima di tutto, ascolta», che *«è troppo imperativo»*.
+  Un titolo e un video, **niente descrizione e niente frase di chiusura** (*«un minuto e sai
+  se siamo noi»* era *«una frase marchettara»*). Un video solo: *«one shot one kill — vieni da
+  una sponsorizzata di Instagram, ne guardi uno»*. Dritto e senza cornice.
+- **«Cosa facciamo?»**, il titolo del sito, al posto di «Che country ti arriva». Il paragrafo
+  dell'home accorciato di due terzi: intero è di 676 battute, da telefono era un muro.
+  Restano le pastiglie degli artisti (*«sono carine, danno dinamica, sembrano tasti»*).
+- **«Informazioni utili per te»**: card aperte, una sotto l'altra, con le icone del brand.
+  Sette risposte prese dalle **FAQ vere dell'home page** (*«torniamo alle FAQ dell'home page,
+  quelle originali, non questa cosa che ti sei inventato tu»*).
+- **Tre caroselli orizzontali**: i loghi, la line-up (foto tonde) e la gallery.
+  *«In verticale diventano grosse, hai troppi pixel da scorrere.»*
+- **La foto grande dei cinque** è scesa vicino alla line-up: prima mostrava la band prima di
+  averla presentata.
+
+## Le regole di stile fissate qui (e valide su tutto il sito)
+
+1. **Il colore non cambia più durante lo scorrimento.** Il meccanismo `@property --pg-*` con
+   l'handler di scroll è smontato: i nomi delle variabili restano (erano in 37 punti), ma ora
+   le assegna una classe `.t-panna` sulla sezione. Senza classe, la sezione è scura.
+2. **Niente card storte**, zero `rotate`. Raggi di casa: 12px card e bottoni, 16px i riquadri
+   di foto e video, 50% i ritratti.
+3. **Bottoni senza ombra e senza stelle**, raggio 12px — anche in home.
+4. Via il **filetto tartan** e il **bordino arancio** sopra la barra appiccicata.
+5. **WhatsApp resta in un punto solo** di tutta la landing: dopo l'invio. *«Ci tira dentro un
+   po' di parassiti.»* Nella barra resta solo «Chiedi il preventivo».
+
+## 🖼 I loghi: sette veri, a colori, su fondo chiaro
+
+I file ufficiali sono arrivati da Michele il 10/09 e stanno in **`images/loghi/`**.
+⚠️ **Non si possono monocromare.** Il sito prima li rendeva crema su fondo scuro: con questi
+non funziona, perché tre avevano il fondo bianco e due sono illustrazioni a colori (il
+girasole con lo struzzo del Cascinetto, lo stemma Porsche). Quindi la fascia è passata sul
+chiaro e i marchi tengono i loro colori. Il fondo bianco è stato tolto con un riempimento dai
+bordi, così il bianco *dentro* al disegno è rimasto.
+
+🚫 In pensione i due **segnaposto**: `Porsche.svg` erano 238 byte con la parola «PORSCHE»
+scritta in Arial, e `Lombarda-Ceramica-v2.svg` uguale. Erano marcati «da sostituire» nel
+codice da settembre.
+Nomi giusti: **Conti Thun** · **Centro Porsche Brescia** · **Pietra Cavalla** (staccato) ·
+**Il Cascinetto**.
+
+## 🧾 Il modulo: il vincolo servizio → budget
+
+*«Se mi dici tutto il giorno non puoi selezionare 1.000 euro… voglio stanarti: dimmi tutto il
+giorno, e poi io ti dico che ti costa tre-k.»*
+
+| servizio | budget selezionabili |
+|---|---|
+| Solo live show — *circa due ore* | tutti e tre |
+| Live show e set acustico — *due ore più 30/45 minuti* | da 1.500 in su |
+| Copertura intera giornata — *dettagli da definire insieme* | solo oltre 2.000 |
+
+Le voci escluse **si spengono ma restano in pagina**: se sparissero, sparirebbe il messaggio.
+Altri cambi: sei tipi di evento invece di otto (quelli del sito), «orari indicativi» + di
+giorno/di sera, al chiuso/all'aperto sotto il campo «dove», via il campo impianto/luci
+(*«lo decidiamo noi in fase di preventivo»*), via «se serve fattura» dal placeholder, e
+**niente più «entro 24 ore»**: si dice *«in qualche giorno»*.
+⚠️ Formspree **non manda al cliente nessuna mail di conferma**: il pannello «Ricevuto» è
+l'unica cosa che vede.
+
+## 🐞 Quattro difetti trovati strada facendo
+
+1. **Il bottone WhatsApp dopo l'invio non era rotto: era invisibile.** `.v-wa` scrive
+   `color:var(--pg-fg)`, che lì vale `#EDDABD`, e il pannello ha per fondo `#EDDABD`.
+   Contrasto **1:1**, e l'icona spariva con lui perché è `fill="currentColor"`. Ora 9,98:1.
+2. **I ruoli sotto i volti erano arancio su panna: 3,07:1.** La legge di contrasto della
+   palette, di nuovo.
+3. **I due loghi SVG si renderizzavano a larghezza ZERO** dentro il carosello: un `<img>` di
+   un SVG senza attributi `width`/`height` in un contenitore flex collassa.
+4. **Tutte e 17 le pagine scorrevano di lato di 33px da telefono.** Una colonna del footer non
+   scendeva sotto la larghezza del suo contenuto (`min-width:auto` è il valore di partenza per
+   gli elementi di griglia). Difetto vecchio, mai notato. Corretto ovunque.
+
+## Il resto del sito, allineato
+
+- **Home (IT+EN)**: i sette loghi, i bottoni nuovi, **4×3** al posto di 5×3.
+- **FAQ (IT+EN)**: da **11 a 8 domande**. Fuori «Cosa significa il vostro nome», «Quante
+  persone sono troppe» (*«è stupida»*) e «C'è qualcos'altro». Riscritte: la durata (da 1h45 a
+  2h15), il service (ora dice montaggio, cablaggio, suoni e luci), lo spazio (4×3), la
+  scaletta (**fissa, circa 25 brani** — via «repertorio di circa 50 canzoni»), e «cibo o
+  bevande» diventa **«vitto e alloggio»**.
+- **`chi-siamo` e `en/about`**: il contatore «+50 brani in repertorio» diventa «25 brani a
+  concerto». Stessa correzione nei dati strutturati di `chi-siamo` e `index`.
+- **`preventivo` e `en/quote`**: gli stessi campi nuovi del modulo, vincolo compreso.
+- **Luke Combs fuori** da meta e testi (`chi-siamo`, `en/about`, `country`,
+  `en/country-music`): il suo unico brano è in cassetto dal 06/09.
+
+## ✅ Come è stata verificata
+
+⚠️ In questa sessione **non è stato possibile guardare le schermate** (il canale immagini era
+fuori uso). Al posto dell'occhio sono stati usati controlli misurati, che si sono rivelati più
+severi: hanno trovato tre dei quattro difetti sopra.
+
+- **Contrasto reale** di ogni testo visibile, calcolato sul fondo *effettivo* risalendo gli
+  antenati fino al primo colore opaco. Otto pagine, due larghezze.
+- **`documentElement.scrollWidth`** su tutte e 17 le pagine, a 390px.
+- **Larghezza renderizzata** di ogni logo, e colore del fondo su cui stanno.
+- **I tre moduli cliccati davvero**: tutte le combinazioni servizio/budget, il caso «avevo
+  scelto 1.000 € e poi passo a tutta la giornata», il clic sulla voce spenta, il contapersone
+  oltre i due estremi, il passaggio al passo 2 col riepilogo, il tasto play.
+- **Le sei varianti `?tipo=`**: titolo, sottotitolo, fotografia e chip preselezionata.
+- **Analisi a pixel** dei 12 fotogrammi della pagina, per scovare sezioni vuote o invisibili:
+  tutte hanno fra il 18% e il 58% di inchiostro.
+- Ricerca finale in tutto il repo di quello che doveva sparire.
+
+⚠️ **Trappola nuova, costata tre giri:** la **cache di Chrome** serviva il CSS vecchio e una
+correzione risultava «non applicata». Da qui in poi, `?c=<numero a caso>` sempre.
+
+## 🔜 Cosa resta aperto
+
+- **Le micro-scritte sul resto del sito**: la regola dei 13px minimi vale sulla landing, ma
+  home, FAQ, preventivo e chi-siamo hanno ancora etichette a 11–12,5px (nav, footer, ruoli
+  della line-up, etichette dei campi). Non toccate: è una revisione a sé.
+- **`en/index.html`**: il banner «Leggilo in italiano» è marrone su arancio, **3,25:1**.
+- Le **foto della line-up in home** non sono ancora quelle della landing (Michele le voleva
+  uguali): le due serie sono file diversi, va deciso quale tenere.
+- Restano da procurare i loghi **veri** di Lombarda Ceramiche in vettoriale, se serve stamparli.
+
+---
+
 # 🧾 IL MODULO, LE FAQ E LA GERARCHIA DEGLI INVITI (07/09/2026, secondo giro)
 
 Michele ha guardato la landing pubblicata e ha chiesto **cinque cose**. Quattro riguardano il

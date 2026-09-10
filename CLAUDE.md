@@ -103,6 +103,17 @@ Darius Rucker · The Kruse Brothers · Keith Whitley. **Luke Combs no** (brano i
 06/09). **Nessun numero di brani in pubblico.** Johnny Cash non si nomina nemmeno per escluderlo:
 il perimetro lo fa da sé. Dettagli in `Repertorio e Scalette 2026.md`.
 
+**Lo spazio palco è 4×3 metri, e il repertorio non si conta più.** Corretti il 10/09 su
+tutto il sito: prima le FAQ dicevano *5 metri per 3* (in tre formulazioni diverse) e
+*«repertorio di circa 50 canzoni»*, mentre i contatori di `chi-siamo` dicevano *+50 brani*.
+La verità attuale, da Michele: **la scaletta è fissa, un concerto di circa 25 brani**.
+
+**Le FAQ sono OTTO, non undici.** Il 10/09 sono uscite «Cosa significa il vostro nome»,
+«Quante persone sono troppe» e «C'è qualcos'altro»: *«la numero otto deve sparire da tutto
+il sito, è stupida»*. ⚠️ Ogni FAQ è scritta **due volte** (JSON-LD in cima e markup
+visibile): se ne togli una, ricordati la virgola nel JSON — l'ultima cancellata lascia un
+JSON non valido, ed e' già successo.
+
 **La band non ha forma giuridica.** Mai scrivere «fatturiamo»: nel 2026 solo 3 date su 17
 hanno toccato una fattura. Nell'informativa privacy il titolare è **Michele Frosio persona
 fisica** (GDPR art. 4.7).
@@ -168,6 +179,51 @@ uno dei due porta fuori dalla pagina senza lasciare una richiesta scritta.
 **prove** — subito prima di «Aziende, locali, rifugi». Un numero vale se sta in mezzo alle
 cose che lo reggono; subito sotto il titolo era una promessa in cerca di credito.
 
+## 🎨 LE REGOLE DI STILE FISSATE IL 10/09 (valgono su tutto il sito)
+
+**🚫 Il colore non cambia mentre si scorre.** *«Fai in modo che non cambi il colore durante
+lo scorrimento, che e' terribile.»* Il meccanismo `@property --pg-*` + handler di scroll e'
+stato smontato. I **nomi** delle variabili restano (erano usate in 37 punti): quello che
+cambia è chi le assegna — prima il JavaScript su `:root`, adesso la classe **`.t-panna`**
+sulla singola sezione. Senza classe, una sezione è scura.
+
+**🚫 Niente card storte.** Zero `transform:rotate()`. Nella home non ce n'erano mai state.
+I raggi di casa: **12px** le card e i bottoni, **16px** i riquadri di foto e video, **50%**
+i ritratti.
+
+**🚫 Bottoni senza ombra e senza stelle**, raggio 12px. *«Non mi piace come i tasti, anche
+quelli del sito.»* Prima: raggio 6px, doppio filetto `inset`, una stellina `★` prima e una
+dopo, e sulla `.nav-cta` un'ombra arancio piena spostata di 3px.
+
+**🖼 I LOGHI DEI CLIENTI VANNO A COLORI, SU FONDO CHIARO.** Sono sette, in `images/loghi/`,
+e sono i file ufficiali arrivati da Michele il 10/09. ⚠️ **Non rimetterli in monocromia**
+(maschera CSS o `brightness(0) invert(1)`): il girasole del Cascinetto e l'oro del Conti
+Thun in silhouette diventano macchie illeggibili. I nomi giusti sono **«Conti Thun»**,
+**«Centro Porsche Brescia»**, **«Pietra Cavalla»** (staccato), **«Il Cascinetto»**.
+🚫 I vecchi `Porsche.svg` e `Lombarda-Ceramica-v2.svg` erano **segnaposto scritti in Arial**:
+non riusarli.
+⚠️ Un `<img>` di un SVG **senza attributi `width`/`height`** dentro un contenitore flex si
+renderizza a **larghezza zero**: mettili sempre.
+
+**📱 Si guarda da telefono.** *«Le ads sono su Instagram, Instagram ci guarda da mobile.»*
+390×844 è la vista di riferimento, non il controllo finale.
+
+## 🧾 IL VINCOLO SERVIZIO → BUDGET (nei tre moduli)
+
+Non è un vezzo, è voluto: *«se mi dici tutto il giorno non puoi selezionare 1.000 euro…
+voglio stanarti: dimmi tutto il giorno, e poi io ti dico che ti costa tre-k»*.
+
+| servizio scelto | budget selezionabili |
+|---|---|
+| Solo live show | tutti e tre |
+| Live show e set acustico | da 1.500 in su |
+| Copertura intera giornata | solo oltre 2.000 |
+
+Le voci escluse si **spengono ma restano in pagina**: se sparissero, sparirebbe il messaggio.
+Se la scelta di prima diventa illegale, si sposta da sola sulla piu' bassa ammessa.
+⚠️ Le chip del servizio hanno la durata dentro un `<em>`: per Formspree si legge
+`childNodes[0]`, non `textContent`, se no arriva *«Solo live showcirca due ore»*.
+
 ## 🔧 Come si verifica il lavoro
 
 - **Playwright non è installato**: si usa **Chrome headless + CDP**, a **1440×900** e **390×844**.
@@ -180,6 +236,15 @@ cose che lo reggono; subito sotto il titolo era una promessa in cerca di credito
   `rgb(205,88,12)` invece di `rgb(205,88,18)` e dava verde su una pastiglia rotta.
 - **Netlify riscrive l'HTML in pubblicazione** (toglie il `.html` dagli indirizzi, cambia gli
   apici): i byte online non coincidono col commit, i link si riverificano sul pubblicato.
+- 🐞 **La cache del browser mente.** Il 10/09 una correzione al CSS risultava «non
+  applicata» per tre giri di verifica: Chrome serviva il foglio vecchio. Aggiungi sempre un
+  `?c=<numero a caso>` all'indirizzo quando verifichi.
+- 🔍 **Se non puoi guardare le schermate, misura.** Tre difetti veri del 10/09 sono usciti da
+  controlli automatici, non dall'occhio: il contrasto reale calcolato sul fondo effettivo
+  (ha trovato i ruoli arancio su panna a 3,07:1 e il WhatsApp panna su panna a 1:1), la
+  larghezza renderizzata delle immagini (due SVG a zero) e `documentElement.scrollWidth`
+  (**tutte e 17 le pagine** scorrevano di lato di 33px da telefono, per una colonna del
+  footer senza `min-width:0`).
 - **La landing è a pagamento**: ogni KB si paga a ogni clic. È passata da 5,46 a 3,40 MB.
 
 ## 📐 Com'è fatto, in due righe
