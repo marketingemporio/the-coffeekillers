@@ -199,6 +199,11 @@ body::after{
 /* ---------- le sezioni ------------------------------------------------------ */
 .v-sez{position:relative;overflow-x:clip;padding:clamp(58px,7vw,96px) 0}
 .v-sez--alta  {padding:clamp(78px,10vw,132px) 0}
+/* ⚠️ Tre sezioni panna di fila (loghi, line-up, gallery) non hanno una linea
+   di confine: si vedono solo i loro margini, che si SOMMANO. A 1440 faceva
+   264px di vuoto in mezzo, e la pagina sembrava rotta. Il distacco lo fa il
+   margine di sotto della sezione precedente, uno solo. */
+.t-panna + .t-panna{padding-top:0}
 .v-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--lato)}
 .v-in--largo{max-width:var(--wrap-largo)}
 
@@ -428,15 +433,27 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   max-width:var(--wrap);margin:0 auto;padding:0 var(--lato);text-align:center;
 }
 @media (max-width:700px){.v-fatti-griglia{grid-template-columns:1fr 1fr;gap:24px 14px}}
+/* ⚠️ La regola qui sopra vince su .v-fatti--tre perche' viene dopo: le tre
+   voci finivano 2 + 1, con l'ultima spaiata sotto a sinistra. Quando sono
+   tre restano tre anche da telefono. */
+@media (max-width:700px){
+  .v-fatti-griglia.v-fatti--tre{grid-template-columns:repeat(3,1fr);gap:0 8px}
+  .v-fatti--tre span{padding:6px 9px 7px;letter-spacing:.03em}
+}
 .v-fatti b{
   display:block;font-family:var(--display);font-weight:400;font-synthesis:none;
   font-variant-numeric:tabular-nums;
   font-size:clamp(40px,6.4vw,68px);line-height:.94;color:var(--panna);
   text-shadow:3px 3px 0 var(--espresso);
 }
+/* ⚠️ 19px FISSI, non un clamp che parte da 15. Sull'arancio il marrone fa
+   3,25:1: passa solo come "testo grande", cioe' da 19px in su e in grassetto.
+   Col clamp da 15px la soglia era rispettata solo sopra i 1187px di finestra,
+   e da 701 a 1187 (tablet e portatili) l'etichetta era fuori norma. Sotto i
+   700 il corpo scende, e li' interviene la pastiglia scura qui sotto. */
 .v-fatti span{
   display:block;margin-top:10px;
-  font-family:var(--btn);font-weight:700;font-size:clamp(15px,1.6vw,19px);
+  font-family:var(--btn);font-weight:700;font-size:19px;
   letter-spacing:.06em;text-transform:uppercase;line-height:1.2;
   color:var(--espresso);
 }
@@ -501,52 +518,16 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 .v-ascolta-clip{border-radius:16px;overflow:hidden;box-shadow:0 26px 50px -18px rgba(30,13,3,.62)}
 .v-vert img{aspect-ratio:9/16}
 .v-vert .inner iframe{aspect-ratio:9/16}
-/* il cerchio da 92px dentro una colonna da 300px mangia mezza immagine */
+/* ⚠️ REGOLE PERSE IN UNA PULIZIA AUTOMATICA (rimesse il 10/09).
+   Il cerchio da 92px dentro una colonna da 330px mangia mezza immagine, e
+   l'ombra spostata di 5px diventa una mezzaluna arancio che sembra un
+   errore di stampa. */
 .v-vert .vb-play{width:74px;height:74px;box-shadow:4px 4px 0 var(--arancio)}
 .v-vert .vb-play svg{width:29px;height:29px;margin-left:4px}
-@media (max-width:860px){
-  .v-ascolta-clip{max-width:330px;margin-inline:auto}
-}
 
+/* ⚠️ ANCHE QUESTA era sparita: senza, la fascia tan non ha margini verticali
+   e il testo tocca i due strappi. */
 .v-arie{padding:clamp(64px,8vw,104px) 0 clamp(70px,9vw,116px)}
-@media (max-width:800px){.v-registri{grid-template-columns:1fr;gap:28px}}
-
-/* ---------- IL PERIMETRO: i nomi come una fila di targhette stampate --------
-   Non sono etichette decorative: sono LA risposta alla domanda che il cliente
-   non fa e che poi diventa una richiesta sbagliata la sera del concerto.
-   Corpo 15px, LT Cushion: roba della band, non scrittine a 10px. */
-.v-artisti{
-  list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
-  gap:10px;margin:clamp(26px,3.4vw,38px) auto 0;max-width:920px;
-}
-.v-artisti li{
-  font-family:var(--btn);font-size:15px;font-weight:700;letter-spacing:.05em;
-  text-transform:uppercase;line-height:1;color:var(--espresso);
-  background:var(--panna);border:2px solid rgba(73,36,10,.55);
-  border-radius:999px;padding:10px 16px 11px;
-  box-shadow:2px 2px 0 rgba(73,36,10,.28);
-}
-/* i due nomi fuori perimetro si vedono che sono un'eccezione: timbrati */
-/* ⚠️ NON su arancio: 15px panna su arancio fa 3,07:1. La pastiglia marrone e'
-   l'unica via d'uscita della palette per una scritta piccola in evidenza
-   (10:1), ed e' anche quella che il brand book usa. */
-.v-artisti li.ecc{background:var(--espresso);color:var(--panna);border-color:var(--espresso)}
-
-.v-piena{position:relative;overflow:hidden;min-height:min(76svh,660px);display:flex;align-items:flex-end;z-index:2}
-.v-piena img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  /* ⚠️ senza questo il ritaglio cade a meta' figura e restano solo le gambe:
-     la fascia e' larga 2,2:1 e la fotografia e' 4:3 */
-  object-position:center 26%;filter:saturate(1.05) contrast(1.03)}
-.v-piena-velo{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(51,23,5,.9) 0%,rgba(51,23,5,.55) 30%,rgba(51,23,5,.06) 68%,rgba(51,23,5,0) 100%);
-}
-.v-piena-testo{position:relative;max-width:var(--wrap);margin:0 auto;padding:0 var(--lato) clamp(40px,5.5vw,66px);width:100%}
-.v-piena-testo p{
-  font-family:var(--display);font-weight:400;font-synthesis:none;text-transform:uppercase;
-  font-size:clamp(24px,3.6vw,42px);line-height:1.1;letter-spacing:.02em;color:var(--panna);
-  max-width:26ch;text-shadow:0 3px 20px rgba(30,13,3,.8);
-}
 
 .v-porta{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,4vw,48px);margin-top:clamp(38px,5vw,60px)}
 @media (max-width:860px){.v-porta{grid-template-columns:1fr;gap:34px}}
@@ -577,41 +558,10 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   padding:clamp(24px,3.6vw,44px);
   box-shadow:0 34px 64px -24px rgba(30,13,3,.7),0 0 0 1px rgba(73,36,10,.2);
 }
-@media (max-width:520px){
-}
 /* LA LEVA: la riga per cui esiste tutta la sezione. Marrone pieno, cosi' e'
 
 .v-marchi{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
   gap:clamp(28px,5vw,66px);margin-top:clamp(34px,4.4vw,50px)}
-@media (max-width:760px){
-}
-
-.v-volti{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,2.2vw,26px);margin-top:clamp(38px,5vw,58px)}
-@media (max-width:940px){.v-volti{grid-template-columns:repeat(3,1fr);gap:26px}}
-@media (max-width:560px){
-  /* i musicisti sono cinque: in due colonne l'ultimo resta spaiato.
-     Invece del buco a destra, si mette in mezzo. */
-  .v-volto:nth-child(5){grid-column:1/-1;max-width:calc(50% - 10px);margin-inline:auto}
-}
-.v-volto{position:relative}
-.v-volto img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
-.v-volto h3{font-size:clamp(19px,2vw,24px);color:var(--pg-fg);margin-top:16px;line-height:1.05}
-/* ⚠️ NON arancio: su panna fa 3,07:1, sotto la soglia per un testo di 15px.
-   E' la legge di contrasto della palette (l'arancio non regge mai un testo
-   piccolo), gia' costata due rifacimenti. Qui va il marrone: 10:1. */
-.v-volto .ruolo{
-  font-family:var(--btn);font-weight:700;font-size:14.5px;letter-spacing:.04em;
-  text-transform:uppercase;color:var(--pg-fg);opacity:.72;margin-top:5px;
-}
-.v-volto .battuta{
-  font-family:"LT Cushion",Georgia,serif;font-style:italic;font-weight:500;
-  font-size:15.5px;line-height:1.45;color:var(--pg-fg);margin-top:10px;
-}
-.v-volto .battuta::before{content:"\201C"}
-.v-volto .battuta::after{content:"\201D"}
-@media (max-width:760px){
-}
-
 .v-passi{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.6vw,48px);margin-top:clamp(40px,5vw,60px)}
 @media (max-width:860px){.v-passi{grid-template-columns:1fr;gap:34px}}
 
@@ -623,9 +573,6 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
    che tolgono i dubbi prima del modulo: se non si vedono, non servono. */
 .v-faq{max-width:880px;margin:clamp(36px,4.6vw,54px) auto 0;display:grid;gap:14px}
 /* il segno sta in una pastiglia tonda: si vede da lontano che si apre */
-@media (max-width:560px){
-}
-
 /* ============================================================================
    14 · IL MODULO — la scheda crema appoggiata sul fondo scuro, con la cornice
    della locandina. Classi .qf-* identiche a preventivo.html: stesse chiavi
@@ -660,6 +607,15 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 .qf-input:focus{border-color:var(--arancio);box-shadow:0 0 0 3px rgba(205,88,18,.18)}
 textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical}
 .qf-chips{display:flex;flex-wrap:wrap;gap:9px}
+/* ⚠️ Da telefono sei pastiglie di larghezza diversa, allineate a sinistra,
+   fanno una scaletta: cinque righe storte, con una riga da due in mezzo per
+   caso. In colonna piena diventano sei voci pari, e il dito le prende tutte.
+   I due gruppi da due voci restano affiancati: ci stanno, e affiancati si
+   leggono come la scelta secca che sono. */
+@media (max-width:560px){
+  .qf-chips{display:grid;grid-template-columns:1fr;gap:10px}
+  #chips-momento,#chips-ambiente{grid-template-columns:1fr 1fr}
+}
 .qf-chips--sotto{margin-top:10px}
 .qf-label--sotto{margin-top:18px}
 .qf-chip--sm{font-size:14px;padding:9px 15px 10px;min-height:40px}
@@ -845,6 +801,10 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   display:flex;gap:clamp(14px,2.2vw,26px);
   overflow-x:auto;overscroll-behavior-x:contain;
   scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+  /* ⚠️ quando il contenuto ci sta tutto (i loghi a 1440) il flex lo incolla a
+     sinistra. "safe" centra se ci sta e torna a sinistra se sborda, cosi' non
+     taglia il primo elemento quando invece si scorre davvero. */
+  justify-content:safe center;
   padding:6px var(--lato) 20px;
   margin-inline:calc(var(--lato) * -1);
   scrollbar-width:none;
@@ -879,18 +839,32 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
    una sotto l'altra. Fai un tentativo con le nostre icone."
    Quindi NON sono a fisarmonica: sono aperte, si leggono scorrendo. */
 .v-info{display:grid;gap:clamp(12px,1.8vw,18px);max-width:860px;margin:clamp(34px,4.4vw,52px) auto 0}
+/* ⚠️ L'ICONA STA IN RIGA COL TITOLO, il testo prende tutta la larghezza.
+   Prima l'icona teneva una colonna da 56px per tutta l'altezza della card:
+   da telefono passava sopra, su una riga sua, e sette card facevano un muro
+   di 2078px. Il div interno diventa trasparente alla griglia (display:contents)
+   cosi' titolo e testo sono due celle e non un blocco solo. */
 .v-info-card{
-  display:grid;grid-template-columns:56px 1fr;gap:0 clamp(14px,2.2vw,22px);align-items:start;
-  background:rgba(38,17,4,.42);border:2px solid var(--pg-fil);border-radius:14px;
-  padding:clamp(18px,2.4vw,24px) clamp(18px,2.6vw,26px);
+  display:grid;grid-template-columns:auto 1fr;column-gap:clamp(12px,1.6vw,16px);
+  align-items:center;
+  background:rgba(30,13,3,.5);border:2px solid var(--pg-fil);border-radius:14px;
+  padding:clamp(17px,2.2vw,22px) clamp(18px,2.6vw,26px) clamp(19px,2.4vw,24px);
 }
-.v-info-card .ico{width:40px;height:auto;color:var(--arancio);margin-top:2px}
-.v-info-card h3{font-size:clamp(19px,2vw,23px);line-height:1.12;color:var(--pg-fg);margin-bottom:9px}
-.v-info-card p{font-family:var(--testo);font-size:16.5px;line-height:1.62;color:#E4CDA9}
+.v-info-card > div{display:contents}
+/* ⚠️ le icone hanno proporzioni molto diverse (il cactus e' alto, il cappello
+   e' largo): con height:auto ogni card aveva la prima riga di un'altezza sua e
+   i titoli partivano a quote diverse. Riquadro fisso, l'icona ci sta dentro. */
+.v-info-card .ico{grid-column:1;grid-row:1;width:36px;height:30px;aspect-ratio:auto;color:var(--arancio)}
+.v-info-card h3{grid-column:2;grid-row:1;font-size:clamp(18px,1.9vw,22px);line-height:1.15;color:var(--pg-fg)}
+.v-info-card p{grid-column:1/-1;grid-row:2;margin-top:11px;
+  font-family:var(--testo);font-size:16.5px;line-height:1.6;color:#E7D2B0}
 .v-info-card p b{color:var(--pg-fg);font-weight:700}
-@media (max-width:560px){
-  .v-info-card{grid-template-columns:1fr}
-  .v-info-card .ico{margin-bottom:12px}
+/* ⚠️ A 1440 le sette card restavano una colonna da 860px dentro un contenitore
+   da 1180: due fasce vuote ai lati e 1578px da scorrere. Da 900 in su vanno a
+   due, e l'ultima (dispari) prende tutta la riga invece di lasciare un buco. */
+@media (min-width:900px){
+  .v-info{grid-template-columns:1fr 1fr;max-width:none;gap:clamp(14px,1.6vw,18px)}
+  .v-info-card:last-child{grid-column:1/-1}
 }
 
 /* ---------- IL CLIP VERTICALE, DRITTO E SENZA CORNICE ---------------------- */
@@ -899,19 +873,68 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   border-radius:16px;overflow:hidden;
   box-shadow:0 28px 54px -20px rgba(30,13,3,.66);
 }
-
-/* ---------- I RITRATTI: tondi, come nell'home page ------------------------- */
-.v-volti-scorri .v-volto{width:min(70vw,208px);text-align:center}
-.v-volti-scorri .v-volto .tondo{
-  width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;
-  background:var(--tan);box-shadow:0 0 0 3px var(--panna),0 18px 34px -18px rgba(30,13,3,.5);
+/* ⚠️ A 1440 un clip 9/16 largo 330px in mezzo a uno schermo da 1440 lasciava
+   1089px di sezione quasi tutta marrone vuoto. Resta "un titolo e un video,
+   nient'altro" (10/09): cambia solo che si guardano uno di fianco all'altro,
+   che e' anche l'unica composizione non incolonnata della pagina. */
+@media (min-width:960px){
+  /* le colonne prendono la larghezza del loro contenuto e la coppia si centra:
+     con "1fr" il titolo restava a sinistra e il video a destra, con mezzo
+     schermo di marrone in mezzo. */
+  .v-ascolta .v-in{
+    display:grid;grid-template-columns:auto minmax(280px,330px);
+    justify-content:center;gap:clamp(44px,5vw,84px);align-items:center;
+  }
+  .v-ascolta .v-h{text-align:left;max-width:11ch;margin:0}
+  .v-ascolta .v-clip{margin:0;width:100%}
 }
-.v-volti-scorri .v-volto img{width:100%;height:100%;object-fit:cover;display:block}
-.v-volti-scorri .v-volto h3{margin-top:18px}
+
+/* ---------- LE SCHEDE DELLA LINE-UP: quadrate e incorniciate ---------------
+   ⚠️ Michele, 10/09: "le schede della line-up erano giuste quelle prime
+   quadrate, con le foto di prima." I tondini erano una mia idea presa
+   dall'home page: qui il registro e' la locandina, e le stampe si appendono
+   dritte dentro una cornice, non si ritagliano a cerchio. */
+.cornice{
+  background:var(--panna);padding:11px 11px 13px;border-radius:3px;
+  box-shadow:0 26px 46px -18px rgba(30,13,3,.6), 0 0 0 1px rgba(73,36,10,.18);
+}
+.cornice img{width:100%;height:auto;object-fit:cover;display:block}
+.v-volti{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,2.2vw,26px);margin-top:clamp(38px,5vw,58px)}
+@media (max-width:940px){.v-volti{grid-template-columns:repeat(3,1fr);gap:26px}}
+@media (max-width:560px){
+  .v-volti{grid-template-columns:1fr 1fr;gap:20px}
+  /* i musicisti sono cinque: in due colonne l'ultimo resta spaiato.
+     Invece del buco a destra, si mette in mezzo. */
+  .v-volto:nth-child(5){grid-column:1/-1;max-width:calc(50% - 10px);margin-inline:auto}
+}
+.v-volto{position:relative}
+.v-volto .cornice{padding:9px 9px 11px}
+.v-volto img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
+.v-volto h3{font-size:clamp(19px,2vw,24px);color:var(--pg-fg);margin-top:16px;line-height:1.05}
+.v-volto .ruolo{
+  /* ⚠️ non arancio: su panna fa 3,07:1, sotto la soglia per un testo di 15px */
+  font-family:var(--btn);font-weight:700;font-size:14.5px;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--pg-fg);opacity:.68;margin-top:5px;
+}
+.v-volto .battuta{
+  font-family:"LT Cushion",Georgia,serif;font-style:italic;font-weight:500;
+  font-size:15.5px;line-height:1.45;color:var(--pg-fg);margin-top:10px;
+}
+.v-volto .battuta::before{content:"\201C"}
+.v-volto .battuta::after{content:"\201D"}
 
 /* ---------- LA GALLERY, anche lei a scorrimento ---------------------------- */
+/* ⚠️ Da 900 in su lo scorrimento orizzontale non serve: le sei foto ci
+   stanno tutte in due righe, e uno scorrimento da 1221px col mouse e' un
+   invito a non guardarle. Da telefono resta lo scorrimento, che li' e' il
+   gesto giusto. */
 .v-gall img{height:min(46vw,300px);width:auto;border-radius:12px;display:block;
   box-shadow:0 16px 30px -16px rgba(30,13,3,.5)}
+@media (min-width:900px){
+  .v-gall{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,22px);
+    overflow:visible;margin-inline:0;padding:0}
+  .v-gall img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+}
 
 /* ---------- COMPARSA ALLO SCORRIMENTO --------------------------------------- */
 .js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
@@ -1092,7 +1115,7 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
      sponsorizzata di Instagram, ne guardi uno".
      ⚠️ Dritto e senza cornice: "tutte queste card storte non le vogliamo".
      ============================================================================ -->
-<section class="v-sez v-sez--alta tex">
+<section class="v-sez v-sez--alta tex v-ascolta">
   <span class="ico i-stella marchio" aria-hidden="true" style="left:-4%;bottom:8%;width:min(200px,17vw)"></span>
   <div class="v-in">
     <h2 class="v-h v-h--centro rv">Ascoltaci <span class="acc">live.</span></h2>
@@ -1128,19 +1151,15 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   <span class="ico i-cappello marchio" aria-hidden="true" style="right:-2%;top:8%;width:min(300px,26vw)"></span>
   <div class="v-in">
     <h2 class="v-h v-h--centro rv" style="max-width:14ch">Cosa <span class="acc">facciamo?</span></h2>
-    <p class="v-lead v-lead--centro rv">Ballad davanti a un cocktail o party song sui tavoli: la
-      colonna sonora la costruiamo sulla tua serata. Cover dei giganti di Nashville e qualche
-      inedito, con le armonie vocali e gli strumenti a corda del <b>country neo-tradizionale</b>.</p>
-    <ul class="v-artisti rv">
-      <li>Zach Top</li>
-      <li>Chris Stapleton</li>
-      <li>Brad Paisley</li>
-      <li>The Zac Brown Band</li>
-      <li>The Kruse Brothers</li>
-      <li>Blake Shelton</li>
-      <li class="ecc">John Denver</li>
-      <li class="ecc">Dolly Parton</li>
-    </ul>
+    <p class="v-lead v-lead--centro rv">Che tu voglia ascoltare un buon concerto, rilassarti con
+      ballad romantiche davanti a un cocktail o scatenarti sui tavoli con le party song pi&ugrave;
+      ritmate, la colonna sonora della tua serata la costruiamo su misura.</p>
+    <p class="v-lead v-lead--centro rv">Tra inediti e cover dei giganti di Nashville &mdash;
+      <b>Zach Top</b>, <b>Chris Stapleton</b>, <b>Brad Paisley</b>, <b>The Zac Brown Band</b>,
+      <b>The Kruse Brothers</b>, <b>Blake Shelton</b> &mdash; portiamo in scena l&rsquo;autentico
+      spirito americano: sonorit&agrave; rustiche, solide basi ritmiche, intrecci di strumenti a
+      corda e ricche armonie vocali. Il tutto condito dall&rsquo;inconfondibile carattere
+      coffee-killer.</p>
   </div>
 </section>
 
@@ -1290,64 +1309,53 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 </section>
 
 <!-- ============================================================================
-     7 · I COFFEEKILLERS — la line-up, a scorrimento e con le foto tonde.
+     7 · I COFFEEKILLERS — la line-up, in griglia e incorniciata.
      ⚠️ Michele, 10/09: "chi ti risponde la sera suona → scriviamo «i
-     Coffeekillers»", "queste card mi piacciono, sono piu' belle tonde",
-     "centrare un po' di piu' le foto", "non farei tutto in verticale: mettiamo
-     un carosello da scorrere".
-     Le stesse foto vanno messe anche in home, dove oggi sono diverse.
-     Sotto, la fotografia grande che prima stava molto piu' su: "quella foto
-     la spostiamo sotto, dove c'e' la line-up".
+     Coffeekillers»". E il giorno stesso, dopo aver visto i tondini: "le schede
+     della line-up erano giuste quelle prime quadrate, con le foto di prima".
+     Quindi niente cerchi e niente carosello qui: cinque stampe incorniciate in
+     griglia, che e' il registro della locandina.
      ============================================================================ -->
 <section class="v-sez v-sez--alta tex chiaro t-panna">
   <div class="v-in">
     <h2 class="v-h v-h--centro rv">I <span class="acc">CoffeeKillers.</span></h2>
-    <div class="v-scorri v-volti-scorri rv">
-      <div class="v-volto">
-        <div class="tondo"><img src="images/land/mike-ritratto-muro.webp" alt="Michele &ldquo;Mike&rdquo; Frosio con il cappello da cowboy e la chitarra acustica" loading="lazy" style="object-position:center 26%" /></div>
+    <div class="v-volti">
+      <div class="v-volto rv">
+        <figure class="cornice"><img src="images/land/mike-ritratto-muro.webp" alt="Michele &ldquo;Mike&rdquo; Frosio con il cappello da cowboy e la chitarra acustica" loading="lazy" style="object-position:center 22%" /></figure>
         <h3>Mike</h3>
         <p class="ruolo">Chitarre e voce</p>
+        <p class="battuta">Ma l&rsquo;hamburger c&rsquo;&egrave; anche vegetale?</p>
       </div>
-      <div class="v-volto">
-        <div class="tondo"><img src="images/land/miglio-ritratto-muro.webp" alt="Davide &ldquo;Miglio&rdquo; Miglietti con le bacchette in bocca" loading="lazy" style="object-position:center 24%" /></div>
+      <div class="v-volto rv">
+        <figure class="cornice"><img src="images/land/miglio-ritratto-muro.webp" alt="Davide &ldquo;Miglio&rdquo; Miglietti con le bacchette in bocca" loading="lazy" style="object-position:center 18%" /></figure>
         <h3>Miglio</h3>
         <p class="ruolo">Batteria e voci</p>
+        <p class="battuta">Potevamo fare di meglio.</p>
       </div>
-      <div class="v-volto">
-        <div class="tondo"><img src="images/land/larry-ritratto-muro.webp" alt="Lorenzo &ldquo;Larry&rdquo; Marini appoggiato alla sua tastiera rossa" loading="lazy" style="object-position:center 14%" /></div>
+      <div class="v-volto rv">
+        <figure class="cornice"><img src="images/land/larry-ritratto-muro.webp" alt="Lorenzo &ldquo;Larry&rdquo; Marini appoggiato alla sua tastiera rossa" loading="lazy" style="object-position:center 4%" /></figure>
         <h3>Larry</h3>
         <p class="ruolo">Piano e armonica</p>
+        <p class="battuta">Raga questo &egrave; troppo country!</p>
       </div>
-      <div class="v-volto">
-        <div class="tondo"><img src="images/land/richi-ritratto-muro.webp" alt="Riccardo &ldquo;Richi&rdquo; Loda che alza il basso" loading="lazy" style="object-position:center 12%" /></div>
+      <div class="v-volto rv">
+        <figure class="cornice"><img src="images/land/richi-ritratto-muro.webp" alt="Riccardo &ldquo;Richi&rdquo; Loda che alza il basso" loading="lazy" style="object-position:center 2%" /></figure>
         <h3>Richi</h3>
         <p class="ruolo">Basso e contrabbasso</p>
+        <p class="battuta">Birretta?</p>
       </div>
-      <div class="v-volto">
-        <div class="tondo"><img src="images/land/ste-ritratto-muro.webp" alt="Stefano &ldquo;Ste&rdquo; Martinelli con la Telecaster bianca" loading="lazy" style="object-position:center 16%" /></div>
+      <div class="v-volto rv">
+        <figure class="cornice"><img src="images/land/ste-ritratto-muro.webp" alt="Stefano &ldquo;Ste&rdquo; Martinelli con la Telecaster bianca" loading="lazy" style="object-position:center 6%" /></figure>
         <h3>Ste</h3>
         <p class="ruolo">Chitarre e lap steel</p>
+        <p class="battuta">Ti serve &laquo;qualunque cosa&raquo;? Ce l&rsquo;ho.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================================
-     8 · LA FOTOGRAFIA GRANDE — arrivata qui dall'alto della pagina.
-     ⚠️ Michele, 10/09: "quella foto la spostiamo sotto, dove c'e' la line-up".
-     Prima stava fra "cosa facciamo" e il resto, e mostrava i cinque prima di
-     averli presentati.
-     ============================================================================ -->
-<section class="v-piena">
-  <img src="images/land/band-fiume-o4.webp" alt="I cinque Coffeekillers insieme in riva al fiume al tramonto, prima di suonare" loading="lazy" width="1600" height="1200" />
-  <span class="v-piena-velo" aria-hidden="true"></span>
-  <div class="v-piena-testo">
-    <p class="rv">Cinque che si divertono. <span class="acc">E si vede.</span></p>
-  </div>
-</section>
-
-<!-- ============================================================================
-     9 · LA GALLERY — le stesse sei foto del mosaico, ma a scorrimento.
+     8 · LA GALLERY — le stesse sei foto del mosaico, ma a scorrimento.
      ⚠️ "Anche la gallery la metterei a scorrimento": due righe che si
      scorrono, una con la line-up e una con le foto.
      ============================================================================ -->
@@ -1365,7 +1373,7 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 </section>
 
 <!-- ============================================================================
-     10 · IL MODULO
+     9 · IL MODULO
      ⚠️ Revisione del 10/09, punto per punto:
      - "raccontaci la serata → compila il preventivo": country si suona anche
        di giorno, "serata" chiude un'opzione che invece esiste.

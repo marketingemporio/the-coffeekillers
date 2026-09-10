@@ -373,9 +373,12 @@ h1,h2,h3{
 }
 .qf-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px clamp(20px,3vw,32px)}
 .qf-field--full{grid-column:1/-1}
+/* ⚠️ 12px era sotto il minimo di 13px che vale su tutto il sito. La
+   spaziatura scende da .18 a .14em cosi' l'etichetta non diventa piu'
+   larga di prima. */
 .qf-label{
   display:block;
-  font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  font-size:14px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
   color:var(--caffe);margin-bottom:10px;
 }
 .qf-label .opt{
@@ -397,6 +400,14 @@ textarea.qf-input{
 
 /* chips a scelta singola */
 .qf-chips{display:flex;flex-wrap:wrap;gap:8px}
+/* ⚠️ Da telefono sei pastiglie di larghezza diversa allineate a sinistra
+   fanno una scaletta storta (stesso difetto corretto sulla landing il
+   10/09). In colonna piena sono voci pari, e il dito le prende tutte.
+   Il gruppo da due voci resta affiancato: ci sta, ed e' una scelta secca. */
+@media (max-width:560px){
+  .qf-chips{display:grid;grid-template-columns:1fr;gap:10px}
+  #chips-setting{grid-template-columns:1fr 1fr}
+}
 .qf-chip{
   font-family:var(--valley);font-size:17px;letter-spacing:.05em;cursor:pointer;
   color:var(--caffe);background:var(--panna);

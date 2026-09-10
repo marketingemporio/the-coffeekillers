@@ -1,7 +1,7 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-09-07
+> **Ultimo aggiornamento:** 2026-09-11
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
 > Dal **04/09/2026 è online anche la versione inglese** in `en/`, per chi si connette
@@ -23,7 +23,124 @@
 > prova**, per scelta: non ne abbiamo altre.
 > (Cronologia: 20/08 cartella cliente col logo definitivo · 12/08 brand rev.2, video della prima
 > canzone intera, sezione «Il palco», link agli artisti, fix overflow mobile.)
+> L'**11/09 la landing e' stata rimessa in sesto sul piano grafico** (UX e UI): la revisione
+> del 10/09 era stata fatta **senza poter vedere gli screenshot**, e l'impaginazione ne aveva
+> pagato il prezzo. Vedi **«LA GRAFICA DELLA LANDING RIMESSA IN SESTO»**, subito qui sotto.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+---
+
+# 🩹 LA GRAFICA DELLA LANDING RIMESSA IN SESTO (11/09/2026)
+
+Michele: *«la parte grafica di ux e ui è tutta mezza rotta, veramente terribile, su ogni
+viewport. Ora impegnati e riparala.»*
+
+**Il contenuto non è stato toccato**: era stato approvato il giorno prima. Qui si è lavorato
+solo su impaginazione, ritmo verticale e composizione.
+
+## ⚠️ La causa, che è una sola e va ricordata
+
+La revisione del 10/09 è stata fatta **senza poter guardare una schermata**: il canale
+immagini era fuori uso. Le misure automatiche avevano pescato bene i difetti *tecnici*
+(contrasti, sbordamenti, loghi a larghezza zero), ma **l'equilibrio di una pagina non si
+misura, si guarda** — e infatti nessuno dei difetti corretti oggi era emerso da un numero.
+
+> **Regola operativa:** la prima cosa da fare, prima di toccare il CSS, è **catturare un
+> fotogramma e aprirlo**. Se non si riesce, ci si ferma e si chiedono le schermate a Michele.
+> Sulla grafica non si lavora alla cieca.
+
+## 🐞 Il guasto della pulizia automatica
+
+Una pulizia automatica del CSS aveva cancellato **un blocco contiguo**, portandosi via anche
+regole ancora vive:
+
+- **`.v-arie`** — la fascia tan di «Cosa facciamo?» era rimasta **senza margini verticali**:
+  il testo toccava i due strappi. Rimessa: `padding:clamp(64px,8vw,104px) 0 clamp(70px,9vw,116px)`.
+- **`.v-vert .vb-play`** — il tondo del play era tornato a 92px dentro una colonna da 330:
+  mangiava mezza immagine e l'ombra spostata sembrava un errore di stampa. Rimesso a 74px.
+- Il blocco della **line-up era scritto due volte** (stesse regole, due copie) e restavano
+  **quattro `@media` vuoti**. Tolti: −1.412 battute.
+
+**Come si riconosce lo stesso guasto in futuro** (una riga, da lanciare nella cartella del sito):
+
+```bash
+node -e '
+const fs=require("fs"), f=process.argv[1];
+const s=fs.readFileSync(f,"utf8");
+const css=s.slice(s.indexOf("<style"), s.lastIndexOf("</style>"));
+const html=s.replace(css,"");
+const usate=new Set(); for(const m of html.matchAll(/class="([^"]+)"/g)) m[1].split(/\s+/).forEach(c=>c&&usate.add(c));
+const stilate=new Set(); for(const m of css.matchAll(/\.([a-zA-Z][\w-]*)/g)) stilate.add(m[1]);
+console.log("USATE NELL HTML SENZA REGOLA CSS:\n ", [...usate].filter(c=>!stilate.has(c)).sort().join(" "));
+console.log("\nREGOLE CSS PER CLASSI CHE NON ESISTONO PIU:\n ", [...stilate].filter(c=>!usate.has(c)).sort().join(" "));
+' musica-country-dal-vivo.html
+```
+
+La prima lista è quella che conta: **una classe usata in pagina e senza nessuna regola è una
+regola persa**. È così che è saltata fuori `.v-arie`. La seconda lista ha dei falsi positivi
+(`webp`, `svg`, `woff2` finiscono dentro le `url()`), quindi si legge con la testa.
+
+## Cosa è stato riparato, e perché
+
+| difetto | cosa si vedeva | correzione |
+|---|---|---|
+| **doppio stacco fra sezioni chiare** | loghi, line-up e gallery sono tre `.t-panna` di fila: senza una linea di confine si vedevano solo i margini, **che si sommavano** (264px di vuoto a 1440) | `.t-panna + .t-panna{padding-top:0}` — lo stacco lo fa un margine solo |
+| **muro di sette card** | «Informazioni utili» era **una colonna da 860px dentro un contenitore da 1180**, con due fasce vuote ai lati, e 2.078px da scorrere su telefono | due colonne da 900px in su (l'ultima, dispari, prende tutta la riga); icona **in riga col titolo** e testo a tutta larghezza (`display:contents` sul div interno) |
+| **video in un mare di marrone** | a 1440 un clip 9/16 largo 330px al centro di 1440, 1.089px di sezione quasi vuota | titolo e video **affiancati e centrati come coppia** da 960px in su. Resta «un titolo e un video, nient'altro»: cambia solo la composizione |
+| **gallery che scorre di 1.221px** | su desktop sei foto in scorrimento orizzontale col mouse | **griglia 3×2** da 900px in su; su telefono resta lo scorrimento, che lì è il gesto giusto |
+| **carosello loghi incollato a sinistra** | a 1440 i loghi ci stanno tutti ma `justify-content` era `normal` | `justify-content:safe center` — centra se ci sta, torna a sinistra se sborda (così non taglia il primo) |
+| **fascia numeri 2 + 1** | le tre voci finivano due sopra e una spaiata sotto: la media query di `.v-fatti-griglia` vinceva su `.v-fatti--tre` perché veniva dopo | `.v-fatti-griglia.v-fatti--tre` con specificità maggiore: tre restano tre |
+| **pastiglie del modulo a scaletta** | sei chip di larghezza diversa allineate a sinistra: cinque righe storte | da telefono **colonna piena**; i gruppi da due voci restano affiancati |
+
+## 🔍 Un difetto che invece l'occhio non vede (e la misura sì)
+
+Le etichette della fascia numeri erano `clamp(15px,1.6vw,19px)`, marrone su arancio. Sull'arancio
+il marrone fa **3,25:1**: passa solo come «testo grande», cioè **da 19px in su e in grassetto**.
+Col clamp la soglia era rispettata **solo sopra i 1187px di finestra**: da 701 a 1187 — tablet e
+portatili — l'etichetta era fuori norma. Ora è **19px fissi**; sotto i 700px il corpo scende e lì
+interviene la pastiglia scura, che c'era già.
+
+## Le altre pagine
+
+- **`preventivo.html`** e **`en/quote.html`**: stesse pastiglie a scaletta, stessa correzione.
+  E le **etichette del modulo erano a 12px**, sotto il minimo di 13 che vale su tutto il sito:
+  portate a **14px** con la spaziatura da `.18` a `.14em`, così non diventano più larghe di prima.
+- **`index.html`** e **`en/index.html`**: il carosello dei loghi **non ha il difetto**. Lì i
+  loghi sono più grandi e sbordano davvero (scrollWidth 1.380 contro 1.199 a 1440), quindi
+  partire da sinistra è giusto. **Non toccate.**
+
+## Le altezze, prima e dopo
+
+| sezione | 390 prima → dopo | 768 prima → dopo | 1440 prima → dopo |
+|---|---|---|---|
+| Ascoltaci live | 937 → 937 | 946 → 946 | 1089 → **984** |
+| Cosa facciamo (tan) | 449 → **583** | 329 → **463** | 402 → **622** |
+| Informazioni utili | 2078 → **1789** | 1356 → **1366** | 1578 → **1169** |
+| I CoffeeKillers | 1259 → **1181** | 1420 → **947** | 1172 → **617** |
+| gallery | 321 → 263 | 442 → 384 | 518 → 640 (griglia, non più 1.221px di scorrimento) |
+| **totale pagina** | 8645 → **8330** | — → 7088 | 8065 → **7339** |
+
+La fascia tan **cresce apposta**: prima non aveva margini perché aveva perso la sua regola.
+
+## ✅ Come è stata verificata
+
+Chrome headless + CDP a **390×844, 768×1024, 1024 e 1440×900**, con `?c=<numero a caso>`
+nell'indirizzo a ogni giro (la cache di Chrome serve il foglio vecchio) e **fotogrammi per
+scroll**, non screenshot a pagina intera.
+
+- **Schermate guardate a occhio** a tutte e tre le viste, prima e dopo ogni modifica.
+- **Controlli automatici**, tutti verdi sulla landing: nessuno sbordamento laterale
+  (`scrollWidth == clientWidth` a 390/768/1024/1440), **nessun testo sotto i 13px**, nessuna
+  immagine renderizzata a larghezza zero, **nessun contrasto sotto soglia** — calcolato sul
+  fondo effettivo, non su quello dichiarato.
+
+## 🔜 Cosa resta aperto qui
+
+- I **due paragrafi di «Cosa facciamo?» sono centrati e lunghi** (6 e 8 righe da telefono). Il
+  testo è approvato e tutti i lead del sito sono centrati, quindi **non è stato cambiato**: se
+  Michele vuole, si allineano a sinistra: si leggono meglio, ma rompono la simmetria della pagina.
+- Restano aperte le **micro-scritte fuori dalla landing** (nav, footer, `h5`, `.ck`: 11–12,5px)
+  e il banner **«Leggilo in italiano»** di `en/index.html` a 3,25:1 — già elencate più sotto.
 
 ---
 
