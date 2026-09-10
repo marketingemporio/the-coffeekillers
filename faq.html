@@ -411,6 +411,13 @@ h1,h2,h3{
   max-width:var(--wrap);margin:40px auto 0;padding:0 clamp(20px,4vw,48px);
   display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,4vw,56px);
 }
+/* ⚠️ min-width:0 sulle colonne. Senza, un elemento di griglia non scende mai
+   sotto la larghezza del suo contenuto (min-width:auto e' il valore di
+   partenza): da telefono la colonna restava a 403px dentro un footer di 390 e
+   TUTTA la pagina scorreva di lato di 33px. Difetto vecchio, trovato il 10/09
+   misurando lo scrollWidth. */
+.footer-grid > *{min-width:0}
+.footer-grid, .footer-grid *{overflow-wrap:anywhere}
 .footer h5{
   font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.24em;
   text-transform:uppercase;color:var(--azz);margin-bottom:16px;
@@ -550,7 +557,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "name": "Quanto dura una vostra performance?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lo show dura circa due ore: un'ora e 45 di musica, in uno o due set. Vuoi che suoniamo di più? Vedi sopra, alle «eccezioni» 🤓"
+        "text": "Il nostro show dura da un'ora e 45 a due ore e 15: in pratica circa due ore, in uno o due set. Se hai una giornata intera da coprire si aggiunge un set acustico, oppure teniamo l'impianto acceso con la nostra musica nelle ore in cui il palco è vuoto."
       }
     },
     {
@@ -558,7 +565,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "name": "Avete un service a seguito?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sì, siamo noi! 😉 A protezione delle tue tasche, fino a un'audience di 250 persone siamo autonomi; sopra le 250 persone abbiamo il nostro service di fiducia."
+        "text": "Sì, siamo noi! 😉 Montaggio, cablaggio, gestione dei suoni e delle luci: lo facciamo noi. A protezione delle tue tasche, fino a un'audience di 250 persone siamo autonomi; sopra le 250 abbiamo il nostro service di fiducia."
       }
     },
     {
@@ -567,14 +574,6 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Siamo di Brescia, ma anche se sei di Canicattì veniamo a farti ballare. Disponibili per spostamenti nazionali e internazionali. 🕺🏻"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Cosa significa il vostro nome?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La nostra routine nei giorni delle prove è sempre stata: una bella moka di caffè bollente e un bicchierino di amaro, poi tutti a suonare. Letteralmente «Caffè bollente» (Joe in slang americano) & gli ammazzacaffè (the Coffeekillers). ☕️🥃"
       }
     },
     {
@@ -590,15 +589,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "name": "Di quanto spazio avete bisogno?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "5 metri per 3 è il nostro spazio minimo."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quante persone sono troppe per uno show dei Coffeekillers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Finché ce n'è, viva il re."
+        "text": "4 metri per 3 è il nostro spazio minimo."
       }
     },
     {
@@ -606,23 +597,15 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "name": "Avete una scaletta fissa?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lo show è composto da circa 20 brani. Abbiamo un repertorio di circa 50 canzoni che costruiamo sull'esigenza della serata."
+        "text": "Sì, la scaletta è fissa: il nostro show è un concerto di circa 25 brani. Per situazioni particolari, da concordare, siamo disponibili a preparare dei brani su richiesta."
       }
     },
     {
       "@type": "Question",
-      "name": "Avete bisogno di cibo o bevande?",
+      "name": "Avete bisogno di vitto e alloggio?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ci piace suonare a stomaco pieno e gomito alzato, if you know what we mean."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "C'è qualcos'altro che dobbiamo sapere prima di ingaggiarvi?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Siate pronti a entrare nel mondo del Country americano. 🤠"
+        "text": "Il vitto lo consideriamo dentro al preventivo: un pasto per la band, prima o dopo l'evento. Per l'alloggio dipende dalla distanza e dalla logistica, se ne parla insieme. Se poi avanza qualche birra, ben volentieri. 🍺"
       }
     }
   ]
@@ -708,43 +691,31 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
         </details>
         <details class="qa">
           <summary><span class="qa-num">02</span><span class="qa-q">Quanto dura una vostra performance?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Lo show dura circa due ore: un'ora e 45 di musica, in uno o due set. Vuoi che suoniamo di più? Vedi sopra, alle «eccezioni» 🤓</p>
+          <p class="qa-a">Il nostro show dura da un'ora e 45 a due ore e 15: in pratica circa due ore, in uno o due set. Se hai una giornata intera da coprire si aggiunge un set acustico, oppure teniamo l'impianto acceso con la nostra musica nelle ore in cui il palco è vuoto.</p>
         </details>
         <details class="qa">
           <summary><span class="qa-num">03</span><span class="qa-q">Avete un service a seguito?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Sì, siamo noi! 😉 A protezione delle tue tasche, fino a un'audience di 250 persone siamo autonomi; sopra le 250 persone abbiamo il nostro service di fiducia.</p>
+          <p class="qa-a">Sì, siamo noi! 😉 Montaggio, cablaggio, gestione dei suoni e delle luci: lo facciamo noi. A protezione delle tue tasche, fino a un'audience di 250 persone siamo autonomi; sopra le 250 abbiamo il nostro service di fiducia.</p>
         </details>
         <details class="qa">
           <summary><span class="qa-num">04</span><span class="qa-q">Di dove siete? Fino a dove vi spostate?</span><span class="qa-ind" aria-hidden="true"></span></summary>
           <p class="qa-a">Siamo di Brescia, ma anche se sei di Canicattì veniamo a farti ballare. Disponibili per spostamenti nazionali e internazionali. 🕺🏻</p>
         </details>
         <details class="qa">
-          <summary><span class="qa-num">05</span><span class="qa-q">Cosa significa il vostro nome?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">La nostra routine nei giorni delle prove è sempre stata: una bella moka di caffè bollente e un bicchierino di amaro, poi tutti a suonare. Letteralmente «Caffè bollente» (Joe in slang americano) &amp; gli ammazzacaffè (the Coffeekillers). ☕️🥃</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">06</span><span class="qa-q">Uscite anche in altre formazioni?</span><span class="qa-ind" aria-hidden="true"></span></summary>
+          <summary><span class="qa-num">05</span><span class="qa-q">Uscite anche in altre formazioni?</span><span class="qa-ind" aria-hidden="true"></span></summary>
           <p class="qa-a">Prediligiamo uscire in cinque, la nostra unica vera formazione da show. In casi eccezionali usciamo anche con formazioni ridotte.</p>
         </details>
         <details class="qa">
-          <summary><span class="qa-num">07</span><span class="qa-q">Di quanto spazio avete bisogno?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">5 metri per 3 è il nostro spazio minimo.</p>
+          <summary><span class="qa-num">06</span><span class="qa-q">Di quanto spazio avete bisogno?</span><span class="qa-ind" aria-hidden="true"></span></summary>
+          <p class="qa-a">4 metri per 3 è il nostro spazio minimo.</p>
         </details>
         <details class="qa">
-          <summary><span class="qa-num">08</span><span class="qa-q">Quante persone sono troppe per uno show dei Coffeekillers?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Finché ce n'è, viva il re.</p>
+          <summary><span class="qa-num">07</span><span class="qa-q">Avete una scaletta fissa?</span><span class="qa-ind" aria-hidden="true"></span></summary>
+          <p class="qa-a">Sì, la scaletta è fissa: il nostro show è un concerto di circa 25 brani. Per situazioni particolari, da concordare, siamo disponibili a preparare dei brani su richiesta.</p>
         </details>
         <details class="qa">
-          <summary><span class="qa-num">09</span><span class="qa-q">Avete una scaletta fissa?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Lo show è composto da circa 20 brani. Abbiamo un repertorio di circa 50 canzoni che costruiamo sull'esigenza della serata.</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">10</span><span class="qa-q">Avete bisogno di cibo o bevande?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Ci piace suonare a stomaco pieno e gomito alzato, if you know what we mean.</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">11</span><span class="qa-q">C'è qualcos'altro che dobbiamo sapere prima di ingaggiarvi?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Siate pronti a entrare nel mondo del Country americano. 🤠</p>
+          <summary><span class="qa-num">08</span><span class="qa-q">Avete bisogno di vitto e alloggio?</span><span class="qa-ind" aria-hidden="true"></span></summary>
+          <p class="qa-a">Il vitto lo consideriamo dentro al preventivo: un pasto per la band, prima o dopo l'evento. Per l'alloggio dipende dalla distanza e dalla logistica, se ne parla insieme. Se poi avanza qualche birra, ben volentieri. 🍺</p>
         </details>
       </div>
     </div>

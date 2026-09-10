@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Chi siamo — Hot Joe &amp; The Coffeekillers, band country di Brescia</title>
-<meta name="description" content="La storia di Hot Joe & The Coffeekillers: 5 musicisti, oltre 200 live, un suono country ispirato a Zac Brown Band, Luke Combs, Chris Stapleton e Zach Top. Band country live di Brescia." />
+<meta name="description" content="La storia di Hot Joe & The Coffeekillers: 5 musicisti, oltre 200 live, un suono country ispirato a Zac Brown Band, Brad Paisley, Chris Stapleton e Zach Top. Band country live di Brescia." />
 <link rel="canonical" href="https://thecoffeekillers.com/chi-siamo.html" />
 <link rel="alternate" hreflang="it" href="https://thecoffeekillers.com/chi-siamo.html" />
 <link rel="alternate" hreflang="en" href="https://thecoffeekillers.com/en/about.html" />
@@ -15,7 +15,7 @@
 <meta property="og:locale:alternate" content="en_US" />
 <meta property="og:url" content="https://thecoffeekillers.com/chi-siamo.html" />
 <meta property="og:title" content="Chi siamo — Hot Joe &amp; The Coffeekillers, band country di Brescia" />
-<meta property="og:description" content="La storia di Hot Joe & The Coffeekillers: 5 musicisti, oltre 200 live, un suono country ispirato a Zac Brown Band, Luke Combs, Chris Stapleton e Zach Top. Band country live di Brescia." />
+<meta property="og:description" content="La storia di Hot Joe & The Coffeekillers: 5 musicisti, oltre 200 live, un suono country ispirato a Zac Brown Band, Brad Paisley, Chris Stapleton e Zach Top. Band country live di Brescia." />
 <!-- ⚠️ jpg e non webp: Facebook e WhatsApp gestiscono male il webp nelle anteprime -->
 <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -507,6 +507,13 @@ h1,h2,h3{
   max-width:var(--wrap);margin:40px auto 0;padding:0 clamp(20px,4vw,48px);
   display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,4vw,56px);
 }
+/* ⚠️ min-width:0 sulle colonne. Senza, un elemento di griglia non scende mai
+   sotto la larghezza del suo contenuto (min-width:auto e' il valore di
+   partenza): da telefono la colonna restava a 403px dentro un footer di 390 e
+   TUTTA la pagina scorreva di lato di 33px. Difetto vecchio, trovato il 10/09
+   misurando lo scrollWidth. */
+.footer-grid > *{min-width:0}
+.footer-grid, .footer-grid *{overflow-wrap:anywhere}
 .footer h5{
   font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.24em;
   text-transform:uppercase;color:var(--azz);margin-bottom:16px;
@@ -608,7 +615,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
     "genre": "Country",
     "url": "https://thecoffeekillers.com",
     "foundingLocation": { "@type": "Place", "name": "Brescia", "addressCountry": "IT" },
-    "description": "Band country live di Brescia con oltre 200 live all'attivo. Repertorio di 50 brani country tra cover di Zac Brown Band, Luke Combs, Chris Stapleton, Brad Paisley, Carrie Underwood.",
+    "description": "Band country live di Brescia con oltre 200 live all'attivo. Concerto di circa 25 brani country tra cover di Zac Brown Band, Chris Stapleton, Brad Paisley e Zach Top.",
     "member": [
       { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Michele Frosio" }, "roleName": "Guitars & Lead Voice" },
       { "@type": "OrganizationRole", "member": { "@type": "Person", "name": "Davide Miglietti" }, "roleName": "Drums & Vocals" },
@@ -703,7 +710,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
     <div class="hero-stats stagger">
       <div class="stat"><div class="num" data-count="7">7</div><div class="lbl">Anni di palco</div></div>
       <div class="stat"><div class="num" data-count="200" data-prefix="+">+200</div><div class="lbl">Live all'attivo</div></div>
-      <div class="stat"><div class="num" data-count="50" data-prefix="+">+50</div><div class="lbl">Brani in repertorio</div></div>
+      <div class="stat"><div class="num" data-count="25">25</div><div class="lbl">Brani a concerto</div></div>
       <div class="stat"><div class="num" data-count="8">8</div><div class="lbl">Province nel 2026</div></div>
     </div>
   </div>

@@ -411,6 +411,13 @@ h1,h2,h3{
   max-width:var(--wrap);margin:40px auto 0;padding:0 clamp(20px,4vw,48px);
   display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,4vw,56px);
 }
+/* ⚠️ min-width:0 sulle colonne. Senza, un elemento di griglia non scende mai
+   sotto la larghezza del suo contenuto (min-width:auto e' il valore di
+   partenza): da telefono la colonna restava a 403px dentro un footer di 390 e
+   TUTTA la pagina scorreva di lato di 33px. Difetto vecchio, trovato il 10/09
+   misurando lo scrollWidth. */
+.footer-grid > *{min-width:0}
+.footer-grid, .footer-grid *{overflow-wrap:anywhere}
 .footer h5{
   font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.24em;
   text-transform:uppercase;color:var(--azz);margin-bottom:16px;
@@ -550,7 +557,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "name": "How long do you play for?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The show runs about two hours: an hour and 45 of music, in one or two sets. Want us to play longer? See above, under &laquo;exceptions&raquo; 🤓"
+        "text": "Our show runs from an hour and 45 to two hours and 15: about two hours, in one or two sets. Got a whole day to cover? We add an acoustic set, or we keep the PA playing our own music while the stage is empty."
       }
     },
     {
@@ -558,7 +565,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "name": "Do you bring your own PA and lights?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes &mdash; and it is us running it! 😉 To keep your wallet safe, we are self-sufficient up to an audience of 250; above 250 we bring in the sound company we trust."
+        "text": "Yes — and it is us running it! 😉 Rigging, cabling, sound and lights: we do all of it. To keep your wallet safe, we are self-sufficient up to an audience of 250; above 250 we bring in the sound company we trust."
       }
     },
     {
@@ -567,14 +574,6 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "We are from Brescia, in northern Italy, but we will come and make you dance wherever you are. Available for travel across Italy and abroad. 🕺🏻"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does your name mean?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Our routine on rehearsal days has always been the same: a good moka pot of scalding coffee and a small glass of amaro, then everybody plays. Literally &laquo;hot Joe&raquo; (American slang for coffee) & the coffee killers &mdash; which is what Italians call the shot of liqueur that kills the taste of the coffee (the Coffeekillers). ☕️🥃"
       }
     },
     {
@@ -590,15 +589,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "name": "How much space do you need?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "5 by 3 metres is our minimum."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How many people are too many for a Coffeekillers show?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The more the merrier."
+        "text": "4 by 3 metres is our minimum."
       }
     },
     {
@@ -606,23 +597,15 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "name": "Do you play a fixed set list?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The show is about 20 songs long. We have a repertoire of around 50, and we build the set on what the night needs."
+        "text": "Yes, the set list is fixed: our show is a concert of about 25 songs. For special occasions, agreed in advance, we are happy to prepare songs on request."
       }
     },
     {
       "@type": "Question",
-      "name": "Do you need food and drinks?",
+      "name": "Do you need board and lodging?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We like to play on a full stomach and with an elbow raised, if you know what we mean."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is there anything else we should know before booking you?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Be ready to step right into the world of American country music. 🤠"
+        "text": "A meal for the band, before or after the event, is part of the quote. Lodging depends on the distance and the logistics, and we work it out together. And if a beer is left over, gladly. 🍺"
       }
     }
   ]
@@ -708,43 +691,31 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
         </details>
         <details class="qa">
           <summary><span class="qa-num">02</span><span class="qa-q">How long do you play for?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">The show runs about two hours: an hour and 45 of music, in one or two sets. Want us to play longer? See above, under &laquo;exceptions&raquo; 🤓</p>
+          <p class="qa-a">Our show runs from an hour and 45 to two hours and 15: about two hours, in one or two sets. Got a whole day to cover? We add an acoustic set, or we keep the PA playing our own music while the stage is empty.</p>
         </details>
         <details class="qa">
           <summary><span class="qa-num">03</span><span class="qa-q">Do you bring your own PA and lights?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Yes &mdash; and it is us running it! 😉 To keep your wallet safe, we are self-sufficient up to an audience of 250; above 250 we bring in the sound company we trust.</p>
+          <p class="qa-a">Yes — and it is us running it! 😉 Rigging, cabling, sound and lights: we do all of it. To keep your wallet safe, we are self-sufficient up to an audience of 250; above 250 we bring in the sound company we trust.</p>
         </details>
         <details class="qa">
           <summary><span class="qa-num">04</span><span class="qa-q">Where are you from? How far do you travel?</span><span class="qa-ind" aria-hidden="true"></span></summary>
           <p class="qa-a">We are from Brescia, in northern Italy, but we will come and make you dance wherever you are. Available for travel across Italy and abroad. 🕺🏻</p>
         </details>
         <details class="qa">
-          <summary><span class="qa-num">05</span><span class="qa-q">What does your name mean?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Our routine on rehearsal days has always been the same: a good moka pot of scalding coffee and a small glass of amaro, then everybody plays. Literally &laquo;hot Joe&raquo; (American slang for coffee) &amp; the coffee killers &mdash; which is what Italians call the shot of liqueur that kills the taste of the coffee (the Coffeekillers). ☕️🥃</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">06</span><span class="qa-q">Do you play in smaller line-ups?</span><span class="qa-ind" aria-hidden="true"></span></summary>
+          <summary><span class="qa-num">05</span><span class="qa-q">Do you play in smaller line-ups?</span><span class="qa-ind" aria-hidden="true"></span></summary>
           <p class="qa-a">We would rather play as a five-piece, our only real show line-up. In exceptional cases we play in a reduced line-up too.</p>
         </details>
         <details class="qa">
-          <summary><span class="qa-num">07</span><span class="qa-q">How much space do you need?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">5 by 3 metres is our minimum.</p>
+          <summary><span class="qa-num">06</span><span class="qa-q">How much space do you need?</span><span class="qa-ind" aria-hidden="true"></span></summary>
+          <p class="qa-a">4 by 3 metres is our minimum.</p>
         </details>
         <details class="qa">
-          <summary><span class="qa-num">08</span><span class="qa-q">How many people are too many for a Coffeekillers show?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">The more the merrier.</p>
+          <summary><span class="qa-num">07</span><span class="qa-q">Do you play a fixed set list?</span><span class="qa-ind" aria-hidden="true"></span></summary>
+          <p class="qa-a">Yes, the set list is fixed: our show is a concert of about 25 songs. For special occasions, agreed in advance, we are happy to prepare songs on request.</p>
         </details>
         <details class="qa">
-          <summary><span class="qa-num">09</span><span class="qa-q">Do you play a fixed set list?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">The show is about 20 songs long. We have a repertoire of around 50, and we build the set on what the night needs.</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">10</span><span class="qa-q">Do you need food and drinks?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">We like to play on a full stomach and with an elbow raised, if you know what we mean.</p>
-        </details>
-        <details class="qa">
-          <summary><span class="qa-num">11</span><span class="qa-q">Is there anything else we should know before booking you?</span><span class="qa-ind" aria-hidden="true"></span></summary>
-          <p class="qa-a">Be ready to step right into the world of American country music. 🤠</p>
+          <summary><span class="qa-num">08</span><span class="qa-q">Do you need board and lodging?</span><span class="qa-ind" aria-hidden="true"></span></summary>
+          <p class="qa-a">A meal for the band, before or after the event, is part of the quote. Lodging depends on the distance and the logistics, and we work it out together. And if a beer is left over, gladly. 🍺</p>
         </details>
       </div>
     </div>

@@ -599,6 +599,13 @@ h1,h2,h3{
   max-width:var(--wrap);margin:40px auto 0;padding:0 clamp(20px,4vw,48px);
   display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,4vw,56px);
 }
+/* ⚠️ min-width:0 sulle colonne. Senza, un elemento di griglia non scende mai
+   sotto la larghezza del suo contenuto (min-width:auto e' il valore di
+   partenza): da telefono la colonna restava a 403px dentro un footer di 390 e
+   TUTTA la pagina scorreva di lato di 33px. Difetto vecchio, trovato il 10/09
+   misurando lo scrollWidth. */
+.footer-grid > *{min-width:0}
+.footer-grid, .footer-grid *{overflow-wrap:anywhere}
 .footer h5{
   font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.24em;
   text-transform:uppercase;color:var(--azz);margin-bottom:16px;
@@ -1867,6 +1874,64 @@ body::before{
 }
 
 
+
+/* ============================================================================
+   IL MURO DEI MARCHI, RIFATTO IL 10/09
+   ----------------------------------------------------------------------------
+   ⚠️ I loghi veri sono arrivati da Michele il 10/09 e NON possono stare in
+   monocromia crema come prima: l'oro del Conti Thun, il girasole del
+   Cascinetto e lo stemma Porsche in silhouette diventano macchie. Quindi la
+   fascia passa sul CHIARO e i marchi tengono i loro colori.
+   🚫 Fuori i due segnaposto scritti a mano (Porsche.svg era la parola
+   "PORSCHE" in Arial dentro 238 byte) e dentro i due nuovi: Pietra Cavalla e
+   Il Cascinetto. Nomi corretti da lui: "Conti Thun", "Centro Porsche Brescia".
+   ⚠️ A scorrimento e non in griglia: sono sette, e da telefono una griglia li
+   schiaccia.
+   ============================================================================ */
+.brands-sec{background:var(--panna) !important;overflow-x:clip}
+/* ⚠️ overflow-x:clip sulla sezione: il carosello sfonda i margini di proposito
+   (margin-inline:-4vw) per farsi scorrere da bordo a bordo, ma senza il clip
+   quello sfondamento diventa scorrimento orizzontale di TUTTA la pagina. */
+.brands-sec .sec-title{color:var(--espresso) !important}
+.brand-scorri{
+  display:flex;align-items:center;gap:clamp(22px,3.4vw,46px);
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+  padding:14px 4vw 24px;margin-inline:-4vw;scrollbar-width:none;
+}
+.brand-scorri::-webkit-scrollbar{display:none}
+.brand-scorri > *{flex:0 0 auto;scroll-snap-align:center}
+.brand-scorri img{display:block;width:auto;filter:none;opacity:1;max-width:none;max-height:none}
+.brand-scorri img[src$="coca-cola.svg"]              {height:42px}
+.brand-scorri img[src$="ca-del-bosco.svg"]           {height:56px}
+.brand-scorri img[src$="conti-thun.webp"]            {height:60px}
+.brand-scorri img[src$="centro-porsche-brescia.webp"]{height:66px}
+.brand-scorri img[src$="lombarda-ceramiche.webp"]    {height:42px}
+.brand-scorri img[src$="pietra-cavalla.webp"]        {height:54px}
+.brand-scorri img[src$="il-cascinetto.webp"]         {height:58px}
+.brand-altri{
+  font-family:var(--btn);font-weight:900;font-size:15px;letter-spacing:.1em;
+  text-transform:uppercase;color:#6B4426;white-space:nowrap;
+}
+@media (max-width:700px){
+  .brand-scorri img{height:44px !important}
+  .brand-scorri img[src$="centro-porsche-brescia.webp"]{height:52px !important}
+  .brand-scorri img[src$="conti-thun.webp"]{height:48px !important}
+}
+
+/* ---------- I BOTTONI, RIVISTI IL 10/09 -----------------------------------
+   ⚠️ Michele: "non mi piace come i tasti, anche quelli del sito. Senza ombra
+   dietro, senza stelle, e un po' piu' tondi."
+   Prima: raggio 6px, doppio filetto inset, una stellina prima e una dopo, e
+   sulla .nav-cta un'ombra piena arancio spostata di 3px. */
+.btn-poster::before,.cta-btn::before,
+.btn-poster::after, .cta-btn::after{content:none !important}
+.btn-poster,.cta-btn,.btn-dark,.btn-ghost-az,.nav-cta{
+  border-radius:12px !important;
+  box-shadow:none !important;
+}
+.nav-cta:hover{transform:none !important;box-shadow:none !important}
+
 /* --- FOOTER PIU' BASSO (01/09) -----------------------------------------
    Misurato: 932px su una finestra da 900, cioe' piu' di uno schermo pieno.
    Il grosso lo faceva il camaleonte (235px da solo) piu' il payoff a corpo
@@ -1924,7 +1989,7 @@ body::before{
     "url": "https://thecoffeekillers.com",
     "logo": "https://thecoffeekillers.com/images/logo/hjck-logo-positivo.svg",
     "image": "https://thecoffeekillers.com/images/og-image.jpg",
-    "description": "Live country band from Brescia, Italy. Pubs, village feasts and fairs, festivals, corporate events and weddings. A 50+ song set with a Nashville mood and an Italian heart.",
+    "description": "Live country band from Brescia, Italy. Pubs, village feasts and fairs, festivals, corporate events and weddings. A 25-song show with a Nashville mood and an Italian heart.",
     "genre": ["Country", "Country Rock", "Americana"],
     "foundingLocation": {
       "@type": "Place",
@@ -2118,7 +2183,7 @@ body::before{
       <div class="ctx-card">
         <span class="ico i-chitarra c-rug" aria-hidden="true"></span>
         <h3>Pubs &amp; venues</h3>
-        <p>Two sets, even in a small room: 5 &times; 3 m and a power socket are enough for us.
+        <p>Two sets, even in a small room: 4 &times; 3 m and a power socket are enough for us.
           The volume is set on the room, so people at the bar can still order a drink and talk.</p>
       </div>
       <div class="ctx-card">
@@ -2291,12 +2356,15 @@ body::before{
 <section class="section brands-sec sporco" id="brands">
   <div class="wrap">
     <h2 class="sec-title rv">We&rsquo;ve made them <span class="brands-accent">dance</span>.</h2>
-    <div class="brand-grid stagger">
-      <div class="brand-cell"><img class="brand-logo" src="../images/Coca-Cola.svg" alt="Coca-Cola" loading="lazy" /></div>
-      <div class="brand-cell"><img class="brand-logo" src="../images/Ca-del-Bosco.svg" alt="Ca' del Bosco" loading="lazy" /></div>
-      <div class="brand-cell"><img class="brand-logo" src="../images/Porsche.svg" alt="Porsche" loading="lazy" /></div>
-      <div class="brand-cell"><img class="brand-logo" src="../images/Logo-Thun.svg" alt="Thun" loading="lazy" /></div>
-      <div class="brand-cell"><img class="brand-logo" src="../images/Lombarda-Ceramica-v2.svg" alt="Lombarda Ceramica" loading="lazy" /></div>
+    <div class="brand-scorri stagger">
+      <img src="../images/loghi/coca-cola.svg" alt="Coca-Cola" loading="lazy" width="615" height="193" />
+      <img src="../images/loghi/ca-del-bosco.svg" alt="Ca&rsquo; del Bosco" loading="lazy" width="116" height="53" />
+      <img src="../images/loghi/conti-thun.webp" alt="Conti Thun" loading="lazy" width="228" height="132" />
+      <img src="../images/loghi/centro-porsche-brescia.webp" alt="Centro Porsche Brescia" loading="lazy" width="183" height="132" />
+      <img src="../images/loghi/lombarda-ceramiche.webp" alt="Lombarda Ceramiche" loading="lazy" width="448" height="132" />
+      <img src="../images/loghi/pietra-cavalla.webp" alt="Pietra Cavalla" loading="lazy" width="287" height="132" />
+      <img src="../images/loghi/il-cascinetto.webp" alt="Il Cascinetto" loading="lazy" width="245" height="132" />
+      <span class="brand-altri">e tanti altri</span>
     </div>
   </div>
 </section>

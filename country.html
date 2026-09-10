@@ -488,6 +488,13 @@ h1,h2,h3{
   max-width:var(--wrap);margin:40px auto 0;padding:0 clamp(20px,4vw,48px);
   display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,4vw,56px);
 }
+/* ⚠️ min-width:0 sulle colonne. Senza, un elemento di griglia non scende mai
+   sotto la larghezza del suo contenuto (min-width:auto e' il valore di
+   partenza): da telefono la colonna restava a 403px dentro un footer di 390 e
+   TUTTA la pagina scorreva di lato di 33px. Difetto vecchio, trovato il 10/09
+   misurando lo scrollWidth. */
+.footer-grid > *{min-width:0}
+.footer-grid, .footer-grid *{overflow-wrap:anywhere}
 .footer h5{
   font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.24em;
   text-transform:uppercase;color:var(--azz);margin-bottom:16px;
@@ -776,7 +783,7 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
         <span class="era-y">Oggi</span>
         <div>
           <h3>La nuova stagione</h3>
-          <p>Da una parte il mainstream di Nashville, dall'altra Zach Top, Zac Brown Band, Chris Stapleton e Luke Combs. È qui che viviamo noi.</p>
+          <p>Da una parte il mainstream di Nashville, dall'altra Zach Top, Zac Brown Band, Chris Stapleton e Brad Paisley. È qui che viviamo noi.</p>
         </div>
       </div>
     </div>

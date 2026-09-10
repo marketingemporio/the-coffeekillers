@@ -516,6 +516,13 @@ textarea.qf-input{
   max-width:var(--wrap);margin:40px auto 0;padding:0 clamp(20px,4vw,48px);
   display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,4vw,56px);
 }
+/* ⚠️ min-width:0 sulle colonne. Senza, un elemento di griglia non scende mai
+   sotto la larghezza del suo contenuto (min-width:auto e' il valore di
+   partenza): da telefono la colonna restava a 403px dentro un footer di 390 e
+   TUTTA la pagina scorreva di lato di 33px. Difetto vecchio, trovato il 10/09
+   misurando lo scrollWidth. */
+.footer-grid > *{min-width:0}
+.footer-grid, .footer-grid *{overflow-wrap:anywhere}
 .footer h5{
   font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.24em;
   text-transform:uppercase;color:var(--azz);margin-bottom:16px;
@@ -623,6 +630,22 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
   color:inherit;font:inherit;line-height:1;padding:6px 9px;cursor:pointer;
 }
 .lang-bar button:hover{background:rgba(237,218,189,.14)}
+
+/* ---------- IL MODULO, REVISIONE DEL 10/09 --------------------------------
+   Le tre voci del servizio portano la durata scritta sotto, e il budget si
+   restringe in base a quello che hai scelto. Michele: "se mi dici tutto il
+   giorno non puoi selezionare 1.000 euro... voglio stanarti". */
+.qf-chips--grandi{gap:11px}
+.qf-chips--grandi .qf-chip{
+  display:flex;flex-direction:column;align-items:flex-start;gap:5px;
+  text-align:left;padding:13px 20px 14px;line-height:1.15;
+}
+.qf-chips--grandi .qf-chip em{
+  font-family:var(--sans,inherit);font-style:normal;font-weight:600;font-size:13.5px;
+  letter-spacing:0;text-transform:none;opacity:.72;
+}
+.qf-chip.off{opacity:.34;cursor:not-allowed;text-decoration:line-through;text-decoration-thickness:1.5px}
+.qf-spiega{font-size:14.5px;line-height:1.5;color:#6B4426;margin:-2px 0 12px;max-width:62ch}
 </style>
 </head>
 <body>
@@ -728,13 +751,14 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
         <div class="qf-field qf-field--full">
           <div class="qf-label" id="lbl-evt">Tipo di evento</div>
           <div class="qf-chips" id="chips-evt" role="group" aria-labelledby="lbl-evt">
-            <button type="button" class="qf-chip on">Locale</button>
-            <button type="button" class="qf-chip">Feste &amp; Sagre</button>
-            <button type="button" class="qf-chip">Festival</button>
-            <button type="button" class="qf-chip">Privato</button>
-            <button type="button" class="qf-chip">Corporate</button>
-            <button type="button" class="qf-chip">Altro</button>
-            <button type="button" class="qf-chip">Matrimonio</button>
+            <!-- ⚠️ Le sei categorie del sito, uguali in home e sulla landing (10/09):
+                 prima erano sette e non combaciavano con nessuna delle altre due liste. -->
+            <button type="button" class="qf-chip on">Locali e pub</button>
+            <button type="button" class="qf-chip">Ranch e maneggi</button>
+            <button type="button" class="qf-chip">Feste e sagre</button>
+            <button type="button" class="qf-chip">Festival e rassegne</button>
+            <button type="button" class="qf-chip">Aziende</button>
+            <button type="button" class="qf-chip">Privati, matrimoni e altro</button>
           </div>
         </div>
 
@@ -748,13 +772,12 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
         </div>
 
         <div class="qf-field">
+          <!-- ⚠️ Due voci, non cinque: al chiuso o all'aperto e' tutto quello che
+               serve sapere per il preventivo (le luci cambiano). -->
           <div class="qf-label" id="lbl-setting">Ambiente</div>
           <div class="qf-chips" id="chips-setting" role="group" aria-labelledby="lbl-setting">
-            <button type="button" class="qf-chip qf-chip--sm">Indoor</button>
-            <button type="button" class="qf-chip qf-chip--sm on">Outdoor</button>
-            <button type="button" class="qf-chip qf-chip--sm">Sala</button>
-            <button type="button" class="qf-chip qf-chip--sm">Cascina</button>
-            <button type="button" class="qf-chip qf-chip--sm">Da definire</button>
+            <button type="button" class="qf-chip qf-chip--sm on">Al chiuso</button>
+            <button type="button" class="qf-chip qf-chip--sm">All&rsquo;aperto</button>
           </div>
         </div>
         <div class="qf-field">
@@ -773,11 +796,11 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
              sappiamo noi (circa due ore). Quello che serve sapere e' se il
              cliente deve coprire una giornata intera. -->
         <div class="qf-field qf-field--full">
-          <div class="qf-label" id="lbl-formato">Che cosa ti serve <span class="opt">nel dubbio lascia «solo il concerto»</span></div>
-          <div class="qf-chips" id="chips-formato" role="group" aria-labelledby="lbl-formato">
-            <button type="button" class="qf-chip qf-chip--sm on">Solo il concerto</button>
-            <button type="button" class="qf-chip qf-chip--sm">Concerto e set acustico</button>
-            <button type="button" class="qf-chip qf-chip--sm">Tutto il giorno</button>
+          <div class="qf-label" id="lbl-formato">Di quale servizio hai bisogno?</div>
+          <div class="qf-chips qf-chips--grandi" id="chips-formato" role="group" aria-labelledby="lbl-formato">
+            <button type="button" class="qf-chip on" data-min="0">Solo live show<em>circa due ore</em></button>
+            <button type="button" class="qf-chip" data-min="1">Live show e set acustico<em>due ore più 30/45 minuti</em></button>
+            <button type="button" class="qf-chip" data-min="2">Copertura intera giornata<em>dettagli da definire insieme</em></button>
           </div>
         </div>
 
@@ -801,11 +824,13 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
           <!-- ⚠️ TRE voci, e la prima parte da mille (07/09): "intorno ai 1000
                (per far capire che comunque meno non c'e'), riesco ad arrivare a
                2000, oltre 2000". Il "fino a 1.000" lasciava credere il contrario. -->
-          <div class="qf-label" id="lbl-budget">Ordine di spesa <span class="opt">non vincolante</span></div>
+          <div class="qf-label" id="lbl-budget">Qual è il tuo budget?</div>
+          <p class="qf-spiega">Non è vincolante: serve a non farti perdere tempo, e da questo
+            cambia il tipo di proposta — show, service audio, service luci, costo della trasferta.</p>
           <div class="qf-chips" id="chips-budget" role="group" aria-labelledby="lbl-budget">
-            <button type="button" class="qf-chip qf-chip--sm on">Intorno ai 1.000 €</button>
-            <button type="button" class="qf-chip qf-chip--sm">Arrivo a 2.000 €</button>
-            <button type="button" class="qf-chip qf-chip--sm">Oltre 2.000 €</button>
+            <button type="button" class="qf-chip on">Intorno ai 1.000 €</button>
+            <button type="button" class="qf-chip">Arrivo a 1.500 €</button>
+            <button type="button" class="qf-chip">Oltre 2.000 €</button>
           </div>
         </div>
 
@@ -939,15 +964,43 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
     var box=document.getElementById(id);
     box.addEventListener("click",function(e){
       var btn=e.target.closest(".qf-chip");
-      if(!btn)return;
+      if(!btn || btn.classList.contains("off"))return;
       box.querySelectorAll(".qf-chip").forEach(function(c){c.classList.remove("on");});
       btn.classList.add("on");
     });
-    return function(){return box.querySelector(".qf-chip.on").textContent;};
+    /* ⚠️ childNodes[0] e non textContent: le chip del servizio hanno la durata
+       dentro un <em>, e senza questo a Formspree arriverebbe attaccata
+       ("Solo live showcirca due ore"). */
+    return function(){
+      var on=box.querySelector(".qf-chip.on");
+      return on ? (on.childNodes[0].textContent || on.textContent).trim() : "";
+    };
   }
   var getEvt=chipGroup("chips-evt");
   var getSetting=chipGroup("chips-setting");
   var getBudget=chipGroup("chips-budget");
+
+  /* --- IL VINCOLO SERVIZIO → BUDGET (10/09) --------------------------------
+     Le voci escluse si SPENGONO ma restano: se sparissero, sparirebbe anche il
+     messaggio, che e' proprio "questo non te lo do a quel prezzo". */
+  (function(){
+    var boxS=document.getElementById("chips-formato"), boxB=document.getElementById("chips-budget");
+    if(!boxS||!boxB) return;
+    var voci=[].slice.call(boxB.querySelectorAll(".qf-chip"));
+    function applica(chip){
+      var min=parseInt(chip.getAttribute("data-min"),10)||0;
+      voci.forEach(function(c,i){ c.classList.toggle("off", i<min); c.setAttribute("aria-disabled", i<min?"true":"false"); });
+      var on=boxB.querySelector(".qf-chip.on");
+      if(!on||on.classList.contains("off")){ voci.forEach(function(c){c.classList.remove("on");}); voci[min].classList.add("on"); }
+    }
+    boxS.addEventListener("click",function(e){ var b=e.target.closest(".qf-chip"); if(b) applica(b); });
+    boxB.addEventListener("click",function(e){
+      var b=e.target.closest(".qf-chip");
+      if(b&&b.classList.contains("off")){ e.stopImmediatePropagation(); e.preventDefault(); }
+    },true);
+    applica(boxS.querySelector(".qf-chip.on"));
+  })();
+
   var getFormato=chipGroup("chips-formato");
 
   // — contapersone a GRADINI (07/09): 50 · 100 · 150 · 200 · 250 · oltre 300 —

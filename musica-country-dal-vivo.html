@@ -11,18 +11,21 @@
 <!-- niente canonical: la pagina e' noindex, un canonical darebbe un segnale contraddittorio -->
 
 <title>Musica country dal vivo per locali, rifugi ed eventi aziendali — The CoffeeKillers</title>
-<meta name="description" content="Country americano dal vivo per locali, rifugi ed eventi: cinque musicisti, brani da ballare e ballad da ascoltare. Circa due ore di show, impianto e luci nostri. Preventivo scritto in 24 ore." />
+<meta name="description" content="Country americano dal vivo per locali, rifugi ed eventi: cinque musicisti, brani da ballare e ballad da ascoltare. Circa due ore di show, impianto e luci nostri. Raccontaci l&rsquo;evento e ti mandiamo una proposta." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Hot Joe &amp; The CoffeeKillers" />
 <meta property="og:locale" content="it_IT" />
 <meta property="og:url" content="https://thecoffeekillers.com/musica-country-dal-vivo.html" />
 <meta property="og:title" content="Porta la musica country al tuo evento" />
-<meta property="og:description" content="Country americano dal vivo: brani da ballare e ballad da ascoltare, scelti sulla serata che hai in mente. Circa due ore di show. Preventivo scritto in 24 ore." />
+<meta property="og:description" content="Country americano dal vivo: brani da ballare e ballad da ascoltare, scelti sull&rsquo;evento che hai in mente. Circa due ore di show." />
 <!-- ⚠️ jpg e non webp: Facebook e WhatsApp gestiscono male il webp nelle anteprime -->
 <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg" />
-<link rel="preload" as="image" href="images/land/terrazza-live.webp" fetchpriority="high" />
+<!-- ⚠️ images/terrazza-live.webp e NON images/land/: sono la stessa identica
+     foto alle stesse misure, ma quella in land/ era stata ricompressa a meta'
+     peso e si vedeva sgranata (Michele, 10/09: "si vede il naso pixelato"). -->
+<link rel="preload" as="image" href="images/terrazza-live.webp" fetchpriority="high" />
 
 <style>
 /* ============================================================================
@@ -92,20 +95,17 @@
 @font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Bold.woff2")   format("woff2"),url("fonts/LTCushion-Bold.ttf")   format("truetype");font-weight:700;font-display:swap}
 @font-face{font-family:"LT Cushion";src:url("fonts/LTCushion-Black.woff2")  format("woff2"),url("fonts/LTCushion-Black.ttf")  format("truetype");font-weight:900;font-display:swap}
 
-/* ---------- il colore di pagina --------------------------------------------
-   In ogni istante la pagina ha UN SOLO colore, che appartiene alla pagina e
-   non alla sezione: niente cuciture. I cambi sono DUE (scuro → panna → scuro).
-   @property NON e' opzionale: senza, il browser non sa che quelle variabili
-   sono colori e la transizione non interpola, il fondo salta di scatto.
-   ⚠️ Le FASCE PIENE (arancio, tan) NON partecipano: sono fogli incollati sopra
-   la pagina, si dipingono da sole e non dichiarano data-pg. Sono corte e hanno
-   il bordo strappato, quindi si leggono come carta appoggiata, non come un
-   cambio di foglio. */
-@property --pg-bg  { syntax:"<color>"; inherits:true; initial-value:#49240A }
-@property --pg-fg  { syntax:"<color>"; inherits:true; initial-value:#EDDABD }
-@property --pg-mut { syntax:"<color>"; inherits:true; initial-value:#D3B892 }
-@property --pg-fil { syntax:"<color>"; inherits:true; initial-value:#7A5130 }
-
+/* ---------- IL TEMA DELLE SEZIONI ------------------------------------------
+   ⚠️ Michele, 10/09: "fai in modo che non cambi il colore durante lo
+   scorrimento, che e' terribile."
+   Prima la pagina aveva UN colore solo che si spostava allo scroll, animato
+   con @property e riscritto da un handler su :root. Adesso non si muove piu':
+   ogni sezione dichiara il suo tema con una classe e resta ferma.
+   I NOMI DELLE VARIABILI restano gli stessi (--pg-bg, --pg-fg, --pg-mut,
+   --pg-fil) apposta: sono usate in 37 punti del foglio, e cambiarli avrebbe
+   voluto dire riscrivere tutto per niente. Quello che cambia e' CHI le
+   assegna: prima il JavaScript su :root, adesso una classe sulla sezione.
+   ⚠️ Senza la classe una sezione e' SCURA: e' il valore di :root. */
 :root{
   /* i SEI colori del brand. Il tan #BD8B65 e' il terzo fondo pieno del brand
      book (pag. 22 lo usa a pagina intera): e' il colore che mancava. */
@@ -115,7 +115,6 @@
   --tan:#BD8B65;
   --azz:#8BAEA4;
   --pg-bg:#49240A; --pg-fg:#EDDABD; --pg-mut:#D3B892; --pg-fil:#7A5130;
-  transition:--pg-bg .6s ease, --pg-fg .6s ease, --pg-mut .6s ease, --pg-fil .6s ease;
 
   --display:"Bonzana",Georgia,serif;
   --testo:"Manrope",system-ui,sans-serif;
@@ -145,7 +144,8 @@
   /* la grana finissima su TUTTA la pagina, come un foglio stampato */
   --grana-foglio:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
 }
-@media (prefers-reduced-motion:reduce){ :root{transition:none} }
+/* il tema chiaro: si mette sulla sezione, non sulla pagina */
+.t-panna{ --pg-bg:#EDDABD; --pg-fg:#49240A; --pg-mut:#6B4426; --pg-fil:#C9B394 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -288,7 +288,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;font-synthesis:none;
   font-size:clamp(24px,3vw,34px);line-height:1.12;letter-spacing:.02em;
   max-width:40ch;margin-top:clamp(44px,6vw,76px);
 }
-.v-tesi--centro{margin-inline:auto;text-align:center}
 
 /* LA PASTIGLIA: l'unica scritta piccola ammessa, e solo DENTRO una
    composizione (appoggiata su una fotografia). Fondo marrone: e' anche l'unico
@@ -301,7 +300,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;font-synthesis:none;
   padding:9px 16px 10px;border-radius:999px;
   box-shadow:0 6px 18px rgba(30,13,3,.45);
 }
-.pastiglia .ico{width:13px;height:14px;color:var(--arancio)}
 
 /* la fila di stelle: separatore da manifesto */
 .stelle{display:flex;align-items:center;gap:10px;color:var(--arancio)}
@@ -309,27 +307,26 @@ h1,h2,h3{font-family:var(--display);font-weight:400;font-synthesis:none;
 .stelle::before,.stelle::after{content:"";flex:1;height:2px;
   background:repeating-linear-gradient(90deg,currentColor 0 7px,transparent 7px 13px);opacity:.5}
 
-
-/* ---------- I BOTTONI: LT Cushion 900, ombra piena spostata ----------------- */
+/* ---------- I BOTTONI ------------------------------------------------------
+   ⚠️ Michele, 10/09: "non mi piace come i tasti, anche quelli del sito. Senza
+   ombra dietro, senza stelle, e un po' piu' tondi."
+   Quindi: niente ombra piena spostata, niente stelline, raggio 12px — lo
+   stesso delle card della home, cosi' le due pagine parlano la stessa lingua.
+   Il bottone resta pieno: e' l'unico invito della pagina. */
 .v-pill{
   display:inline-block;font-family:var(--btn);font-weight:900;
-  font-size:clamp(16px,1.6vw,18px);
-  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  font-size:clamp(15px,1.45vw,16.5px);
+  letter-spacing:.07em;text-transform:uppercase;text-decoration:none;
   background:var(--panna);color:var(--espresso);
-  border:2px solid var(--espresso);border-radius:10px;
-  padding:15px 28px 16px;
-  box-shadow:5px 5px 0 var(--arancio);
-  transition:transform .16s,box-shadow .16s;
+  border:2px solid var(--espresso);border-radius:12px;
+  padding:13px 26px 14px;
+  transition:background .18s,color .18s;
 }
-.v-pill::before{content:"\2605\00a0";color:var(--arancio);font-size:.72em;vertical-align:.08em}
-.v-pill::after {content:"\00a0\2605";color:var(--arancio);font-size:.72em;vertical-align:.08em}
-.v-pill:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--arancio)}
-.v-pill:active{transform:translate(1px,1px);box-shadow:3px 3px 0 var(--arancio)}
+.v-pill:hover{background:var(--arancio);border-color:var(--arancio);color:var(--panna)}
+.v-pill:active{transform:translateY(1px)}
 /* sul panna la pill si inverte, se no sparisce; sull'arancio le stelle
    arancio sparirebbero, quindi diventano marroni */
-[data-pg="panna"] .v-pill{background:var(--espresso);color:var(--panna);border-color:var(--espresso);box-shadow:5px 5px 0 var(--arancio)}
-[data-pg="panna"] .v-pill:hover{box-shadow:7px 7px 0 var(--arancio)}
-[data-pg="panna"] .v-pill::before,[data-pg="panna"] .v-pill::after{color:var(--panna)}
+.t-panna .v-pill{background:var(--espresso);color:var(--panna);border-color:var(--espresso)}
 .f-arancio .v-pill{box-shadow:5px 5px 0 var(--espresso)}
 .f-arancio .v-pill:hover{box-shadow:7px 7px 0 var(--espresso)}
 .f-arancio .v-pill::before,.f-arancio .v-pill::after{color:var(--espresso)}
@@ -354,21 +351,19 @@ h1,h2,h3{font-family:var(--display);font-weight:400;font-synthesis:none;
 .v-wa:hover{opacity:1;border-color:var(--pg-fg)}
 .v-wa svg{width:17px;height:17px;flex:none;opacity:.75}
 .chiaro .v-wa{color:var(--espresso);border-color:rgba(73,36,10,.45)}
+/* 🐞 IL BOTTONE INVISIBILE. .v-wa scrive color:var(--pg-fg), che dentro la
+   sezione del modulo vale #EDDABD — e il pannello "Ricevuto" ha per fondo
+   proprio #EDDABD. Testo panna su panna: contrasto 1:1, e sparisce anche
+   l'icona, che e' fill="currentColor". Si vedeva solo il bordo: il rettangolo
+   vuoto che Michele ha notato il 10/09. Qui il pannello si dichiara chiaro. */
+.qf-success .v-wa{color:var(--espresso);border-color:rgba(73,36,10,.45);opacity:1}
+.qf-success .v-wa:hover{border-color:var(--espresso);background:var(--espresso);color:var(--panna)}
 
 /* ---------- LE FOTOGRAFIE: si incorniciano, non si tingono ------------------
    ⚠️ saturate/contrast e basta. Mai seppia, mai duotone, mai un velo colorato
    sopra: "quel gradiente che seppia tutto rovina". */
 img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.05) contrast(1.03)}
 /* la cornice: una stampa appoggiata, col cartoncino crema e l'ombra marrone */
-.cornice{
-  background:var(--panna);padding:11px 11px 13px;border-radius:3px;
-  box-shadow:0 26px 46px -18px rgba(30,13,3,.6), 0 0 0 1px rgba(73,36,10,.18);
-}
-.cornice img{width:100%;height:auto;object-fit:cover;display:block}
-.cornice figcaption{
-  font-family:"LT Cushion",Georgia,serif;font-weight:700;color:var(--espresso);
-  text-align:center;font-size:16px;line-height:1.3;margin-top:11px;letter-spacing:.03em;
-}
 
 /* ============================================================================
    1 · HERO — la fotografia comanda, il testo si appoggia in basso a sinistra
@@ -425,13 +420,9 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   .v-hero .marchio{display:none}
 }
 
-/* ============================================================================
-   2 · LA FASCIA DEI FATTI — il "billing block" del manifesto.
-   ⚠️ Sull'arancio le etichette sono MARRONI a 19px/700 (3.25:1, sopra la
-   soglia del testo grande) e i numeri sono crema timbrati di marrone. Nessuna
-   scritta piccola sull'arancio: e' la regola che ha gia' fatto danni una volta.
-   ============================================================================ */
 .v-fatti{padding:clamp(26px,3.4vw,40px) 0}
+.v-fatti--tre{grid-template-columns:repeat(3,1fr)}
+@media (max-width:700px){.v-fatti--tre{grid-template-columns:repeat(3,1fr);gap:0 10px}}
 .v-fatti-griglia{
   display:grid;grid-template-columns:repeat(4,1fr);gap:18px clamp(14px,2.4vw,30px);
   max-width:var(--wrap);margin:0 auto;padding:0 var(--lato);text-align:center;
@@ -462,7 +453,6 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
    3 · IL VIDEO — una stampa incorniciata, non un riquadro col bordo
    ============================================================================ */
 .v-video{margin-top:clamp(30px,4vw,48px)}
-.v-video .cornice{padding:13px 13px 15px}
 .v-video-cornice{position:relative;overflow:hidden;border-radius:2px;background:#2e1606}
 .v-video-cornice video{width:100%;aspect-ratio:16/9;object-fit:cover;background:#2e1606;display:block}
 .v-video-cornice .inner{position:relative;line-height:0}
@@ -506,40 +496,20 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   display:grid;grid-template-columns:1fr minmax(276px,344px);
   gap:clamp(30px,5vw,72px);align-items:center;
 }
-.v-ascolta-clip .cornice{padding:12px 12px 14px;transform:rotate(-1.5deg);transition:transform .25s}
-.v-ascolta-clip:hover .cornice{transform:rotate(0)}
+/* ⚠️ niente rotazione: "tutte queste card storte non le vogliamo, nell'home
+   page non ci sono" (10/09). Il clip sta dritto e senza cornice. */
+.v-ascolta-clip{border-radius:16px;overflow:hidden;box-shadow:0 26px 50px -18px rgba(30,13,3,.62)}
 .v-vert img{aspect-ratio:9/16}
 .v-vert .inner iframe{aspect-ratio:9/16}
 /* il cerchio da 92px dentro una colonna da 300px mangia mezza immagine */
 .v-vert .vb-play{width:74px;height:74px;box-shadow:4px 4px 0 var(--arancio)}
 .v-vert .vb-play svg{width:29px;height:29px;margin-left:4px}
 @media (max-width:860px){
-  .v-ascolta-griglia{grid-template-columns:1fr;gap:34px}
   .v-ascolta-clip{max-width:330px;margin-inline:auto}
-  .v-ascolta-testo .v-tesi{margin-top:clamp(26px,4vw,38px)}
 }
 
-/* ============================================================================
-   4 · CHE ARIA VUOI — fascia TAN con due schede crema grandi.
-   Le schede crema sono il modo del brand di mettere del testo su un fondo
-   pieno: il colore non fa mai da fondo diretto a una riga di testo.
-   ============================================================================ */
 .v-arie{padding:clamp(64px,8vw,104px) 0 clamp(70px,9vw,116px)}
-.v-registri{
-  display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,36px);
-  margin-top:clamp(34px,4.4vw,52px);
-}
 @media (max-width:800px){.v-registri{grid-template-columns:1fr;gap:28px}}
-.v-reg{
-  background:var(--panna);color:var(--espresso);border-radius:6px;
-  padding:13px 13px 24px;
-  box-shadow:0 28px 50px -20px rgba(30,13,3,.6),0 0 0 1px rgba(73,36,10,.2);
-}
-.v-reg .foto-box{position:relative;overflow:hidden;border-radius:2px}
-.v-reg img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block}
-.v-reg .pastiglia{position:absolute;left:13px;top:13px;z-index:2}
-.v-reg h3{font-size:clamp(21px,2.5vw,29px);margin:20px 0 9px;padding:0 7px;color:var(--espresso)}
-.v-reg p{font-family:var(--testo);font-size:16px;line-height:1.55;color:#5C3315;padding:0 7px}
 
 /* ---------- IL PERIMETRO: i nomi come una fila di targhette stampate --------
    Non sono etichette decorative: sono LA risposta alla domanda che il cliente
@@ -561,18 +531,7 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
    l'unica via d'uscita della palette per una scritta piccola in evidenza
    (10:1), ed e' anche quella che il brand book usa. */
 .v-artisti li.ecc{background:var(--espresso);color:var(--panna);border-color:var(--espresso)}
-.v-perimetro{
-  font-family:var(--display);font-weight:400;font-synthesis:none;text-transform:uppercase;
-  font-size:clamp(19px,2.2vw,26px);line-height:1.16;letter-spacing:.02em;
-  /* niente gabbia in ch: la frase e' corta e in Bonzana 30ch la spezzava in
-     mezzo alla parola timbrata, che e' l'unica cosa che non si puo' spezzare */
-  text-align:center;max-width:100%;margin:clamp(30px,3.8vw,44px) auto 0;
-}
 
-/* ============================================================================
-   5 · LA FASCIA CHE E' SOLO UNA FOTOGRAFIA
-   Serve a far respirare la pagina con un'immagine invece che con del vuoto.
-   ============================================================================ */
 .v-piena{position:relative;overflow:hidden;min-height:min(76svh,660px);display:flex;align-items:flex-end;z-index:2}
 .v-piena img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   /* ⚠️ senza questo il ritaglio cade a meta' figura e restano solo le gambe:
@@ -589,32 +548,13 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   max-width:26ch;text-shadow:0 3px 20px rgba(30,13,3,.8);
 }
 
-/* ============================================================================
-   6 · COSA TI PORTIAMO — tre cose, con l'icona grande del brand sopra ognuna
-   ============================================================================ */
 .v-porta{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,4vw,48px);margin-top:clamp(38px,5vw,60px)}
 @media (max-width:860px){.v-porta{grid-template-columns:1fr;gap:34px}}
-.v-porta > div{position:relative;padding-top:22px;border-top:3px solid var(--arancio)}
-.v-porta .ico{height:52px;width:auto;color:var(--arancio);margin-bottom:16px}
-.v-porta h3{font-size:clamp(20px,2.2vw,26px);line-height:1.08;color:var(--pg-fg);margin-bottom:11px}
-.v-porta p{font-family:var(--testo);font-size:16px;line-height:1.55;color:var(--pg-mut)}
 
-/* ============================================================================
-   7 · QUANTO SUONIAMO — tre stampe appese, grandi.
-   ⚠️ CONTENUTO: qui NON si danno per scontati orari fissi ne' piu' set.
-   Michele: "magari uno vuole solo un set a pranzo di 2h e quello e'. Lascia
-   piu' apertura e non chiudere cosi' le opzioni."
-   ============================================================================ */
 .v-forme{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3.4vw,44px);margin-top:clamp(40px,5vw,62px)}
 @media (max-width:820px){.v-forme{grid-template-columns:1fr;gap:40px;max-width:460px;margin-inline:auto}}
-.v-forma{position:relative}
-.v-forma .cornice{transform:rotate(-1.3deg);transition:transform .25s}
-.v-forma:nth-child(even) .cornice{transform:rotate(1.1deg)}
-.v-forma:hover .cornice{transform:rotate(0)}
-.v-forma img{aspect-ratio:4/5}
+/* niente rotazione, vedi sopra */
 @media (prefers-reduced-motion:reduce){.v-forma .cornice{transform:none!important}}
-.v-forma h3{font-size:clamp(21px,2.3vw,27px);margin-top:22px;color:var(--pg-fg);line-height:1.08}
-.v-forma p{font-family:var(--testo);font-size:16px;line-height:1.55;color:var(--pg-mut);margin-top:9px}
 
 /* ---------- IL BLOCCO SECONDARIO: si deve VEDERE che viene dopo -------------
    ⚠️ Michele, 07/09: "deve essere MOLTO MOLTO chiaro che e' solo per chi ha
@@ -630,123 +570,38 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   padding:clamp(22px,3vw,34px) clamp(22px,3.4vw,38px) clamp(24px,3.2vw,36px);
   background:rgba(51,23,5,.22);
 }
-.v-oltre h3{font-size:clamp(19px,2vw,24px);line-height:1.12;color:var(--pg-fg);margin-bottom:13px}
-.v-oltre p{font-family:var(--testo);font-size:16px;line-height:1.6;color:var(--pg-mut)}
-.v-oltre p + p{margin-top:12px}
-.v-oltre p b{color:var(--pg-fg);font-weight:700}
 
-/* ============================================================================
-   8bis · IL PREVENTIVO — un foglio crema appoggiato sul fondo scuro.
-   Sembra un preventivo stampato perche' e' un preventivo: e' la leva
-   d'acquisto piu' forte della pagina e ha bisogno di stare su carta, non su
-   una fascia di colore. Serve anche al ritmo verticale: fra due sezioni
-   scure una scheda chiara e larga cambia il passo.
-   ============================================================================ */
 .v-conto{
   max-width:900px;margin:clamp(36px,4.6vw,56px) auto 0;
   background:var(--panna);color:var(--espresso);border-radius:6px;
   padding:clamp(24px,3.6vw,44px);
   box-shadow:0 34px 64px -24px rgba(30,13,3,.7),0 0 0 1px rgba(73,36,10,.2);
 }
-.v-voce{display:grid;grid-template-columns:44px 1fr;gap:0 clamp(16px,2.4vw,26px);align-items:start}
-.v-voce + .v-voce{margin-top:clamp(22px,2.8vw,30px);padding-top:clamp(22px,2.8vw,30px);border-top:2px dashed rgba(73,36,10,.3)}
-.v-voce .ico{width:38px;height:auto;color:var(--arancio);margin-top:3px}
-.v-voce h3{font-size:clamp(20px,2.2vw,26px);line-height:1.08;color:var(--espresso);margin-bottom:8px}
-.v-voce p{font-family:var(--testo);font-size:16px;line-height:1.58;color:#5C3315}
-.v-voce p b{color:var(--espresso);font-weight:800}
 @media (max-width:520px){
-  .v-voce{grid-template-columns:1fr}
-  .v-voce .ico{margin-bottom:12px}
 }
 /* LA LEVA: la riga per cui esiste tutta la sezione. Marrone pieno, cosi' e'
-   l'unica cosa scura dentro il foglio chiaro e la si legge per prima. */
-.v-leva{
-  margin-top:clamp(26px,3.2vw,36px);
-  background:var(--espresso);color:var(--panna);border-radius:8px;
-  padding:clamp(18px,2.6vw,26px) clamp(18px,3vw,30px);
-  font-family:var(--testo);font-size:clamp(16.5px,1.9vw,18.5px);line-height:1.55;
-}
-.v-leva b{font-weight:800;color:#F6E3C6}
-.v-conto-piede{
-  max-width:900px;margin:clamp(26px,3.2vw,36px) auto 0;
-  font-family:var(--testo);font-size:16px;line-height:1.62;color:var(--pg-mut);
-}
-.v-conto-piede b{color:var(--pg-fg);font-weight:700}
 
-/* ============================================================================
-   8 · IL PALCO
-   ============================================================================ */
-.v-video-cap{
-  font-family:"LT Cushion",Georgia,serif;font-weight:700;font-size:17px;line-height:1.4;
-  color:var(--pg-fg);margin-top:18px;text-align:center;max-width:46ch;margin-inline:auto;
-  letter-spacing:.02em;
-}
-
-/* ============================================================================
-   9 · CI HANNO CHIAMATI — il muro dei marchi e le serate vere
-   ---------------------------------------------------------------------------
-   Il muro e' MONOCROMATICO con la maschera CSS (la tecnica delle icone): due
-   loghi su cinque sono bianchi dentro il file e sul panna sparivano, due sono
-   neri e sullo scuro sparivano. Con la maschera il colore lo decide la pagina.
-   Dentro ogni svg il disegno non riempie il riquadro allo stesso modo: senza
-   un'altezza per file uno sembra il doppio dell'altro.
-   ============================================================================ */
 .v-marchi{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
   gap:clamp(28px,5vw,66px);margin-top:clamp(34px,4.4vw,50px)}
-.v-marchio{display:block;background:var(--pg-fg);opacity:.8;
-  -webkit-mask:no-repeat center/contain;mask:no-repeat center/contain}
-.v-marchio.m-coca  {-webkit-mask-image:url("images/Coca-Cola.svg");mask-image:url("images/Coca-Cola.svg");aspect-ratio:615.08/192.94;height:44px}
-.v-marchio.m-cadel {-webkit-mask-image:url("images/Ca-del-Bosco.svg");mask-image:url("images/Ca-del-Bosco.svg");aspect-ratio:116.4/53.4;height:54px}
-.v-marchio.m-porsche{-webkit-mask-image:url("images/Porsche.svg");mask-image:url("images/Porsche.svg");aspect-ratio:300/80;height:36px}
-.v-marchio.m-thun  {-webkit-mask-image:url("images/Logo-Thun.svg");mask-image:url("images/Logo-Thun.svg");aspect-ratio:110.32/30.51;height:32px}
-.v-marchio.m-lomb  {-webkit-mask-image:url("images/Lombarda-Ceramica-v2.svg");mask-image:url("images/Lombarda-Ceramica-v2.svg");aspect-ratio:300/88;height:40px}
-
-.v-casi{margin-top:clamp(44px,5.5vw,68px);border-top:2px dashed var(--pg-fil)}
-.v-caso{
-  /* la terza colonna a larghezza FISSA: con "auto" ogni riga e' una griglia a
-     se' e le date, lunghe in modo diverso, facevano ballare la colonna in
-     mezzo riga per riga */
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr) 210px;
-  gap:5px clamp(16px,3vw,30px);align-items:baseline;
-  padding:clamp(16px,2.2vw,22px) 0;border-bottom:2px dashed var(--pg-fil);
-}
-.v-caso-nome{
-  font-family:var(--display);font-weight:400;font-synthesis:none;text-transform:uppercase;
-  font-size:clamp(19px,2.2vw,25px);line-height:1.08;letter-spacing:.02em;color:var(--pg-fg);
-}
-.v-caso-dove{font-size:15.5px;line-height:1.45;color:var(--pg-mut)}
-.v-caso-quando{
-  font-family:var(--btn);font-weight:700;font-size:15px;letter-spacing:.05em;
-  text-transform:uppercase;color:var(--pg-fg);text-align:right;
-}
-.v-caso--ripetuto .v-caso-quando{
-  color:var(--panna);background:var(--espresso);border-radius:999px;
-  padding:7px 15px 8px;display:inline-block;justify-self:end;
-}
 @media (max-width:760px){
-  .v-caso{grid-template-columns:1fr;gap:6px}
-  .v-caso-quando{text-align:left}
-  .v-caso--ripetuto .v-caso-quando{justify-self:start}
 }
 
-/* ============================================================================
-   10 · I CINQUE — ritratti incorniciati, appesi in fila
-   ============================================================================ */
 .v-volti{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,2.2vw,26px);margin-top:clamp(38px,5vw,58px)}
 @media (max-width:940px){.v-volti{grid-template-columns:repeat(3,1fr);gap:26px}}
 @media (max-width:560px){
-  .v-volti{grid-template-columns:1fr 1fr;gap:20px}
   /* i musicisti sono cinque: in due colonne l'ultimo resta spaiato.
      Invece del buco a destra, si mette in mezzo. */
   .v-volto:nth-child(5){grid-column:1/-1;max-width:calc(50% - 10px);margin-inline:auto}
 }
 .v-volto{position:relative}
-.v-volto .cornice{padding:9px 9px 11px}
 .v-volto img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
 .v-volto h3{font-size:clamp(19px,2vw,24px);color:var(--pg-fg);margin-top:16px;line-height:1.05}
+/* ⚠️ NON arancio: su panna fa 3,07:1, sotto la soglia per un testo di 15px.
+   E' la legge di contrasto della palette (l'arancio non regge mai un testo
+   piccolo), gia' costata due rifacimenti. Qui va il marrone: 10:1. */
 .v-volto .ruolo{
   font-family:var(--btn);font-weight:700;font-size:14.5px;letter-spacing:.04em;
-  text-transform:uppercase;color:var(--arancio);margin-top:5px;
+  text-transform:uppercase;color:var(--pg-fg);opacity:.72;margin-top:5px;
 }
 .v-volto .battuta{
   font-family:"LT Cushion",Georgia,serif;font-style:italic;font-weight:500;
@@ -754,83 +609,21 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 }
 .v-volto .battuta::before{content:"\201C"}
 .v-volto .battuta::after{content:"\201D"}
-
-/* ============================================================================
-   11 · IL MOSAICO — sei fotografie e zero parole. Grandi: piccole stanno male.
-   ============================================================================ */
-.v-mosaico{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  grid-auto-rows:clamp(180px,21vw,290px);
-  gap:clamp(11px,1.5vw,16px);
-}
-.v-mosaico > *{overflow:hidden;border-radius:4px;box-shadow:0 14px 28px -14px rgba(30,13,3,.5)}
-.v-mosaico img{width:100%;height:100%;object-fit:cover;display:block}
-.v-mosaico > *:nth-child(1){grid-column:span 2;grid-row:span 2}
 @media (max-width:760px){
-  .v-mosaico{grid-template-columns:1fr 1fr;grid-auto-rows:clamp(150px,34vw,230px)}
-  .v-mosaico > *:nth-child(1){grid-column:span 2;grid-row:span 1}
 }
 
-/* ============================================================================
-   12 · TRE PASSI — il numero si prende il suo spazio (Bonzana grande),
-   non e' un'etichettina appiccicata sopra il titolo.
-   ============================================================================ */
 .v-passi{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.6vw,48px);margin-top:clamp(40px,5vw,60px)}
 @media (max-width:860px){.v-passi{grid-template-columns:1fr;gap:34px}}
-.v-passo{position:relative;border-top:3px solid var(--arancio);padding-top:20px}
-.v-passo .n{
-  display:block;font-family:var(--display);font-weight:400;font-synthesis:none;
-  font-size:clamp(44px,5.4vw,64px);line-height:.9;color:var(--arancio);
-  text-shadow:3px 3px 0 var(--pg-bg);margin-bottom:14px;
-}
-.v-passo h3{font-size:clamp(20px,2.2vw,25px);line-height:1.08;color:var(--pg-fg);margin-bottom:10px}
-.v-passo p{font-family:var(--testo);font-size:16px;line-height:1.55;color:var(--pg-mut)}
-.v-passo p b{color:var(--pg-fg);font-weight:700}
 
-/* ============================================================================
-   13 · LE DOMANDE — colonna singola con l'alone dietro il titolo.
-   Niente sopra, niente sotto: e' il blocco indicato come modello.
-   ============================================================================ */
 .v-sez--faq{position:relative;isolation:isolate}
-.v-alone{
-  position:absolute;left:50%;top:clamp(40px,8vw,90px);transform:translateX(-50%);
-  width:min(820px,124vw);height:min(440px,62vw);z-index:0;pointer-events:none;
-  background:radial-gradient(ellipse at center,rgba(205,88,18,.22),rgba(205,88,18,0) 68%);
-}
 /* ⚠️ Michele, 07/09: "le FAQ sono un po' piccole come stile, si vedono poco,
    devono essere piu' chiare." Cambiato: domanda da 17,5 a 21px, risposta da
    15,5 a 17px, riquadro piu' scuro e bordo arancio quando e' aperta, il "+"
    dentro un cerchio pieno invece che appoggiato al bordo. Sono le risposte
    che tolgono i dubbi prima del modulo: se non si vedono, non servono. */
 .v-faq{max-width:880px;margin:clamp(36px,4.6vw,54px) auto 0;display:grid;gap:14px}
-.v-q{
-  border:2px solid var(--pg-fil);border-radius:12px;overflow:hidden;
-  background:rgba(38,17,4,.45);transition:border-color .2s,background .2s;
-}
-.v-q:hover{border-color:rgba(205,88,18,.6)}
-.v-q[open]{border-color:var(--arancio);background:rgba(38,17,4,.62)}
-.v-q summary{
-  cursor:pointer;list-style:none;padding:22px 74px 22px 26px;position:relative;
-  font-family:var(--btn);font-weight:700;font-size:clamp(19px,2vw,21px);line-height:1.3;
-  color:var(--pg-fg);letter-spacing:.01em;
-}
-.v-q summary::-webkit-details-marker{display:none}
 /* il segno sta in una pastiglia tonda: si vede da lontano che si apre */
-.v-q summary::after{
-  content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);
-  width:38px;height:38px;border-radius:50%;
-  background:var(--arancio);color:var(--panna);
-  font-family:var(--btn);font-weight:900;font-size:25px;line-height:38px;text-align:center;
-}
-.v-q[open] summary::after{content:"\2013"}
-.v-q[open] summary{padding-bottom:10px}
-.v-q p{font-size:17px;line-height:1.66;color:#E4CDA9;padding:0 26px 24px}
-.v-q p + p{padding-top:12px}
-.v-q p b{color:var(--pg-fg);font-weight:700}
 @media (max-width:560px){
-  .v-q summary{padding:19px 62px 19px 19px}
-  .v-q summary::after{width:32px;height:32px;font-size:21px;line-height:32px;right:15px}
-  .v-q p{padding:0 19px 21px}
 }
 
 /* ============================================================================
@@ -867,6 +660,32 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 .qf-input:focus{border-color:var(--arancio);box-shadow:0 0 0 3px rgba(205,88,18,.18)}
 textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical}
 .qf-chips{display:flex;flex-wrap:wrap;gap:9px}
+.qf-chips--sotto{margin-top:10px}
+.qf-label--sotto{margin-top:18px}
+.qf-chip--sm{font-size:14px;padding:9px 15px 10px;min-height:40px}
+/* le tre voci del servizio portano la durata scritta sotto: e' li' che il
+   cliente capisce cosa sta comprando, senza doverlo chiedere */
+.qf-chips--grandi{gap:11px}
+.qf-chips--grandi .qf-chip{
+  display:flex;flex-direction:column;align-items:flex-start;gap:5px;
+  text-align:left;padding:13px 20px 14px;line-height:1.15;
+}
+.qf-chips--grandi .qf-chip em{
+  font-family:var(--testo);font-style:normal;font-weight:600;font-size:13.5px;
+  letter-spacing:0;text-transform:none;opacity:.72;
+}
+/* ⚠️ IL VINCOLO: una voce di budget esclusa dal servizio scelto si SPEGNE ma
+   resta li'. Michele, 10/09: "se mi dici tutto il giorno non puoi selezionare
+   1.000 euro... voglio stanarti". Se sparisse, il messaggio sparirebbe con lei. */
+.qf-chip.off{
+  opacity:.34;cursor:not-allowed;text-decoration:line-through;
+  text-decoration-thickness:1.5px;
+}
+.qf-chip.off:hover{border-color:rgba(73,36,10,.28)}
+.qf-spiega{
+  font-family:var(--testo);font-size:14.5px;line-height:1.5;color:#6B4426;
+  margin:-4px 0 12px;max-width:62ch;
+}
 .qf-chip{
   /* 44px di altezza minima: sotto quella soglia, da telefono, si sbaglia a
      premere (e le chip sono la prima cosa che si tocca del modulo) */
@@ -907,9 +726,6 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 .qf-tile:hover{border-color:var(--espresso)}
 .qf-tile.on{border-color:var(--espresso);box-shadow:inset 0 0 0 2px var(--espresso)}
 .qf-tile input{position:absolute;opacity:0;pointer-events:none}
-.qf-tile .tlbl{font-family:var(--btn);font-weight:700;font-size:16px;color:var(--espresso);letter-spacing:.02em}
-.qf-tile .tsub{font-family:"LT Cushion",Georgia,serif;font-weight:500;font-style:italic;font-size:14.5px;color:#6B4426}
-.qf-tile.on .tlbl::after{content:" \2605";color:var(--arancio);font-size:.8em}
 .qf-divider{grid-column:1/-1;height:2px;background:rgba(73,36,10,.18);margin:4px 0}
 /* la fascia d'invio: plinto scuro in fondo alla scheda, col consenso dentro.
    Il bottone crema sul panna spariva. */
@@ -951,13 +767,6 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 .qf-success h3 .acc{color:var(--panna)}
 .qf-success p{color:#5C3315;max-width:50ch;margin:18px auto 26px;font-size:16.5px;line-height:1.6}
 /* i due passi */
-.v-avanz{
-  display:flex;align-items:center;gap:12px;justify-content:center;
-  font-family:var(--btn);font-size:15px;font-weight:700;letter-spacing:.05em;
-  text-transform:uppercase;color:#6B4426;margin-bottom:26px;
-}
-.v-avanz .barra{width:92px;height:5px;border-radius:3px;background:rgba(73,36,10,.2);overflow:hidden}
-.v-avanz .barra span{display:block;height:100%;width:50%;background:var(--arancio);transition:width .3s}
 .v-fase[hidden]{display:none!important}
 .v-avanti{
   display:block;width:100%;margin-top:28px;cursor:pointer;
@@ -989,29 +798,20 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   transform:translateY(115%);transition:transform .28s ease;
   box-shadow:0 -12px 34px rgba(20,9,2,.55);
 }
-.v-sticky::before{
-  content:"";position:absolute;left:0;right:0;top:0;height:6px;
-  background-color:var(--arancio);
-  background-image:
-    repeating-linear-gradient(90deg,transparent 0 16px,rgba(205,88,18,.55) 16px 23px,transparent 23px 40px,rgba(237,218,189,.24) 40px 41.5px,transparent 41.5px 56px);
-}
+/* ⚠️ via il bordino arancio a trattini sopra la barra (10/09: "e' brutto"). */
 .v-sticky.on{transform:translateY(0)}
 .v-sticky-logo{display:none;height:38px;width:auto;margin-right:auto}
 .v-sticky .v-pill{
-  flex:1 1 auto;text-align:center;font-size:14.5px;padding:12px 16px 13px;
-  box-shadow:4px 4px 0 var(--arancio);background:var(--panna);color:var(--espresso);border-color:var(--espresso);
+  flex:1 1 auto;text-align:center;font-size:14.5px;padding:13px 16px 14px;
+  background:var(--panna);color:var(--espresso);border-color:var(--panna);
 }
-.v-sticky .v-pill::before,.v-sticky .v-pill::after{content:none}
-.v-sticky .v-wa{flex:0 0 auto;font-size:13.5px;padding:11px 15px 12px;color:var(--panna);border-color:rgba(237,218,189,.4)}
 /* da telefono la scritta del bottone andava a capo dentro la pastiglia:
    una riga sola, corpo appena piu' stretto */
 @media (max-width:600px){
   .v-sticky .v-pill{font-size:13px;letter-spacing:.03em;padding:12px 12px 13px;white-space:nowrap}
-  .v-sticky .v-wa{font-size:13px;padding:11px 12px 12px}
 }
 @media (min-width:820px){
   .v-sticky{bottom:auto;top:0;justify-content:flex-end;box-shadow:0 12px 34px rgba(20,9,2,.55)}
-  .v-sticky::before{top:auto;bottom:0}
   .v-sticky{transform:translateY(-115%)}
   .v-sticky-logo{display:block}
   .v-sticky .v-pill{flex:0 0 auto}
@@ -1031,6 +831,88 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 .v-foot small{display:block;font-size:14px;color:var(--pg-mut);margin-top:16px;line-height:1.6}
 .v-foot a{color:var(--azz)}
 
+/* ============================================================================
+   I CAROSELLI ORIZZONTALI
+   ----------------------------------------------------------------------------
+   ⚠️ Michele, 10/09: "non farei tutto in verticale, diventano grosse e hai
+   troppi pixel da scorrere. Mettiamo un carosello da scorrere: chi non e'
+   interessato tira dritto."
+   Niente JavaScript: e' scorrimento nativo con l'aggancio. Sfonda i margini
+   del contenitore cosi' da telefono si scorre da bordo a bordo, che e' il
+   gesto che la gente si aspetta.
+   ============================================================================ */
+.v-scorri{
+  display:flex;gap:clamp(14px,2.2vw,26px);
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+  padding:6px var(--lato) 20px;
+  margin-inline:calc(var(--lato) * -1);
+  scrollbar-width:none;
+}
+.v-scorri::-webkit-scrollbar{display:none}
+.v-scorri > *{scroll-snap-align:center;flex:0 0 auto}
+
+/* ---------- IL MURO DEI MARCHI ---------------------------------------------
+   ⚠️ I loghi NON sono piu' maschere monocrome: i file veri arrivati il 10/09
+   hanno colori propri (l'oro del Conti Thun, il girasole del Cascinetto, lo
+   stemma Porsche) e in monocromia diventavano macchie. Quindi stanno sul
+   fondo chiaro e tengono i loro colori.
+   Le altezze sono per-logo, calcolate a parita' di AREA ottica: un marchio
+   largo e basso a parita' di altezza sembra il doppio degli altri. */
+.v-loghi{align-items:center;margin-top:clamp(30px,4vw,48px)}
+.v-loghi img{display:block;width:auto;filter:saturate(1.02)}
+.v-loghi img[src$="coca-cola.svg"]            {height:38px}
+.v-loghi img[src$="ca-del-bosco.svg"]         {height:50px}
+.v-loghi img[src$="conti-thun.webp"]          {height:54px}
+.v-loghi img[src$="centro-porsche-brescia.webp"]{height:60px}
+.v-loghi img[src$="lombarda-ceramiche.webp"]  {height:38px}
+.v-loghi img[src$="pietra-cavalla.webp"]      {height:48px}
+.v-loghi img[src$="il-cascinetto.webp"]       {height:52px}
+.v-altri{
+  font-family:var(--btn);font-weight:700;font-size:15px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--pg-mut);white-space:nowrap;padding-left:6px;
+}
+
+/* ---------- LE INFORMAZIONI UTILI: card in colonna, con l'icona ------------
+   ⚠️ Michele, 10/09: "le FAQ la gente non ci si mette li' a leggerle. Facciamo
+   un blocco informazioni utili per te, con le risposte sotto forma di card
+   una sotto l'altra. Fai un tentativo con le nostre icone."
+   Quindi NON sono a fisarmonica: sono aperte, si leggono scorrendo. */
+.v-info{display:grid;gap:clamp(12px,1.8vw,18px);max-width:860px;margin:clamp(34px,4.4vw,52px) auto 0}
+.v-info-card{
+  display:grid;grid-template-columns:56px 1fr;gap:0 clamp(14px,2.2vw,22px);align-items:start;
+  background:rgba(38,17,4,.42);border:2px solid var(--pg-fil);border-radius:14px;
+  padding:clamp(18px,2.4vw,24px) clamp(18px,2.6vw,26px);
+}
+.v-info-card .ico{width:40px;height:auto;color:var(--arancio);margin-top:2px}
+.v-info-card h3{font-size:clamp(19px,2vw,23px);line-height:1.12;color:var(--pg-fg);margin-bottom:9px}
+.v-info-card p{font-family:var(--testo);font-size:16.5px;line-height:1.62;color:#E4CDA9}
+.v-info-card p b{color:var(--pg-fg);font-weight:700}
+@media (max-width:560px){
+  .v-info-card{grid-template-columns:1fr}
+  .v-info-card .ico{margin-bottom:12px}
+}
+
+/* ---------- IL CLIP VERTICALE, DRITTO E SENZA CORNICE ---------------------- */
+.v-clip{
+  max-width:330px;margin:clamp(28px,4vw,46px) auto 0;
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 28px 54px -20px rgba(30,13,3,.66);
+}
+
+/* ---------- I RITRATTI: tondi, come nell'home page ------------------------- */
+.v-volti-scorri .v-volto{width:min(70vw,208px);text-align:center}
+.v-volti-scorri .v-volto .tondo{
+  width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;
+  background:var(--tan);box-shadow:0 0 0 3px var(--panna),0 18px 34px -18px rgba(30,13,3,.5);
+}
+.v-volti-scorri .v-volto img{width:100%;height:100%;object-fit:cover;display:block}
+.v-volti-scorri .v-volto h3{margin-top:18px}
+
+/* ---------- LA GALLERY, anche lei a scorrimento ---------------------------- */
+.v-gall img{height:min(46vw,300px);width:auto;border-radius:12px;display:block;
+  box-shadow:0 16px 30px -16px rgba(30,13,3,.5)}
+
 /* ---------- COMPARSA ALLO SCORRIMENTO --------------------------------------- */
 .js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
 .js .rv.in{opacity:1;transform:none}
@@ -1049,12 +931,11 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
      "scrittine" che Michele non vuole).
      ============================================================================ -->
 <div class="v-sticky" id="v-sticky">
+  <!-- ⚠️ Michele, 10/09: "lasciamo sotto solo chiedi il preventivo. WhatsApp
+       ci tira dentro un po' di parassiti." Ne resta UNO in tutta la pagina,
+       dentro al pannello "Ricevuto", cioe' dopo che la richiesta e' partita. -->
   <img class="v-sticky-logo" src="images/logo/hjck-logo-negativo.svg" alt="Hot Joe &amp; The CoffeeKillers" />
   <a class="v-pill" href="#richiesta">Chiedi il preventivo</a>
-  <a class="v-wa" href="https://wa.me/393937011409?text=Ciao%2C%20vi%20scrivo%20dal%20sito%3A%20vorrei%20una%20serata%20country." target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.22-8.24 8.22zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
-    <span>WhatsApp</span>
-  </a>
 </div>
 
 <!-- ============================================================================
@@ -1066,8 +947,8 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
      ⚠️ FOTOGRAFIA: terrazza-live. Quella di prima (prato-palco-pubblico) e'
      fuori perche' c'e' Eli, che non e' piu' in formazione.
      ============================================================================ -->
-<header class="v-hero" data-pg="scuro">
-  <img class="v-hero-bg" id="v-hero-foto" src="images/land/terrazza-live.webp"
+<header class="v-hero">
+  <img class="v-hero-bg" id="v-hero-foto" src="images/terrazza-live.webp"
        alt="I Coffeekillers dal vivo sulla terrazza al tramonto, luci di scena accese e le colline sullo sfondo"
        fetchpriority="high" decoding="async" width="1600" height="1067" />
   <span class="v-hero-velo" aria-hidden="true"></span>
@@ -1080,8 +961,11 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 
   <div class="v-hero-in">
     <h1 class="v-h" id="v-titolo">Porta la musica <span class="acc">country</span> al tuo evento.</h1>
-    <p class="v-lead" id="v-sottotitolo">Cinque musicisti, chitarre e armonie vocali. Portiamo il country
-      americano di oggi: brani da ballare e ballad da ascoltare, scelti sulla serata che hai in mente.</p>
+    <!-- ⚠️ Il sottotitolo e' quello dell'home page, IDENTICO (10/09: "prendiamo
+         qualcosa dal nostro sito, teniamo la descrizione dell'home page"). E
+         resta "eventi", non "serate": "non usare serate, solo evento". -->
+    <p class="v-lead" id="v-sottotitolo">Una band bresciana dall&rsquo;anima internazionale,
+      pronta a regalarti eventi country indimenticabili.</p>
     <div class="v-cta-fila">
       <a class="v-pill" href="#richiesta">Chiedi il preventivo</a>
       <!-- ⚠️ QUI WhatsApp non c'e' piu' (07/09): nell'hero l'invito deve essere
@@ -1127,53 +1011,47 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   var VARIANTI = {
     rifugio: {
       titolo: "Country dal vivo al tuo <span class=\"acc\">rifugio.</span>",
-      sotto:  "Cinque musicisti, chitarre e armonie vocali: il country americano di oggi, brani da " +
-              "ballare e ballad da ascoltare. Circa due ore di show. Casse e luci salgono con noi, " +
-              "anche quando la strada &egrave; quella che &egrave;.",
+      sotto:  "Casse e luci salgono con noi, anche quando la strada &egrave; quella che &egrave;. " +
+              "Una band bresciana dall&rsquo;anima internazionale.",
       foto:   "images/land/hero-live-allaperto.webp",
       alt:    "I Coffeekillers dal vivo su un palco all'aperto al tramonto, con le colline sullo sfondo",
-      chip:   "Rifugio o baita"
+      chip:   "Locali e pub"
     },
     azienda: {
       titolo: "La festa di cui parlano <span class=\"acc\">a gennaio.</span>",
-      sotto:  "Circa due ore di country americano dal vivo: si comincia da ascoltare, si finisce in " +
-              "piedi. Il volume segue il momento, cos&igrave; i tuoi continuano a parlarsi. Impianto e " +
-              "luci sono nostri.",
+      sotto:  "Si comincia da ascoltare e si finisce in piedi, col volume che segue il momento. " +
+              "Una band bresciana dall&rsquo;anima internazionale.",
       foto:   "images/palco-villa-gussago.webp",
       alt:    "Il palco dei Coffeekillers allestito nel giardino di una villa, visto dall'alto",
-      chip:   "Festa aziendale"
+      chip:   "Aziende"
     },
     ristorante: {
       titolo: "Country dal vivo nel tuo <span class=\"acc\">locale.</span>",
-      sotto:  "Il country americano di oggi, sul volume della tua sala: ballad mentre si mangia, party " +
-              "song quando la gente si scalda. Arriviamo prima, montiamo noi e a fine serata " +
-              "smontiamo noi: tu chiudi la cassa.",
-      chip:   "Locale o ristorante"
+      sotto:  "Sul volume della tua sala: montiamo noi e smontiamo noi, tu chiudi la cassa. " +
+              "Una band bresciana dall&rsquo;anima internazionale.",
+      chip:   "Locali e pub"
     },
     sagra: {
       titolo: "La serata che la gente <span class=\"acc\">si ricorda.</span>",
-      sotto:  "Circa due ore di country dal vivo, con i brani che la gente riconosce e quelli che la " +
-              "fanno ballare. Impianto e luci sono nostri: fino a 250 persone siamo autonomi, sopra " +
-              "chiamiamo il nostro service.",
+      sotto:  "Impianto e luci sono nostri: fino a 250 persone siamo autonomi. Una band " +
+              "bresciana dall&rsquo;anima internazionale.",
       foto:   "images/land/band-fiume-o4.webp",
       alt:    "I cinque Coffeekillers insieme all'aperto al tramonto, in riva al fiume, prima di suonare",
-      chip:   "Festa o sagra"
+      chip:   "Feste e sagre"
     },
     matrimonio: {
       titolo: "Non la solita band <span class=\"acc\">da matrimonio.</span>",
-      sotto:  "Ballad sotto il pergolato, party song dopo cena, o solo una delle due: la forma della " +
-              "serata la decidete voi. Il brano del vostro ingresso lo prepariamo noi &mdash; fino a tre " +
-              "richieste, concordate entro tre mesi dalla data.",
-      chip:   "Matrimonio"
+      sotto:  "Ballad sotto il pergolato, party song dopo cena, o solo una delle due. Il brano del " +
+              "vostro ingresso lo prepariamo noi.",
+      chip:   "Privati, matrimoni e altro"
     },
     festival: {
       titolo: "Al soundcheck non perdi <span class=\"acc\">la serata.</span>",
-      sotto:  "Country americano neotradizionale, dal vivo e con cinque strumenti veri. Stage plan e " +
-              "input list arrivano al service in anticipo, saliamo con gli in-ear e i cambi sono " +
-              "rapidi. Se il palco &egrave; tuo usiamo il tuo impianto.",
+      sotto:  "Stage plan e input list arrivano al service in anticipo, e i cambi sono rapidi. " +
+              "Una band bresciana dall&rsquo;anima internazionale.",
       foto:   "images/land/hero-targa-band.webp",
       alt:    "L'insegna di legno dipinta a mano dei Coffeekillers davanti al palco allestito su un prato",
-      chip:   "Festival"
+      chip:   "Festival e rassegne"
     }
   };
 
@@ -1205,119 +1083,262 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 </script>
 
 <!-- ============================================================================
-     3 · ASCOLTA — la prova migliore, e subito.
-     ⚠️ Michele, 07/09: "come video sostituisci il presente con questo short:
-     piu' breve, piu' immediato". E' "Jolene" di Dolly Parton, un minuto,
-     ripreso alla Locanda Obante di Recoaro Terme (27/08/2026).
-     Doppio guadagno: e' anche la PROVA di una delle due eccezioni che il
-     perimetro del repertorio dichiara nella sezione qui sotto. Prima la
-     sentono, poi gliela spieghiamo.
-     ⚠️ E' uno SHORT, quindi 9/16: sta in colonna col testo di fianco, non a
-     tutta larghezza (verticale a tutta larghezza = due schermi di altezza).
-     ⚠️ La copertina e' ritagliata dal fotogramma di YouTube: 406x720, e' il
-     massimo disponibile. Lo short non si scarica in 1080 (403 di YouTube).
+     2 · ASCOLTACI LIVE — un titolo e un video. Nient'altro.
+     ⚠️ Michele, 10/09: "«prima di tutto ascolta» e' troppo imperativo, non ha
+     senso. E non farei una spiegazione di quel video li'."
+     Quindi via il paragrafo e via la frase di chiusura ("un minuto e sai se
+     siamo noi": "frase marchettara"). Restano il titolo e il clip.
+     ⚠️ UN video solo, non una fila di short: "one shot one kill — vieni da una
+     sponsorizzata di Instagram, ne guardi uno".
+     ⚠️ Dritto e senza cornice: "tutte queste card storte non le vogliamo".
      ============================================================================ -->
-<section class="v-sez v-sez--alta tex" data-pg="scuro">
-  <span class="ico i-stella marchio" aria-hidden="true" style="left:-4%;bottom:6%;width:min(220px,19vw)"></span>
-  <div class="v-in v-in--largo">
-    <div class="v-ascolta-griglia">
-      <div class="v-ascolta-testo">
-        <h2 class="v-h rv">Prima di tutto, <span class="acc">ascolta.</span></h2>
-        <p class="v-lead rv">Un minuto dal vivo, ripreso da chi era davanti al palco.
-          &Egrave; <b>Jolene</b> di Dolly Parton, alla Locanda Obante di Recoaro Terme: cinque strumenti
-          veri, tre voci e nessuna base.</p>
-        <p class="v-tesi rv">Un minuto, e sai <span class="acc">se siamo noi.</span></p>
-      </div>
+<section class="v-sez v-sez--alta tex">
+  <span class="ico i-stella marchio" aria-hidden="true" style="left:-4%;bottom:8%;width:min(200px,17vw)"></span>
+  <div class="v-in">
+    <h2 class="v-h v-h--centro rv">Ascoltaci <span class="acc">live.</span></h2>
 
-      <div class="v-ascolta-clip rv">
-        <figure class="cornice">
-          <div class="v-video-cornice v-vert">
-            <div class="inner" id="vb-inner" data-yt="AHycDL7d2oU">
-              <img src="images/land/video-jolene-cover.webp" alt="Mike con il cappello country canta Jolene con la chitarra acustica, di sera, la band alle sue spalle sotto le luci di scena" loading="lazy" width="406" height="720" />
-              <button class="vb-play" type="button" aria-label="Riproduci il video: Jolene (Dolly Parton) dal vivo">
-                <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
-              </button>
-              <span class="vcap"><span class="ico i-stella" aria-hidden="true"></span>Jolene &middot; Dolly Parton</span>
-            </div>
-          </div>
-        </figure>
+    <div class="v-clip rv">
+      <div class="v-video-cornice v-vert">
+        <div class="inner" id="vb-inner" data-yt="AHycDL7d2oU">
+          <img src="images/land/video-jolene-cover.webp" alt="Mike con il cappello country canta Jolene con la chitarra acustica, di sera, la band alle sue spalle sotto le luci di scena" loading="lazy" width="406" height="720" />
+          <button class="vb-play" type="button" aria-label="Riproduci il video: Jolene (Dolly Parton) dal vivo">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+          <span class="vcap"><span class="ico i-stella" aria-hidden="true"></span>Jolene &middot; Dolly Parton</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================================
-     4 · CHE COUNTRY TI ARRIVA — la sezione che mancava, e il buco piu' grosso
-     della pagina.
-     ⚠️ Michele, 07/09: "gli imprenditori pensano: ah viene il country e quindi
-     tutti si vestono col cappello e ballano la tarantella. E' importante
-     fargli capire che cosa portiamo noi. Cita anche gli artisti di
-     riferimento, in modo che non ci vengano a chiedere Johnny Cash."
-     ⚠️ LA REGOLA DEL PERIMETRO, dettata da lui: "non dire la parola NON,
-     basta che il perimetro sia in generale dagli anni 90 in poi con qualche
-     accezione tipo john denver, dolly parton". Quindi qui non c'e' nessuna
-     frase in negativo, nessun nome scartato: c'e' un recinto, detto in
-     positivo, e chi resta fuori resta fuori da se'.
-     ⚠️ I nomi sono VERI e verificati in scaletta (Repertorio e Scalette 2026):
-     Country Roads di John Denver e Jolene di Dolly Parton ci sono davvero.
-     Luke Combs e' fuori: il suo unico brano e' in cassetto dal 06/09.
-     ⚠️ Niente numeri di repertorio ("oltre 100 brani"): Michele, 07/09,
-     "solo gli artisti, senza numeri".
-     Questa fascia si tiene anche "Che aria vuoi": e' la stessa domanda del
-     cliente, e stavano in due sezioni diverse a dire mezza cosa per uno.
-     Fondo TAN, terzo fondo pieno del brand. Marrone su tan fa 4,6:1: il testo
-     ci sta direttamente, le SCHEDE restano crema perche' contengono foto.
+     3 · COSA FACCIAMO? — il titolo e' quello dell'home page.
+     ⚠️ Michele, 10/09: "il blocco «che country ti arriva» lo chiamerei come nel
+     sito: «cosa facciamo». Mettiamo un riassunto del blocco che abbiamo sul
+     sito, con gli artisti gia' citati, solo un po' piu' corto."
+     Il paragrafo dell'home e' di 676 battute: da telefono e' un muro. Qui ne
+     resta un terzo, con la stessa ossatura.
+     ⚠️ Le pastiglie degli artisti RESTANO ("sono carine, danno dinamica,
+     sembrano tasti") e sono i SEI dell'home page piu' le due eccezioni.
+     ⚠️ Via le due card "Ballad da ascolto" / "Brani da ballare": "ridondanti,
+     con delle specifiche che avremmo gia' scritto li' dentro".
      ============================================================================ -->
 <section class="fascia f-tan tex chiaro v-arie">
   <span class="strappo-su" aria-hidden="true"></span>
-  <span class="ico i-cappello marchio" aria-hidden="true" style="right:-2%;top:6%;width:min(320px,28vw)"></span>
+  <span class="ico i-cappello marchio" aria-hidden="true" style="right:-2%;top:8%;width:min(300px,26vw)"></span>
   <div class="v-in">
-    <h2 class="v-h v-h--centro rv" style="max-width:15ch">Che country <span class="acc">ti arriva.</span></h2>
-    <p class="v-lead v-lead--centro rv">Country americano, neotradizionale e contemporaneo: quello che
-      a Nashville si suona <b>dagli anni Novanta in poi</b>. Con due o tre eccezioni pi&ugrave; vecchie
-      che valgono il viaggio &mdash; <i>Country Roads</i> di John Denver, <i>Jolene</i> di Dolly Parton.</p>
+    <h2 class="v-h v-h--centro rv" style="max-width:14ch">Cosa <span class="acc">facciamo?</span></h2>
+    <p class="v-lead v-lead--centro rv">Ballad davanti a un cocktail o party song sui tavoli: la
+      colonna sonora la costruiamo sulla tua serata. Cover dei giganti di Nashville e qualche
+      inedito, con le armonie vocali e gli strumenti a corda del <b>country neo-tradizionale</b>.</p>
     <ul class="v-artisti rv">
       <li>Zach Top</li>
       <li>Chris Stapleton</li>
       <li>Brad Paisley</li>
-      <li>Zac Brown Band</li>
-      <li>Blake Shelton</li>
-      <li>Darius Rucker</li>
+      <li>The Zac Brown Band</li>
       <li>The Kruse Brothers</li>
-      <li>Keith Whitley</li>
+      <li>Blake Shelton</li>
       <li class="ecc">John Denver</li>
       <li class="ecc">Dolly Parton</li>
     </ul>
-    <p class="v-perimetro rv">Se qui trovi i tuoi, <span class="acc">siamo noi.</span></p>
-    <p class="v-lead v-lead--centro rv" style="margin-top:clamp(34px,4.4vw,50px)">Dentro quel recinto ci sono
-      due mondi, e li usiamo entrambi: la scelta la fa la serata, non un formato deciso a tavolino.</p>
-    <div class="v-registri">
-      <div class="v-reg rv">
-        <div class="foto-box">
-          <img src="images/land/live-allaperto-pomeriggio.webp" alt="I Coffeekillers dal vivo all&rsquo;aperto al tramonto, luce calda e colline sullo sfondo" loading="lazy" width="1200" height="674" />
-          <span class="pastiglia"><span class="ico i-cappello" aria-hidden="true"></span>Country chic</span>
+  </div>
+</section>
+
+<!-- ============================================================================
+     4 · INFORMAZIONI UTILI PER TE — il blocco che si mangia le FAQ.
+     ⚠️ Michele, 10/09: "le FAQ la gente non ci si mette li' a leggerle. Allora
+     togliamo le FAQ e mettiamo un blocco «informazioni utili per te», e le
+     risposte le mettiamo sotto forma di card una sotto l'altra. Fai un
+     tentativo con le nostre icone."
+     Qui dentro finisce tutto quello che stava sparso: la durata (era un blocco
+     suo), il service (era "quello lo montiamo noi"), lo spazio, la scaletta,
+     vitto e alloggio, la SIAE (era dentro "cosa c'e' nel preventivo").
+     ⚠️ I testi vengono dalle FAQ VERE dell'home page, non da versioni
+     reinventate: "torniamo alle FAQ dell'home page, quelle originali".
+     ⚠️ Lo spazio e' QUATTRO metri per tre, non cinque: corretto anche in home.
+     ⚠️ La scaletta e' FISSA, un concerto di circa 25 brani. Il "repertorio di
+     circa 50 canzoni" non e' piu' vero e va tolto da tutto il sito.
+     ============================================================================ -->
+<section class="v-sez v-sez--alta tex">
+  <span class="ico i-ferri marchio" aria-hidden="true" style="right:-3%;top:5%;width:min(250px,21vw)"></span>
+  <div class="v-in">
+    <h2 class="v-h v-h--centro rv" style="max-width:18ch">Informazioni utili <span class="acc">per te.</span></h2>
+
+    <div class="v-info">
+      <div class="v-info-card rv">
+        <span class="ico i-chitarra" aria-hidden="true" style="width:26px"></span>
+        <div>
+          <h3>Quanto dura lo show</h3>
+          <p>Da <b>un&rsquo;ora e 45 a due ore e 15</b>: in pratica circa due ore, in uno o due
+            set. Se hai una giornata intera da coprire si aggiunge un <b>set acustico</b>,
+            oppure teniamo l&rsquo;impianto acceso con la nostra musica nelle ore in cui il palco
+            &egrave; vuoto.</p>
         </div>
-        <h3>Ballad da ascolto</h3>
-        <p>Volume da tavolo e brani lenti: si mangia, si chiacchiera e la musica non copre nessuno.</p>
       </div>
-      <div class="v-reg rv">
-        <div class="foto-box">
-          <img src="images/land/live-blu-batteria.webp" alt="La batteria in luce blu e viola durante un concerto serale" loading="lazy" width="1200" height="800" />
-          <span class="pastiglia"><span class="ico i-stivale" aria-hidden="true"></span>Party</span>
+
+      <div class="v-info-card rv">
+        <span class="ico i-ferri" aria-hidden="true"></span>
+        <div>
+          <h3>Il service ce l&rsquo;abbiamo, e siamo noi</h3>
+          <p>Montaggio, cablaggio, gestione dei suoni e delle luci: lo facciamo noi.
+            <b>Fino a 250 persone siamo autonomi</b>; sopra, chiamiamo il service di cui ci
+            fidiamo.</p>
         </div>
-        <h3>Brani da ballare</h3>
-        <p>Party song e ritmo: chi vuole ballare balla, agli altri resta il piede che batte.</p>
+      </div>
+
+      <div class="v-info-card rv">
+        <span class="ico i-teschio" aria-hidden="true"></span>
+        <div>
+          <h3>Quanto spazio ci serve</h3>
+          <p><b>Quattro metri per tre</b> e una presa della corrente. Al resto pensiamo noi:
+            arriviamo col furgone qualche ora prima, montiamo, e a fine serata smontiamo.</p>
+        </div>
+      </div>
+
+      <div class="v-info-card rv">
+        <span class="ico i-stivale" aria-hidden="true" style="width:30px"></span>
+        <div>
+          <h3>La scaletta</h3>
+          <p><b>&Egrave; fissa</b>: il nostro show &egrave; un concerto di <b>circa 25 brani</b>.
+            Per situazioni particolari, da concordare, prepariamo brani su richiesta.</p>
+        </div>
+      </div>
+
+      <div class="v-info-card rv">
+        <span class="ico i-cappello" aria-hidden="true"></span>
+        <div>
+          <h3>Vitto e alloggio</h3>
+          <p>Il <b>vitto</b> lo consideriamo dentro al preventivo: un pasto per la band, prima o
+            dopo l&rsquo;evento. Per l&rsquo;<b>alloggio</b> dipende dalla distanza e dalla
+            logistica, se ne parla insieme. Se poi avanza qualche birra, ben volentieri.</p>
+        </div>
+      </div>
+
+      <div class="v-info-card rv">
+        <span class="ico i-cactus" aria-hidden="true" style="width:26px"></span>
+        <div>
+          <h3>Da dove veniamo, e fin dove andiamo</h3>
+          <p>Siamo di Brescia, ma anche se sei di Canicatt&igrave; veniamo a farti ballare. Nel
+            2026 ci hanno chiamati da <b>sette regioni</b>. Il rimborso del viaggio &egrave; una
+            voce a parte del preventivo, scritta prima.</p>
+        </div>
+      </div>
+
+      <div class="v-info-card rv">
+        <span class="ico i-camaleonte" aria-hidden="true" style="width:34px"></span>
+        <div>
+          <h3>SIAE e permessi</h3>
+          <p>Restano in capo a chi organizza l&rsquo;evento, come per qualsiasi evento. Noi ti
+            diamo l&rsquo;elenco dei brani, che &egrave; quello che serve per il border&ograve;.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================================
-     5 · UNA FASCIA CHE E' SOLO UNA FOTOGRAFIA.
-     Serve a far respirare la pagina con un'immagine invece che con del vuoto.
-     ⚠️ Quella di prima (vigna-live-panoramica) e' fuori: c'e' Eli.
+     5 · LA FASCIA DEI FATTI — tre numeri, non quattro.
+     ⚠️ Michele, 10/09: "«cinque sul palco» non e' authority, si puo' togliere.
+     Il fatto che siano tre te li fa mettere sulla stessa riga."
+     ⚠️ E non e' "insieme dal 2018" ma "COUNTRY dal 2018": nel 2018 la
+     formazione era un'altra, e il punto non e' da quanto sono insieme — e'
+     da quanto fanno country. Parole sue: "c'e' gente che ha iniziato a fare
+     country l'anno scorso, e noi nel 2017 lo facevamo gia'". Combacia col
+     footer dell'home, che dice "Country live since 2018".
+     ⚠️ "+200 serate" e "dal 2018" sono CONFERMATI da Michele: il registro del
+     brain ne conta ~97, ma il conto vero comprende gli anni non registrati
+     nel cruscotto. Non vanno "corretti".
      ============================================================================ -->
-<section class="v-piena" data-pg="scuro">
+<div class="fascia f-arancio tex chiaro v-fatti">
+  <span class="strappo-su" aria-hidden="true"></span>
+  <div class="v-fatti-griglia v-fatti--tre">
+    <div><b data-count="2018" data-secco="1">2018</b><span>Country dal</span></div>
+    <div><b data-count="200" data-prefisso="+">+200</b><span>Serate</span></div>
+    <div><b data-count="7">7</b><span>Regioni nel 2026</span></div>
+  </div>
+</div>
+
+<!-- ============================================================================
+     6 · ABBIAMO SUONATO PER — solo i marchi, a scorrimento.
+     ⚠️ Michele, 10/09: "«aziende, locali, rifugi» e' un titolo terribile.
+     «Abbiamo suonato per», ecco." E: "tutti gli altri li possiamo togliere,
+     teniamo solo i loghi, li mettiamo a scorrimento, e l'ultimo «e tanti
+     altri»."
+     ⚠️ I FILE sono quelli ufficiali arrivati da lui il 10/09, scontornati dal
+     fondo bianco. Non sono piu' maschere monocrome: hanno i loro colori,
+     perche' l'oro del Conti Thun e il girasole del Cascinetto in monocromia
+     diventavano macchie. Percio' questa fascia sta sul CHIARO.
+     ⚠️ Nomi corretti da lui: "Conti Thun" (non Thun) e "Centro Porsche
+     Brescia" (non Porsche). Da correggere anche in home page.
+     🚫 Fuori i due vecchi segnaposto scritti in Arial (Porsche.svg e
+     Lombarda-Ceramica-v2.svg) e fuori l'elenco delle serate vere.
+     ============================================================================ -->
+<section class="v-sez v-sez--alta tex chiaro t-panna">
+  <div class="v-in">
+    <h2 class="v-h v-h--centro rv" style="max-width:16ch">Abbiamo <span class="acc">suonato per.</span></h2>
+    <div class="v-scorri v-loghi rv">
+      <img src="images/loghi/coca-cola.svg" alt="Coca-Cola" loading="lazy" width="615" height="193" />
+      <img src="images/loghi/ca-del-bosco.svg" alt="Ca&rsquo; del Bosco" loading="lazy" width="116" height="53" />
+      <img src="images/loghi/conti-thun.webp" alt="Conti Thun" loading="lazy" width="228" height="132" />
+      <img src="images/loghi/centro-porsche-brescia.webp" alt="Centro Porsche Brescia" loading="lazy" width="183" height="132" />
+      <img src="images/loghi/lombarda-ceramiche.webp" alt="Lombarda Ceramiche" loading="lazy" width="448" height="132" />
+      <img src="images/loghi/pietra-cavalla.webp" alt="Pietra Cavalla" loading="lazy" width="287" height="132" />
+      <img src="images/loghi/il-cascinetto.webp" alt="Il Cascinetto" loading="lazy" width="245" height="132" />
+      <span class="v-altri">e tanti altri</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     7 · I COFFEEKILLERS — la line-up, a scorrimento e con le foto tonde.
+     ⚠️ Michele, 10/09: "chi ti risponde la sera suona → scriviamo «i
+     Coffeekillers»", "queste card mi piacciono, sono piu' belle tonde",
+     "centrare un po' di piu' le foto", "non farei tutto in verticale: mettiamo
+     un carosello da scorrere".
+     Le stesse foto vanno messe anche in home, dove oggi sono diverse.
+     Sotto, la fotografia grande che prima stava molto piu' su: "quella foto
+     la spostiamo sotto, dove c'e' la line-up".
+     ============================================================================ -->
+<section class="v-sez v-sez--alta tex chiaro t-panna">
+  <div class="v-in">
+    <h2 class="v-h v-h--centro rv">I <span class="acc">CoffeeKillers.</span></h2>
+    <div class="v-scorri v-volti-scorri rv">
+      <div class="v-volto">
+        <div class="tondo"><img src="images/land/mike-ritratto-muro.webp" alt="Michele &ldquo;Mike&rdquo; Frosio con il cappello da cowboy e la chitarra acustica" loading="lazy" style="object-position:center 26%" /></div>
+        <h3>Mike</h3>
+        <p class="ruolo">Chitarre e voce</p>
+      </div>
+      <div class="v-volto">
+        <div class="tondo"><img src="images/land/miglio-ritratto-muro.webp" alt="Davide &ldquo;Miglio&rdquo; Miglietti con le bacchette in bocca" loading="lazy" style="object-position:center 24%" /></div>
+        <h3>Miglio</h3>
+        <p class="ruolo">Batteria e voci</p>
+      </div>
+      <div class="v-volto">
+        <div class="tondo"><img src="images/land/larry-ritratto-muro.webp" alt="Lorenzo &ldquo;Larry&rdquo; Marini appoggiato alla sua tastiera rossa" loading="lazy" style="object-position:center 14%" /></div>
+        <h3>Larry</h3>
+        <p class="ruolo">Piano e armonica</p>
+      </div>
+      <div class="v-volto">
+        <div class="tondo"><img src="images/land/richi-ritratto-muro.webp" alt="Riccardo &ldquo;Richi&rdquo; Loda che alza il basso" loading="lazy" style="object-position:center 12%" /></div>
+        <h3>Richi</h3>
+        <p class="ruolo">Basso e contrabbasso</p>
+      </div>
+      <div class="v-volto">
+        <div class="tondo"><img src="images/land/ste-ritratto-muro.webp" alt="Stefano &ldquo;Ste&rdquo; Martinelli con la Telecaster bianca" loading="lazy" style="object-position:center 16%" /></div>
+        <h3>Ste</h3>
+        <p class="ruolo">Chitarre e lap steel</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     8 · LA FOTOGRAFIA GRANDE — arrivata qui dall'alto della pagina.
+     ⚠️ Michele, 10/09: "quella foto la spostiamo sotto, dove c'e' la line-up".
+     Prima stava fra "cosa facciamo" e il resto, e mostrava i cinque prima di
+     averli presentati.
+     ============================================================================ -->
+<section class="v-piena">
   <img src="images/land/band-fiume-o4.webp" alt="I cinque Coffeekillers insieme in riva al fiume al tramonto, prima di suonare" loading="lazy" width="1600" height="1200" />
   <span class="v-piena-velo" aria-hidden="true"></span>
   <div class="v-piena-testo">
@@ -1326,490 +1347,87 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 </section>
 
 <!-- ============================================================================
-     6 · COSA TI PORTIAMO
-     ⚠️ Qui NON si promette che il locale incassera' di piu': e' un rischio che
-        non ci prendiamo, e non e' quello che il cliente compra. Si compra una
-        serata divertente. E non si elencano i difetti delle altre band.
+     9 · LA GALLERY — le stesse sei foto del mosaico, ma a scorrimento.
+     ⚠️ "Anche la gallery la metterei a scorrimento": due righe che si
+     scorrono, una con la line-up e una con le foto.
      ============================================================================ -->
-<section class="v-sez tex" data-pg="scuro">
-  <span class="strappo-su" aria-hidden="true"></span>
-  <span class="ico i-cactus marchio" aria-hidden="true" style="left:-3%;top:5%;width:min(200px,17vw);opacity:.055"></span>
+<section class="v-sez tex chiaro t-panna">
   <div class="v-in">
-    <h2 class="v-h rv">Una serata, <span class="acc">non un servizio.</span></h2>
-    <div class="v-porta">
-      <div class="rv">
-        <span class="ico i-cappello" aria-hidden="true"></span>
-        <h3>Non la solita band</h3>
-        <p>Il country in Italia lo suonano in pochi: ai tuoi ospiti arriva una cosa che non hanno
-          gi&agrave; sentito tre volte quest&rsquo;anno.</p>
-      </div>
-      <div class="rv">
-        <span class="ico i-camaleonte" aria-hidden="true"></span>
-        <h3>L&rsquo;aria giusta al momento giusto</h3>
-        <p>Il ritmo della serata lo decidiamo insieme, prima che cominci. Poi lo seguiamo:
-          se la sala chiede calma stiamo bassi, se chiede di alzarsi alziamo.</p>
-      </div>
-      <div class="rv">
-        <span class="ico i-ferri" aria-hidden="true"></span>
-        <h3>Zero pensieri</h3>
-        <p>Arriviamo, montiamo, suoniamo e smontiamo. A te resta da goderti la serata.</p>
-      </div>
+    <div class="v-scorri v-gall rv">
+      <img src="images/land/band-fiume-o2.webp" alt="Risate tra i cinque musicisti in riva al fiume" loading="lazy" width="1000" height="750" />
+      <img src="images/land/live-blu-tastiere.webp" alt="Le mani di Larry sulla tastiera durante un live, luci rosse e viola" loading="lazy" width="1200" height="800" />
+      <img src="images/land/vigna-contrabbasso-live-b.webp" alt="Richi suona il contrabbasso nella vigna al tramonto, il pubblico seduto sull&rsquo;erba" loading="lazy" width="800" height="1200" />
+      <img src="images/land/targa-band.webp" alt="L&rsquo;insegna di legno dipinta a mano davanti al palco allestito su un prato" loading="lazy" width="1200" height="750" />
+      <img src="images/land/mike-miglio-banjo.webp" alt="Mike e Miglio ridono con il banjo all&rsquo;aperto" loading="lazy" width="800" height="1424" />
+      <img src="images/land/prato-batteria-blu.webp" alt="Miglio dietro i piatti in luce blu" loading="lazy" width="1200" height="750" />
     </div>
   </div>
 </section>
 
 <!-- ============================================================================
-     7 · LO SHOW — una cosa sola, e dura circa due ore.
-     ⚠️ Michele, 07/09: "piuttosto che scandire questi ritmi, io lavorerei
-     molto di piu' sul fargli capire che cosa possiamo portare: il nostro show
-     dura circa un'ora e 45, intorno alle due ore."
-     ⚠️ "CIRCA DUE ORE" e' il numero da pubblicare, e regge sui fatti: i tre
-     set misurati dal mixer fanno 1h53, 2h03 e 2h15 (media 2h04). Il "da 1h e
-     30" che sta nelle FAQ non ha nessun riscontro: la serata piu' corta mai
-     registrata e' 1h53. Corretto anche la' in questo giro.
-     ⚠️ Le tre stampe NON sono piu' tre formati alternativi (era la vecchia
-     scelta: un set / due set / tutta la serata, tutti sullo stesso piano).
-     Ora sono l'ARCO DELLO SHOW: come va una serata dall'inizio alla fine. Il
-     formato non e' una scelta da far fare al cliente in home page.
+     10 · IL MODULO
+     ⚠️ Revisione del 10/09, punto per punto:
+     - "raccontaci la serata → compila il preventivo": country si suona anche
+       di giorno, "serata" chiude un'opzione che invece esiste.
+     - "compila in due minuti, lo legge Mike (non un robot), e ti rispondiamo
+       con una proposta in qualche giorno" — NIENTE piu' "entro 24 ore".
+     - via l'intestazione "passo 1 di 2 · la serata".
+     - il tipo di evento passa da 8 voci a 6, quelle del sito.
+     - "quando" prende sotto gli ORARI INDICATIVI e di giorno/di sera ("cambia
+       per le luci"); "dove" prende sotto al chiuso/all'aperto, e il vecchio
+       campo "Ambiente" con le sue cinque voci sparisce.
+     - "cosa ti serve da noi" (impianto/luci) via: "lo decidiamo noi in fase
+       di preventivo".
+     - il budget si chiama budget, e sotto c'e' scritto COSA CAMBIA.
+     ⚠️ IL VINCOLO SERVIZIO → BUDGET e' voluto: "se mi dici tutto il giorno non
+     puoi selezionare 1.000 euro... voglio stanarti". Le voci escluse si
+     disattivano a vista, non spariscono: si deve capire che sono escluse.
+     ⚠️ Formspree NON manda al cliente nessuna mail di conferma: il pannello
+     "Ricevuto" qui sotto e' l'unica cosa che il cliente vede.
      ============================================================================ -->
-<section class="v-sez v-sez--alta tex" data-pg="scuro">
-  <span class="ico i-chitarra marchio" aria-hidden="true" style="right:-1%;top:6%;width:min(150px,13vw)"></span>
-  <div class="v-in v-in--largo">
-    <h2 class="v-h rv">Lo show dura <span class="acc">circa due ore.</span></h2>
-    <p class="v-lead rv">Un&rsquo;ora e 45 di musica, in uno o due set, con la pausa dove ti serve.
-      <b>&Egrave; questo che portiamo</b>, ed &egrave; quello che la gente si ricorda:
-      nella maggior parte delle serate non serve altro.</p>
-    <div class="v-forme">
-      <div class="v-forma rv">
-        <figure class="cornice">
-          <img style="object-position:center 18%" src="images/land/vigna-chitarra.webp" alt="Mike con cappello country e Telecaster tra le vigne, in pieno giorno" loading="lazy" width="800" height="1200" />
-        </figure>
-        <h3>Si comincia da ascoltare</h3>
-        <p>Ballad e brani lenti, volume da tavolo: si mangia, si parla, si sta bene.</p>
-      </div>
-      <div class="v-forma rv">
-        <figure class="cornice">
-          <img style="object-position:center 22%" src="images/mike-telecaster-live.webp" alt="Mike con cappello country e Telecaster durante il concerto, di sera" loading="lazy" width="933" height="1400" />
-        </figure>
-        <h3>Poi si sale</h3>
-        <p>Entrano le elettriche e il ritmo. La sala capisce che sta cominciando qualcosa.</p>
-      </div>
-      <div class="v-forma rv">
-        <figure class="cornice">
-          <img style="object-position:center 30%" src="images/land/live-notte.webp" alt="I Coffeekillers di sera in un cortile, tra le luci viola da concerto" loading="lazy" width="800" height="1067" />
-        </figure>
-        <h3>Si finisce in piedi</h3>
-        <p>Party song e cori, e il piede che batte anche a chi resta seduto.</p>
-      </div>
-    </div>
-
-    <div class="v-oltre rv">
-      <h3>E se devi coprire tutta la giornata?</h3>
-      <p>Capita: una festa che apre a mezzogiorno, una sagra che va avanti fino a notte.
-        Allora allo show si aggiunge <b>un set acustico</b> di circa un&rsquo;ora, oppure
-        <b>lasciamo l&rsquo;impianto acceso</b> con la nostra musica country nelle ore in cui
-        il palco &egrave; vuoto. Si mette a punto quando scriviamo il preventivo.</p>
-      <p>Vale per chi ha una <b>giornata intera</b> da riempire. Per tutti gli altri il conto
-        &egrave; pi&ugrave; semplice: <b>c&rsquo;&egrave; lo show, e lo show basta.</b></p>
-    </div>
-
-    <p class="v-tesi rv">Noi la scaletta. <span class="acc">Tu il ritmo.</span></p>
-  </div>
-</section>
-
-<!-- ============================================================================
-     8 · IL PALCO — la parte tecnica in tre righe e un video, senza sigle.
-     Un imprenditore non vuole sapere che banco usiamo: vuole sapere che non
-     deve pensarci.
-     ============================================================================ -->
-<section class="v-sez tex" data-pg="scuro">
+<section class="v-sez v-sez--alta tex" id="richiesta">
   <div class="v-in">
-    <h2 class="v-h rv">Quello lo <span class="acc">montiamo noi.</span></h2>
-    <p class="v-lead rv">Arriviamo col furgone qualche ora prima: impianto, luci e chi li fa funzionare
-      sono nostri. A te bastano un angolo e una presa della corrente.</p>
-    <div class="v-video rv">
-      <figure class="cornice">
-        <div class="v-video-cornice">
-          <video src="images/land/palco-villa-gussago.mp4" poster="images/palco-villa-gussago.webp"
-            muted loop playsinline preload="none" width="1280" height="720"
-            aria-label="Ripresa dall'alto del palco allestito dai Coffeekillers nel giardino di una villa"></video>
-        </div>
-        <figcaption>Il palco allestito in un giardino a Gussago</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================================
-     8bis · COSA C'E' DENTRO AL PREVENTIVO — la leva d'acquisto principale.
-     ⚠️ Michele, 07/09: "il nostro preventivo e' composto dal nostro show piu'
-     i costi di trasferta ed eventualmente pernottamento, e qua farei sapere
-     anche che se chi ci ospita ci paga il vitto alloggio riesce a farci
-     contenere i costi, e quindi ci sara' soltanto una parte di rimborso
-     chilometrico. Le altre leve d'acquisto possono essere legate alla SIAE."
-     ⚠️ NUOVA CONDIZIONE COMMERCIALE: "vitto e alloggio abbassano il
-     preventivo" e il pernottamento non erano scritti in nessun documento
-     della band. Sono autorizzati da lui il 07/09 e registrati in
-     "Preventivi — Modello e Condizioni Commerciali.md": se un domani qualcuno
-     si chiede da dove viene questa riga, la risposta sta nel brain.
-     ⚠️ La formulazione della SIAE e' quella gia' approvata e NON si tocca:
-     "chi organizza la serata", non "chi acquista".
-     ⚠️ E qui dentro non entra MAI una cifra: nessun cachet, nessun euro. Il
-     numero lo fa il preventivo, che e' privato.
-     ============================================================================ -->
-<section class="v-sez v-sez--alta tex" data-pg="scuro">
-  <span class="ico i-ferri marchio" aria-hidden="true" style="left:-3%;top:7%;width:min(240px,21vw)"></span>
-  <div class="v-in">
-    <!-- ⚠️ text-wrap:balance e non un max-width in ch: a 24ch il titolo andava
-         a capo dopo "AL", lasciando due lettere appese in cima. Balance
-         pareggia le due righe da solo e regge a ogni larghezza. -->
-    <h2 class="v-h v-h--centro rv" style="max-width:24ch;text-wrap:balance">Cosa c&rsquo;&egrave; dentro <span class="acc">al preventivo.</span></h2>
-    <p class="v-lead v-lead--centro rv">Tre voci, scritte separate. Cos&igrave; vedi da dove viene il numero
-      &mdash; e dove puoi intervenire tu.</p>
-
-    <div class="v-conto rv">
-      <div class="v-voce">
-        <span class="ico i-chitarra" aria-hidden="true" style="width:26px"></span>
-        <div>
-          <h3>Lo show</h3>
-          <p>Circa due ore di musica, cinque musicisti, impianto e luci nostri. &Egrave; la voce
-            principale, e dipende da che serata &egrave; e da quanta gente aspetti.</p>
-        </div>
-      </div>
-      <div class="v-voce">
-        <span class="ico i-stivale" aria-hidden="true" style="width:28px"></span>
-        <div>
-          <h3>La trasferta</h3>
-          <p>Voce a parte, scritta prima: mai una sorpresa in fondo al foglio. Sotto i
-            <b>50-60 chilometri</b> &egrave; gi&agrave; dentro.</p>
-        </div>
-      </div>
-      <div class="v-voce">
-        <span class="ico i-cappello" aria-hidden="true"></span>
-        <div>
-          <h3>Il pernottamento</h3>
-          <p>Solo quando la distanza lo chiede davvero: cinque persone e un furgone che, a fine
-            serata, hanno ancora tutta la strada da rifare.</p>
-        </div>
-      </div>
-      <p class="v-leva">Se ci ospiti tu &mdash; un pasto, e un letto quando siamo lontani &mdash;
-        <b>il preventivo si abbassa</b>: della trasferta resta solo il rimborso dei chilometri.</p>
-    </div>
-
-    <div class="v-conto-piede rv">
-      <p><b>SIAE e permessi</b> restano in capo a chi organizza la serata, come per qualsiasi
-        concerto. Noi ti diamo l&rsquo;elenco dei brani, che &egrave; quello che serve per il
-        border&ograve;.</p>
-    </div>
-
-    <div class="v-cta-fila rv" style="justify-content:center;margin-top:clamp(42px,5.5vw,64px)">
-      <a class="v-pill" href="#richiesta">Chiedi il preventivo</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================================
-     ⟶ PRIMO CAMBIO DI COLORE: la pagina passa al panna. Da qui, le prove.
-     ============================================================================ -->
-
-<!-- ============================================================================
-     8ter · LA FASCIA DEI FATTI — i numeri, e stanno QUI.
-     ⚠️ Michele, 07/09: "questa parte non metterla subito, non e' una vera
-     garanzia di successo, mettila un po' dopo."
-     Aveva ragione, e la ragione e' anche di metodo: subito sotto l'hero questi
-     numeri erano una promessa in cerca di credito. Qui aprono il blocco delle
-     PROVE — numeri, poi i marchi, poi i posti dove sono tornati a chiamarci,
-     poi le facce. Un numero vale se sta in mezzo alle cose che lo reggono.
-     ⚠️ "oltre 200 serate" e "dal 2018" sono CONFERMATI da Michele: il registro
-     del brain ne conta ~97 ma il conto vero comprende gli anni non registrati
-     nel cruscotto. Non vanno "corretti".
-     ============================================================================ -->
-<div class="fascia f-arancio tex chiaro v-fatti">
-  <span class="strappo-su" aria-hidden="true"></span>
-  <div class="v-fatti-griglia">
-    <div><b data-count="2018" data-secco="1">2018</b><span>Insieme dal</span></div>
-    <div><b data-count="200" data-prefisso="+">+200</b><span>Serate</span></div>
-    <div><b data-count="7">7</b><span>Regioni nel 2026</span></div>
-    <div><b data-count="5">5</b><span>Sul palco</span></div>
-  </div>
-</div>
-
-<!-- ============================================================================
-     9 · CI HANNO CHIAMATI — i marchi e i posti veri.
-     ⚠️ Nessun compenso di singole serate: quelli restano fra noi e il cliente.
-     ⚠️ Fuori Lecconeria (solo un preventivo del 26/05, mai suonata) e Beach Fly
-        (10/10/2026, futura e gratis): il brain li smentisce.
-     ============================================================================ -->
-<section class="v-sez v-sez--alta tex chiaro" data-pg="panna">
-  <div class="v-in">
-    <h2 class="v-h v-h--centro rv">Aziende, locali, <span class="acc">rifugi.</span></h2>
-    <div class="v-marchi rv">
-      <span class="v-marchio m-coca"    role="img" aria-label="Coca-Cola"></span>
-      <span class="v-marchio m-cadel"   role="img" aria-label="Ca&rsquo; del Bosco"></span>
-      <span class="v-marchio m-porsche" role="img" aria-label="Porsche"></span>
-      <span class="v-marchio m-thun"    role="img" aria-label="Thun"></span>
-      <span class="v-marchio m-lomb"    role="img" aria-label="Lombarda Ceramica"></span>
-    </div>
-    <div class="v-casi rv">
-      <div class="v-caso v-caso--ripetuto">
-        <span class="v-caso-nome">Pietracavalla</span>
-        <span class="v-caso-dove">Locale, provincia di Brescia</span>
-        <span class="v-caso-quando">Ogni anno dal 2021</span>
-      </div>
-      <div class="v-caso v-caso--ripetuto">
-        <span class="v-caso-nome">Il Cascinetto</span>
-        <span class="v-caso-dove">Salvirola (CR)</span>
-        <span class="v-caso-quando">Tre serate nel 2026</span>
-      </div>
-      <div class="v-caso">
-        <span class="v-caso-nome">Southern Pub</span>
-        <span class="v-caso-dove">Cadore (BL)</span>
-        <span class="v-caso-quando">Agosto 2026</span>
-      </div>
-      <div class="v-caso">
-        <span class="v-caso-nome">B Wild Ranch</span>
-        <span class="v-caso-dove">Laggio di Cadore (BL)</span>
-        <span class="v-caso-quando">Agosto 2026</span>
-      </div>
-      <div class="v-caso">
-        <span class="v-caso-nome">Locanda Obante</span>
-        <span class="v-caso-dove">Recoaro Terme (VI)</span>
-        <span class="v-caso-quando">Agosto 2026</span>
-      </div>
-      <div class="v-caso">
-        <span class="v-caso-nome">Rifugio Colomb&egrave;</span>
-        <span class="v-caso-dove">Montagna bresciana</span>
-        <span class="v-caso-quando">Luglio 2025</span>
-      </div>
-    </div>
-    <p class="v-tesi v-tesi--centro rv">Un cliente che ti richiama <span class="acc">&egrave; la recensione che conta.</span></p>
-
-    <!-- ⚠️ QUI VA L'UNICA COSA CHE NON SI PUO' INVENTARE: le frasi dei clienti.
-         Tre righe vere di tre gestori, con NOME, LOCALE e CITTA' (una anonima non
-         convince). Si chiedono su WhatsApp il giorno dopo la serata, quando sono
-         contenti. Appena arrivano, il posto e' questo. -->
-  </div>
-</section>
-
-<!-- ============================================================================
-     10 · I CINQUE — con la battuta di ognuno, che e' la cosa piu' vicina al
-     carattere della band. Le battute sono le stesse della home.
-     I ritratti sono INCORNICIATI come stampe appese: prima erano tondini da
-     200px, e piccoli stavano male.
-     ============================================================================ -->
-<section class="v-sez tex chiaro" data-pg="panna">
-  <div class="v-in v-in--largo">
-    <h2 class="v-h rv">Chi ti risponde, <span class="acc">la sera suona.</span></h2>
-    <div class="v-volti">
-      <div class="v-volto rv">
-        <figure class="cornice"><img src="images/land/mike-ritratto-muro.webp" alt="Michele &ldquo;Mike&rdquo; Frosio con il cappello da cowboy e la chitarra acustica" loading="lazy" style="object-position:center 22%" /></figure>
-        <h3>Mike</h3>
-        <p class="ruolo">Chitarre e voce</p>
-        <p class="battuta">Ma l&rsquo;hamburger c&rsquo;&egrave; anche vegetale?</p>
-      </div>
-      <div class="v-volto rv">
-        <figure class="cornice"><img src="images/land/miglio-ritratto-muro.webp" alt="Davide &ldquo;Miglio&rdquo; Miglietti con le bacchette in bocca" loading="lazy" style="object-position:center 18%" /></figure>
-        <h3>Miglio</h3>
-        <p class="ruolo">Batteria e voci</p>
-        <p class="battuta">Potevamo fare di meglio.</p>
-      </div>
-      <div class="v-volto rv">
-        <figure class="cornice"><img src="images/land/larry-ritratto-muro.webp" alt="Lorenzo &ldquo;Larry&rdquo; Marini appoggiato alla sua tastiera rossa" loading="lazy" style="object-position:center 4%" /></figure>
-        <h3>Larry</h3>
-        <p class="ruolo">Piano e armonica</p>
-        <p class="battuta">Raga questo &egrave; troppo country!</p>
-      </div>
-      <div class="v-volto rv">
-        <figure class="cornice"><img src="images/land/richi-ritratto-muro.webp" alt="Riccardo &ldquo;Richi&rdquo; Loda che alza il basso" loading="lazy" style="object-position:center 2%" /></figure>
-        <h3>Richi</h3>
-        <p class="ruolo">Basso e contrabbasso</p>
-        <p class="battuta">Birretta?</p>
-      </div>
-      <div class="v-volto rv">
-        <figure class="cornice"><img src="images/land/ste-ritratto-muro.webp" alt="Stefano &ldquo;Ste&rdquo; Martinelli con la Telecaster bianca" loading="lazy" style="object-position:center 6%" /></figure>
-        <h3>Ste</h3>
-        <p class="ruolo">Chitarre e lap steel</p>
-        <p class="battuta">Ti serve &laquo;qualunque cosa&raquo;? Ce l&rsquo;ho.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================================
-     11 · IL MOSAICO — sei fotografie e nessuna parola. Grandi: in griglia da
-     120px stavano male.
-     ============================================================================ -->
-<section class="v-sez tex chiaro" data-pg="panna" style="padding-top:0">
-  <div class="v-in v-in--largo">
-    <div class="v-mosaico rv">
-      <div><img src="images/land/band-fiume-o2.webp" alt="Risate tra i cinque musicisti in riva al fiume" loading="lazy" width="1000" height="750" /></div>
-      <div><img src="images/land/live-blu-tastiere.webp" alt="Le mani di Larry sulla tastiera durante un live, luci rosse e viola" loading="lazy" width="1200" height="800" /></div>
-      <div><img src="images/land/vigna-contrabbasso-live-b.webp" alt="Richi suona il contrabbasso nella vigna al tramonto, il pubblico seduto sull&rsquo;erba" loading="lazy" width="800" height="1200" /></div>
-      <div><img src="images/land/targa-band.webp" alt="L&rsquo;insegna di legno dipinta a mano davanti al palco allestito su un prato" loading="lazy" width="1200" height="750" /></div>
-      <div><img src="images/land/mike-miglio-banjo.webp" alt="Mike e Miglio ridono con il banjo all&rsquo;aperto" loading="lazy" width="800" height="1424" /></div>
-      <div><img src="images/land/prato-batteria-blu.webp" alt="Miglio dietro i piatti in luce blu" loading="lazy" width="1200" height="750" /></div>
-    </div>
-  </div>
-</section>
-
-<!-- il filetto di tartan: il segno del brand come giunzione fra le due parti -->
-<div class="filetto" aria-hidden="true"></div>
-
-<!-- ============================================================================
-     ⟶ SECONDO CAMBIO DI COLORE: si torna allo scuro. Da qui, l'azione.
-     ============================================================================ -->
-
-<!-- ============================================================================
-     12 · COME SI ENTRA — i numeri si prendono il loro spazio.
-     ============================================================================ -->
-<section class="v-sez tex" data-pg="scuro">
-  <span class="ico i-ferri marchio" aria-hidden="true" style="right:-2%;bottom:4%;width:min(280px,24vw)"></span>
-  <div class="v-in">
-    <h2 class="v-h rv">Tre passi. <span class="acc">Il primo non ti costa nulla.</span></h2>
-    <div class="v-passi">
-      <div class="v-passo rv">
-        <span class="n">01</span>
-        <h3>Ci racconti la serata</h3>
-        <p>Il modulo qui sotto, due minuti. Che serata &egrave;, quando, dove e quanta gente aspetti.</p>
-      </div>
-      <div class="v-passo rv">
-        <span class="n">02</span>
-        <h3>Ti mandiamo il preventivo</h3>
-        <p>Scritto, <b>entro 24 ore</b>, con tutto dentro e il viaggio in chiaro. Vale 15 giorni.</p>
-      </div>
-      <div class="v-passo rv">
-        <span class="n">03</span>
-        <h3>L&rsquo;acconto blocca la data</h3>
-        <p>Il <b>30%</b> alla conferma, il saldo la sera. Da quel momento quella data &egrave; tua.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================================
-     13 · LE DOMANDE — colonna singola, con l'alone dietro al titolo.
-     Niente sopra, niente sotto: e' il blocco indicato come modello.
-     ============================================================================ -->
-<section class="v-sez v-sez--faq tex" data-pg="scuro">
-  <span class="v-alone" aria-hidden="true"></span>
-  <div class="v-in">
-    <h2 class="v-h v-h--centro rv">Quello che ci chiedono <span class="acc">prima.</span></h2>
-    <div class="v-faq rv">
-      <details class="v-q" open>
-        <summary>Quanto costa?</summary>
-        <p>Dipende da quanta gente aspetti, da quanto siamo lontani e da quanto suoniamo. Nel modulo
-          scegli l&rsquo;ordine di spesa in cui ti muovi e <b>entro 24 ore hai il numero scritto</b>,
-          con il viaggio come voce a parte. Il preventivo vale 15 giorni e non cambia dopo.</p>
-        <p>Due cose che lo spostano davvero: se il tuo posto ha gi&agrave; un impianto si fa la
-          versione senza, e <b>se ci ospiti tu &mdash; pasto e letto &mdash; della trasferta resta
-          solo il rimborso dei chilometri</b>.</p>
-      </details>
-      <details class="v-q">
-        <summary>Che tipo di country fate?</summary>
-        <p>Country americano, neotradizionale e contemporaneo: <b>in generale dagli anni Novanta in
-          poi</b>. Zach Top, Chris Stapleton, Brad Paisley, Zac Brown Band, Blake Shelton, Darius
-          Rucker, The Kruse Brothers &mdash; con due o tre eccezioni pi&ugrave; vecchie che valgono il
-          viaggio, tipo <i>Country Roads</i> di John Denver e <i>Jolene</i> di Dolly Parton.</p>
-        <p>Dentro quel recinto ci sono <b>ballad da ascolto e brani da ballare</b>, e la scelta la fa
-          la serata: nessuno &egrave; obbligato a ballare e nessuno deve mettersi il cappello. Se hai
-          due o tre brani del cuore, dilli quando chiedi il preventivo.</p>
-      </details>
-      <details class="v-q">
-        <summary>Devo procurarvi qualcosa?</summary>
-        <p>No. Portiamo tutto noi e lo montiamo noi: <b>ci bastano un angolo di cinque metri per tre
-          e una presa della corrente</b>. Se il tuo posto ha gi&agrave; un impianto, tanto meglio: si
-          fa la versione senza, e costa meno.</p>
-      </details>
-      <details class="v-q">
-        <summary>Quanto suonate, e a che ora?</summary>
-        <p>Lo show dura <b>circa due ore</b>: un&rsquo;ora e 45 di musica, in uno o due set, con la
-          pausa dove ti serve. L&rsquo;orario lo decidi tu: a pranzo, all&rsquo;aperitivo, dopo cena.</p>
-        <p>Se hai una <b>giornata intera</b> da coprire, allo show si aggiunge un set acustico di
-          circa un&rsquo;ora, oppure lasciamo l&rsquo;impianto acceso con la nostra musica nelle ore in
-          cui il palco &egrave; vuoto. Si decide insieme quando scriviamo il preventivo, e resta
-          scritto l&igrave;.</p>
-      </details>
-      <details class="v-q">
-        <summary>Venite anche lontano da Brescia?</summary>
-        <p>S&igrave;. Nel 2026, oltre alla Lombardia, ci hanno chiamati da Veneto, Trentino, Friuli,
-          Piemonte, Emilia-Romagna e Liguria. Il rimborso viaggio &egrave; una voce a parte del
-          preventivo, scritta prima.</p>
-      </details>
-      <details class="v-q">
-        <summary>E se piove?</summary>
-        <p>All&rsquo;aperto ci serve un riparo per l&rsquo;attrezzatura: un gazebo, una tettoia, un palco
-          coperto. <b>Il piano B si concorda quando si conferma la data</b>, non la mattina stessa.</p>
-      </details>
-      <details class="v-q">
-        <summary>Chi si occupa di SIAE e permessi?</summary>
-        <p>Restano in capo a chi organizza la serata, come per qualsiasi concerto. Noi ti diamo
-          <b>l&rsquo;elenco dei brani</b>, che &egrave; quello che serve per il border&ograve;.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================================
-     14 · IL MODULO
-     E' quello di preventivo.html: stesse classi .qf-*, stessi comportamenti e
-     stesse chiavi verso Formspree, qui in due passi. Ogni richiesta arriva
-     marcata con la Variante (da quale annuncio) e la Campagna (i parametri
-     dell'URL): e' cosi' che si sa quale hook converte, invece di indovinarlo.
-     ============================================================================ -->
-<section class="v-sez v-sez--alta tex" data-pg="scuro" id="richiesta">
-  <div class="v-in">
-    <h2 class="v-h v-h--centro rv">Raccontaci <span class="acc">la serata.</span></h2>
-    <p class="v-lead v-lead--centro rv">Otto domande, due minuti. <b>Le legge Mike, non un robot</b> &mdash;
-      e ti risponde con proposta, scaletta tipo e prezzo entro 24 ore.</p>
+    <h2 class="v-h v-h--centro rv">Compila il <span class="acc">preventivo.</span></h2>
+    <p class="v-lead v-lead--centro rv">Due minuti. <b>Lo legge Mike</b>, non un robot, e ti
+      rispondiamo con una proposta in qualche giorno.</p>
 
     <div class="v-form-guscio rv">
       <form class="quote-form" id="quote-form" novalidate>
-
-        <div class="v-avanz">
-          <span id="v-passo-txt">Passo 1 di 2 &middot; la serata</span>
-          <span class="barra"><span id="v-barra"></span></span>
-        </div>
 
         <!-- ---------- PASSO 1 ---------- -->
         <div class="v-fase" id="v-fase-1">
           <div class="qf-grid">
             <div class="qf-field qf-field--full">
-              <div class="qf-label" id="lbl-evt">Che tipo di serata &egrave;</div>
+              <div class="qf-label" id="lbl-evt">Tipo di evento</div>
               <div class="qf-chips" id="chips-evt" role="group" aria-labelledby="lbl-evt">
-                <button type="button" class="qf-chip on">Locale o ristorante</button>
-                <button type="button" class="qf-chip">Rifugio o baita</button>
-                <button type="button" class="qf-chip">Festa aziendale</button>
-                <button type="button" class="qf-chip">Ranch o maneggio</button>
-                <button type="button" class="qf-chip">Festa o sagra</button>
-                <button type="button" class="qf-chip">Festival</button>
-                <button type="button" class="qf-chip">Matrimonio</button>
-                <button type="button" class="qf-chip">Altro</button>
+                <button type="button" class="qf-chip on">Locali e pub</button>
+                <button type="button" class="qf-chip">Ranch e maneggi</button>
+                <button type="button" class="qf-chip">Feste e sagre</button>
+                <button type="button" class="qf-chip">Festival e rassegne</button>
+                <button type="button" class="qf-chip">Aziende</button>
+                <button type="button" class="qf-chip">Privati, matrimoni e altro</button>
               </div>
             </div>
 
             <div class="qf-field">
-              <label class="qf-label" for="f-date">Quando <span class="opt">anche solo &laquo;primavera&raquo;</span></label>
+              <label class="qf-label" for="f-date">Quando</label>
               <input class="qf-input" id="f-date" name="data" type="text" placeholder="es. sabato 13 giugno 2027" required />
+              <label class="qf-label qf-label--sotto" for="f-orari">Orari indicativi</label>
+              <input class="qf-input" id="f-orari" name="orari" type="text" placeholder="es. dalle 21 alle 23" />
+              <div class="qf-chips qf-chips--sotto" id="chips-momento" role="group" aria-label="Di giorno o di sera">
+                <button type="button" class="qf-chip qf-chip--sm">Di giorno</button>
+                <button type="button" class="qf-chip qf-chip--sm on">Di sera</button>
+              </div>
             </div>
+
             <div class="qf-field">
               <label class="qf-label" for="f-location">Dove</label>
               <input class="qf-input" id="f-location" name="location" type="text" placeholder="Locale e citt&agrave;" required />
-            </div>
-
-            <div class="qf-field">
-              <div class="qf-label" id="lbl-setting">Ambiente</div>
-              <div class="qf-chips" id="chips-setting" role="group" aria-labelledby="lbl-setting">
-                <button type="button" class="qf-chip on">Al chiuso</button>
-                <button type="button" class="qf-chip">All&rsquo;aperto</button>
-                <button type="button" class="qf-chip">Cortile o terrazza</button>
-                <button type="button" class="qf-chip">Da definire</button>
+              <div class="qf-chips qf-chips--sotto" id="chips-ambiente" role="group" aria-label="Al chiuso o all&rsquo;aperto">
+                <button type="button" class="qf-chip qf-chip--sm on">Al chiuso</button>
+                <button type="button" class="qf-chip qf-chip--sm">All&rsquo;aperto</button>
               </div>
-            </div>
-            <div class="qf-field">
-              <!-- ⚠️ scala fissa: 50 · 100 · 150 · 200 · 250 · oltre 300.
-                   Decisa da Michele il 07/09. Prima saliva di 20 in 20 fino a
-                   600 e chiedeva al cliente una precisione che non ha. -->
-              <div class="qf-label" id="lbl-guests">Quante persone <span class="opt">a occhio</span></div>
+              <div class="qf-label qf-label--sotto" id="lbl-guests">Quante persone <span class="opt">a occhio</span></div>
               <div class="qf-stepper" role="group" aria-labelledby="lbl-guests">
                 <button type="button" id="hc-minus" aria-label="Diminuisci">&minus;</button>
                 <span class="val"><span id="hc-val">150</span><small id="hc-pax">pax</small></span>
@@ -1817,57 +1435,28 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
               </div>
             </div>
 
-            <!-- ⚠️ NON si chiedono piu' le ore. Michele, 07/09: "per il tempo di
-                 suonare metti piu' che altro tipo solo concerto o tutto il
-                 giorno, quindi non le ore".
-                 Il cursore chiedeva al cliente di decidere una durata che non
-                 sa e che non e' sua: la durata dello show la sappiamo noi
-                 (circa due ore). Quello che serve sapere e' se deve coprire
-                 una giornata. Le tre voci sono le stesse della sezione "Lo
-                 show dura circa due ore", nello stesso ordine di gerarchia. -->
             <div class="qf-field qf-field--full">
-              <div class="qf-label" id="lbl-formato">Che cosa ti serve
-                <span class="opt">nel dubbio lascia &laquo;solo il concerto&raquo;</span></div>
-              <div class="qf-chips" id="chips-formato" role="group" aria-labelledby="lbl-formato">
-                <button type="button" class="qf-chip on">Solo il concerto</button>
-                <button type="button" class="qf-chip">Concerto e set acustico</button>
-                <button type="button" class="qf-chip">Tutto il giorno</button>
+              <div class="qf-label" id="lbl-serv">Di quale servizio hai bisogno?</div>
+              <div class="qf-chips qf-chips--grandi" id="chips-servizio" role="group" aria-labelledby="lbl-serv">
+                <button type="button" class="qf-chip on" data-min="0">Solo live show<em>circa due ore</em></button>
+                <button type="button" class="qf-chip" data-min="1">Live show e set acustico<em>due ore pi&ugrave; 30/45 minuti</em></button>
+                <button type="button" class="qf-chip" data-min="2">Copertura intera giornata<em>dettagli da definire insieme</em></button>
               </div>
             </div>
 
             <div class="qf-field qf-field--full">
-              <div class="qf-label" id="lbl-srv">Cosa ti serve da noi <span class="opt">puoi spuntarli tutti e due</span></div>
-              <div class="qf-tiles" role="group" aria-labelledby="lbl-srv">
-                <label class="qf-tile on">
-                  <input type="checkbox" id="srv-audio" checked />
-                  <span class="tlbl">Impianto audio</span>
-                  <span class="tsub">Il nostro, montato da noi</span>
-                </label>
-                <label class="qf-tile">
-                  <input type="checkbox" id="srv-lights" />
-                  <span class="tlbl">Luci sceniche</span>
-                  <span class="tsub">Se il posto non ne ha</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="qf-field qf-field--full">
-              <!-- ⚠️ TRE voci, e la prima parte da mille. Michele, 07/09:
-                   "intorno ai 1000 euro (per far capire che comunque meno non
-                   c'e'), riesco ad arrivare a 2000, oltre 2000. Non mettere
-                   non lo so."
-                   Il "non lo so ancora" era la scelta comoda: chi la spuntava
-                   non dava nessuna informazione, e la scaletta partendo da
-                   "fino a 1.000" lasciava credere che si potesse spendere meno. -->
-              <div class="qf-label" id="lbl-budget">In che ordine di spesa ti muovi <span class="opt">non &egrave; vincolante, serve a non farti perdere tempo</span></div>
+              <div class="qf-label" id="lbl-budget">Qual &egrave; il tuo budget?</div>
+              <p class="qf-spiega">Non &egrave; vincolante: serve a non farti perdere tempo, e da
+                questo cambia il tipo di proposta &mdash; show, service audio, service luci,
+                costo della trasferta.</p>
               <div class="qf-chips" id="chips-budget" role="group" aria-labelledby="lbl-budget">
                 <button type="button" class="qf-chip on">Intorno ai 1.000 &euro;</button>
-                <button type="button" class="qf-chip">Arrivo a 2.000 &euro;</button>
+                <button type="button" class="qf-chip">Arrivo a 1.500 &euro;</button>
                 <button type="button" class="qf-chip">Oltre 2.000 &euro;</button>
               </div>
             </div>
           </div>
-          <button type="button" class="v-avanti" id="v-avanti">Avanti &mdash; dove ti rispondiamo &rarr;</button>
+          <button type="button" class="v-avanti" id="v-avanti">Procedi &rarr;</button>
         </div>
 
         <!-- ---------- PASSO 2 ---------- -->
@@ -1883,12 +1472,14 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
               <input class="qf-input" id="f-email" name="email" type="email" placeholder="mario@example.com" autocomplete="email" required />
             </div>
             <div class="qf-field">
-              <label class="qf-label" for="f-phone">Telefono <span class="opt">se preferisci WhatsApp</span></label>
+              <label class="qf-label" for="f-phone">Telefono <span class="opt">facoltativo</span></label>
               <input class="qf-input" id="f-phone" name="telefono" type="tel" placeholder="+39 333 1234567" autocomplete="tel" />
             </div>
             <div class="qf-field">
-              <label class="qf-label" for="f-notes">C&rsquo;&egrave; altro che dovremmo sapere? <span class="opt">facoltativo</span></label>
-              <textarea class="qf-input" id="f-notes" name="note" rows="3" placeholder="Orari, spazio, se c&rsquo;&egrave; gi&agrave; un impianto, se serve fattura&hellip;"></textarea>
+              <!-- ⚠️ niente "se serve fattura": la band non ha forma giuridica,
+                   e non e' una cosa che si chiede su un sito. -->
+              <label class="qf-label" for="f-notes">Altre informazioni utili <span class="opt">facoltativo</span></label>
+              <textarea class="qf-input" id="f-notes" name="note" rows="3" placeholder="Se c&rsquo;&egrave; gi&agrave; un impianto o un service, lo spazio, le modalit&agrave; di pagamento, o una domanda per noi&hellip;"></textarea>
             </div>
           </div>
           <div class="qf-submit-row">
@@ -1899,7 +1490,7 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
             </div>
             <button type="submit" class="qf-submit" id="qf-submit" disabled>Invia la richiesta</button>
           </div>
-          <button type="button" class="v-indietro" id="v-indietro">&larr; Torna ai dettagli della serata</button>
+          <button type="button" class="v-indietro" id="v-indietro">&larr; Torna ai dettagli</button>
         </div>
       </form>
 
@@ -1915,7 +1506,7 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   </div>
 </section>
 
-<footer class="v-foot tex" data-pg="scuro">
+<footer class="v-foot tex">
   <div class="stelle" aria-hidden="true"><span class="ico i-stella"></span></div>
   <img src="images/logo/hjck-logo-negativo.svg" alt="Hot Joe &amp; The CoffeeKillers" />
   <p>Long Live Country Music</p>
@@ -1924,46 +1515,6 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
     <a href="privacy.html">Informativa privacy</a></small>
 </footer>
 <script>
-/* ============================================================================
-   1 · IL COLORE DI PAGINA
-   ----------------------------------------------------------------------------
-   Le sezioni non hanno un fondo: dichiarano il tema che chiedono con
-   data-pg="scuro" o data-pg="panna". Qui si guarda quale sezione sta
-   attraversando la meta' dello schermo e si scrivono i suoi quattro colori
-   su :root. La transizione di .6s dichiarata nel CSS fa il resto, e siccome
-   il colore sta sulla pagina e non sulla sezione, non c'e' nessuna cucitura
-   fra un blocco e l'altro.
-   ============================================================================ */
-(function(){
-  var TEMI = {
-    scuro: { bg:"#49240A", fg:"#EDDABD", mut:"#BD8B65", fil:"#6B4426" },
-    panna: { bg:"#EDDABD", fg:"#49240A", mut:"#6B4426", fil:"#C9B394" }
-  };
-  var sezioni = [].slice.call(document.querySelectorAll("[data-pg]"));
-  if(!sezioni.length) return;
-  var radice = document.documentElement, ultimo = "", inCoda = false;
-
-  function applica(){
-    inCoda = false;
-    var meta = window.innerHeight / 2, scelta = sezioni[0];
-    for(var i=0;i<sezioni.length;i++){
-      if(sezioni[i].getBoundingClientRect().top <= meta) scelta = sezioni[i];
-    }
-    var nome = scelta.getAttribute("data-pg");
-    if(nome === ultimo) return;
-    ultimo = nome;
-    var t = TEMI[nome] || TEMI.scuro;
-    radice.style.setProperty("--pg-bg",  t.bg);
-    radice.style.setProperty("--pg-fg",  t.fg);
-    radice.style.setProperty("--pg-mut", t.mut);
-    radice.style.setProperty("--pg-fil", t.fil);
-  }
-  function alScroll(){ if(!inCoda){ inCoda = true; requestAnimationFrame(applica); } }
-  window.addEventListener("scroll", alScroll, {passive:true});
-  window.addEventListener("resize", alScroll, {passive:true});
-  applica();
-})();
-
 /* ============================================================================
    2 · LA BARRA APPICCICATA
    Compare quando l'hero e' passato e si toglie di mezzo quando arriva il
@@ -2060,35 +1611,64 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 
 /* ============================================================================
    5 · IL MODULO
-   E' quello di preventivo.html: stessi comportamenti (chips a scelta singola,
-   contapersone, cursore, tile) e stesse chiavi verso Formspree. In piu' i due
-   passi, perche' otto caselle in faccia da telefono fanno chiudere la pagina.
+   ----------------------------------------------------------------------------
+   Due passi, perche' tutte le caselle in faccia da telefono fanno chiudere.
+   ⚠️ IL PEZZO NUOVO E' IL VINCOLO SERVIZIO → BUDGET (10/09). Michele:
+     "se mi dici tutto il giorno non puoi selezionare 1.000 euro... voglio
+      stanarti: dimmi tutto il giorno, e poi io ti dico che ti costa tre-k."
+   Le voci di budget escluse si SPENGONO ma restano in pagina: se sparissero,
+   sparirebbe anche il messaggio, che e' proprio "questo non te lo do a quel
+   prezzo". Se il cliente aveva gia' scelto una voce che diventa illegale, si
+   sposta da sola sulla piu' bassa ammessa.
    ============================================================================ */
 (function(){
   var form = document.getElementById("quote-form");
   if(!form) return;
 
-  function gruppoChips(id){
+  /* --- gruppi di pastiglie a scelta singola --- */
+  function gruppoChips(id, alCambio){
     var box = document.getElementById(id);
+    if(!box) return function(){ return ""; };
     box.addEventListener("click", function(e){
-      var btn = e.target.closest(".qf-chip");
-      if(!btn) return;
+      var b = e.target.closest(".qf-chip");
+      if(!b || b.classList.contains("off")) return;
       box.querySelectorAll(".qf-chip").forEach(function(c){ c.classList.remove("on"); });
-      btn.classList.add("on");
+      b.classList.add("on");
+      if(alCambio) alCambio(b);
     });
     return function(){
       var on = box.querySelector(".qf-chip.on");
-      return on ? on.textContent.trim() : "";
+      return on ? (on.childNodes[0].textContent || on.textContent).trim() : "";
     };
   }
-  var getEvt = gruppoChips("chips-evt");
-  var getAmbiente = gruppoChips("chips-setting");
-  var getBudget = gruppoChips("chips-budget");
-  var getFormato = gruppoChips("chips-formato");
 
-  /* il contapersone si muove sui GRADINI decisi il 07/09, non su una somma:
-     50 · 100 · 150 · 200 · 250 · oltre 300. L'ultimo non e' un numero, quindi
-     il "pax" accanto sparisce ("oltre 300 pax" non si dice). */
+  /* --- IL VINCOLO: il servizio scelto decide da dove parte il budget --- */
+  var boxBudget = document.getElementById("chips-budget");
+  var vociBudget = [].slice.call(boxBudget.querySelectorAll(".qf-chip"));
+  function applicaVincolo(chipServizio){
+    var minimo = parseInt(chipServizio.getAttribute("data-min"), 10) || 0;
+    vociBudget.forEach(function(c, i){
+      var vietata = i < minimo;
+      c.classList.toggle("off", vietata);
+      c.setAttribute("aria-disabled", vietata ? "true" : "false");
+      c.title = vietata ? "Con questo servizio non ci rientriamo" : "";
+    });
+    /* se la scelta di prima e' diventata illegale, si scende sulla prima buona */
+    var scelta = boxBudget.querySelector(".qf-chip.on");
+    if(!scelta || scelta.classList.contains("off")){
+      vociBudget.forEach(function(c){ c.classList.remove("on"); });
+      vociBudget[minimo].classList.add("on");
+    }
+  }
+
+  var getEvt      = gruppoChips("chips-evt");
+  var getMomento  = gruppoChips("chips-momento");
+  var getAmbiente = gruppoChips("chips-ambiente");
+  var getBudget   = gruppoChips("chips-budget");
+  var getServizio = gruppoChips("chips-servizio", applicaVincolo);
+  applicaVincolo(document.querySelector("#chips-servizio .qf-chip.on"));
+
+  /* --- il contapersone: gradini fissi, non una somma (07/09) --- */
   var SCALINI = ["50","100","150","200","250","oltre 300"];
   var iPax = 2;
   var hcVal = document.getElementById("hc-val"), hcPax = document.getElementById("hc-pax");
@@ -2096,59 +1676,48 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
     hcVal.textContent = SCALINI[iPax];
     hcPax.style.display = (iPax === SCALINI.length - 1) ? "none" : "";
   }
-  document.getElementById("hc-minus").addEventListener("click", function(){
-    iPax = Math.max(0, iPax - 1); scriviPax();
-  });
-  document.getElementById("hc-plus").addEventListener("click", function(){
-    iPax = Math.min(SCALINI.length - 1, iPax + 1); scriviPax();
-  });
+  document.getElementById("hc-minus").addEventListener("click", function(){ iPax = Math.max(0, iPax-1); scriviPax(); });
+  document.getElementById("hc-plus") .addEventListener("click", function(){ iPax = Math.min(SCALINI.length-1, iPax+1); scriviPax(); });
   scriviPax();
-
-  document.querySelectorAll(".qf-tile input").forEach(function(cb){
-    cb.addEventListener("change", function(){ cb.closest(".qf-tile").classList.toggle("on", cb.checked); });
-  });
 
   /* --- i due passi --- */
   var fase1 = document.getElementById("v-fase-1"), fase2 = document.getElementById("v-fase-2");
-  var barra = document.getElementById("v-barra"), passoTxt = document.getElementById("v-passo-txt");
   var campoData = document.getElementById("f-date"), campoDove = document.getElementById("f-location");
 
   document.getElementById("v-avanti").addEventListener("click", function(){
-    /* le due caselle obbligatorie del primo passo si controllano qui: se si
-       arrivasse al secondo passo con la data vuota, l'errore comparirebbe su
-       un campo che non si vede piu' */
+    /* le due obbligatorie si controllano QUI: se si arrivasse al passo 2 con la
+       data vuota, l'errore comparirebbe su un campo che non si vede piu' */
     if(!campoData.value.trim()){ campoData.focus(); campoData.reportValidity(); return; }
     if(!campoDove.value.trim()){ campoDove.focus(); campoDove.reportValidity(); return; }
     document.getElementById("v-riep").innerHTML =
       "<b>" + getEvt() + "</b> &middot; " + campoData.value.trim() + " &middot; " + campoDove.value.trim() +
-      " &middot; " + SCALINI[iPax] + " persone &middot; " + getFormato().toLowerCase();
+      " &middot; " + SCALINI[iPax] + " persone &middot; " + getServizio().toLowerCase();
     fase1.hidden = true; fase2.hidden = false;
-    barra.style.width = "100%"; passoTxt.textContent = "Passo 2 di 2 · dove ti rispondiamo";
     document.getElementById("f-name").focus({preventScroll:true});
     form.scrollIntoView({behavior:"smooth", block:"start"});
   });
 
   document.getElementById("v-indietro").addEventListener("click", function(){
     fase2.hidden = true; fase1.hidden = false;
-    barra.style.width = "50%"; passoTxt.textContent = "Passo 1 di 2 · la serata";
     form.scrollIntoView({behavior:"smooth", block:"start"});
   });
 
-  /* --- il consenso: senza spunta il bottone resta spento --- */
-  var invia = document.getElementById("qf-submit"), privacy = document.getElementById("f-privacy");
+  /* --- il consenso accende il bottone --- */
+  var privacy = document.getElementById("f-privacy"), invia = document.getElementById("qf-submit");
   function sync(){ invia.disabled = !privacy.checked; }
   privacy.addEventListener("change", sync); sync();
 
-  /* --- invio --- */
-  var success = document.getElementById("qf-success"), successMsg = document.getElementById("qf-success-msg");
+  /* --- l'invio --- */
+  var success = document.getElementById("qf-success");
+  var successMsg = document.getElementById("qf-success-msg");
   form.addEventListener("submit", function(e){
     e.preventDefault();
-    if(!privacy.checked){ privacy.focus(); return; }
-    if(!form.checkValidity()){ form.reportValidity(); return; }
-    var etichetta = invia.textContent;
-    invia.disabled = true; invia.textContent = "Invio in corso…";
-
     var email = document.getElementById("f-email").value.trim();
+    if(!document.getElementById("f-name").value.trim() || !email){
+      form.reportValidity(); return;
+    }
+    invia.disabled = true; invia.textContent = "Invio in corso...";
+
     var dati = {
       Origine:"Landing inserzioni — musica-country-dal-vivo",
       Variante:(new URLSearchParams(location.search).get("tipo") || "(nessuna)"),
@@ -2159,13 +1728,13 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
       Telefono:document.getElementById("f-phone").value.trim(),
       TipoEvento:getEvt(),
       Data:campoData.value.trim(),
+      Orari:document.getElementById("f-orari").value.trim() || "(non indicati)",
+      Momento:getMomento(),
       Location:campoDove.value.trim(),
       Ambiente:getAmbiente(),
       Persone:SCALINI[iPax],
-      Formato:getFormato(),
+      Servizio:getServizio(),
       Budget:getBudget(),
-      ImpiantoAudio:document.getElementById("srv-audio").checked ? "Sì" : "No",
-      LuciSceniche:document.getElementById("srv-lights").checked ? "Sì" : "No",
       Note:document.getElementById("f-notes").value.trim(),
       ConsensoPrivacy:"Sì — informativa letta e accettata il " + new Date().toLocaleString("it-IT")
     };
@@ -2176,18 +1745,22 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
       body:JSON.stringify(dati)
     }).then(function(res){
       if(res.ok){
+        /* ⚠️ Formspree non manda nessuna mail di conferma al cliente: questo
+           messaggio e' l'unica cosa che vede. Quindi dice cosa succede adesso.
+           E NON promette 24 ore (10/09): "in qualche giorno". */
         var quando = campoData.value.trim();
-        successMsg.textContent = "Ti scriviamo entro 24 ore con proposta, scaletta tipo e prezzo per la serata"
-          + (quando ? " del " + quando : "") + ". Nel frattempo non serve che fai altro.";
+        successMsg.textContent = "La richiesta è arrivata. La legge Mike e ti rispondiamo in qualche "
+          + "giorno con una proposta per l'evento" + (quando ? " del " + quando : "")
+          + ". Nel frattempo non serve che fai altro.";
         form.hidden = true; success.hidden = false;
         document.getElementById("richiesta").scrollIntoView({behavior:"smooth", block:"start"});
       }else{
+        invia.disabled = false; invia.textContent = "Invia la richiesta";
         alert("Ops, l'invio non e' riuscito. Riprova, oppure scrivici su WhatsApp al +39 393 7011409.");
       }
     }).catch(function(){
+      invia.disabled = false; invia.textContent = "Invia la richiesta";
       alert("Errore di connessione. Controlla la rete e riprova.");
-    }).finally(function(){
-      invia.textContent = etichetta; sync();
     });
   });
 })();

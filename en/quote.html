@@ -516,6 +516,13 @@ textarea.qf-input{
   max-width:var(--wrap);margin:40px auto 0;padding:0 clamp(20px,4vw,48px);
   display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(28px,4vw,56px);
 }
+/* ⚠️ min-width:0 sulle colonne. Senza, un elemento di griglia non scende mai
+   sotto la larghezza del suo contenuto (min-width:auto e' il valore di
+   partenza): da telefono la colonna restava a 403px dentro un footer di 390 e
+   TUTTA la pagina scorreva di lato di 33px. Difetto vecchio, trovato il 10/09
+   misurando lo scrollWidth. */
+.footer-grid > *{min-width:0}
+.footer-grid, .footer-grid *{overflow-wrap:anywhere}
 .footer h5{
   font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.24em;
   text-transform:uppercase;color:var(--azz);margin-bottom:16px;
@@ -623,6 +630,22 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
   color:inherit;font:inherit;line-height:1;padding:6px 9px;cursor:pointer;
 }
 .lang-bar button:hover{background:rgba(237,218,189,.14)}
+
+/* ---------- IL MODULO, REVISIONE DEL 10/09 --------------------------------
+   Le tre voci del servizio portano la durata scritta sotto, e il budget si
+   restringe in base a quello che hai scelto. Michele: "se mi dici tutto il
+   giorno non puoi selezionare 1.000 euro... voglio stanarti". */
+.qf-chips--grandi{gap:11px}
+.qf-chips--grandi .qf-chip{
+  display:flex;flex-direction:column;align-items:flex-start;gap:5px;
+  text-align:left;padding:13px 20px 14px;line-height:1.15;
+}
+.qf-chips--grandi .qf-chip em{
+  font-family:var(--sans,inherit);font-style:normal;font-weight:600;font-size:13.5px;
+  letter-spacing:0;text-transform:none;opacity:.72;
+}
+.qf-chip.off{opacity:.34;cursor:not-allowed;text-decoration:line-through;text-decoration-thickness:1.5px}
+.qf-spiega{font-size:14.5px;line-height:1.5;color:#6B4426;margin:-2px 0 12px;max-width:62ch}
 </style>
 </head>
 <body>
@@ -728,13 +751,12 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
         <div class="qf-field qf-field--full">
           <div class="qf-label" id="lbl-evt">Type of event</div>
           <div class="qf-chips" id="chips-evt" role="group" aria-labelledby="lbl-evt">
-            <button type="button" class="qf-chip on">Pub or venue</button>
-            <button type="button" class="qf-chip">Feast or fair</button>
-            <button type="button" class="qf-chip">Festival</button>
-            <button type="button" class="qf-chip">Private party</button>
+            <button type="button" class="qf-chip on">Pubs and venues</button>
+            <button type="button" class="qf-chip">Ranches and riding clubs</button>
+            <button type="button" class="qf-chip">Feasts and fairs</button>
+            <button type="button" class="qf-chip">Festivals</button>
             <button type="button" class="qf-chip">Corporate</button>
-            <button type="button" class="qf-chip">Other</button>
-            <button type="button" class="qf-chip">Wedding</button>
+            <button type="button" class="qf-chip">Private parties, weddings and other</button>
           </div>
         </div>
 
@@ -750,11 +772,8 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
         <div class="qf-field">
           <div class="qf-label" id="lbl-setting">Setting</div>
           <div class="qf-chips" id="chips-setting" role="group" aria-labelledby="lbl-setting">
-            <button type="button" class="qf-chip qf-chip--sm">Indoor</button>
-            <button type="button" class="qf-chip qf-chip--sm on">Outdoor</button>
-            <button type="button" class="qf-chip qf-chip--sm">Function room</button>
-            <button type="button" class="qf-chip qf-chip--sm">Farmhouse</button>
-            <button type="button" class="qf-chip qf-chip--sm">To be decided</button>
+            <button type="button" class="qf-chip qf-chip--sm on">Indoor</button>
+            <button type="button" class="qf-chip qf-chip--sm">Outdoor</button>
           </div>
         </div>
         <div class="qf-field">
@@ -773,11 +792,11 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
              ours to know (about two hours). What we need to know is whether the
              client has a whole day to cover. -->
         <div class="qf-field qf-field--full">
-          <div class="qf-label" id="lbl-formato">What do you need <span class="opt">if in doubt, leave «the show only»</span></div>
-          <div class="qf-chips" id="chips-formato" role="group" aria-labelledby="lbl-formato">
-            <button type="button" class="qf-chip qf-chip--sm on">The show only</button>
-            <button type="button" class="qf-chip qf-chip--sm">Show and acoustic set</button>
-            <button type="button" class="qf-chip qf-chip--sm">All day long</button>
+          <div class="qf-label" id="lbl-formato">Which service do you need?</div>
+          <div class="qf-chips qf-chips--grandi" id="chips-formato" role="group" aria-labelledby="lbl-formato">
+            <button type="button" class="qf-chip on" data-min="0">The live show only<em>about two hours</em></button>
+            <button type="button" class="qf-chip" data-min="1">Live show and acoustic set<em>two hours plus 30/45 minutes</em></button>
+            <button type="button" class="qf-chip" data-min="2">Whole day covered<em>details to be agreed together</em></button>
           </div>
         </div>
 
@@ -803,10 +822,12 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
                e finivano su un font di ripiego -->
           <!-- ⚠️ THREE options, and the first one starts at a thousand (07/09).
                "Up to 1,000" suggested we could go lower. We cannot. -->
+          <p class="qf-spiega">Not binding: it saves you time, and it changes the kind of
+            proposal we can put together — show, PA, lights, travel.</p>
           <div class="qf-chips" id="chips-budget" role="group" aria-labelledby="lbl-budget">
-            <button type="button" class="qf-chip qf-chip--sm on">Around €1,000</button>
-            <button type="button" class="qf-chip qf-chip--sm">Up to €2,000</button>
-            <button type="button" class="qf-chip qf-chip--sm">Over €2,000</button>
+            <button type="button" class="qf-chip on">Around €1,000</button>
+            <button type="button" class="qf-chip">Up to €1,500</button>
+            <button type="button" class="qf-chip">Over €2,000</button>
           </div>
         </div>
 
@@ -940,15 +961,43 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
     var box=document.getElementById(id);
     box.addEventListener("click",function(e){
       var btn=e.target.closest(".qf-chip");
-      if(!btn)return;
+      if(!btn || btn.classList.contains("off"))return;
       box.querySelectorAll(".qf-chip").forEach(function(c){c.classList.remove("on");});
       btn.classList.add("on");
     });
-    return function(){return box.querySelector(".qf-chip.on").textContent;};
+    /* ⚠️ childNodes[0] e non textContent: le chip del servizio hanno la durata
+       dentro un <em>, e senza questo a Formspree arriverebbe attaccata
+       ("Solo live showcirca due ore"). */
+    return function(){
+      var on=box.querySelector(".qf-chip.on");
+      return on ? (on.childNodes[0].textContent || on.textContent).trim() : "";
+    };
   }
   var getEvt=chipGroup("chips-evt");
   var getSetting=chipGroup("chips-setting");
   var getBudget=chipGroup("chips-budget");
+
+  /* --- IL VINCOLO SERVIZIO → BUDGET (10/09) --------------------------------
+     Le voci escluse si SPENGONO ma restano: se sparissero, sparirebbe anche il
+     messaggio, che e' proprio "questo non te lo do a quel prezzo". */
+  (function(){
+    var boxS=document.getElementById("chips-formato"), boxB=document.getElementById("chips-budget");
+    if(!boxS||!boxB) return;
+    var voci=[].slice.call(boxB.querySelectorAll(".qf-chip"));
+    function applica(chip){
+      var min=parseInt(chip.getAttribute("data-min"),10)||0;
+      voci.forEach(function(c,i){ c.classList.toggle("off", i<min); c.setAttribute("aria-disabled", i<min?"true":"false"); });
+      var on=boxB.querySelector(".qf-chip.on");
+      if(!on||on.classList.contains("off")){ voci.forEach(function(c){c.classList.remove("on");}); voci[min].classList.add("on"); }
+    }
+    boxS.addEventListener("click",function(e){ var b=e.target.closest(".qf-chip"); if(b) applica(b); });
+    boxB.addEventListener("click",function(e){
+      var b=e.target.closest(".qf-chip");
+      if(b&&b.classList.contains("off")){ e.stopImmediatePropagation(); e.preventDefault(); }
+    },true);
+    applica(boxS.querySelector(".qf-chip.on"));
+  })();
+
   var getFormato=chipGroup("chips-formato");
 
   // — contapersone a GRADINI (07/09): 50 · 100 · 150 · 200 · 250 · oltre 300 —
