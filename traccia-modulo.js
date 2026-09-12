@@ -25,6 +25,63 @@
   var form = document.getElementById('quote-form');
   if (!form || !('fetch' in window)) return;
 
+  /* ------------------------------------------------------------------------
+     GLI EVENTI PER TAG MANAGER
+     I tag dentro GTM si attivano su questi tre nomi: form_start, generate_lead,
+     whatsapp_click. Si spingono per TUTTI i visitatori, anche a consenso negato:
+     GTM tiene i tag in attesa e li fa partire se il consenso arriva dopo, nella
+     stessa pagina. Qui non si scrive nessun cookie.
+     ⚠️ Il nome nel dataLayer e' IDENTICO al nome dell'evento in GA4: una parola
+     sola da sbagliare invece di due.
+     ------------------------------------------------------------------------ */
+  var MODULO = form.getAttribute('name') || '';
+
+  /* Primo contatto: variante e inserzione arrivano nella query string solo sulla
+     pagina d'ingresso. Chi poi va su preventivo.html le perderebbe, e in GA4 la
+     richiesta risulterebbe senza provenienza. sessionStorage e non un cookie:
+     muore con la scheda, non identifica nessuno, non chiede consenso. */
+  try {
+    var qs = new URLSearchParams(location.search);
+    var t0 = qs.get('tipo'), a0 = qs.get('utm_content');
+    if (t0 && !sessionStorage.getItem('ck_variante')) sessionStorage.setItem('ck_variante', t0);
+    if (a0 && !sessionStorage.getItem('ck_annuncio')) sessionStorage.setItem('ck_annuncio', a0);
+  } catch (e) { /* navigazione privata: si prosegue senza */ }
+
+  function daSessione(k, seVuoto) {
+    try { return sessionStorage.getItem(k) || seVuoto; } catch (e) { return seVuoto; }
+  }
+  function campo(nome) {
+    var el = form.querySelector('[name="' + nome + '"]');
+    return (el && String(el.value || '').trim()) || '(non indicato)';
+  }
+  function ck(nome, extra) {
+    var d = {
+      event: nome,
+      form_name: MODULO,
+      variante: daSessione('ck_variante', '(nessuna)'),
+      annuncio: daSessione('ck_annuncio', '(nessuno)')
+    };
+    if (extra) for (var k in extra) d[k] = extra[k];
+    (window.dataLayer = window.dataLayer || []).push(d);
+  }
+
+  /* WhatsApp: la posizione si ricava dal contesto, cosi' non serve toccare tutti i
+     link del sito. Se un giorno si vuole precisione, basta un data-posizione. */
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest
+      ? e.target.closest('a[href*="wa.me"],a[href*="api.whatsapp.com"]') : null;
+    if (!a) return;
+    var dove = a.getAttribute('data-posizione');
+    if (!dove) {
+      if (a.closest('header')) dove = 'testata';
+      else if (a.closest('footer')) dove = 'piede';
+      else if (a.closest('.qf-success')) dove = 'dopo-invio';
+      else if (getComputedStyle(a).position === 'fixed' || (a.closest('[class*="sticky"],[class*="barra"]'))) dove = 'barra-fissa';
+      else dove = 'pagina';
+    }
+    ck('whatsapp_click', { posizione: dove });
+  }, true);
+
   var LIVELLI = { visto: 0, iniziato: 1, passo2: 2, inviato: 3 };
   var esito = 'visto';
   var ultimoCampo = '';
@@ -101,11 +158,15 @@
   }
 
   /* --- la prima volta che qualcuno tocca qualcosa --- */
+  var spintoInizio = false;
   function tocca(e) {
     var t = e.target;
     if (!t) return;
     partito = partito || Date.now();
     sali('iniziato');
+    /* form_start: una volta sola per pagina. Niente tipo_evento qui - all'inizio il
+       chip puo' non essere ancora scelto e si registrerebbe un valore vuoto. */
+    if (!spintoInizio) { spintoInizio = true; ck('form_start'); }
     var nome = t.getAttribute('name') || t.id || '';
     if (!nome && t.classList && t.classList.contains('qf-chip')) {
       var gruppo = t.closest('.qf-chips');
@@ -130,6 +191,12 @@
   osserva(document.getElementById('v-fase-2'), function () { sali('passo2'); });
   osserva(document.getElementById('qf-success'), function () {
     sali('inviato');
+    /* generate_lead: l'UNICA conversione. Si attiva qui, cioe' quando compare il
+       pannello "Ricevuto" - non sul clic del bottone, che conterebbe anche i
+       tentativi falliti e i doppi clic. I valori si leggono dai campi nascosti
+       adesso, non quando si clicca un chip: chi cambia idea due volte verrebbe
+       registrato con la prima scelta. */
+    ck('generate_lead', { tipo_evento: campo('tipo_evento'), budget: campo('budget') });
     manda();   // l'invio riuscito si comunica subito: e' il dato che conta di piu'
   });
 
