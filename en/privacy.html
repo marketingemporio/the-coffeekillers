@@ -565,8 +565,25 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
 }
 .lang-bar button:hover{background:rgba(237,218,189,.14)}
 </style>
+
+<!-- ⚠️ L'ORDINE CONTA: consenso.js PRIMA di Tag Manager, e senza defer. Imposta il
+     consent mode a NEGATO come stato di partenza, cosi' i tag dentro GTM non scrivono
+     niente finche' qualcuno non accetta. Se girasse dopo, il banner sarebbe finto. -->
+<script src="../consenso.js"></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N6HMSTFK');</script>
+<!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6HMSTFK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <script>document.documentElement.classList.add("js");</script>
 
 <!-- ==================== NAV (stile home confermato il 01/09) ==================== -->
@@ -653,8 +670,14 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
         <p><b>While you browse</b> we ask you for nothing and we do not recognise you. We only
            collect anonymous statistics: how many visits a page gets, from which country, on what
            kind of device. None of it is linked to you.</p>
-        <p class="pv-nota">We use no profiling cookies. In fact, <b>we install no cookies at
-           all</b> &mdash; which is why you see no banner to accept.</p>
+        <p class="pv-nota"><b>Statistics cookies: only if you accept them.</b> Since 12 September
+           2026 this site uses Google Analytics, managed through Google Tag Manager, to understand
+           which pages work and which ad brought the people who write to us. These tools install
+           cookies and send your IP address to Google, so <b>they only start after you say yes</b>
+           in the box you see on your first visit. If you choose &laquo;only the necessary ones&raquo;,
+           or choose nothing, <b>no cookie is written</b> and Google receives nothing. You can change
+           your mind whenever you like: see <a href="#cookie">Cookies and choices</a>.</p>
+        <p>We do not use cookies to profile you, nor to show you advertising inside the site.</p>
       </article>
 
       <article class="pv-blocco rv">
@@ -684,6 +707,9 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
               accesses, as any web server does.</li>
           <li><b>Cloudflare</b> (Cloudflare Inc., United States) &mdash; provides the anonymous
               visit statistics, with no cookies and without recognising individual visitors.</li>
+          <li><b>Google</b> (Google Ireland Ltd.) &mdash; Google Analytics and Google Tag Manager,
+              <b>only if you accepted</b>. It receives your IP address and the statistics cookies.
+              Without your consent it is not contacted to collect data about you.</li>
         </ul>
         <p><b>Transfers outside the European Union.</b> These suppliers are based in the United
            States, so your data may be processed outside the EU. The transfer relies on the
@@ -691,7 +717,29 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
            applicable, on their certification under the <b>EU&ndash;US Data Privacy Framework</b>.
            Ask us if you would like a copy of those safeguards.</p>
         <p class="pv-nota">The fonts used on this site are hosted on our own servers: opening a
-           page <b>does not contact Google or any other outside service</b>.</p>
+           page <b>does not contact Google</b> for them, as before. You only contact Google for the
+           statistics, and only if you accepted them.</p>
+      </article>
+
+      <article class="pv-blocco rv" id="cookie">
+        <h2>Cookies and choices</h2>
+        <p>On your first visit we ask whether we may use statistics cookies. Until you answer, and
+           if you answer no, <b>no cookie is written on your device</b> and Google receives nothing:
+           the starting state is &laquo;denied&raquo;, and our tools stay put until you change it.</p>
+        <ul class="pv-lista">
+          <li><b>Necessary</b> &mdash; no cookies. We keep your consent choice in the browser
+              storage, otherwise we would have to ask you again on every page.</li>
+          <li><b>Statistics</b> (Google Analytics) &mdash; only with your consent. They tell us which
+              pages get read and which ad brought the people who write to us.</li>
+        </ul>
+        <p><b>Changing your mind:</b> if you accepted and no longer want to, or refused and want to
+           reconsider, <a href="#" onclick="if(window.ckConsenso){window.ckConsenso.riapri();}return false;">reopen
+           the consent box</a> and choose again. You can also delete the cookies from your browser
+           settings.</p>
+        <p class="pv-nota">We also measure, <b>with no cookies and without recognising anyone</b>,
+           where people stop in the quote form: it tells us whether a question is unclear. We never
+           read what you typed in the fields, only the name of the field, and there is nothing in it
+           that identifies you.</p>
       </article>
 
       <article class="pv-blocco rv">

@@ -565,8 +565,25 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
 }
 .lang-bar button:hover{background:rgba(237,218,189,.14)}
 </style>
+
+<!-- ⚠️ L'ORDINE CONTA: consenso.js PRIMA di Tag Manager, e senza defer. Imposta il
+     consent mode a NEGATO come stato di partenza, cosi' i tag dentro GTM non scrivono
+     niente finche' qualcuno non accetta. Se girasse dopo, il banner sarebbe finto. -->
+<script src="consenso.js"></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N6HMSTFK');</script>
+<!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6HMSTFK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <script>document.documentElement.classList.add("js");</script>
 
 <!-- ==================== NAV (stile home confermato il 01/09) ==================== -->
@@ -650,8 +667,14 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
         <p><b>Mentre navighi</b> non ti chiediamo niente e non ti riconosciamo. Raccogliamo solo dati
            statistici anonimi: quante visite riceve una pagina, da che Paese, con che tipo di
            dispositivo. Non sono collegati a te.</p>
-        <p class="pv-nota">Non usiamo cookie di profilazione. Anzi: <b>non installiamo nessun
-           cookie</b>. Per questo non vedi nessun banner da accettare.</p>
+        <p class="pv-nota"><b>Cookie di statistica: solo se li accetti.</b> Dal 12 settembre 2026 il
+           sito usa Google Analytics, gestito con Google Tag Manager, per capire quali pagine
+           funzionano e da quale annuncio arriva chi ci scrive. Questi strumenti installano cookie
+           e mandano a Google il tuo indirizzo IP, quindi <b>partono solo dopo che hai detto di
+           s&igrave;</b> nel riquadro che trovi alla prima visita. Se scegli &laquo;solo i necessari&raquo;,
+           o non scegli niente, <b>non viene scritto nessun cookie</b> e a Google non arriva
+           niente. Puoi cambiare idea quando vuoi: vedi <a href="#cookie">Cookie e scelte</a>.</p>
+        <p>Non usiamo cookie per profilarti n&eacute; per mostrarti pubblicit&agrave; dentro il sito.</p>
       </article>
 
       <article class="pv-blocco rv">
@@ -680,6 +703,9 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
               registrano gli accessi, come fa qualunque server web.</li>
           <li><b>Cloudflare</b> (Cloudflare Inc., Stati Uniti) &mdash; fornisce le statistiche anonime
               di visita, senza cookie e senza riconoscere i singoli visitatori.</li>
+          <li><b>Google</b> (Google Ireland Ltd.) &mdash; Google Analytics e Google Tag Manager,
+              <b>solo se hai accettato</b>. Riceve il tuo indirizzo IP e i cookie di statistica.
+              Senza il tuo consenso non viene contattato per raccogliere dati su di te.</li>
         </ul>
         <p><b>Trasferimento fuori dall&rsquo;Unione Europea.</b> Questi fornitori sono statunitensi, quindi
            i dati possono essere trattati fuori dall&rsquo;UE. Il trasferimento avviene sulla base delle
@@ -687,7 +713,30 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
            dell&rsquo;adesione al <b>EU&ndash;US Data Privacy Framework</b>. Se vuoi copia delle garanzie,
            chiedicela.</p>
         <p class="pv-nota">I caratteri tipografici del sito sono ospitati sui nostri stessi server:
-           aprendo una pagina <b>non contatti Google n&eacute; altri servizi esterni</b>.</p>
+           per quelli <b>non contatti Google</b>, come succedeva prima. Google lo contatti solo per
+           le statistiche, e solo se le hai accettate.</p>
+      </article>
+
+      <article class="pv-blocco rv" id="cookie">
+        <h2>Cookie e scelte</h2>
+        <p>Alla prima visita ti chiediamo se possiamo usare i cookie di statistica. Finch&eacute; non
+           rispondi, e se rispondi di no, <b>sul tuo dispositivo non viene scritto nessun cookie</b>
+           e Google non riceve niente: lo stato di partenza &egrave; &laquo;negato&raquo; e i nostri
+           strumenti restano fermi finch&eacute; non lo cambi tu.</p>
+        <ul class="pv-lista">
+          <li><b>Necessari</b> &mdash; nessun cookie. Ricordiamo la tua scelta sul consenso nella
+              memoria del browser, perch&eacute; altrimenti dovremmo richiedertela a ogni pagina.</li>
+          <li><b>Statistica</b> (Google Analytics) &mdash; solo con il tuo consenso. Servono a sapere
+              quali pagine si leggono e da quale annuncio arriva chi ci scrive.</li>
+        </ul>
+        <p><b>Cambiare idea:</b> se hai accettato e non vuoi pi&ugrave;, oppure hai rifiutato e vuoi
+           riconsiderare, <a href="#" onclick="if(window.ckConsenso){window.ckConsenso.riapri();}return false;">riapri
+           il riquadro del consenso</a> e scegli di nuovo. Puoi anche cancellare i cookie dalle
+           impostazioni del tuo browser.</p>
+        <p class="pv-nota">Misuriamo anche, <b>senza cookie e senza riconoscere nessuno</b>, a che
+           punto del modulo di preventivo le persone si fermano: ci serve a capire se una domanda
+           &egrave; poco chiara. Non leggiamo mai quello che hai scritto nei campi, solo il nome del
+           campo, e non c&rsquo;&egrave; niente che ti identifichi.</p>
       </article>
 
       <article class="pv-blocco rv">

@@ -2071,8 +2071,25 @@ body::before{
 }
 .lang-bar button:hover{background:rgba(237,218,189,.14)}
 </style>
+
+<!-- ⚠️ L'ORDINE CONTA: consenso.js PRIMA di Tag Manager, e senza defer. Imposta il
+     consent mode a NEGATO come stato di partenza, cosi' i tag dentro GTM non scrivono
+     niente finche' qualcuno non accetta. Se girasse dopo, il banner sarebbe finto. -->
+<script src="../consenso.js"></script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N6HMSTFK');</script>
+<!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N6HMSTFK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <script>document.documentElement.classList.add("js");</script>
 
 <!-- ==================== NAV (replica testata Kruse Brothers, senza striscia annuncio) ==================== -->

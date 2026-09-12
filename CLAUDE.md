@@ -264,7 +264,29 @@ una serata che il brain dà come **saltata**.
 - **Non pubblicare** cachet, acconti, note interne, dati di clienti privati.
 - Font: **Bonzana** (display, licenza **Web** comprata il 02/09/2026), **LT Cushion** (gratis),
   **Manrope** (OFL). Auto-ospitati in `fonts/`: **Google Fonts è stato eliminato** per non
-  mandare gli IP dei visitatori a Google — è anche il motivo per cui il sito **non ha il
-  banner cookie**. Non reintrodurre un terzo servizio senza riscrivere l'informativa.
+  mandare gli IP dei visitatori a Google. Questo vale ancora e non si tocca.
+
+## 🍪 DAL 12/09/2026 IL SITO HA IL BANNER COOKIE (e prima non ce l'aveva)
+
+Fino all'11/09 questo file diceva che il sito **non ha il banner** perché non c'erano terze
+parti. **Non è più vero**: sono stati installati **Google Tag Manager `GTM-N6HMSTFK`** e
+**Google Analytics `G-BHKGF45S73`**, quindi Google riceve gli IP e scrive cookie, e il
+consenso è diventato obbligatorio.
+
+**L'ORDINE NELL'`<head>` NON È UN DETTAGLIO:** `consenso.js` va **PRIMA** dello snippet GTM e
+**senza `defer`**. Imposta il *consent mode* a **negato** come stato di partenza, così i tag
+dentro GTM non scrivono niente finché qualcuno non accetta. Se girasse dopo, i tag partirebbero
+prima della domanda e **il banner sarebbe una finzione** — cioè peggio che non averlo.
+Su tutte e 17 le pagine, IT ed EN. Riaprire la scelta: `window.ckConsenso.riapri()`.
+
+⚠️ **Chi cambia l'informativa la cambia in DUE lingue.** `privacy.html` ed `en/privacy.html`
+dicevano entrambe *«non installiamo nessun cookie»* e *«non contatti Google»*: due affermazioni
+diventate false nello stesso minuto. Aggiornate insieme il 12/09, con la sezione «Cookie e
+scelte» / «Cookies and choices».
+
+⚠️ **L'imbuto del modulo (`traccia-modulo.js` + `netlify/functions/traccia.mjs`) è un'altra
+cosa e NON passa dal banner**: nessun cookie, nessun identificatore, non legge mai il contenuto
+dei campi e la pagina parla solo con questo dominio. Non metterlo dentro il consenso per
+simmetria: non ne ha bisogno, e chiedere un consenso che non serve fa solo perdere dati.
 - `_font-prova/`, `_brand-def/`, `_parcheggio/`, `_bozzetti/`, `_bk` e le cartelle delle foto
   originali sono in `.gitignore` **per una ragione**: se finiscono in un commit vanno online.
