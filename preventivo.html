@@ -756,7 +756,15 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       <button type="button" class="btn-dark" id="qf-reset">↺ Nuova richiesta</button>
     </div>
 
-    <form class="quote-form rv" id="quote-form" novalidate="">
+    <!-- ⚠️ NETLIFY FORMS dal 12/09 (prima Formspree). Netlify riconosce i moduli leggendo
+         l'HTML STATICO: servono name + data-netlify, e ogni valore che si vuole ricevere
+         deve esistere come CAMPO nel markup. I chip sono <button>, non campi: i loro
+         valori stanno nei campi nascosti in fondo al modulo, riempiti dal JavaScript
+         prima dell'invio. A vista non cambia niente. -->
+    <form class="quote-form rv" id="quote-form" name="preventivo-sito" method="POST"
+          data-netlify="true" data-netlify-honeypot="bot-field" novalidate="">
+      <input type="hidden" name="form-name" value="preventivo-sito" />
+      <p class="qf-esca" aria-hidden="true"><label>Non compilare<input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
       <div class="qf-grid">
 
         <div class="qf-field qf-field--full">
@@ -819,12 +827,14 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
           <div class="qf-label" id="lbl-srv">Servizi <span class="opt">selezione multipla</span></div>
           <div class="qf-tiles" role="group" aria-labelledby="lbl-srv">
             <label class="qf-tile on">
-              <input type="checkbox" id="srv-audio" checked />
+              <!-- il name serve a Netlify: una casella senza name non viene mai inviata.
+                   Se non e' spuntata non arriva nulla, e chi legge lo interpreta come "no". -->
+              <input type="checkbox" id="srv-audio" name="service_audio" value="Si" checked />
               <span class="tlbl">Service audio</span>
               <span class="tsub">Suggerito</span>
             </label>
             <label class="qf-tile">
-              <input type="checkbox" id="srv-lights" />
+              <input type="checkbox" id="srv-lights" name="luci_sceniche" value="Si" />
               <span class="tlbl">Luci sceniche</span>
               <span class="tsub">Opzionale</span>
             </label>
@@ -873,6 +883,17 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
         </div>
         <button type="submit" class="btn-poster" id="qf-submit" disabled>Invia richiesta</button>
       </div>
+
+      <!-- ⚠️ I VALORI DEI CHIP. Esistono qui perche' Netlify legge i campi dall'HTML
+           statico: un valore che vive solo in una variabile JavaScript non arriva.
+           Li riempie il gestore dell'invio, qui sotto nella pagina. -->
+      <input type="hidden" name="origine"     value="Preventivo - modulo del sito" />
+      <input type="hidden" name="tipo_evento" id="h-evento" />
+      <input type="hidden" name="ambiente"    id="h-ambiente" />
+      <input type="hidden" name="ospiti"      id="h-ospiti" />
+      <input type="hidden" name="formato"     id="h-formato" />
+      <input type="hidden" name="budget"      id="h-budget" />
+      <input type="hidden" name="consenso"    id="h-consenso" />
     </form>
   </div>
 </section>
@@ -1055,30 +1076,23 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
     submitBtn.classList.add("is-sending");
     submitBtn.textContent="Invio in corso...";
 
-    var emailVal=document.getElementById("f-email").value;
-    var data={
-      Origine:"Preventivo \u2014 modulo del sito",
-      Nome:document.getElementById("f-name").value,
-      email:emailVal,          // chiave standard per gli autoresponder di Formspree
-      _replyto:emailVal,       // chiave esplicita di fallback
-      Telefono:document.getElementById("f-phone").value,
-      Note:document.getElementById("f-notes").value,
-      Data:document.getElementById("f-date").value,
-      Location:document.getElementById("f-location").value,
-      TipoEvento:getEvt(),
-      Ambiente:getSetting(),
-      Ospiti:SCALINI[iPax],
-      Formato:getFormato(),
-      Budget:getBudget().trim(),
-      ServiziAudio:document.getElementById("srv-audio").checked?"Sì":"No",
-      ServiziLuci:document.getElementById("srv-lights").checked?"Sì":"No",
-      ConsensoPrivacy:"Sì — informativa privacy letta e accettata il "+new Date().toLocaleString("it-IT")
-    };
+    /* NETLIFY FORMS: si invia IL MODULO, non un oggetto costruito a mano.
+       I valori dei chip non sono campi del modulo, quindi prima si travasano nei campi
+       nascosti in fondo al form: quello che non sta nel markup non arriva a destinazione.
+       Il corpo va urlencoded e deve contenere form-name, che e' come Netlify riconosce
+       di quale modulo si tratta. */
+    var q=function(id){return document.getElementById(id);};
+    q("h-evento").value   = getEvt();
+    q("h-ambiente").value = getSetting();
+    q("h-ospiti").value   = SCALINI[iPax];
+    q("h-formato").value  = getFormato();
+    q("h-budget").value   = getBudget().trim();
+    q("h-consenso").value = "Si - informativa privacy letta e accettata il "+new Date().toLocaleString("it-IT");
 
-    fetch("https://formspree.io/f/xdabrrrr",{
+    fetch(location.pathname,{
       method:"POST",
-      headers:{"Accept":"application/json","Content-Type":"application/json"},
-      body:JSON.stringify(data)
+      headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+      body:new URLSearchParams(new FormData(form)).toString()
     }).then(function(res){
       if(res.ok){
         var dataDetta=(document.getElementById("f-date").value||"").trim();

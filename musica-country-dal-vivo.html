@@ -576,9 +576,11 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 /* ============================================================================
    14 · IL MODULO — la scheda crema appoggiata sul fondo scuro, con la cornice
    della locandina. Classi .qf-* identiche a preventivo.html: stesse chiavi
-   verso Formspree.
+   verso Netlify Forms (prima era Formspree, cambiato il 12/09).
    ============================================================================ */
 .v-form-guscio{max-width:880px;margin:clamp(36px,4.6vw,54px) auto 0}
+/* la trappola anti-spam di Netlify: esiste nel markup e non si vede mai */
+.qf-esca{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .quote-form,.qf-success{
   background:var(--panna);border-radius:6px;
   padding:clamp(24px,4vw,44px);
@@ -1390,8 +1392,12 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
      ⚠️ IL VINCOLO SERVIZIO → BUDGET e' voluto: "se mi dici tutto il giorno non
      puoi selezionare 1.000 euro... voglio stanarti". Le voci escluse si
      disattivano a vista, non spariscono: si deve capire che sono escluse.
-     ⚠️ Formspree NON manda al cliente nessuna mail di conferma: il pannello
-     "Ricevuto" qui sotto e' l'unica cosa che il cliente vede.
+     ⚠️ DAL 12/09 IL MODULO VA A NETLIFY FORMS, non piu' a Formspree. Netlify
+     CONSERVA ogni invio nel suo pannello (quindi una richiesta non si perde nemmeno
+     se la posta o n8n si fermano) e chiama un webhook: da li' n8n manda la mail a
+     Mike E la conferma a chi ha compilato - cosa che Formspree non faceva.
+     Finche' quel webhook non e' collegato, il pannello "Ricevuto" qui sotto resta
+     l'unica cosa che il cliente vede: non promettere una mail che ancora non parte.
      ============================================================================ -->
 <section class="v-sez v-sez--alta tex" id="richiesta">
   <div class="v-in">
@@ -1400,7 +1406,21 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
       rispondiamo con una proposta in qualche giorno.</p>
 
     <div class="v-form-guscio rv">
-      <form class="quote-form" id="quote-form" novalidate>
+      <!-- ⚠️ NETLIFY FORMS, non piu' Formspree (12/09).
+           Netlify riconosce un modulo LEGGENDO L'HTML STATICO in pubblicazione: percio'
+           servono name + data-netlify, e ogni valore che si vuole ricevere deve esistere
+           come campo NEL MARKUP. I chip qui sotto sono <button>, non campi: i loro valori
+           vivevano solo in JavaScript, quindi sono stati aggiunti i campi nascosti in fondo
+           al modulo e il JavaScript li riempie prima di inviare.
+           Niente cambia a vista: sono input nascosti.
+           bot-field e' la trappola anti-spam di Netlify: va lasciata vuota e fuori dal
+           percorso di tabulazione. -->
+      <form class="quote-form" id="quote-form" name="preventivo-landing" method="POST"
+            data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="preventivo-landing" />
+        <p class="qf-esca" aria-hidden="true">
+          <label>Non compilare<input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+        </p>
 
         <!-- ---------- PASSO 1 ---------- -->
         <div class="v-fase" id="v-fase-1">
@@ -1500,6 +1520,23 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
           </div>
           <button type="button" class="v-indietro" id="v-indietro">&larr; Torna ai dettagli</button>
         </div>
+
+        <!-- ⚠️ I VALORI DEI CHIP, E DA DOVE ARRIVA LA VISITA.
+             Esistono qui perche' Netlify legge i campi dall'HTML statico: un valore che
+             vive solo in una variabile JavaScript non arriva a destinazione. Li riempie
+             la funzione riempiNascosti() prima dell'invio.
+             "variante" e' il ?tipo= dell'inserzione, "campagna" tutta la query string:
+             sono i due campi che dicono da QUALE annuncio arriva la richiesta. -->
+        <input type="hidden" name="origine"     value="Landing inserzioni - musica-country-dal-vivo" />
+        <input type="hidden" name="variante"    id="h-variante" />
+        <input type="hidden" name="campagna"    id="h-campagna" />
+        <input type="hidden" name="tipo_evento" id="h-evento" />
+        <input type="hidden" name="momento"     id="h-momento" />
+        <input type="hidden" name="ambiente"    id="h-ambiente" />
+        <input type="hidden" name="persone"     id="h-persone" />
+        <input type="hidden" name="servizio"    id="h-servizio" />
+        <input type="hidden" name="budget"      id="h-budget" />
+        <input type="hidden" name="consenso"    id="h-consenso" />
       </form>
 
       <div class="qf-success" id="qf-success" hidden>
@@ -1726,36 +1763,34 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
     }
     invia.disabled = true; invia.textContent = "Invio in corso...";
 
-    var dati = {
-      Origine:"Landing inserzioni — musica-country-dal-vivo",
-      Variante:(new URLSearchParams(location.search).get("tipo") || "(nessuna)"),
-      Campagna:(location.search || "(nessun parametro)"),
-      Nome:document.getElementById("f-name").value.trim(),
-      email:email,          /* le due chiavi che fanno funzionare */
-      _replyto:email,       /* il tasto "Rispondi" nella casella  */
-      Telefono:document.getElementById("f-phone").value.trim(),
-      TipoEvento:getEvt(),
-      Data:campoData.value.trim(),
-      Orari:document.getElementById("f-orari").value.trim() || "(non indicati)",
-      Momento:getMomento(),
-      Location:campoDove.value.trim(),
-      Ambiente:getAmbiente(),
-      Persone:SCALINI[iPax],
-      Servizio:getServizio(),
-      Budget:getBudget(),
-      Note:document.getElementById("f-notes").value.trim(),
-      ConsensoPrivacy:"Sì — informativa letta e accettata il " + new Date().toLocaleString("it-IT")
-    };
+    /* ⚠️ NETLIFY FORMS: si invia IL MODULO, non un oggetto costruito a mano.
+       I valori dei chip non sono campi del modulo, quindi prima si travasano nei campi
+       nascosti: quello che non sta nel markup non arriva a destinazione.
+       Il corpo va urlencoded e deve contenere form-name, che e' come Netlify capisce
+       di quale modulo si tratta. */
+    var q = function(id){ return document.getElementById(id); };
+    q("h-variante").value = new URLSearchParams(location.search).get("tipo") || "(nessuna)";
+    q("h-campagna").value = location.search || "(nessun parametro)";
+    q("h-evento").value   = getEvt();
+    q("h-momento").value  = getMomento();
+    q("h-ambiente").value = getAmbiente();
+    q("h-persone").value  = SCALINI[iPax];
+    q("h-servizio").value = getServizio();
+    q("h-budget").value   = getBudget();
+    q("h-consenso").value = "Si - informativa letta e accettata il " + new Date().toLocaleString("it-IT");
+    if(!q("f-orari").value.trim()){ q("f-orari").value = ""; }
 
-    fetch("https://formspree.io/f/xdabrrrr",{
+    fetch(location.pathname,{
       method:"POST",
-      headers:{"Accept":"application/json","Content-Type":"application/json"},
-      body:JSON.stringify(dati)
+      headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+      body:new URLSearchParams(new FormData(form)).toString()
     }).then(function(res){
       if(res.ok){
-        /* ⚠️ Formspree non manda nessuna mail di conferma al cliente: questo
-           messaggio e' l'unica cosa che vede. Quindi dice cosa succede adesso.
-           E NON promette 24 ore (10/09): "in qualche giorno". */
+        /* ⚠️ Questo messaggio resta l'unica cosa che il cliente vede FINCHE' il
+           webhook n8n non manda la conferma. Quindi dice cosa succede adesso, e
+           NON promette 24 ore (10/09): "in qualche giorno".
+           Quando la conferma partira' davvero, qui si potra' aggiungere
+           "ti arriva anche una mail" - non prima. */
         var quando = campoData.value.trim();
         successMsg.textContent = "La richiesta è arrivata. La legge Mike e ti rispondiamo in qualche "
           + "giorno con una proposta per l'evento" + (quando ? " del " + quando : "")

@@ -223,3 +223,13 @@
   color:var(--tan);margin:10px 0 0;max-width:46ch;
 }
 .nl-consenso a{color:var(--azz)}
+
+/* ============================================================================
+   LA TRAPPOLA ANTI-SPAM DI NETLIFY FORMS (dal 12/09)
+   Netlify scarta l'invio se questo campo arriva compilato: lo compilano solo i
+   robot. Deve ESISTERE nel markup - e' da li' che Netlify lo riconosce - ma non
+   deve vedersi mai. Non si usa display:none: alcuni robot ignorano i campi
+   nascosti cosi', mentre un campo spostato fuori dallo schermo lo compilano.
+   tabindex="-1" sul campo lo tiene fuori dal percorso di tabulazione.
+   ============================================================================ */
+.qf-esca{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
