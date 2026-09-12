@@ -1824,5 +1824,11 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 <!-- Cloudflare Web Analytics — privacy-friendly, niente cookie, niente banner.
      Sulla landing serve per capire se la campagna converte. -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9aebd7c8eb4d4dd29a6c1f9c9f03d7f4"}'></script>
+
+<!-- L'imbuto del modulo: dove si fermano le persone. Niente cookie, niente
+     identificatori, non legge mai il contenuto dei campi e parla solo con questo
+     dominio (/traccia, che e' una funzione Netlify). E' per questo che il sito
+     puo' restare senza banner. Dettagli in cima al file. -->
+<script defer src="traccia-modulo.js"></script>
 </body>
 </html>

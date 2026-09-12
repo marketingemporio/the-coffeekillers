@@ -1193,5 +1193,11 @@ document.querySelectorAll("form.newsletter").forEach(function(form){
   });
 })();
 </script>
+
+<!-- L'imbuto del modulo: dove si fermano le persone. Niente cookie, niente
+     identificatori, non legge mai il contenuto dei campi e parla solo con questo
+     dominio (/traccia, che e' una funzione Netlify). E' per questo che il sito
+     puo' restare senza banner. Dettagli in cima al file. -->
+<script defer src="../traccia-modulo.js"></script>
 </body>
 </html>
