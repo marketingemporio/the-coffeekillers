@@ -1,7 +1,7 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-09-11
+> **Ultimo aggiornamento:** 2026-09-12
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
 > Dal **04/09/2026 è online anche la versione inglese** in `en/`, per chi si connette
@@ -26,7 +26,152 @@
 > L'**11/09 la landing e' stata rimessa in sesto sul piano grafico** (UX e UI): la revisione
 > del 10/09 era stata fatta **senza poter vedere gli screenshot**, e l'impaginazione ne aveva
 > pagato il prezzo. Vedi **«LA GRAFICA DELLA LANDING RIMESSA IN SESTO»**, subito qui sotto.
+> Il **12/09 Michele ha mandato un audio di revisione della landing**: foto nuova nell'hero,
+> testi delle card riscritti, line-up a scorrimento su fondo tan, e due difetti grafici veri
+> (l'anteprima del video stirata e una riga di arancio diverso sopra e sotto le fasce).
+> Vedi **«LA REVISIONE DEL 12/09»**, subito qui sotto.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+---
+
+# 📸 LA REVISIONE DEL 12/09/2026 (audio di Michele)
+
+Otto richieste a voce. **La consegna che le governa tutte:** *«lavoriamo solo su mobile per
+ora»* — 390×844 è la vista in cui si decide, da computer basta non rompere niente.
+
+## La foto nuova dell'hero
+
+`images/land/hero-band-muro.webp` — **1536×2048, verticale**, 231 KB (`cwebp -size 240000
+-m 6 -sharp_yuv -metadata icc`; l'`icc` non è opzionale, il file sorgente ha un profilo Apple
+e senza quello il muro arancio cambia colore). Sostituisce `terrazza-live.webp`.
+
+✅ **Controllata prima di pubblicarla**: ci sono i cinque della formazione 2026 — Larry col
+Nord rosso, Mike col cappello e l'acustica, Ste con la salopette e la Telecaster, Miglio con
+le bacchette, Richi col basso. **Nessun ex membro.** È lo stesso muro dei ritratti della line-up.
+
+### ⚠️ Una foto verticale in un hero orizzontale: quello che conta
+**Il taglio laterale dipende SOLO dal rapporto del contenitore, non dal file.** Misurato a
+390 di larghezza:
+
+| altezza hero | quanta larghezza della foto si vede |
+|---|---|
+| 88svh (com'era) | **70%** — Larry e Ste tagliati a metà |
+| **72svh (adesso)** | **86%**, e tutta l'altezza: ci sono tutti e cinque |
+
+Per questo l'hero da telefono è stato **abbassato a 72svh**. Da computer invece il taglio è
+verticale, e lo governa `object-position:center 12%` (col 44% di prima i tre in piedi venivano
+decapitati; col 20% restava tagliato il cappello di Mike).
+
+### Il velo: è SALITO, non sceso
+Michele ha chiesto *«una leggera maschera»*, e la metà alta è infatti pulita — sopra l'82% il
+velo è zero e i tre volti in piedi restano in piena luce. Ma **dove appoggia il testo il velo
+ha dovuto aumentare**: in questa foto il titolo cade sulle teste e sulle magliette chiare dei
+due seduti. Misurato sullo screenshot: al primo tentativo il titolo faceva **2,08:1**. Ora
+**4,26:1** (titolo) e **5,72:1** (ultima riga).
+
+🐞 **E qui una misura automatica ha mentito.** Il calcolo del contrasto prendeva il percentile
+alto della luminanza di tutta la fascia e pescava i **pixel del testo panna**, non il fondo:
+dava 1,02:1 su una zona sana, e poi 3,42:1 immobile su due aumenti di velo consecutivi. Il
+fondo va isolato **escludendo i pixel vicini a #EDDABD**. Il sottotitolo, misurato sul fondo
+vero, sta a **5,19:1**.
+
+### Logo e tasto: il muro della foto è #D98533, e cambia tutto
+Il muro è **molto più chiaro** dell'arancio del brand. Misurato su quel fondo:
+
+| | contrasto |
+|---|---|
+| logo `negativo` di prima — la scritta «Hot Joe» è #FA8600 | **1,15:1** ❌ spariva |
+| tasto «Vai al sito», contorno panna trasparente | **2,09:1** ❌ |
+| marrone #49240A | **4,77:1** ✅ l'unico colore del brand che regge |
+
+Quindi: logo → **`hjck-logo-negativo-contorno.svg`** (scritta marrone bordata di beige, quella
+che il brand book indica proprio *«sopra le foto chiare»*), e tasto → **pastiglia marrone
+piena** con testo panna. ⚠️ Il file col contorno ha il **viewBox più grande** (1038×552 contro
+989×507): a parità di altezza CSS le lettere rimpiccioliscono dell'8%, perciò l'altezza è
+salita a `clamp(61px,7vw,92px)`. Costa **18 KB in transito** più del logo di prima (gzip): si
+tiene l'SVG, non serve rasterizzarlo.
+
+## 🐞 L'anteprima del video era stirata — ed era un difetto di casa, già scritto
+Michele: *«l'anteprima del video è tutta schiacciata e molto stirata in verticale»*.
+La causa: `img,video{max-width:100%;display:block}` **senza `height:auto`**. L'immagine ha
+`width="406" height="720"` come attributi: la larghezza scendeva a 330px per via del
+`max-width`, l'altezza restava inchiodata a 720px, e `aspect-ratio` veniva **ignorato del
+tutto**. È esattamente la trappola già annotata qui («gli attributi width/height battono
+aspect-ratio»), solo che nessuno l'aveva applicata a questa immagine.
+**Correzione: `height:auto` nella regola globale.** Controllate tutte e 22 le `<img>` della
+pagina: ognuna che ha bisogno di un'altezza fissa se la prende con un selettore più specifico.
+Ora rende **330×587**, come deve.
+
+## 🐞 La riga di arancio diverso sopra e sotto le fasce
+Michele: *«si vede anche una linea netta di un arancio su un altro arancio diverso. Quella
+linea al di sopra e al di sotto la farei sparire»*.
+**Causa:** `.tex::before` è la sporcatura in `mix-blend-mode:multiply` con `inset:0`, quindi
+scurisce **solo il corpo** della fascia; i due strappi sporgono 31px **fuori** dal box con
+`background-color:inherit`, cioè arancio puro non moltiplicato. Da lì il gradino.
+**Gli strappi non si possono moltiplicare** (`isolation:isolate` + `z-index:4` li mette sopra
+al `::before`), quindi la sporcatura si toglie dai fogli: **`.fascia.tex::before{display:none}`**.
+Il dente frastagliato resta, e la grana fine di `body::after` (fixed sul viewport) passa uguale
+su fascia e strappi. Vale anche per la fascia **tan**, che aveva lo stesso difetto.
+
+## Le card «Informazioni utili»
+Cinque riscritte con le parole di Michele, due lasciate (la scaletta e «Da dove veniamo», che
+non ha nominato). Titoli cambiati: **«Service audio e luci»** e **«Spazi e logistica»**.
+- **Una emoji per card, in fondo al testo** — le icone del brand restano dove sono, accanto al
+  titolo. Legata all'ultima parola con `&nbsp;`, `aria-hidden`, `line-height:1` perché non alzi
+  la riga. ⏱️ 🔊 🚐 🎶 😂 🗺️ 📝 (la 😂 della birra l'ha chiesta lui).
+- **I numeri in cifre**, in tutta la pagina: «2 ore», «1 o 2 set», «4 × 3 metri».
+- ⚠️ **«250/300 persone»**: Michele ha sciolto così il conflitto fra sito (250) e brain (~300).
+  Allineata anche la variante `?tipo=sagra`, che diceva 250 e sarebbe finita **nella stessa
+  schermata** della card. **`faq.html` dice ancora 250** — è un'altra pagina, non toccata.
+- La formulazione SIAE resta **«in capo a chi organizza»**: Michele ha dettato «all'organizzatore»,
+  che è la stessa cosa, ma quella è la forma **approvata e blindata** nel brain.
+
+## La fascia dei numeri
+`2018 → **Inizio progetto**` · `+200 → **Serate all'attivo**` · `7 → Regioni nel 2026`.
+⚠️ **«Inizio progetto» ribalta una decisione del 10/09** («non è insieme dal 2018 ma COUNTRY
+dal 2018»). Michele l'ha confermata il 12/09 **sapendolo**. Il commento nel codice è stato
+riscritto: se qualcuno rimette «Country dal» pensando di correggere un refuso, sta disfando
+una scelta. **Resta scoperto il footer della home**, che dice ancora *«Country live since 2018»*.
+
+## La line-up
+- **Fondo TAN #BD8B65** (il «sesto colore», fondo pieno da brand book): la sezione dei loghi
+  qui sopra è panna e le due si toccavano senza stacco. Nuova classe di tono **`.t-tan`**.
+- ⚠️ **Il `.ruolo` ha perso l'`opacity:.68`**: rendeva un #6E4527 che sul tan fa **2,77:1**, e
+  nemmeno .95 bastava. Non era un problema del tan — **su panna faceva già 4,30:1**, cioè era
+  già sotto soglia e nessuno l'aveva misurato. Col colore pieno: 6,19:1 su panna, 5,15:1 su tan.
+- **Schede più grandi a scorrimento** (riusa `.v-scorri`, lo stesso dei loghi: nativo, niente
+  JavaScript, da bordo a bordo). Sopra i 900px torna la griglia a cinque.
+  ⚠️ Il 10/09 Michele aveva detto *«niente carosello»* — ma riferito ai **tondini**. Il 12/09
+  ha chiesto lo scorrimento delle schede. Non è una contraddizione, ma lo sembra: sta scritto
+  nel commento della sezione.
+- ⚠️ **`aspect-ratio:3/4`, non 4/5**: i file sono 520×693, cioè 3:4 esatto, quindi con questo
+  rapporto **non si taglia niente** e si vedono persona e strumento interi — che è quello che
+  Michele ha chiesto. Per lo stesso motivo sono spariti i cinque `object-position` inline.
+- Testata: **«The CoffeeKillers.»** più il sottotitolo **«La nostra line-up»** (sotto il titolo,
+  a corpo pieno: non è un occhiello).
+- Conseguenza: `.t-panna + .t-panna` **non aggancia più niente** (la sequenza è panna → tan →
+  panna). La regola resta per il primo che rimetterà due sezioni uguali di fila.
+
+## Il modulo
+Le chip del tipo evento hanno le **iniziali maiuscole**: `Locali e Pub`, `Ranch e Maneggi`,
+`Feste e Sagre`, `Festival e Rassegne`, `Aziende`, `Privati, Matrimoni e Altro`.
+🚨 **Vanno cambiate INSIEME ai valori `chip:` dentro `VARIANTI`.** Il JS fa
+`c.classList.toggle("on", c.textContent.trim() === v.chip)` su **tutte** le chip: se nessuna
+combacia, spegne anche quella accesa di partenza → `getEvt()` torna `""` → a Netlify Forms
+arriva un preventivo **senza tipo di evento**, e non se ne accorge nessuno finché non arriva
+la mail. Verificato su tutti e sei i `?tipo=`: 1 chip accesa sempre.
+
+## Un difetto preesistente chiuso mentre si era nei paraggi
+**Un commento CSS non chiuso** (`/* LA LEVA: …`) si mangiava le 11 righe successive:
+`.v-marchi`, `.v-passi` e `.v-sez--faq` non esistevano. Nessuna era usata nel markup, quindi
+non si vedeva niente — ma la prossima regola scritta lì dentro non si sarebbe applicata.
+
+## Come è stato verificato
+Chrome headless + CDP a **390×844 (dsf 3)** e 1440×900, `?c=` a ogni caricamento, screenshot
+**senza** `captureBeyondViewport`. Misurati: `scrollWidth` 390 (nessuno scorrimento laterale),
+hero 608px, cover video 330×587, 1 chip accesa su tutti i `?tipo=`, percorso completo del
+modulo fino alla fase 2 con riepilogo pieno, vincolo servizio→budget, zero errori JS.
+**Peso alla prima vista: 1,67 MB.**
 
 ---
 

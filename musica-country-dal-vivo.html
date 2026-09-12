@@ -11,21 +11,23 @@
 <!-- niente canonical: la pagina e' noindex, un canonical darebbe un segnale contraddittorio -->
 
 <title>Musica country dal vivo per locali, rifugi ed eventi aziendali — The CoffeeKillers</title>
-<meta name="description" content="Country americano dal vivo per locali, rifugi ed eventi: cinque musicisti, brani da ballare e ballad da ascoltare. Circa due ore di show, impianto e luci nostri. Raccontaci l&rsquo;evento e ti mandiamo una proposta." />
+<meta name="description" content="Country americano dal vivo per locali, rifugi ed eventi: cinque musicisti, brani da ballare e ballad da ascoltare. Circa 2 ore di show, impianto e luci nostri. Raccontaci l&rsquo;evento e ti mandiamo una proposta." />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Hot Joe &amp; The CoffeeKillers" />
 <meta property="og:locale" content="it_IT" />
 <meta property="og:url" content="https://thecoffeekillers.com/musica-country-dal-vivo.html" />
 <meta property="og:title" content="Porta la musica country al tuo evento" />
-<meta property="og:description" content="Country americano dal vivo: brani da ballare e ballad da ascoltare, scelti sull&rsquo;evento che hai in mente. Circa due ore di show." />
+<meta property="og:description" content="Country americano dal vivo: brani da ballare e ballad da ascoltare, scelti sull&rsquo;evento che hai in mente. Circa 2 ore di show." />
 <!-- ⚠️ jpg e non webp: Facebook e WhatsApp gestiscono male il webp nelle anteprime -->
 <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg" />
-<!-- ⚠️ images/terrazza-live.webp e NON images/land/: sono la stessa identica
-     foto alle stesse misure, ma quella in land/ era stata ricompressa a meta'
-     peso e si vedeva sgranata (Michele, 10/09: "si vede il naso pixelato"). -->
-<link rel="preload" as="image" href="images/terrazza-live.webp" fetchpriority="high" />
+<!-- ⚠️ 1536x2048 VERTICALE, 231 KB (12/09). E' la foto che Michele ha mandato:
+     i cinque in formazione 2026 sul muro arancio, lo stesso dei ritratti della
+     line-up. Verticale vuol dire che il taglio laterale dipende SOLO dal
+     rapporto del contenitore: per questo l'hero da telefono e' stato abbassato
+     a 72svh (vedi .v-hero nella media query). -->
+<link rel="preload" as="image" href="images/land/hero-band-muro.webp" fetchpriority="high" />
 
 <style>
 /* ============================================================================
@@ -146,6 +148,11 @@
 }
 /* il tema chiaro: si mette sulla sezione, non sulla pagina */
 .t-panna{ --pg-bg:#EDDABD; --pg-fg:#49240A; --pg-mut:#6B4426; --pg-fil:#C9B394 }
+/* il terzo foglio del brand: il tan a pagina intera (brand book pag. 22, il
+   "sesto colore"). ⚠️ --pg-mut NON puo' essere un marrone medio: sul tan un
+   #6B4426 fa 3,63:1, e il corpo piu' piccolo che ci va sopra e' 14,5px, che
+   chiede 4,5:1. Serve un espresso pieno. Misure: marrone #49240A su tan = 4,57:1. */
+.t-tan{ --pg-bg:#BD8B65; --pg-fg:#49240A; --pg-mut:#3D1C05; --pg-fil:#8A5E3C }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -157,7 +164,7 @@ body{
   line-height:1.6;
   overflow-x:hidden;
 }
-img,video{max-width:100%;display:block}
+img,video{max-width:100%;height:auto;display:block}
 a{color:inherit}
 ::selection{background:var(--arancio);color:var(--panna)}
 
@@ -189,6 +196,15 @@ body::after{
 }
 .tex:nth-of-type(even)::before{background-position:95px 60px,170px 130px,310px 240px}
 .tex.chiaro::before{opacity:.34}     /* sul panna e sul tan basta un velo */
+/* ⚠️ I FOGLI INCOLLATI SONO A TINTA PIATTA (12/09). La sporcatura di .tex::before sta
+   a inset:0, ma i due strappi sporgono 31px FUORI dal box con background-color:inherit:
+   il corpo della fascia risultava moltiplicato e le due strisce no, e si vedeva una
+   riga netta di un arancio piu' chiaro sopra e sotto. Michele: "quella linea al di
+   sopra e al di sotto la farei sparire". Gli strappi NON si possono moltiplicare
+   (isolation:isolate + z-index:4 li mette sopra al ::before), quindi la sporcatura si
+   toglie dai fogli. Il dente frastagliato resta, e la grana fine di body::after e'
+   fixed sul viewport: passa uguale su fascia e strappi. */
+.fascia.tex::before{display:none}
 /* ⚠️ da telefono i tasselli vanno rimpiccioliti: a 390px di schermo il
    tassello delle nuvole (620px) ci entra a meta' e viene fuori una
    sfumatura verticale invece che una macchia. */
@@ -199,10 +215,14 @@ body::after{
 /* ---------- le sezioni ------------------------------------------------------ */
 .v-sez{position:relative;overflow-x:clip;padding:clamp(58px,7vw,96px) 0}
 .v-sez--alta  {padding:clamp(78px,10vw,132px) 0}
-/* ⚠️ Tre sezioni panna di fila (loghi, line-up, gallery) non hanno una linea
-   di confine: si vedono solo i loro margini, che si SOMMANO. A 1440 faceva
-   264px di vuoto in mezzo, e la pagina sembrava rotta. Il distacco lo fa il
-   margine di sotto della sezione precedente, uno solo. */
+/* ⚠️ Due sezioni dello stesso colore di fila non hanno una linea di confine:
+   si vedono solo i loro margini, che si SOMMANO. A 1440 faceva 264px di vuoto
+   in mezzo, e la pagina sembrava rotta. Il distacco lo fa il margine di sotto
+   della sezione precedente, uno solo.
+   ⚠️ 12/09: da quando la line-up e' TAN la sequenza e' panna → tan → panna e
+   non ci sono piu' coppie adiacenti, quindi oggi questa regola non aggancia
+   niente. Resta perche' costa 30 byte e serve al primo che rimettera' due
+   sezioni uguali di fila. */
 .t-panna + .t-panna{padding-top:0}
 .v-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--lato)}
 .v-in--largo{max-width:var(--wrap-largo)}
@@ -380,18 +400,34 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 }
 .v-hero-bg{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:center 44%;filter:saturate(1.06) contrast(1.04);
+  /* ⚠️ 20%, ed e' calcolato. Con la foto verticale (1536x2048) a 1440x828 il
+     cover scala 0,9375 e si vede solo il 43% dell'altezza: col 44% di prima la
+     finestra cadeva su y 512-1395 e i tre in piedi restavano decapitati. Col
+     20% entravano tutte le facce ma il cappello di Mike restava tagliato in
+     cima: col 12% la finestra e' y 140-1023 e ci sta anche quello. Da telefono
+     il ritaglio verticale e' NULLO (l'altezza entra tutta), quindi questo
+     valore non tocca il telefono: vale solo da computer. */
+  object-position:center 12%;filter:saturate(1.06) contrast(1.04);
 }
-/* ⚠️ LA PATINA. Prima erano due veli sommati e tenuti alti: "troppo scura e
-   marrone, non si capisce niente". Adesso il velo e' DIREZIONALE — scende dal
-   basso e da sinistra, dove appoggia il testo, e lascia libero l'angolo in
-   alto a destra. La fotografia resta viva dove si guarda e diventa fondo solo
-   dove si legge. */
+/* ⚠️ LA PATINA. Il velo e' DIREZIONALE: scende dal basso e da sinistra, dove
+   appoggia il testo, e lascia libera la meta' alta. La fotografia resta viva
+   dove si guarda e diventa fondo solo dove si legge.
+   ⚠️ 12/09, con la foto nuova: Michele ha chiesto "una leggera maschera", e la
+   meta' ALTA e' infatti pulita — sopra l'82% il velo e' zero, e i tre volti in
+   piedi restano in piena luce. Ma il velo dove appoggia il TESTO ha dovuto
+   SALIRE, non scendere: in questa foto il titolo cade sulle teste e sulle
+   magliette chiare dei due seduti. Misurato sullo screenshot (non sul DOM, e
+   non a occhio): col primo tentativo il titolo faceva 2,08:1 e il sottotitolo
+   3,37:1, cioe' sotto soglia tutti e due.
+   ⚠️ Attenzione a come si misura: il primo calcolo prendeva il percentile alto
+   della luminanza di tutta la fascia e pescava i pixel del TESTO panna, non il
+   fondo — dava 1,02:1 su una zona sana. Il fondo va isolato escludendo i pixel
+   vicini a #EDDABD. */
 .v-hero-velo{
   position:absolute;inset:0;z-index:1;
   background:
-    linear-gradient(to top,rgba(51,23,5,.9) 0%,rgba(51,23,5,.72) 24%,rgba(51,23,5,.32) 50%,rgba(51,23,5,.04) 76%,rgba(51,23,5,0) 90%),
-    linear-gradient(to right,rgba(51,23,5,.5) 0%,rgba(51,23,5,.17) 42%,rgba(51,23,5,0) 68%);
+    linear-gradient(to top,rgba(51,23,5,.88) 0%,rgba(51,23,5,.86) 30%,rgba(51,23,5,.78) 45%,rgba(51,23,5,.60) 60%,rgba(51,23,5,.42) 70%,rgba(51,23,5,.12) 82%,rgba(51,23,5,0) 92%),
+    linear-gradient(to right,rgba(51,23,5,.30) 0%,rgba(51,23,5,.10) 40%,rgba(51,23,5,0) 66%);
 }
 .v-hero-in{position:relative;z-index:3;width:100%;max-width:var(--wrap);margin:0 auto;padding:0 var(--lato)}
 /* la testata: logo a sinistra, il rimando al sito a destra — cosi' si puo'
@@ -401,15 +437,27 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   display:flex;align-items:center;justify-content:space-between;gap:16px;
   max-width:var(--wrap);margin:0 auto;padding:clamp(18px,2.6vw,30px) var(--lato);
 }
-.v-hero-logo{height:clamp(56px,6.4vw,84px);width:auto}
+/* ⚠️ il file col contorno ha il viewBox piu' grande (1038x552 contro 989x507):
+   a parita' di altezza CSS le LETTERE rimpiccioliscono dell'8%, perche' i pixel
+   in piu' sono il bordo. Per questo l'altezza sale del 9%. */
+.v-hero-logo{height:clamp(61px,7vw,92px);width:auto}
+/* ⚠️ PASTIGLIA MARRONE PIENA, e non e' una scelta di gusto (12/09). Il muro
+   della foto e' #D98533, cioe' molto piu' chiaro dell'arancio del brand: il
+   contorno panna di prima ci faceva 2,09:1, illeggibile. Marrone pieno = 4,83:1
+   la pastiglia sul muro e 10:1 il testo dentro.
+   Non viola "un solo bottone pieno per pagina": quello e' .v-pill, panna, 16px,
+   in mezzo al discorso. Questa e' marrone, 14px, tonda, in un angolo — si legge
+   come etichetta. Via anche il backdrop-filter: su un fondo opaco non fa niente
+   e costa un layer di compositing su un hero che scorre. */
 .al-sito{
   display:inline-flex;align-items:center;gap:8px;text-decoration:none;
   font-family:var(--btn);font-weight:700;font-size:14px;letter-spacing:.1em;
   text-transform:uppercase;color:var(--panna);
-  border:2px solid rgba(237,218,189,.45);border-radius:999px;padding:9px 17px 10px;
-  transition:border-color .2s,background .2s;backdrop-filter:blur(2px);
+  background:var(--espresso);border:2px solid var(--espresso);
+  border-radius:999px;padding:9px 17px 10px;
+  transition:background .2s,border-color .2s;
 }
-.al-sito:hover{border-color:var(--arancio);background:rgba(205,88,18,.28)}
+.al-sito:hover{background:var(--arancio);border-color:var(--arancio)}
 .v-hero .v-h{
   /* ⚠️ 30ch, non 25: il titolo nuovo e' di 38 caratteri e a 25ch andava su TRE
      righe da 820px in su. In Bonzana un "ch" e' molto piu' stretto che in un
@@ -418,10 +466,15 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   font-size:clamp(33px,5.2vw,64px);max-width:30ch;
   text-shadow:0 3px 26px rgba(30,13,3,.5);
 }
-.v-hero .v-lead{max-width:46ch;color:#F0DEC2;text-shadow:0 2px 12px rgba(30,13,3,.6)}
+.v-hero .v-lead{max-width:46ch;color:#F0DEC2;text-shadow:0 1px 3px rgba(30,13,3,.92),0 2px 14px rgba(30,13,3,.7)}
 .v-hero .marchio{z-index:2;right:-3%;bottom:7%;width:min(360px,34vw);opacity:.15}
 @media (max-width:760px){
-  .v-hero{min-height:88svh;align-items:flex-end}
+  /* ⚠️ 72svh, misurato (12/09). La foto e' verticale (0,75) e il viewport del
+     telefono e' 0,46: il cover taglia i LATI, e quanto taglia dipende solo
+     dall'altezza dell'hero. A 88svh si vedeva il 70% della larghezza — Larry
+     col Nord a sinistra e Ste a destra tagliati a meta'. A 72svh se ne vede
+     l'86% ED ENTRA TUTTA L'ALTEZZA: ci sono tutti e cinque. */
+  .v-hero{min-height:72svh;align-items:flex-end}
   .v-hero .marchio{display:none}
 }
 
@@ -559,6 +612,8 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   box-shadow:0 34px 64px -24px rgba(30,13,3,.7),0 0 0 1px rgba(73,36,10,.2);
 }
 /* LA LEVA: la riga per cui esiste tutta la sezione. Marrone pieno, cosi' e'
+   leggibile. ⚠️ 12/09: questo commento non era mai stato chiuso, e si mangiava
+   le 11 righe di CSS qui sotto. */
 
 .v-marchi{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
   gap:clamp(28px,5vw,66px);margin-top:clamp(34px,4.4vw,50px)}
@@ -861,6 +916,12 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 .v-info-card p{grid-column:1/-1;grid-row:2;margin-top:11px;
   font-family:var(--testo);font-size:16.5px;line-height:1.6;color:#E7D2B0}
 .v-info-card p b{color:var(--pg-fg);font-weight:700}
+/* l'emoji di chiusura (12/09, Michele: "smorza un pochino l'atmosfera e rende tutto un
+   po' piu' informale"). line-height:1 le impedisce di alzare la riga - il glifo emoji ha
+   l'ascendente piu' alto del Manrope - e l'aria-hidden nel markup la tiene fuori dalla
+   lettura a voce: "orologio con cronometro" non aggiunge niente a chi ascolta. Legata
+   all'ultima parola con &nbsp;, cosi' non finisce mai da sola su una riga sua. */
+.v-info-card .emo{font-size:1em;line-height:1;vertical-align:-.05em}
 /* ⚠️ A 1440 le sette card restavano una colonna da 860px dentro un contenitore
    da 1180: due fasce vuote ai lati e 1578px da scorrere. Da 900 in su vanno a
    due, e l'ultima (dispari) prende tutta la riga invece di lasciare un buco. */
@@ -901,22 +962,36 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   box-shadow:0 26px 46px -18px rgba(30,13,3,.6), 0 0 0 1px rgba(73,36,10,.18);
 }
 .cornice img{width:100%;height:auto;object-fit:cover;display:block}
-.v-volti{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,2.2vw,26px);margin-top:clamp(38px,5vw,58px)}
-@media (max-width:940px){.v-volti{grid-template-columns:repeat(3,1fr);gap:26px}}
-@media (max-width:560px){
-  .v-volti{grid-template-columns:1fr 1fr;gap:20px}
-  /* i musicisti sono cinque: in due colonne l'ultimo resta spaiato.
-     Invece del buco a destra, si mette in mezzo. */
-  .v-volto:nth-child(5){grid-column:1/-1;max-width:calc(50% - 10px);margin-inline:auto}
+/* ⚠️ 12/09: da griglia a SCORRIMENTO, chiesto da Michele ("card un po' piu'
+   grandi a scorrimento orizzontale"). Riusa .v-scorri, che e' gia' lo scorrimento
+   nativo con lo snap dei loghi clienti: niente JavaScript, e da telefono va da
+   bordo a bordo, che e' il gesto che la gente si aspetta. Sopra i 900px torna la
+   griglia a cinque, cosi' da computer non cambia niente. */
+.v-lineup{align-items:flex-start;margin-top:clamp(30px,4vw,48px)}
+.v-lineup .v-volto{width:min(70vw,272px)}
+@media (min-width:900px){
+  .v-lineup{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(16px,1.8vw,26px);
+            overflow:visible;margin-inline:0;padding:0}
+  .v-lineup .v-volto{width:auto}
 }
 .v-volto{position:relative}
 .v-volto .cornice{padding:9px 9px 11px}
-.v-volto img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
+/* ⚠️ 3/4 e non 4/5 (12/09): i file sono 520x693, cioe' 3:4 esatto, quindi con
+   questo rapporto NON si taglia niente e si vedono persona e strumento interi —
+   che e' quello che Michele ha chiesto ("che si veda la persona e lo strumento
+   con una buona proporzionalita' visiva"). Per lo stesso motivo sono spariti i
+   cinque object-position inline: servivano a rincorrere un ritaglio che ora non
+   c'e' piu'. */
+.v-volto img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;display:block}
 .v-volto h3{font-size:clamp(19px,2vw,24px);color:var(--pg-fg);margin-top:16px;line-height:1.05}
 .v-volto .ruolo{
-  /* ⚠️ non arancio: su panna fa 3,07:1, sotto la soglia per un testo di 15px */
+  /* ⚠️ non arancio: su panna fa 3,07:1, sotto la soglia per un testo di 15px.
+     ⚠️ E niente opacity (12/09): l'opacity:.68 di prima rendeva un #6E4527 che
+     sul tan fa 2,77:1 — e anche .95 non bastava. Non era un problema del tan:
+     su panna quel ruolo faceva gia' 4,30:1, cioe' era gia' sotto soglia e
+     nessuno l'aveva misurato. Col colore pieno: 6,19:1 su panna, 5,15:1 su tan. */
   font-family:var(--btn);font-weight:700;font-size:14.5px;letter-spacing:.04em;
-  text-transform:uppercase;color:var(--pg-fg);opacity:.68;margin-top:5px;
+  text-transform:uppercase;color:var(--pg-mut);margin-top:5px;
 }
 .v-volto .battuta{
   font-family:"LT Cushion",Georgia,serif;font-style:italic;font-weight:500;
@@ -986,18 +1061,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      al sito e' un bottoncino a destra, e apre una scheda nuova.
      Titolo, sottotitolo e FOTOGRAFIA cambiano col ?tipo= dell'inserzione
      (vedi "LE VARIANTI" nel JavaScript qui sotto).
-     ⚠️ FOTOGRAFIA: terrazza-live. Quella di prima (prato-palco-pubblico) e'
-     fuori perche' c'e' Eli, che non e' piu' in formazione.
+     ⚠️ FOTOGRAFIA (12/09): hero-band-muro, i cinque in formazione 2026 sul muro
+     arancio — Larry col Nord, Mike con l'acustica, Ste con la Telecaster, Miglio
+     con le bacchette, Richi col basso. Controllata una per una prima di
+     pubblicarla: nessun ex membro. E' VERTICALE, e questo comanda il ritaglio
+     (vedi .v-hero-bg e la media query del telefono).
      ============================================================================ -->
 <header class="v-hero">
-  <img class="v-hero-bg" id="v-hero-foto" src="images/terrazza-live.webp"
-       alt="I Coffeekillers dal vivo sulla terrazza al tramonto, luci di scena accese e le colline sullo sfondo"
-       fetchpriority="high" decoding="async" width="1600" height="1067" />
+  <img class="v-hero-bg" id="v-hero-foto" src="images/land/hero-band-muro.webp"
+       alt="I cinque CoffeeKillers appoggiati a un muro arancio, con la tastiera, le chitarre, le bacchette e il basso"
+       fetchpriority="high" decoding="async" width="1536" height="2048" />
   <span class="v-hero-velo" aria-hidden="true"></span>
   <span class="ico i-teschio marchio" aria-hidden="true"></span>
 
   <div class="v-hero-alto">
-    <img class="v-hero-logo" src="images/logo/hjck-logo-negativo.svg" alt="Hot Joe &amp; The CoffeeKillers" />
+    <img class="v-hero-logo" src="images/logo/hjck-logo-negativo-contorno.svg" alt="Hot Joe &amp; The CoffeeKillers" />
     <a class="al-sito" href="index.html" target="_blank" rel="noopener">Vai al sito &#8599;</a>
   </div>
 
@@ -1057,7 +1135,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               "Una band bresciana dall&rsquo;anima internazionale.",
       foto:   "images/land/hero-live-allaperto.webp",
       alt:    "I Coffeekillers dal vivo su un palco all'aperto al tramonto, con le colline sullo sfondo",
-      chip:   "Locali e pub"
+      chip:   "Locali e Pub"
     },
     azienda: {
       titolo: "La festa di cui parlano <span class=\"acc\">a gennaio.</span>",
@@ -1071,21 +1149,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       titolo: "Country dal vivo nel tuo <span class=\"acc\">locale.</span>",
       sotto:  "Sul volume della tua sala: montiamo noi e smontiamo noi, tu chiudi la cassa. " +
               "Una band bresciana dall&rsquo;anima internazionale.",
-      chip:   "Locali e pub"
+      chip:   "Locali e Pub"
     },
     sagra: {
       titolo: "La serata che la gente <span class=\"acc\">si ricorda.</span>",
-      sotto:  "Impianto e luci sono nostri: fino a 250 persone siamo autonomi. Una band " +
+      sotto:  "Impianto e luci sono nostri: fino a 250/300 persone siamo autonomi. Una band " +
               "bresciana dall&rsquo;anima internazionale.",
       foto:   "images/land/band-fiume-o4.webp",
       alt:    "I cinque Coffeekillers insieme all'aperto al tramonto, in riva al fiume, prima di suonare",
-      chip:   "Feste e sagre"
+      chip:   "Feste e Sagre"
     },
     matrimonio: {
       titolo: "Non la solita band <span class=\"acc\">da matrimonio.</span>",
       sotto:  "Ballad sotto il pergolato, party song dopo cena, o solo una delle due. Il brano del " +
               "vostro ingresso lo prepariamo noi.",
-      chip:   "Privati, matrimoni e altro"
+      chip:   "Privati, Matrimoni e Altro"
     },
     festival: {
       titolo: "Al soundcheck non perdi <span class=\"acc\">la serata.</span>",
@@ -1093,7 +1171,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               "Una band bresciana dall&rsquo;anima internazionale.",
       foto:   "images/land/hero-targa-band.webp",
       alt:    "L'insegna di legno dipinta a mano dei Coffeekillers davanti al palco allestito su un prato",
-      chip:   "Festival e rassegne"
+      chip:   "Festival e Rassegne"
     }
   };
 
@@ -1207,29 +1285,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="ico i-chitarra" aria-hidden="true" style="width:26px"></span>
         <div>
           <h3>Quanto dura lo show</h3>
-          <p>Da <b>un&rsquo;ora e 45 a due ore e 15</b>: in pratica circa due ore, in uno o due
-            set. Se hai una giornata intera da coprire si aggiunge un <b>set acustico</b>,
-            oppure teniamo l&rsquo;impianto acceso con la nostra musica nelle ore in cui il palco
-            &egrave; vuoto.</p>
+          <p>La nostra scaletta dura <b>circa 2 ore</b>, suddivisa in <b>1 o 2 set</b>. Se devi
+            coprire una giornata intera faccelo sapere, cos&igrave; possiamo organizzarci per non
+            lasciare scoperto nemmeno un momento: gestiamo l&rsquo;aggiunta di un <b>set
+            acustico</b>, o teniamo alte le country vibes con delle playlist a tema quando non
+            siamo sul palco.&nbsp;<span class="emo" aria-hidden="true">&#9201;&#65039;</span></p>
         </div>
       </div>
 
       <div class="v-info-card rv">
         <span class="ico i-ferri" aria-hidden="true"></span>
         <div>
-          <h3>Il service ce l&rsquo;abbiamo, e siamo noi</h3>
+          <h3>Service audio e luci</h3>
           <p>Montaggio, cablaggio, gestione dei suoni e delle luci: lo facciamo noi.
-            <b>Fino a 250 persone siamo autonomi</b>; sopra, chiamiamo il service di cui ci
-            fidiamo.</p>
+            <b>Fino a 250/300 persone siamo autonomi</b>; sopra chiamiamo il nostro service di
+            fiducia. Ne hai gi&agrave; uno a disposizione? Faccelo sapere nelle note, per poterci
+            organizzare al meglio!&nbsp;<span class="emo" aria-hidden="true">&#128266;</span></p>
         </div>
       </div>
 
       <div class="v-info-card rv">
         <span class="ico i-teschio" aria-hidden="true"></span>
         <div>
-          <h3>Quanto spazio ci serve</h3>
-          <p><b>Quattro metri per tre</b> e una presa della corrente. Al resto pensiamo noi:
-            arriviamo col furgone qualche ora prima, montiamo, e a fine serata smontiamo.</p>
+          <h3>Spazi e logistica</h3>
+          <p>Abbiamo bisogno di uno spazio minimo di <b>circa 4 &times; 3 metri</b> e di una presa
+            della corrente abbastanza vicina. Al resto pensiamo noi: arriviamo col furgone qualche
+            ora prima per montare tutto. Facci sapere se ci sono difficolt&agrave; a raggiungere il
+            palco con i mezzi.&nbsp;<span class="emo" aria-hidden="true">&#128666;</span></p>
         </div>
       </div>
 
@@ -1238,7 +1320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div>
           <h3>La scaletta</h3>
           <p><b>&Egrave; fissa</b>: il nostro show &egrave; un concerto di <b>circa 25 brani</b>.
-            Per situazioni particolari, da concordare, prepariamo brani su richiesta.</p>
+            Per situazioni particolari, da concordare, prepariamo brani su richiesta.&nbsp;<span class="emo" aria-hidden="true">&#127926;</span></p>
         </div>
       </div>
 
@@ -1246,9 +1328,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="ico i-cappello" aria-hidden="true"></span>
         <div>
           <h3>Vitto e alloggio</h3>
-          <p>Il <b>vitto</b> lo consideriamo dentro al preventivo: un pasto per la band, prima o
-            dopo l&rsquo;evento. Per l&rsquo;<b>alloggio</b> dipende dalla distanza e dalla
-            logistica, se ne parla insieme. Se poi avanza qualche birra, ben volentieri.</p>
+          <p>Ci adattiamo alle vostre opzioni: per il <b>pasto</b> della band ci basiamo su quello
+            che vi &egrave; pi&ugrave; comodo, prima o dopo lo show. E se la serata richiede una
+            trasferta lunga, valutiamo insieme le varie opzioni per un <b>alloggio</b>. Ah&hellip; e
+            se a fine concerto scappa una birra in compagnia, brindiamo volentieri!&nbsp;<span class="emo" aria-hidden="true">&#128514;</span></p>
         </div>
       </div>
 
@@ -1258,7 +1341,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h3>Da dove veniamo, e fin dove andiamo</h3>
           <p>Siamo di Brescia, ma anche se sei di Canicatt&igrave; veniamo a farti ballare. Nel
             2026 ci hanno chiamati da <b>sette regioni</b>. Il rimborso del viaggio &egrave; una
-            voce a parte del preventivo, scritta prima.</p>
+            voce a parte del preventivo, scritta prima.&nbsp;<span class="emo" aria-hidden="true">&#128506;&#65039;</span></p>
         </div>
       </div>
 
@@ -1266,8 +1349,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="ico i-camaleonte" aria-hidden="true" style="width:34px"></span>
         <div>
           <h3>SIAE e permessi</h3>
-          <p>Restano in capo a chi organizza l&rsquo;evento, come per qualsiasi evento. Noi ti
-            diamo l&rsquo;elenco dei brani, che &egrave; quello che serve per il border&ograve;.</p>
+          <p>Come per qualsiasi evento, restano in capo a chi organizza. Noi ti inviamo
+            l&rsquo;elenco dei brani, che &egrave; quello di cui hai bisogno per compilare il
+            border&ograve;.&nbsp;<span class="emo" aria-hidden="true">&#128221;</span></p>
         </div>
       </div>
     </div>
@@ -1278,11 +1362,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      5 · LA FASCIA DEI FATTI — tre numeri, non quattro.
      ⚠️ Michele, 10/09: "«cinque sul palco» non e' authority, si puo' togliere.
      Il fatto che siano tre te li fa mettere sulla stessa riga."
-     ⚠️ E non e' "insieme dal 2018" ma "COUNTRY dal 2018": nel 2018 la
-     formazione era un'altra, e il punto non e' da quanto sono insieme — e'
-     da quanto fanno country. Parole sue: "c'e' gente che ha iniziato a fare
-     country l'anno scorso, e noi nel 2017 lo facevamo gia'". Combacia col
-     footer dell'home, che dice "Country live since 2018".
+     ⚠️ L'etichetta del 2018 e' "Inizio progetto" dal 12/09, per decisione di
+     Michele presa sapendo che il 10/09 aveva deciso l'opposto ("non e' insieme
+     dal 2018 ma COUNTRY dal 2018: c'e' gente che ha iniziato a fare country
+     l'anno scorso, e noi nel 2017 lo facevamo gia'"). Se qualcuno rimette
+     "Country dal" pensando di correggere un refuso, sta disfando una scelta.
+     ⚠️ Resta scoperto il footer dell'home, che dice "Country live since 2018":
+     segnalato a Michele il 12/09, non toccato perche' e' un'altra pagina.
      ⚠️ "+200 serate" e "dal 2018" sono CONFERMATI da Michele: il registro del
      brain ne conta ~97, ma il conto vero comprende gli anni non registrati
      nel cruscotto. Non vanno "corretti".
@@ -1290,8 +1376,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="fascia f-arancio tex chiaro v-fatti">
   <span class="strappo-su" aria-hidden="true"></span>
   <div class="v-fatti-griglia v-fatti--tre">
-    <div><b data-count="2018" data-secco="1">2018</b><span>Country dal</span></div>
-    <div><b data-count="200" data-prefisso="+">+200</b><span>Serate</span></div>
+    <div><b data-count="2018" data-secco="1">2018</b><span>Inizio progetto</span></div>
+    <div><b data-count="200" data-prefisso="+">+200</b><span>Serate all&rsquo;attivo</span></div>
     <div><b data-count="7">7</b><span>Regioni nel 2026</span></div>
   </div>
 </div>
@@ -1329,42 +1415,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============================================================================
      7 · I COFFEEKILLERS — la line-up, in griglia e incorniciata.
-     ⚠️ Michele, 10/09: "chi ti risponde la sera suona → scriviamo «i
-     Coffeekillers»". E il giorno stesso, dopo aver visto i tondini: "le schede
-     della line-up erano giuste quelle prime quadrate, con le foto di prima".
-     Quindi niente cerchi e niente carosello qui: cinque stampe incorniciate in
-     griglia, che e' il registro della locandina.
+     ⚠️ Michele, 10/09: "le schede della line-up erano giuste quelle prime
+     quadrate, con le foto di prima". Restano stampe incorniciate, niente cerchi.
+     ⚠️ 12/09 CAMBIA UNA COSA: "invece che fare delle card una di fianco
+     all'altra, farei delle card un po' piu' grandi a scorrimento orizzontale".
+     Quindi da telefono si scorre (e le schede sono piu' grandi), da computer
+     resta la griglia a cinque. Il 10/09 aveva detto "niente carosello" dei
+     TONDINI: e' un'altra cosa, ma se qualcuno legge solo quella riga sembra una
+     contraddizione — non lo e'.
+     ⚠️ Il fondo e' TAN e non panna, perche' la sezione dei loghi qui sopra e'
+     panna e le due si toccavano senza stacco ("almeno creiamo un po' di
+     contrasto, cambiamo colore").
      ============================================================================ -->
-<section class="v-sez v-sez--alta tex chiaro t-panna">
+<section class="v-sez v-sez--alta tex chiaro t-tan">
   <div class="v-in">
-    <h2 class="v-h v-h--centro rv">I <span class="acc">CoffeeKillers.</span></h2>
-    <div class="v-volti">
-      <div class="v-volto rv">
-        <figure class="cornice"><img src="images/land/mike-ritratto-muro.webp" alt="Michele &ldquo;Mike&rdquo; Frosio con il cappello da cowboy e la chitarra acustica" loading="lazy" style="object-position:center 22%" /></figure>
+    <h2 class="v-h v-h--centro rv">The <span class="acc">CoffeeKillers.</span></h2>
+    <p class="v-lead v-lead--centro rv">La nostra line-up</p>
+    <div class="v-scorri v-lineup rv">
+      <div class="v-volto">
+        <figure class="cornice"><img src="images/land/mike-ritratto-muro.webp" alt="Michele &ldquo;Mike&rdquo; Frosio con il cappello da cowboy e la chitarra acustica" loading="lazy" width="520" height="693" /></figure>
         <h3>Mike</h3>
         <p class="ruolo">Chitarre e voce</p>
         <p class="battuta">Ma l&rsquo;hamburger c&rsquo;&egrave; anche vegetale?</p>
       </div>
-      <div class="v-volto rv">
-        <figure class="cornice"><img src="images/land/miglio-ritratto-muro.webp" alt="Davide &ldquo;Miglio&rdquo; Miglietti con le bacchette in bocca" loading="lazy" style="object-position:center 18%" /></figure>
+      <div class="v-volto">
+        <figure class="cornice"><img src="images/land/miglio-ritratto-muro.webp" alt="Davide &ldquo;Miglio&rdquo; Miglietti con le bacchette in bocca" loading="lazy" width="520" height="693" /></figure>
         <h3>Miglio</h3>
         <p class="ruolo">Batteria e voci</p>
         <p class="battuta">Potevamo fare di meglio.</p>
       </div>
-      <div class="v-volto rv">
-        <figure class="cornice"><img src="images/land/larry-ritratto-muro.webp" alt="Lorenzo &ldquo;Larry&rdquo; Marini appoggiato alla sua tastiera rossa" loading="lazy" style="object-position:center 4%" /></figure>
+      <div class="v-volto">
+        <figure class="cornice"><img src="images/land/larry-ritratto-muro.webp" alt="Lorenzo &ldquo;Larry&rdquo; Marini appoggiato alla sua tastiera rossa" loading="lazy" width="520" height="693" /></figure>
         <h3>Larry</h3>
         <p class="ruolo">Piano e armonica</p>
         <p class="battuta">Raga questo &egrave; troppo country!</p>
       </div>
-      <div class="v-volto rv">
-        <figure class="cornice"><img src="images/land/richi-ritratto-muro.webp" alt="Riccardo &ldquo;Richi&rdquo; Loda che alza il basso" loading="lazy" style="object-position:center 2%" /></figure>
+      <div class="v-volto">
+        <figure class="cornice"><img src="images/land/richi-ritratto-muro.webp" alt="Riccardo &ldquo;Richi&rdquo; Loda che alza il basso" loading="lazy" width="520" height="693" /></figure>
         <h3>Richi</h3>
         <p class="ruolo">Basso e contrabbasso</p>
         <p class="battuta">Birretta?</p>
       </div>
-      <div class="v-volto rv">
-        <figure class="cornice"><img src="images/land/ste-ritratto-muro.webp" alt="Stefano &ldquo;Ste&rdquo; Martinelli con la Telecaster bianca" loading="lazy" style="object-position:center 6%" /></figure>
+      <div class="v-volto">
+        <figure class="cornice"><img src="images/land/ste-ritratto-muro.webp" alt="Stefano &ldquo;Ste&rdquo; Martinelli con la Telecaster bianca" loading="lazy" width="520" height="693" /></figure>
         <h3>Ste</h3>
         <p class="ruolo">Chitarre e lap steel</p>
         <p class="battuta">Ti serve &laquo;qualunque cosa&raquo;? Ce l&rsquo;ho.</p>
@@ -1445,12 +1538,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="qf-field qf-field--full">
               <div class="qf-label" id="lbl-evt">Tipo di evento</div>
               <div class="qf-chips" id="chips-evt" role="group" aria-labelledby="lbl-evt">
-                <button type="button" class="qf-chip on">Locali e pub</button>
-                <button type="button" class="qf-chip">Ranch e maneggi</button>
-                <button type="button" class="qf-chip">Feste e sagre</button>
-                <button type="button" class="qf-chip">Festival e rassegne</button>
+                <button type="button" class="qf-chip on">Locali e Pub</button>
+                <button type="button" class="qf-chip">Ranch e Maneggi</button>
+                <button type="button" class="qf-chip">Feste e Sagre</button>
+                <button type="button" class="qf-chip">Festival e Rassegne</button>
                 <button type="button" class="qf-chip">Aziende</button>
-                <button type="button" class="qf-chip">Privati, matrimoni e altro</button>
+                <button type="button" class="qf-chip">Privati, Matrimoni e Altro</button>
               </div>
             </div>
 
@@ -1483,8 +1576,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="qf-field qf-field--full">
               <div class="qf-label" id="lbl-serv">Di quale servizio hai bisogno?</div>
               <div class="qf-chips qf-chips--grandi" id="chips-servizio" role="group" aria-labelledby="lbl-serv">
-                <button type="button" class="qf-chip on" data-min="0">Solo live show<em>circa due ore</em></button>
-                <button type="button" class="qf-chip" data-min="1">Live show e set acustico<em>due ore pi&ugrave; 30/45 minuti</em></button>
+                <button type="button" class="qf-chip on" data-min="0">Solo live show<em>circa 2 ore</em></button>
+                <button type="button" class="qf-chip" data-min="1">Live show e set acustico<em>2 ore pi&ugrave; 30/45 minuti</em></button>
                 <button type="button" class="qf-chip" data-min="2">Copertura intera giornata<em>dettagli da definire insieme</em></button>
               </div>
             </div>

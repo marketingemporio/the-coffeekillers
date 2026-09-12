@@ -135,6 +135,50 @@ risposta da 15,5 a **17px**, il «+» dentro una pastiglia arancione tonda e il 
 diventa arancione quando la voce è aperta. Le FAQ tolgono i dubbi appena prima del modulo:
 se non si vedono, non servono a niente.
 
+## 🎞️ LA REVISIONE DEL 12/09: quello che ribalta una regola scritta qui sopra
+
+**L'etichetta del 2018 è «Inizio progetto», non «Country dal».** Michele l'ha deciso il 12/09
+**sapendo** di aver deciso l'opposto il 10/09 (*«non è insieme dal 2018 ma COUNTRY dal 2018»*).
+Non è un refuso: se la «correggi», stai disfando una scelta. ⚠️ Il footer della home dice
+ancora *«Country live since 2018»*: è scoperto, segnalato, non toccato.
+
+**«Fino a 250/300 persone siamo autonomi».** Michele ha sciolto così il conflitto fra il sito
+(250) e il brain (~300). Vale sulla landing e sulla variante `?tipo=sagra`. **`faq.html` dice
+ancora 250** e va allineata quando si tocca quella pagina.
+
+**🚫 Le chip del modulo non si rinominano da sole.** Hanno le iniziali maiuscole (`Locali e
+Pub`, `Ranch e Maneggi`…) e il JS le confronta **per stringa esatta** con i valori `chip:`
+dentro `VARIANTI`: `c.classList.toggle("on", c.textContent.trim() === v.chip)` gira su tutte,
+quindi se nessuna combacia **spegne anche quella accesa di partenza** e a Netlify Forms arriva
+un preventivo **senza tipo di evento**. Si cambiano HTML e JS nello stesso commit, e si
+verifica con tutti e sei i `?tipo=` che resti **1** chip accesa.
+
+**La foto dell'hero è verticale, e il muro è #D98533.** Due conseguenze che non si indovinano:
+il **taglio laterale dipende solo dal rapporto del contenitore** (per questo da telefono l'hero
+è 72svh: a 88svh si perdeva il 30% della foto), e sul muro chiaro il **logo `negativo` sparisce**
+— la scritta «Hot Joe» #FA8600 ci fa **1,15:1**. Sopra le foto chiare va
+`hjck-logo-negativo-contorno.svg`, che ha il **viewBox più grande** (le lettere rimpiccioliscono
+dell'8% a parità di altezza CSS). Il tasto «Vai al sito» è una **pastiglia marrone piena**:
+sul muro il marrone è l'unico colore del brand che regge (4,77:1).
+
+**La line-up è su TAN, a scorrimento, con `aspect-ratio:3/4`.** I ritratti sono 520×693 = 3:4
+esatto: con quel rapporto non si taglia niente e si vedono persona **e** strumento — che è
+quello che Michele chiede. ⚠️ Il `.ruolo` **non ha più `opacity`**: rendeva 2,77:1 sul tan, e
+faceva già 4,30:1 sul panna, cioè era sotto soglia da prima e nessuno l'aveva misurato.
+
+**Le card hanno un'emoji in fondo al testo** (una per card), e le **icone del brand restano**
+accanto al titolo: sono due cose diverse, non si sostituiscono.
+
+**🐞 `height:auto` serve davvero.** L'anteprima del video era stirata del 23% perché la regola
+globale `img,video` non ce l'aveva: con `width` e `height` entrambi risolti, `aspect-ratio`
+viene **ignorato del tutto**. Era già scritto qui che «gli attributi battono aspect-ratio»,
+ma nessuno l'aveva applicato a quell'immagine.
+
+**🐞 E un controllo automatico ha mentito di nuovo.** Il calcolo del contrasto sul titolo
+dell'hero prendeva il percentile alto della luminanza e pescava i **pixel del testo panna**
+invece del fondo: dava 1,02:1 su una zona sana, e restava fermo a 3,42:1 mentre il velo
+aumentava. Il fondo va isolato **escludendo i pixel vicini a #EDDABD**.
+
 ## 🧾 I MODULI: cosa si chiede al cliente, e cosa non si chiede più
 
 Deciso da Michele il **07/09/2026**, e vale su **tutti e tre i moduli** del sito:
@@ -174,7 +218,7 @@ fascia già pubblicata nelle FAQ (1.000 € — 2.500 €).
 Il motivo, che non è estetico: due bottoni pieni affiancati sono **due inviti alla pari**, e
 uno dei due porta fuori dalla pagina senza lasciare una richiesta scritta.
 
-**E la fascia arancione dei numeri (2018 / +200 / 7 / 5) non sta sotto l'hero.**
+**E la fascia arancione dei numeri (2018 / +200 / 7) non sta sotto l'hero.**
 *«Non è una vera garanzia di successo, mettila un po' dopo.»* Sta all'inizio del blocco delle
 **prove** — subito prima di «Aziende, locali, rifugi». Un numero vale se sta in mezzo alle
 cose che lo reggono; subito sotto il titolo era una promessa in cerca di credito.
