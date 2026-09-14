@@ -588,6 +588,37 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
       "position": 1,
       "item": {
         "@type": "MusicEvent",
+        "name": "Oktoberfest — Coco Cafè",
+        "startDate": "2026-10-02T22:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Coco Cafè",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "San Paolo",
+            "addressRegion": "BS",
+            "addressCountry": "IT"
+          }
+        },
+        "performer": {
+          "@type": "MusicGroup",
+          "name": "Hot Joe & The Coffeekillers",
+          "url": "https://thecoffeekillers.com"
+        },
+        "organizer": {
+          "@type": "MusicGroup",
+          "name": "Hot Joe & The Coffeekillers",
+          "url": "https://thecoffeekillers.com"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "MusicEvent",
         "name": "Inaugurazione Beach Fly",
         "startDate": "2026-10-10",
         "eventStatus": "https://schema.org/EventScheduled",
@@ -716,15 +747,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
 
     <!-- card prossima data con countdown -->
-    <div class="next-card rv" id="next-card" data-iso="2026-08-23">
+    <div class="next-card rv" id="next-card" data-iso="2026-10-02">
       <div class="when">
-        <div class="d">23</div>
-        <div class="m">Ago</div>
+        <div class="d">02</div>
+        <div class="m">Ott</div>
       </div>
       <div>
         <span class="cal-badge">★ Prossima data</span>
-        <h2>Evento Country — B Wild Ranch</h2>
-        <div class="where">23 Agosto 2026 · Belluno (BL)</div>
+        <h2>Oktoberfest — Coco Cafè</h2>
+        <div class="where">2 Ottobre 2026 · San Paolo (BS)</div>
       </div>
       <div class="cd" id="countdown" role="timer" aria-label="Conto alla rovescia alla prossima data">
         <div class="cd-cell"><div class="n" id="cd-d">7</div><div class="l" id="cd-dl">giorni</div></div>
@@ -733,43 +764,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <!-- Agosto -->
-    <div class="month-head rv" data-mese="2026-08">
-      <h3>Agosto 2026</h3>
-      <span class="cnt">Altre 2 date</span>
-    </div>
-    <div class="tickets stagger" data-gruppo>
-      <div class="ticket" data-iso="2026-08-28">
-        <div class="tk-date"><div class="tk-day">28</div><div class="tk-mon">Ago 2026</div></div>
-        <div class="tk-info"><div class="tk-name">Evento Country</div><span class="tk-lead" aria-hidden="true"></span><div class="tk-prov">Modena (MO)</div></div>
-        <div class="tk-side"><span class="ico i-cappello" style="width:28px;height:14px" aria-hidden="true"></span> Live</div>
-      </div>
-      <div class="ticket" data-iso="2026-08-29">
-        <div class="tk-date"><div class="tk-day">29</div><div class="tk-mon">Ago 2026</div></div>
-        <div class="tk-info"><div class="tk-name">Serata in montagna</div><span class="tk-lead" aria-hidden="true"></span><div class="tk-prov">Aosta (AO)</div></div>
-        <div class="tk-side"><span class="ico i-cactus" style="width:14px;height:23px" aria-hidden="true"></span> Live</div>
-      </div>
-    </div>
-
-    <!-- Settembre -->
-    <div class="month-head rv" data-mese="2026-09">
-      <h3>Settembre 2026</h3>
-      <span class="cnt">1 data</span>
-    </div>
-    <div class="tickets stagger" data-gruppo>
-      <div class="ticket" data-iso="2026-09-05">
-        <div class="tk-date"><div class="tk-day">05</div><div class="tk-mon">Set 2026</div></div>
-        <div class="tk-info"><div class="tk-name">Matrimonio</div><span class="tk-lead" aria-hidden="true"></span><div class="tk-prov">Siena (SI)</div></div>
-        <div class="tk-side"><span class="ico i-ferri" style="width:26px;height:18px" aria-hidden="true"></span> Live</div>
-      </div>
-    </div>
+    <!-- ⚠️ Agosto e Settembre non stanno più qui: il 23/08, il 29/08 e il 05/09 sono
+         suonate e sono passate all'archivio in fondo; il 28/08 a Modena era **annullata**
+         e non entra nell'archivio, perché quell'elenco dice «le abbiamo suonate».
+         🚨 Questa pagina NON si aggiorna da sola — nessuno script nasconde i biglietti
+         scaduti — quindi una data passata resta scritta come «prossima» finché qualcuno
+         non la sposta a mano. Il 14/09/2026 la card in cima annunciava ancora il 23
+         agosto, con il conto alla rovescia fermo a zero. -->
 
     <!-- Ottobre -->
     <div class="month-head rv" data-mese="2026-10">
       <h3>Ottobre 2026</h3>
-      <span class="cnt">1 data</span>
+      <span class="cnt">2 date</span>
     </div>
     <div class="tickets stagger" data-gruppo>
+      <div class="ticket" data-iso="2026-10-02">
+        <div class="tk-date"><div class="tk-day">02</div><div class="tk-mon">Ott 2026</div></div>
+        <div class="tk-info"><div class="tk-name">Oktoberfest — Coco Cafè</div><span class="tk-lead" aria-hidden="true"></span><div class="tk-prov">San Paolo (BS)</div></div>
+        <div class="tk-side"><span class="ico i-cappello" style="width:28px;height:14px" aria-hidden="true"></span> Live</div>
+      </div>
       <div class="ticket" data-iso="2026-10-10">
         <div class="tk-date"><div class="tk-day">10</div><div class="tk-mon">Ott 2026</div></div>
         <div class="tk-info"><div class="tk-name">Inaugurazione Beach Fly</div><span class="tk-lead" aria-hidden="true"></span><div class="tk-prov">Brescia (BS)</div></div>
@@ -800,6 +813,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap rv">
     <h2 class="sec-title">L'archivio del 2026.</h2>
     <div class="past-rows">
+      <div class="past-row"><span class="dd">05 Set</span><span class="nm">Matrimonio</span><span class="pv">Siena (SI)</span></div>
+      <div class="past-row"><span class="dd">29 Ago</span><span class="nm">Serata in montagna</span><span class="pv">Aosta (AO)</span></div>
+      <div class="past-row"><span class="dd">23 Ago</span><span class="nm">Evento Country — B Wild Ranch</span><span class="pv">Belluno (BL)</span></div>
       <div class="past-row"><span class="dd">09 Ago</span><span class="nm">Serata in Locanda</span><span class="pv">Vicenza (VI)</span></div>
       <div class="past-row"><span class="dd">08 Ago</span><span class="nm">Festa al Southern Pub</span><span class="pv">Belluno (BL)</span></div>
       <div class="past-row"><span class="dd">07 Ago</span><span class="nm">Serata al Villaggio Costa Verde Natura</span><span class="pv">Clusane d'Iseo (BS)</span></div>
@@ -905,9 +921,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 
-// Conto alla rovescia alla prossima data (23 Ago 2026, ore 21:00) — aggiornato ogni 30s.
+// Conto alla rovescia alla prossima data (2 Ott 2026, ore 22:00) — aggiornato ogni 30s.
+// ⚠️ La data sta scritta in DUE posti: qui e nel `data-iso` della card qui sopra. Quando
+// se ne mette una nuova vanno cambiati tutt'e due, se no il conto scende verso il giorno
+// sbagliato senza dirlo a nessuno.
 (function(){
-  var target=new Date("2026-08-23T21:00:00");
+  var target=new Date("2026-10-02T22:00:00");
   var d=document.getElementById("cd-d"),h=document.getElementById("cd-h"),m=document.getElementById("cd-m");
   var dl=document.getElementById("cd-dl"),hl=document.getElementById("cd-hl"),ml=document.getElementById("cd-ml");
   if(!d)return;
