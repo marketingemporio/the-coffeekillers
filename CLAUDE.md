@@ -153,13 +153,26 @@ quindi se nessuna combacia **spegne anche quella accesa di partenza** e a Netlif
 un preventivo **senza tipo di evento**. Si cambiano HTML e JS nello stesso commit, e si
 verifica con tutti e sei i `?tipo=` che resti **1** chip accesa.
 
-**La foto dell'hero è verticale, e il muro è #D98533.** Due conseguenze che non si indovinano:
-il **taglio laterale dipende solo dal rapporto del contenitore** (per questo da telefono l'hero
-è 72svh: a 88svh si perdeva il 30% della foto), e sul muro chiaro il **logo `negativo` sparisce**
-— la scritta «Hot Joe» #FA8600 ci fa **1,15:1**. Sopra le foto chiare va
+**🔄 SUPERATO IL 13/09 — la foto dell'hero della landing è di nuovo `terrazza-live.webp`.**
+Michele: *«abbiamo fatto una prova con questa ma non va bene, torna a quella che c'era prima»*.
+Con la foto del live sono tornati **insieme a lei** tutti i valori che il 12/09 erano stati
+ritarati sulla verticale del muro: ritaglio `center 44%` (orizzontale ⇒ il cover taglia sopra
+e sotto, non ai lati), velo più leggero, **logo `hjck-logo-negativo.svg` senza contorno**
+(sotto c'è un cielo scuro, non il muro chiaro) e hero da telefono di nuovo a **88svh** — su
+una foto orizzontale abbassare l'hero taglia *di più*, non di meno: il ragionamento del 12/09
+vale solo per una foto verticale. E il tasto «Vai al sito» **non è più una pastiglia piena**:
+vedi qui sotto.
+
+**Resta vero, e serve la prossima volta che si mette una foto chiara:** sul muro `#D98533` il
+logo `negativo` sparisce (la scritta «Hot Joe» #FA8600 fa **1,15:1**) e ci vuole
 `hjck-logo-negativo-contorno.svg`, che ha il **viewBox più grande** (le lettere rimpiccioliscono
-dell'8% a parità di altezza CSS). Il tasto «Vai al sito» è una **pastiglia marrone piena**:
-sul muro il marrone è l'unico colore del brand che regge (4,77:1).
+dell'8% a parità di altezza CSS: l'altezza CSS va alzata di conseguenza).
+
+**🚫 «Vai al sito» non è un bottone pieno (13/09).** Era marrone pieno e da telefono era largo
+quasi mezzo schermo: **il primo invito pieno della pagina portava FUORI**, senza lasciare una
+richiesta. Ora è un contorno piccolo su velo marrone `.82`. ⚠️ Velo, non trasparente: sopra una
+fotografia il contorno da solo sparisce — è l'errore da cui era nato il pieno. Misurato dentro
+la pastiglia: **9,3:1 da telefono, 5,5:1 da computer**.
 
 **La line-up è su TAN, a scorrimento, con `aspect-ratio:3/4`.** I ritratti sono 520×693 = 3:4
 esatto: con quel rapporto non si taglia niente e si vedono persona **e** strumento — che è
@@ -178,6 +191,73 @@ ma nessuno l'aveva applicato a quell'immagine.
 dell'hero prendeva il percentile alto della luminanza e pescava i **pixel del testo panna**
 invece del fondo: dava 1,02:1 su una zona sana, e restava fermo a 3,42:1 mentre il velo
 aumentava. Il fondo va isolato **escludendo i pixel vicini a #EDDABD**.
+
+## 🎨 LA REVISIONE GRAFICA DEL 13/09: due bug di CSS e una regola tornata indietro
+
+Revisione blocco per blocco della landing, fatta **guardando 43 schermate** a 390 · 768 · 1024
+· 1440 e misurando quello che l'occhio sospettava.
+
+**🐞 La fascia dei numeri aveva una griglia a 4 colonne e ne riempiva 3.** `.v-fatti--tre` era
+dichiarata **prima** di `.v-fatti-griglia`, stessa specificità: perdeva. A 1440 restavano
+**~455px di arancio vuoto a destra**. ⚠️ Da telefono no — sotto i 700px una regola più
+specifica rimetteva le 3 colonne: **per questo non era mai saltato fuori, si lavora su mobile.**
+Quando una regola «non funziona», guardare se una gemella più in basso nel foglio la batte.
+
+**🐞 `clamp(104px,13vw,72px)` nel piede: minimo maggiore del massimo.** La CSS risolve sempre
+al minimo, quindi 104px a ogni larghezza. Insieme al `padding-bottom` del modulo faceva
+**208px di marrone morto** fra «Procedi» e il footer. ⚠️ La misura sul DOM diceva «58px» perché
+inseguiva un elemento fuori schermo: **aveva ragione lo screenshot**.
+
+**Le ombre arancioni sui bottoni erano tornate, su QUATTRO bottoni** (`.v-avanti`, `.qf-submit`,
+`.vb-play`, `.f-arancio .v-pill`) — `box-shadow:5px 5px 0` arancio, cioè esattamente ciò che era
+stato tolto il 10/09. ⚠️ Togliendo l'ombra al play va **riscritto anche l'hover**: usava
+`translate(calc(-50% - 2px))` per appoggiarsi all'ombra, e senza ombra manda il cerchio fuori
+centro.
+
+**Le card «Informazioni utili» vanno a FONDO CHIARO** (Michele, 13/09: *«lo spazio delle card
+fallo a sfondo chiaro»* — quello testuale con le spiegazioni). Prima erano `rgba(30,13,3,.5)`,
+marrone scuro su marrone scuro. ⚠️ **Tre colori di testo erano tarati sul fondo scuro e su
+chiaro sparivano**: `h3` e `<b>` usano `var(--pg-fg)` (lì panna) e il `<p>` aveva `#E7D2B0`
+**cablato**. La via pulita non è ritoccare tre colori: è **ridichiarare le variabili di tema
+sulla card** (lo stesso set di `.t-panna`), così titolo e grassetti si aggiustano da soli.
+
+**I titoli delle card partivano a sette quote diverse.** Le icone hanno `style="width:"` inline
+(26/30/34/36px) e la colonna era `auto`: fino a **10px di scarto** fra una card e l'altra. Colonna
+**fissa a 36px** + `justify-self:center`. E `align-content:start`, se no nella card corta il
+titolo «scende» e le righe non sono a filo.
+
+**`text-wrap:balance` non c'era su nessun titolo.** Da qui «COSA / FACCIAMO?» con una parola sola
+in cima e, da telefono, la pastiglia «COUNTRY» isolata a inizio riga. Una riga sola su `h1,h2,h3`
+ripara tutti e sette: lavora **dentro** i `max-width` in `ch`, non allarga niente.
+
+**I loghi si pareggiano con le ALTEZZE, mai con un `max-width`.** Provato e misurato: con
+`width:auto` + `height` fissa, un `max-width` che morde **taglia la larghezza e lascia l'altezza**
+— Coca-Cola veniva reso 112×38 con rapporto vero 3,19, **schiacciato del 7%**. Il pareggio per
+sola area non bastava: un wordmark lungo *sembra* il doppio di un marchio impilato. Larghezze
+rese ora fra 86 e 115px (prima 83-129). La fascia **scorre sotto i ~1180px** e ora lo dice con
+una maschera sfumata, messa su `.v-loghi` e **non** su `.v-scorri` (condivisa con line-up e
+gallery, che da 900px sono griglie ferme).
+
+**La gallery aveva sei foto e nessuna parola**: ora ha titolo e una riga. Via
+`live-blu-tastiere` (mossa e illeggibile in miniatura), dentro `strumenti-fila-alberi-s` —
+che ha il vantaggio di **non avere nessuna persona dentro**, quindi niente da verificare.
+Le due notturne blu non vanno appaiate, se no mezza fascia è una macchia scura.
+
+**Nel blocco del video NON si aggiunge testo.** Il vuoto a sinistra su desktop si riempie
+**col titolo** (fino a 88px), non con una frase: *«non farei una spiegazione di quel video lì»*
+resta valido (10/09).
+
+**Le chip non scelte sembravano spente**: bordo `rgba(...,.3)` su un fondo quasi uguale a quello
+del guscio. Su un modulo è il difetto peggiore, perché spegne le alternative. E la durata sotto
+le chip servizio aveva `opacity:.72` (~4:1 su 13,5px): **lo stesso identico errore già corretto
+sul `.ruolo` della line-up**. L'opacity schiarisce il testo insieme al fondo, e nessuno la misura.
+
+**🔍 Due misure automatiche hanno mentito, e si sono smascherate allo stesso modo.** Il contrasto
+del bottone «Vai al sito» dava 4,15:1 perché il rettangolo comprende gli **angoli arrotondati**
+e pescava la foto dietro; e un test delle varianti dava «0 chip accese» perché cercava
+`#chips-tipo` invece di `#chips-evt`. In **entrambi** i casi il segnale era lo stesso: **il
+numero non si muoveva** quando cambiava la causa (o restava identico fra due versioni diverse).
+Una misura che non risponde a una causa che hai appena cambiato è rotta, non stabile.
 
 ## 🧾 I MODULI: cosa si chiede al cliente, e cosa non si chiede più
 

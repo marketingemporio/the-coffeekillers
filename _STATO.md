@@ -1,7 +1,7 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-09-12
+> **Ultimo aggiornamento:** 2026-09-13
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
 > Dal **04/09/2026 è online anche la versione inglese** in `en/`, per chi si connette
@@ -30,9 +30,82 @@
 > testi delle card riscritti, line-up a scorrimento su fondo tan, e due difetti grafici veri
 > (l'anteprima del video stirata e una riga di arancio diverso sopra e sotto le fasce).
 > Vedi **«LA REVISIONE DEL 12/09»**, subito qui sotto.
+> Il **13/09 è stata fatta la REVISIONE GRAFICA blocco per blocco della landing**, guardando 43
+> schermate su quattro viewport. Sono usciti **due bug di CSS mai visti** (una griglia a 4 colonne
+> che ne riempiva 3 e un `clamp()` col minimo maggiore del massimo) e **quattro bottoni con
+> l'ombra arancione** che era stata tolta il 10/09. Le card delle informazioni sono passate a
+> **fondo chiaro** e **l'hero è tornato alla foto del live**. Vedi **«LA REVISIONE GRAFICA DEL
+> 13/09»**, subito qui sotto.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
 
 ---
+
+# 🎨 LA REVISIONE GRAFICA DEL 13/09/2026
+
+Richiesta: *«fai una revisione grafica della landing di vendita. Guarda che ogni blocco sia
+davvero bello, proporzionato, con il giusto contrasto… e soltanto poi, revisione ogni viewport»*.
+Fatta in quest'ordine: prima i blocchi, poi le viste.
+
+**Metodo**: 43 schermate reali a 390 · 768 · 1024 · 1440 (Chrome headless + CDP, cache
+disabilitata, consenso cookie già dato per non avere il banner davanti), e misure solo per
+confermare quello che l'occhio aveva già visto.
+
+## Le due decisioni di Michele arrivate durante il lavoro
+
+1. **«Lo spazio delle card fallo a sfondo chiaro»** — quello testuale con le spiegazioni.
+2. **«Come immagine torna a quella di prima del live, quella hero: abbiamo fatto una prova con
+   questa ma non va bene.»** → `terrazza-live.webp` al posto di `hero-band-muro.webp`.
+
+⚠️ Tornando alla foto del live sono tornati **con lei** tutti i parametri che il 12/09 erano
+stati ritarati sulla verticale: `object-position:center 44%`, velo più leggero, logo **senza
+contorno**, hero da telefono di nuovo a **88svh**. Su una foto orizzontale abbassare l'hero
+taglia *di più*: il ragionamento del 12/09 valeva solo per una verticale.
+
+## I due bug di CSS
+
+| Dove | Cosa | Effetto |
+|---|---|---|
+| `.v-fatti--tre` | dichiarata **prima** di `.v-fatti-griglia` (4 colonne), stessa specificità → perdeva | **~455px di arancio vuoto** a destra a 1440, ~240 a 1024. **Da telefono no**: sotto i 700px una regola più specifica rimetteva le 3 colonne — per questo non era mai emerso |
+| `.v-foot` | `clamp(104px,13vw,72px)`: **minimo maggiore del massimo** → risolve sempre a 104px | insieme al padding del modulo, **208px di marrone morto** prima del piede |
+
+## Quello che è cambiato, blocco per blocco
+
+- **Hero** — foto del live, logo senza contorno, 88svh da telefono. **«Vai al sito» non è più
+  un bottone pieno**: da telefono era largo mezzo schermo ed era il primo invito pieno della
+  pagina, ma porta fuori senza lasciare una richiesta. Ora contorno su velo `.82` (9,3:1 da
+  telefono, 5,5:1 da computer, misurato **dentro** la pastiglia).
+- **Ascoltaci live** — il titolo arriva a 88px e riempie lui il vuoto. **Nessun testo aggiunto**:
+  *«non farei una spiegazione di quel video lì»* (10/09) resta valido.
+- **Informazioni utili** — card a **fondo chiaro**, titoli allineati (erano a sette quote
+  diverse), contenuto ancorato in alto, la campata larga spostata sulla card col testo **più
+  lungo** (prima ce l'aveva la più corta, con righe da ~150 battute).
+- **Fascia numeri** — tre colonne vere su **tutte** le larghezze, e più respiro verticale.
+- **Loghi clienti** — pareggiati sulle **altezze** (mai con un `max-width`: schiaccia) e
+  maschera sfumata ai bordi, perché la fascia scorre sotto i ~1180px e tagliava «E TANTI ALTRI»
+  a metà parola senza dirlo.
+- **Gallery** — aveva sei foto e **nessuna parola**: ora ha titolo e una riga. Via la foto mossa
+  delle tastiere, dentro gli strumenti sotto gli alberi (**nessuna persona dentro**: niente da
+  verificare), e le due notturne non più appaiate.
+- **Modulo** — via le ombre arancioni, raggio a 12px, e le chip non scelte non sembrano più
+  spente (bordo più marcato; e via l'`opacity` dalla durata, che faceva ~4:1).
+
+## Verifica finale
+
+Su **390 · 768 · 1024 · 1440**: `scrollWidth == innerWidth`, **zero** testo sotto 13px, **zero**
+immagini rotte o a larghezza 0, **zero** ombre colorate sui bottoni, **zero** errori JS. Le
+**sette varianti `?tipo=`** accendono **1** chip e quella giusta, e caricano la loro foto.
+La foto nuova della gallery è stata rimpicciolita (506×900, 97 KB invece di 168): **l'originale
+non è stato toccato**, la versione web è `-s`.
+
+## ⚠️ Aperto, e va deciso da Michele
+
+- **Le foto della gallery con le persone**: Michele ha confermato il 13/09 che in «band al
+  fiume» e «banjo» ci sono **solo membri attuali**. Resta il fatto che il brain dà **Matteo
+  Maghini** (banjo ed elettrica) uscito a set 2025: se un domani la conferma cambia, sono quelle
+  due foto da rivedere.
+- **Le tre testimonianze vere** (nome, locale, città): spazio ancora vuoto, è il buco numero uno.
+- La **line-up da telefono** lascia ancora parecchio tan vuoto sotto le battute, perché le
+  schede hanno altezze diverse.
 
 # 📸 LA REVISIONE DEL 12/09/2026 (audio di Michele)
 

@@ -22,12 +22,12 @@
 <meta property="og:image" content="https://thecoffeekillers.com/images/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg" />
-<!-- ⚠️ 1536x2048 VERTICALE, 231 KB (12/09). E' la foto che Michele ha mandato:
-     i cinque in formazione 2026 sul muro arancio, lo stesso dei ritratti della
-     line-up. Verticale vuol dire che il taglio laterale dipende SOLO dal
-     rapporto del contenitore: per questo l'hero da telefono e' stato abbassato
-     a 72svh (vedi .v-hero nella media query). -->
-<link rel="preload" as="image" href="images/land/hero-band-muro.webp" fetchpriority="high" />
+<!-- ⚠️ 1600x1067 ORIZZONTALE, 257 KB. La band dal vivo sulla terrazza al tramonto.
+     13/09: Michele ha chiesto di tornare a questa — "abbiamo fatto una prova con
+     quella del muro ma non va bene". Con lei tornano tutti i valori che il 12/09
+     erano stati ritarati sulla verticale: ritaglio, velo, logo e altezza da
+     telefono (vedi .v-hero-bg, .v-hero-velo, .v-hero-logo e la media query). -->
+<link rel="preload" as="image" href="images/terrazza-live.webp" fetchpriority="high" />
 
 <style>
 /* ============================================================================
@@ -275,8 +275,14 @@ body::after{
 @media (max-width:760px){.marchio{opacity:.06}}
 
 /* ---------- TIPOGRAFIA ------------------------------------------------------ */
+/* ⚠️ text-wrap:balance — 13/09. Contare le righe di un titolo non basta: erano
+   due righe anche quando si leggeva «COSA / FACCIAMO?» con una parola sola in
+   cima, e da telefono «PORTA LA MUSICA / [COUNTRY] AL TUO / EVENTO.», che
+   spezza «musica country» e isola la parola timbrata. Un max-width in ch va
+   rimisurato a ogni cambio di testo; balance pareggia le righe da solo e regge
+   a ogni larghezza. Lavora DENTRO i max-width qui sotto: non allarga niente. */
 h1,h2,h3{font-family:var(--display);font-weight:400;font-synthesis:none;
-  text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
+  text-transform:uppercase;letter-spacing:.02em;line-height:1.1;text-wrap:balance}
 .v-h{
   font-size:clamp(30px,4.6vw,54px);
   max-width:24ch;                 /* e' questo che decide dove va a capo */
@@ -352,8 +358,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;font-synthesis:none;
 /* sul panna la pill si inverte, se no sparisce; sull'arancio le stelle
    arancio sparirebbero, quindi diventano marroni */
 .t-panna .v-pill{background:var(--espresso);color:var(--panna);border-color:var(--espresso)}
-.f-arancio .v-pill{box-shadow:5px 5px 0 var(--espresso)}
-.f-arancio .v-pill:hover{box-shadow:7px 7px 0 var(--espresso)}
 .f-arancio .v-pill::before,.f-arancio .v-pill::after{color:var(--espresso)}
 
 .v-cta-fila{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:clamp(28px,3.6vw,40px)}
@@ -400,14 +404,12 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 }
 .v-hero-bg{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  /* ⚠️ 20%, ed e' calcolato. Con la foto verticale (1536x2048) a 1440x828 il
-     cover scala 0,9375 e si vede solo il 43% dell'altezza: col 44% di prima la
-     finestra cadeva su y 512-1395 e i tre in piedi restavano decapitati. Col
-     20% entravano tutte le facce ma il cappello di Mike restava tagliato in
-     cima: col 12% la finestra e' y 140-1023 e ci sta anche quello. Da telefono
-     il ritaglio verticale e' NULLO (l'altezza entra tutta), quindi questo
-     valore non tocca il telefono: vale solo da computer. */
-  object-position:center 12%;filter:saturate(1.06) contrast(1.04);
+  /* ⚠️ 44%: la foto e' ORIZZONTALE (1600x1067), quindi qui il cover taglia
+     sopra e sotto, non ai lati. Il 44% tiene la linea del palco e i volti nella
+     fascia alta e lascia in basso il tappeto e i monitor, che e' dove si
+     appoggia il testo. Il 12% serviva alla verticale del muro, ed e' tornato
+     al valore di prima insieme alla foto (13/09). */
+  object-position:center 44%;filter:saturate(1.06) contrast(1.04);
 }
 /* ⚠️ LA PATINA. Il velo e' DIREZIONALE: scende dal basso e da sinistra, dove
    appoggia il testo, e lascia libera la meta' alta. La fotografia resta viva
@@ -426,8 +428,8 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 .v-hero-velo{
   position:absolute;inset:0;z-index:1;
   background:
-    linear-gradient(to top,rgba(51,23,5,.88) 0%,rgba(51,23,5,.86) 30%,rgba(51,23,5,.78) 45%,rgba(51,23,5,.60) 60%,rgba(51,23,5,.42) 70%,rgba(51,23,5,.12) 82%,rgba(51,23,5,0) 92%),
-    linear-gradient(to right,rgba(51,23,5,.30) 0%,rgba(51,23,5,.10) 40%,rgba(51,23,5,0) 66%);
+    linear-gradient(to top,rgba(51,23,5,.9) 0%,rgba(51,23,5,.72) 24%,rgba(51,23,5,.32) 50%,rgba(51,23,5,.04) 76%,rgba(51,23,5,0) 90%),
+    linear-gradient(to right,rgba(51,23,5,.5) 0%,rgba(51,23,5,.17) 42%,rgba(51,23,5,0) 68%);
 }
 .v-hero-in{position:relative;z-index:3;width:100%;max-width:var(--wrap);margin:0 auto;padding:0 var(--lato)}
 /* la testata: logo a sinistra, il rimando al sito a destra — cosi' si puo'
@@ -437,27 +439,35 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   display:flex;align-items:center;justify-content:space-between;gap:16px;
   max-width:var(--wrap);margin:0 auto;padding:clamp(18px,2.6vw,30px) var(--lato);
 }
-/* ⚠️ il file col contorno ha il viewBox piu' grande (1038x552 contro 989x507):
-   a parita' di altezza CSS le LETTERE rimpiccioliscono dell'8%, perche' i pixel
-   in piu' sono il bordo. Per questo l'altezza sale del 9%. */
-.v-hero-logo{height:clamp(61px,7vw,92px);width:auto}
-/* ⚠️ PASTIGLIA MARRONE PIENA, e non e' una scelta di gusto (12/09). Il muro
-   della foto e' #D98533, cioe' molto piu' chiaro dell'arancio del brand: il
-   contorno panna di prima ci faceva 2,09:1, illeggibile. Marrone pieno = 4,83:1
-   la pastiglia sul muro e 10:1 il testo dentro.
-   Non viola "un solo bottone pieno per pagina": quello e' .v-pill, panna, 16px,
-   in mezzo al discorso. Questa e' marrone, 14px, tonda, in un angolo — si legge
-   come etichetta. Via anche il backdrop-filter: su un fondo opaco non fa niente
-   e costa un layer di compositing su un hero che scorre. */
+/* ⚠️ 13/09: torna il logo SENZA contorno, insieme alla foto del live. Il contorno
+   serviva contro il muro #D98533 della foto del 12/09, dove la scritta "Hot Joe"
+   arancio faceva 1,15:1; qui sotto c'e' un cielo al tramonto scuro e il negativo
+   si legge. Col viewBox piu' piccolo (989x507 contro 1038x552) le lettere sono
+   l'8% piu' grandi a parita' di altezza CSS: per questo l'altezza torna giu'. */
+.v-hero-logo{height:clamp(56px,6.4vw,84px);width:auto}
+/* ⚠️ ALLEGGERITO IL 13/09, ed e' una scelta di gerarchia, non di gusto. Pieno
+   marrone, da telefono era largo quasi mezzo schermo ed era il PRIMO invito
+   pieno che si incontrava: ma porta FUORI dalla landing, e chi lo tocca se ne
+   va senza lasciare una richiesta. La regola di casa dice un solo bottone pieno
+   per schermata, e quello deve portare al modulo.
+   Ora e' un contorno: si vede, si raggiunge, ma non compete con "Chiedi il
+   preventivo". Il fondo resta marrone velato (non trasparente) perche' sotto
+   c'e' una fotografia e il contorno da solo, su un cielo chiaro, sparirebbe —
+   e' l'errore da cui e' nato il pieno il 12/09. ⚠️ Misurato: col velo a .58 il
+   punto peggiore faceva 2,09:1, perche' il bottone sta proprio sul CIELO del
+   tramonto, che e' la zona piu' chiara della fotografia. A .82 il fondo regge
+   anche li'. Alleggerito vuol dire piu' piccolo e non pieno-marrone, non
+   trasparente: sopra una foto il contorno da solo non tiene.
+   Via anche il backdrop-filter: costa un layer di compositing su un hero che scorre. */
 .al-sito{
-  display:inline-flex;align-items:center;gap:8px;text-decoration:none;
-  font-family:var(--btn);font-weight:700;font-size:14px;letter-spacing:.1em;
+  display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+  font-family:var(--btn);font-weight:700;font-size:13px;letter-spacing:.09em;
   text-transform:uppercase;color:var(--panna);
-  background:var(--espresso);border:2px solid var(--espresso);
-  border-radius:999px;padding:9px 17px 10px;
+  background:rgba(51,23,5,.82);border:1.5px solid rgba(237,218,189,.72);
+  border-radius:999px;padding:7px 14px 8px;
   transition:background .2s,border-color .2s;
 }
-.al-sito:hover{background:var(--arancio);border-color:var(--arancio)}
+.al-sito:hover{background:var(--espresso);border-color:var(--panna)}
 .v-hero .v-h{
   /* ⚠️ 30ch, non 25: il titolo nuovo e' di 38 caratteri e a 25ch andava su TRE
      righe da 820px in su. In Bonzana un "ch" e' molto piu' stretto che in un
@@ -469,17 +479,24 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 .v-hero .v-lead{max-width:46ch;color:#F0DEC2;text-shadow:0 1px 3px rgba(30,13,3,.92),0 2px 14px rgba(30,13,3,.7)}
 .v-hero .marchio{z-index:2;right:-3%;bottom:7%;width:min(360px,34vw);opacity:.15}
 @media (max-width:760px){
-  /* ⚠️ 72svh, misurato (12/09). La foto e' verticale (0,75) e il viewport del
-     telefono e' 0,46: il cover taglia i LATI, e quanto taglia dipende solo
-     dall'altezza dell'hero. A 88svh si vedeva il 70% della larghezza — Larry
-     col Nord a sinistra e Ste a destra tagliati a meta'. A 72svh se ne vede
-     l'86% ED ENTRA TUTTA L'ALTEZZA: ci sono tutti e cinque. */
-  .v-hero{min-height:72svh;align-items:flex-end}
+  /* ⚠️ 88svh: col ritorno alla foto ORIZZONTALE il ragionamento del 12/09 si
+     capovolge. Li' la foto era verticale e abbassare l'hero allargava il campo;
+     qui il cover taglia i lati comunque (1,5 contro 0,46 del telefono) e un hero
+     basso taglierebbe SOLO di piu'. E' il valore che c'era prima della prova. */
+  .v-hero{min-height:88svh;align-items:flex-end}
   .v-hero .marchio{display:none}
 }
 
-.v-fatti{padding:clamp(26px,3.4vw,40px) 0}
-.v-fatti--tre{grid-template-columns:repeat(3,1fr)}
+/* ⚠️ 13/09: 40px sopra e sotto stringevano i numeri fra i due strappi. "I numeri
+   devono prendersi il loro spazio": ora respirano, e la fascia si legge come un
+   momento a se' invece che come una riga di passaggio. */
+.v-fatti{padding:clamp(38px,5vw,64px) 0}
+/* ⚠️ 13/09 — questa regola NON agganciava da 701px in su: e' dichiarata prima di
+   .v-fatti-griglia (4 colonne) e ha la stessa specificita', quindi perdeva. I tre
+   numeri stavano nelle prime 3 colonne di 4 e a 1440 lasciavano ~455px di arancio
+   vuoto a destra (a 1024 ~240px). Da telefono no, perche' la media query qui sotto
+   ha la specificita' doppia: per questo il difetto era invisibile dove si lavora. */
+.v-fatti-griglia.v-fatti--tre{grid-template-columns:repeat(3,1fr)}
 @media (max-width:700px){.v-fatti--tre{grid-template-columns:repeat(3,1fr);gap:0 10px}}
 .v-fatti-griglia{
   display:grid;grid-template-columns:repeat(4,1fr);gap:18px clamp(14px,2.4vw,30px);
@@ -531,15 +548,17 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
   width:92px;height:92px;border-radius:50%;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
   background:var(--panna);color:var(--espresso);
-  border:3px solid var(--espresso);box-shadow:5px 5px 0 var(--arancio);
-  transition:transform .18s,box-shadow .18s;
+  border:3px solid var(--espresso);
+  transition:transform .18s;
 }
-.vb-play:hover{transform:translate(calc(-50% - 2px),calc(-50% - 2px));box-shadow:8px 8px 0 var(--arancio)}
+/* ⚠️ l'hover spostava il cerchio di 2px per «appoggiarlo» sull'ombra arancio: tolta
+   l'ombra, quel translate lo mandava solo fuori centro. Ora cresce e basta. */
+.vb-play:hover{transform:translate(-50%,-50%) scale(1.06)}
 .vb-play svg{margin-left:5px}
 /* su schermo stretto il cerchio da 92px arrivava addosso alla pastiglia
    "Guitar - Zach Top" in basso a sinistra */
 @media (max-width:600px){
-  .vb-play{width:66px;height:66px;border-width:2px;box-shadow:4px 4px 0 var(--arancio)}
+  .vb-play{width:66px;height:66px;border-width:2px}
   .vb-play svg{width:26px;height:26px;margin-left:4px}
   .vcap{left:11px;bottom:11px;font-size:12.5px;padding:8px 13px 9px}
 }
@@ -572,10 +591,11 @@ img.foto,.cornice img,.v-mosaico img,.v-reg img,.v-volto img{filter:saturate(1.0
 .v-vert img{aspect-ratio:9/16}
 .v-vert .inner iframe{aspect-ratio:9/16}
 /* ⚠️ REGOLE PERSE IN UNA PULIZIA AUTOMATICA (rimesse il 10/09).
-   Il cerchio da 92px dentro una colonna da 330px mangia mezza immagine, e
-   l'ombra spostata di 5px diventa una mezzaluna arancio che sembra un
-   errore di stampa. */
-.v-vert .vb-play{width:74px;height:74px;box-shadow:4px 4px 0 var(--arancio)}
+   Il cerchio da 92px dentro una colonna da 330px mangia mezza immagine.
+   13/09: l'ombra arancio spostata e' sparita da qui e dagli altri tre bottoni —
+   era la «mezzaluna che sembra un errore di stampa» gia' annotata sopra, e la
+   regola «bottoni senza ombra» era stata data il 10/09. */
+.v-vert .vb-play{width:74px;height:74px}
 .v-vert .vb-play svg{width:29px;height:29px;margin-left:4px}
 
 /* ⚠️ ANCHE QUESTA era sparita: senza, la fascia tan non ha margini verticali
@@ -683,10 +703,15 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   display:flex;flex-direction:column;align-items:flex-start;gap:5px;
   text-align:left;padding:13px 20px 14px;line-height:1.15;
 }
+/* ⚠️ 13/09: qui c'era opacity:.72 e faceva ~4:1 su 13,5px — sotto soglia. E' lo
+   stesso identico errore gia' corretto sul .ruolo della line-up il 12/09:
+   l'opacity schiarisce il testo insieme al fondo e nessuno la misura mai.
+   Colore esplicito, uno per ciascuno dei due stati. */
 .qf-chips--grandi .qf-chip em{
   font-family:var(--testo);font-style:normal;font-weight:600;font-size:13.5px;
-  letter-spacing:0;text-transform:none;opacity:.72;
+  letter-spacing:0;text-transform:none;color:#6B4426;
 }
+.qf-chips--grandi .qf-chip.on em{color:#DCC29B}
 /* ⚠️ IL VINCOLO: una voce di budget esclusa dal servizio scelto si SPEGNE ma
    resta li'. Michele, 10/09: "se mi dici tutto il giorno non puoi selezionare
    1.000 euro... voglio stanarti". Se sparisse, il messaggio sparirebbe con lei. */
@@ -705,7 +730,11 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   display:inline-flex;align-items:center;min-height:44px;
   font-family:var(--btn);font-size:15.5px;font-weight:700;letter-spacing:.03em;cursor:pointer;
   color:#5C3315;background:#F6EBD8;
-  border:2px solid rgba(73,36,10,.3);border-radius:99px;padding:8px 18px 9px;
+  /* ⚠️ 13/09: il bordo era rgba(...,.3) su un fondo quasi uguale a quello del
+     guscio: la voce scelta si vedeva benissimo (marrone piena) e le ALTRE
+     sembravano disattivate invece che da toccare. Su un modulo e' il difetto
+     peggiore: spegne le alternative. */
+  border:2px solid rgba(73,36,10,.45);border-radius:99px;padding:8px 18px 9px;
   transition:background .18s,color .18s,border-color .18s;
 }
 .qf-chip:hover{border-color:var(--espresso)}
@@ -767,11 +796,11 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   font-family:var(--btn);font-weight:900;font-size:17px;letter-spacing:.08em;
   text-transform:uppercase;cursor:pointer;
   background:var(--panna);color:var(--espresso);
-  border:2px solid var(--panna);border-radius:10px;padding:15px 28px 16px;
-  box-shadow:5px 5px 0 var(--arancio);transition:transform .16s,box-shadow .16s,opacity .2s;
+  border:2px solid var(--panna);border-radius:12px;padding:15px 28px 16px;
+  transition:background .16s,border-color .16s,color .16s,opacity .2s;
 }
-.qf-submit:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--arancio)}
-.qf-submit:disabled{opacity:.55;cursor:not-allowed;box-shadow:none}
+.qf-submit:hover:not(:disabled){background:var(--arancio);border-color:var(--arancio);color:var(--panna)}
+.qf-submit:disabled{opacity:.55;cursor:not-allowed}
 .qf-success{text-align:center}
 .qf-success h3{
   font-family:var(--display);font-weight:400;font-synthesis:none;text-transform:uppercase;
@@ -785,10 +814,10 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
   display:block;width:100%;margin-top:28px;cursor:pointer;
   font-family:var(--btn);font-weight:900;font-size:17px;letter-spacing:.08em;text-transform:uppercase;
   background:var(--espresso);color:var(--panna);
-  border:2px solid var(--espresso);border-radius:10px;padding:16px 20px;
-  box-shadow:5px 5px 0 var(--arancio);transition:transform .16s,box-shadow .16s;
+  border:2px solid var(--espresso);border-radius:12px;padding:16px 20px;
+  transition:background .16s,border-color .16s;
 }
-.v-avanti:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--arancio)}
+.v-avanti:hover{background:var(--arancio);border-color:var(--arancio)}
 .v-indietro{
   background:none;border:0;cursor:pointer;margin:18px auto 0;display:block;
   font-family:var(--testo);font-size:14.5px;color:#6B4426;
@@ -833,8 +862,18 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
 /* ---------- IL PIEDE -------------------------------------------------------- */
 .v-foot{
   position:relative;overflow-x:clip;text-align:center;
-  padding:clamp(48px,6.5vw,76px) var(--lato) clamp(104px,13vw,72px);
+  /* 🐞 13/09: qui c'era clamp(104px,13vw,72px) — il minimo MAGGIORE del massimo,
+     che la CSS risolve sempre al minimo: 104px a ogni larghezza, anche a 1440,
+     dove la barra appiccicata sta in alto e quello spazio non serve a niente.
+     L'intento era lasciare respiro sotto la barra da telefono: ora e' scritto giusto. */
+  padding:clamp(48px,6.5vw,76px) var(--lato) clamp(72px,13vw,104px);
 }
+/* ⚠️ il modulo e il piede sono ENTRAMBI scuri: fra loro non c'e' nessuna linea di
+   confine, solo i due padding che si sommano (132 + 76 = 208px di marrone morto a
+   1440, 126 da telefono). Lo screenshot lo mostrava, la misura sul DOM diceva 58px
+   perche' inseguiva un elemento fuori schermo: ha ragione la schermata. */
+#richiesta{padding-bottom:clamp(56px,6vw,84px)}
+#richiesta + .v-foot{padding-top:clamp(20px,2.4vw,32px)}
 .v-foot .stelle{max-width:280px;margin:0 auto clamp(26px,3.4vw,36px)}
 .v-foot img{height:72px;width:auto;margin:0 auto 18px}
 .v-foot p{
@@ -876,15 +915,34 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
    fondo chiaro e tengono i loro colori.
    Le altezze sono per-logo, calcolate a parita' di AREA ottica: un marchio
    largo e basso a parita' di altezza sembra il doppio degli altri. */
-.v-loghi{align-items:center;margin-top:clamp(30px,4vw,48px)}
+/* ⚠️ 13/09: la fascia SCORRE sotto i ~1180px (misurato: 1108px di contenuto in
+   1024, 996 in 390) e il taglio secco spezzava "E TANTI ALTRI" a meta' parola,
+   senza nessun indizio che ci fosse altro da vedere. La maschera sfuma i due
+   bordi e lo dice da sola.
+   ⚠️ Va su .v-loghi e NON su .v-scorri: quella classe e' condivisa con la
+   line-up e la gallery, che da 900px in su diventano griglie che non scorrono —
+   li' sfumerebbe i bordi per niente. */
+.v-loghi{
+  align-items:center;margin-top:clamp(30px,4vw,48px);
+  --sf:clamp(18px,4vw,42px);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--sf),#000 calc(100% - var(--sf)),transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 var(--sf),#000 calc(100% - var(--sf)),transparent 100%);
+}
+/* ⚠️ 13/09 — il pareggio si fa sulle ALTEZZE, una per logo, e NON con un
+   max-width. Provato: con width:auto + height fissa, un max-width che morde
+   taglia la larghezza e lascia l'altezza dov'e' — Coca-Cola veniva reso 112x38
+   con rapporto vero 3,19, cioe' SCHIACCIATO del 7%. Il controllo delle immagini
+   deformate l'ha preso al primo giro.
+   Le larghezze rese ora stanno fra 86 e 115px (prima da 83 a 129): i wordmark
+   lunghi non schiacciano piu' i marchi impilati. */
 .v-loghi img{display:block;width:auto;filter:saturate(1.02)}
-.v-loghi img[src$="coca-cola.svg"]            {height:38px}
-.v-loghi img[src$="ca-del-bosco.svg"]         {height:50px}
-.v-loghi img[src$="conti-thun.webp"]          {height:54px}
-.v-loghi img[src$="centro-porsche-brescia.webp"]{height:60px}
-.v-loghi img[src$="lombarda-ceramiche.webp"]  {height:38px}
-.v-loghi img[src$="pietra-cavalla.webp"]      {height:48px}
-.v-loghi img[src$="il-cascinetto.webp"]       {height:52px}
+.v-loghi img[src$="coca-cola.svg"]            {height:35px} /* r 3,19 → 112 */
+.v-loghi img[src$="ca-del-bosco.svg"]         {height:50px} /* r 2,18 → 109 */
+.v-loghi img[src$="conti-thun.webp"]          {height:58px} /* r 1,73 → 100 */
+.v-loghi img[src$="centro-porsche-brescia.webp"]{height:62px} /* r 1,39 →  86 */
+.v-loghi img[src$="lombarda-ceramiche.webp"]  {height:34px} /* r 3,39 → 115 */
+.v-loghi img[src$="pietra-cavalla.webp"]      {height:50px} /* r 2,17 → 108 */
+.v-loghi img[src$="il-cascinetto.webp"]       {height:52px} /* r 1,86 →  97 */
 .v-altri{
   font-family:var(--btn);font-weight:700;font-size:15px;letter-spacing:.08em;
   text-transform:uppercase;color:var(--pg-mut);white-space:nowrap;padding-left:6px;
@@ -901,20 +959,36 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
    da telefono passava sopra, su una riga sua, e sette card facevano un muro
    di 2078px. Il div interno diventa trasparente alla griglia (display:contents)
    cosi' titolo e testo sono due celle e non un blocco solo. */
+/* ⚠️ 13/09, Michele: «lo spazio delle card fallo a sfondo chiaro» — quello testuale
+   con le spiegazioni. Prima la card era rgba(30,13,3,.5), cioe' marrone scuro SOPRA
+   un fondo marrone scuro: si distingueva solo per il bordo, e sette blocchi quasi
+   invisibili di fila erano la parte piu' faticosa da leggere della pagina. Ora sono
+   schede di carta appoggiate sul marrone — lo stesso gesto del guscio del modulo.
+   ⚠️ I colori del testo erano tarati sul fondo scuro: h3 e <b> usano var(--pg-fg),
+   che li' e' PANNA, e il <p> aveva #E7D2B0 cablato. Su chiaro sparivano tutti e tre.
+   Invece di ritoccare tre colori a mano si ridichiarano le variabili sulla card: e'
+   lo stesso set di .t-panna, cosi' titolo e grassetti si aggiustano da soli.
+   ⚠️ grid-template-columns e' 36px FISSI, non auto: quattro icone hanno uno
+   style="width:" inline nel markup (26/30/34px) e con la traccia auto i titoli
+   partivano a quote diverse, fino a 10px di scarto fra una card e l'altra.
+   ⚠️ align-content:start incolla il contenuto in cima: con lo stretch la card corta
+   gonfiava la prima riga e il titolo «scendeva» rispetto a quello della card accanto. */
 .v-info-card{
-  display:grid;grid-template-columns:auto 1fr;column-gap:clamp(12px,1.6vw,16px);
-  align-items:center;
-  background:rgba(30,13,3,.5);border:2px solid var(--pg-fil);border-radius:14px;
+  --pg-fg:#49240A; --pg-mut:#6B4426; --pg-fil:#C9B394;
+  display:grid;grid-template-columns:36px 1fr;column-gap:clamp(12px,1.6vw,16px);
+  align-items:center;align-content:start;
+  background:var(--panna);border:2px solid #D9C09B;border-radius:14px;
   padding:clamp(17px,2.2vw,22px) clamp(18px,2.6vw,26px) clamp(19px,2.4vw,24px);
 }
 .v-info-card > div{display:contents}
 /* ⚠️ le icone hanno proporzioni molto diverse (il cactus e' alto, il cappello
    e' largo): con height:auto ogni card aveva la prima riga di un'altezza sua e
    i titoli partivano a quote diverse. Riquadro fisso, l'icona ci sta dentro. */
-.v-info-card .ico{grid-column:1;grid-row:1;width:36px;height:30px;aspect-ratio:auto;color:var(--arancio)}
+.v-info-card .ico{grid-column:1;grid-row:1;width:36px;height:30px;aspect-ratio:auto;
+  justify-self:center;color:var(--arancio)}
 .v-info-card h3{grid-column:2;grid-row:1;font-size:clamp(18px,1.9vw,22px);line-height:1.15;color:var(--pg-fg)}
 .v-info-card p{grid-column:1/-1;grid-row:2;margin-top:11px;
-  font-family:var(--testo);font-size:16.5px;line-height:1.6;color:#E7D2B0}
+  font-family:var(--testo);font-size:16.5px;line-height:1.6;color:#5A3A1C}
 .v-info-card p b{color:var(--pg-fg);font-weight:700}
 /* l'emoji di chiusura (12/09, Michele: "smorza un pochino l'atmosfera e rende tutto un
    po' piu' informale"). line-height:1 le impedisce di alzare la riga - il glifo emoji ha
@@ -927,7 +1001,12 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
    due, e l'ultima (dispari) prende tutta la riga invece di lasciare un buco. */
 @media (min-width:900px){
   .v-info{grid-template-columns:1fr 1fr;max-width:none;gap:clamp(14px,1.6vw,18px)}
-  .v-info-card:last-child{grid-column:1/-1}
+  /* ⚠️ 13/09: la campata larga stava su :last-child, cioe' «SIAE e permessi», che e'
+     la card PIU' CORTA: prendeva 1036px e faceva righe da ~150 battute contro le ~55
+     delle altre. Ora la prende la prima, che e' il testo piu' lungo e dalla larghezza
+     ci guadagna; le sei rimanenti riempiono esattamente tre righe, senza buchi. */
+  .v-info-card:first-child{grid-column:1/-1}
+  .v-info-card:first-child p{max-width:75ch}
 }
 
 /* ---------- IL CLIP VERTICALE, DRITTO E SENZA CORNICE ---------------------- */
@@ -945,10 +1024,16 @@ textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical
      con "1fr" il titolo restava a sinistra e il video a destra, con mezzo
      schermo di marrone in mezzo. */
   .v-ascolta .v-in{
-    display:grid;grid-template-columns:auto minmax(280px,330px);
+    display:grid;grid-template-columns:minmax(0,auto) minmax(300px,360px);
     justify-content:center;gap:clamp(44px,5vw,84px);align-items:center;
+    max-width:1040px;
   }
-  .v-ascolta .v-h{text-align:left;max-width:11ch;margin:0}
+  /* ⚠️ 13/09: il titolo era 54px dentro una colonna larga il doppio, e mezza
+     schermata restava marrone vuoto. Il blocco non puo' riempirla con del testo
+     — "non farei una spiegazione di quel video li'" (Michele, 10/09): qui ci
+     sono solo il titolo e il clip. Allora la riempie il TITOLO, che diventa
+     grande davvero e regge il peso del video accanto. */
+  .v-ascolta .v-h{text-align:left;max-width:9ch;margin:0;font-size:clamp(46px,6.4vw,88px)}
   .v-ascolta .v-clip{margin:0;width:100%}
 }
 
@@ -1061,21 +1146,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      al sito e' un bottoncino a destra, e apre una scheda nuova.
      Titolo, sottotitolo e FOTOGRAFIA cambiano col ?tipo= dell'inserzione
      (vedi "LE VARIANTI" nel JavaScript qui sotto).
-     ⚠️ FOTOGRAFIA (12/09): hero-band-muro, i cinque in formazione 2026 sul muro
-     arancio — Larry col Nord, Mike con l'acustica, Ste con la Telecaster, Miglio
-     con le bacchette, Richi col basso. Controllata una per una prima di
-     pubblicarla: nessun ex membro. E' VERTICALE, e questo comanda il ritaglio
-     (vedi .v-hero-bg e la media query del telefono).
+     ⚠️ FOTOGRAFIA (13/09): torna terrazza-live, la band sul palco al tramonto.
+     La prova con hero-band-muro (12/09) e' stata scartata da Michele. E'
+     ORIZZONTALE (1600x1067): il cover taglia sopra e sotto, non ai lati, e
+     l'hero da telefono torna a 88svh (vedi .v-hero-bg e la media query).
      ============================================================================ -->
 <header class="v-hero">
-  <img class="v-hero-bg" id="v-hero-foto" src="images/land/hero-band-muro.webp"
-       alt="I cinque CoffeeKillers appoggiati a un muro arancio, con la tastiera, le chitarre, le bacchette e il basso"
-       fetchpriority="high" decoding="async" width="1536" height="2048" />
+  <img class="v-hero-bg" id="v-hero-foto" src="images/terrazza-live.webp"
+       alt="I CoffeeKillers dal vivo sulla terrazza al tramonto, luci di scena accese e le colline sullo sfondo"
+       fetchpriority="high" decoding="async" width="1600" height="1067" />
   <span class="v-hero-velo" aria-hidden="true"></span>
   <span class="ico i-teschio marchio" aria-hidden="true"></span>
 
   <div class="v-hero-alto">
-    <img class="v-hero-logo" src="images/logo/hjck-logo-negativo-contorno.svg" alt="Hot Joe &amp; The CoffeeKillers" />
+    <img class="v-hero-logo" src="images/logo/hjck-logo-negativo.svg" alt="Hot Joe &amp; The CoffeeKillers" />
     <a class="al-sito" href="index.html" target="_blank" rel="noopener">Vai al sito &#8599;</a>
   </div>
 
@@ -1470,16 +1554,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      8 · LA GALLERY — le stesse sei foto del mosaico, ma a scorrimento.
      ⚠️ "Anche la gallery la metterei a scorrimento": due righe che si
      scorrono, una con la line-up e una con le foto.
+     ⚠️ 13/09 — IL TITOLO. Il blocco era muto: sei foto in mezzo alla pagina,
+     senza una parola. Fra la line-up (che un titolo ce l'ha) e il modulo
+     sembrava un avanzo di impaginazione invece di una prova.
+     ⚠️ 13/09 — LA FOTO. Via live-blu-tastiere: due mani sfocate su una tastiera
+     in luce viola, mossa e illeggibile in miniatura — non si capiva ne' chi
+     fosse ne' cosa stesse succedendo. Al suo posto strumenti-fila-alberi, che
+     ha il vantaggio di non avere NESSUNA persona dentro (niente da verificare)
+     e di raccontare la cosa giusta: i tavoli apparecchiati, le lucine, gli
+     strumenti appoggiati prima che cominci.
+     ⚠️ Si usa la versione "-s" (506x900, 97 KB) e non l'originale da 800x1423 e
+     168 KB: qui dentro non viene mai resa piu' larga di ~350px da computer e
+     ~300 da telefono (a dsf 3), quindi i pixel in piu' erano solo peso. Su una
+     landing a pagamento ogni KB si paga a ogni clic. L'originale resta dov'e'.
+     ⚠️ L'ORDINE conta: le due notturne blu non vanno appaiate, se no meta'
+     fascia diventa una macchia scura. Ora si alternano con le dorate.
      ============================================================================ -->
 <section class="v-sez tex chiaro t-panna">
   <div class="v-in">
+    <h2 class="v-h v-h--centro rv">Com&rsquo;&egrave; una <span class="acc">nostra serata.</span></h2>
+    <p class="v-lead v-lead--centro rv">Dai prati e dalle vigne di pomeriggio ai palchi di sera.</p>
+
     <div class="v-scorri v-gall rv">
       <img src="images/land/band-fiume-o2.webp" alt="Risate tra i cinque musicisti in riva al fiume" loading="lazy" width="1000" height="750" />
-      <img src="images/land/live-blu-tastiere.webp" alt="Le mani di Larry sulla tastiera durante un live, luci rosse e viola" loading="lazy" width="1200" height="800" />
-      <img src="images/land/vigna-contrabbasso-live-b.webp" alt="Richi suona il contrabbasso nella vigna al tramonto, il pubblico seduto sull&rsquo;erba" loading="lazy" width="800" height="1200" />
-      <img src="images/land/targa-band.webp" alt="L&rsquo;insegna di legno dipinta a mano davanti al palco allestito su un prato" loading="lazy" width="1200" height="750" />
-      <img src="images/land/mike-miglio-banjo.webp" alt="Mike e Miglio ridono con il banjo all&rsquo;aperto" loading="lazy" width="800" height="1424" />
+      <img src="images/land/strumenti-fila-alberi-s.webp" alt="Le chitarre, il mandolino e il basso appoggiati sotto gli alberi, con i tavoli apparecchiati e le lucine gi&agrave; accese" loading="lazy" width="506" height="900" />
       <img src="images/land/prato-batteria-blu.webp" alt="Miglio dietro i piatti in luce blu" loading="lazy" width="1200" height="750" />
+      <img src="images/land/targa-band.webp" alt="L&rsquo;insegna di legno dipinta a mano davanti al palco allestito su un prato" loading="lazy" width="1200" height="750" />
+      <img src="images/land/vigna-contrabbasso-live-b.webp" alt="Richi suona il contrabbasso nella vigna al tramonto, il pubblico seduto sull&rsquo;erba" loading="lazy" width="800" height="1200" />
+      <img src="images/land/mike-miglio-banjo.webp" alt="Mike e Miglio ridono con il banjo all&rsquo;aperto" loading="lazy" width="800" height="1424" />
     </div>
   </div>
 </section>
