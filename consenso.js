@@ -41,6 +41,19 @@
   function leggi() { try { return localStorage.getItem(CHIAVE); } catch (e) { return null; } }
   function scrivi(v) { try { localStorage.setItem(CHIAVE, v); } catch (e) {} }
 
+  /* Il ritiro deve valere SUBITO, non dal caricamento dopo: senza questa, chi accetta e poi
+     cambia idea resta 'granted' per tutto il resto della visita (GDPR art. 7.3). */
+  function nega() {
+    gtag('consent', 'update', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'denied',
+      personalization_storage: 'denied'
+    });
+  }
+
   function concedi() {
     gtag('consent', 'update', {
       ad_storage: 'granted',
@@ -72,8 +85,9 @@
       'box-shadow:0 16px 48px rgba(0,0,0,.45);');
     d.innerHTML =
       '<p style="margin:0 0 14px;color:' + PANNA + ';font-size:14px;line-height:1.55;">' +
-      'Usiamo cookie di statistica per capire come viene usato il sito e quali inserzioni ' +
-      'portano richieste. Senza il tuo consenso non ne viene scritto nessuno. ' +
+      'Usiamo cookie di statistica e di pubblicit&agrave;: per capire come viene usato il sito, ' +
+      'quali inserzioni portano richieste e per misurare le nostre campagne. Senza il tuo ' +
+      'consenso non ne viene scritto nessuno. ' +
       '<a href="' + (location.pathname.indexOf('/en/') === 0 ? '/en/privacy' : '/privacy') + '" ' +
       'style="color:' + TAN + ';text-decoration:underline;">Informativa privacy</a>.</p>' +
       '<div style="display:flex;gap:10px;flex-wrap:wrap;">' +
@@ -86,7 +100,7 @@
       '</div>';
     document.body.appendChild(d);
     document.getElementById('ck-si').onclick = function () { scrivi('si'); via(); concedi(); };
-    document.getElementById('ck-no').onclick = function () { scrivi('no'); via(); };
+    document.getElementById('ck-no').onclick = function () { scrivi('no'); via(); nega(); };
   }
 
   function parti() {

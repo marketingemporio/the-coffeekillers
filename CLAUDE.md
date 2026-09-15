@@ -1,6 +1,6 @@
 # Sito The CoffeeKillers — istruzioni per chi ci lavora
 
-Sito statico (HTML+CSS a mano, nessuna build) della band modern-country bresciana
+Sito statico (HTML+CSS a mano, nessuna build) della band country **neotradizionale** (in inglese *neotraditional*) bresciana
 **Hot Joe & The CoffeeKillers**. Online su `thecoffeekillers.com` via Netlify: `git push`
 su `main` pubblica in un minuto. ⚠️ **Netlify pubblica la radice del repo**: qualunque file
 committato è scaricabile dal dominio.
@@ -44,6 +44,57 @@ copy**), `02-colore-di-pagina.md` (la tecnica `@property --page-bg`). Michele è
 Beamlight. Il 06/09 una landing è stata rifatta tre volte perché questo metodo, già scritto
 in casa, non era stato aperto.
 
+## 🗣️ LE 31 RISPOSTE DI MICHELE DEL 15/09 — quelle che ribaltano una regola scritta qui
+
+Nate dall'audit di coerenza fra sito, brain e cruscotto (11 e 14/09). Il registro completo, con
+le sue parole e dove va propagata ogni risposta, sta nel brain:
+`the-coffeekillers-brain/Audit di Coerenza — Risposte di Michele (15-09-2026).md`.
+
+**🔑 La regola che vale oltre queste 31.** Michele: *«le risposte più recenti sono di solito
+quelle più giuste»*. Fra due sue decisioni **vince la più recente**, anche contro un avviso in
+pagina che dice di non toccare. L'avviso serve a impedire che qualcuno *creda* di correggere un
+refuso, non a bloccare un ripensamento. Ma il ribaltamento **non si applica in silenzio**: si
+dice a Michele, e si riscrive l'avviso.
+
+**🚫 Non si esce più in formazione ridotta.** La FAQ diceva *«in casi eccezionali usciamo anche
+con formazioni ridotte»*: è uscita. Se serve, si dice **«set acustico»** — che è un'altra cosa,
+perché *«potremmo comunque andare in cinque»*. Lo storico resta com'è: nel 2026 le ridotte erano
+9 date su 15, ma è una decisione sul futuro, non una correzione del passato.
+
+**🚫 «Inediti» esce dal sito.** Non ce ne sono di suonabili. *«Stiamo lavorando, gli inediti
+arriveranno prossimamente»*: quando ci saranno, si rimette.
+
+**La scaletta è fissa, e basta.** Era scritto in tutti e due i modi: *«la costruiamo su misura»*
+sulla landing e *«è fissa»* 69 righe sotto. Adesso è fissa ovunque — sito, moduli e scheda
+tecnica del cruscotto, che offriva *«due scalette possibili»*.
+
+**Il perimetro del repertorio adesso è pubblicato davvero**, nella sezione «Cosa facciamo?»
+della landing: *«dagli anni Novanta in poi, con qualche eccezione»*, con *Country Roads* e
+*Jolene*. Prima tre documenti lo davano per pubblicato e su 17 pagine non c'era. **Morgan
+Wallen è uscito** da `country.html`: era l'unico artista citato fuori elenco.
+
+**Larry suona solo il piano.** Niente più armonica, né nelle schede né nei dati strutturati né
+nel cruscotto. **Ste non è ancora socio**: il cruscotto dice il contrario (`socio=1`) e **è il
+cruscotto a sbagliare** — va corretto lì, perché è la tabella su cui si divide il cachet.
+
+**Sette regioni, ovunque.** Era 7 sulla landing, «8 province» su «Chi siamo», quattro nella meta
+delle date. È una **mossa di marketing dichiarata**, come «oltre 200 live»: non si corregge, si
+scrive uguale dappertutto.
+
+**Il telefono 393 701 1409 va anche sui documenti del cruscotto** — scheda tecnica e preventivo
+firmato stampavano il 331, leggendolo da una riga del brain che era vecchia. Corretti tutti e sei
+i punti. E **la chiocciola è di Instagram**: su Facebook la pagina è `hotjoeandthecoffeekillers`.
+
+**🚫 Eli e Matteo escono dalla gallery.** Supera la decisione del 28/07 (*«restano con nome e
+anno, è comunque storia CoffeeKillers»*). Tolta `vigna-live-chitarra`, che aveva «Matteo»
+nell'alt. ⚠️ Le due col furgone dell'impresa edile (`live-voce`, `live-tastiere`) restano:
+*«se puoi cancellare i numeri di telefono meglio, altrimenti non è un problema»*.
+
+**🍪 Dentro Tag Manager ci sono tag pubblicitari, e non si toccano.** *«Sono cose di Simone.»*
+Quindi `consenso.js` fa bene a concedere anche `ad_storage` e `ad_personalization` — e **sono il
+riquadro e l'informativa a dover cambiare**, perché oggi chiedono solo «cookie di statistica» e
+promettono *«non usiamo cookie per mostrarti pubblicità»*.
+
 ## ⚠️ I fatti verificati che hanno già fatto sbagliare
 
 Ognuno di questi è costato un rifacimento. Sono controllati, non opinioni.
@@ -86,7 +137,7 @@ correggere. Non lo è: è una **scelta**, perché è il numero su cui la band ri
 Il 331 870 6356 sta nel brain ma **non va sul sito**, e questo file diceva il contrario fino al
 07/09. Email pubblica `music@thecoffeekillers.com`.
 **Lecconeria** non è un cliente (solo un preventivo, mai suonato) e **Beach Fly** è una data
-futura e gratis. **Coca-Cola, Ca' del Bosco, Porsche, Thun, Lombarda Ceramica** sì, confermati
+futura e gratis. **Coca-Cola, Ca' del Bosco, Porsche, Thun, Lombarda Ceramiche** sì, confermati
 da Michele — ma anno e occasione non sono ancora nel brain.
 
 **Lo show dura «circa due ore» — un'ora e 45 di musica.** Deciso da Michele il 07/09 e vero:
@@ -100,7 +151,8 @@ americano neotradizionale e contemporaneo, **dagli anni Novanta in poi**, con *C
 John Denver e *Jolene* di Dolly Parton come eccezioni dichiarate (sono davvero in scaletta).
 Artisti citabili: Zach Top · Chris Stapleton · Brad Paisley · Zac Brown Band · Blake Shelton ·
 Darius Rucker · The Kruse Brothers · Keith Whitley. **Luke Combs no** (brano in cassetto dal
-06/09). **Nessun numero di brani in pubblico.** Johnny Cash non si nomina nemmeno per escluderlo:
+06/09). **«Circa 25 brani» si dice** (Michele, 15/09/2026: supera la regola del 07/09 «solo gli
+artisti, senza numeri»). Johnny Cash non si nomina nemmeno per escluderlo:
 il perimetro lo fa da sé. Dettagli in `Repertorio e Scalette 2026.md`.
 
 **Lo spazio palco è 4×3 metri, e il repertorio non si conta più.** Corretti il 10/09 su
@@ -137,14 +189,15 @@ se non si vedono, non servono a niente.
 
 ## 🎞️ LA REVISIONE DEL 12/09: quello che ribalta una regola scritta qui sopra
 
-**L'etichetta del 2018 è «Inizio progetto», non «Country dal».** Michele l'ha deciso il 12/09
-**sapendo** di aver deciso l'opposto il 10/09 (*«non è insieme dal 2018 ma COUNTRY dal 2018»*).
-Non è un refuso: se la «correggi», stai disfando una scelta. ⚠️ Il footer della home dice
-ancora *«Country live since 2018»*: è scoperto, segnalato, non toccato.
+**🔄 SUPERATO IL 15/09 — l'etichetta del 2018 è di nuovo «Country dal».** Ha fatto tre giri:
+10/09 «Country dal» → 12/09 «Inizio progetto» → **15/09 di nuovo «Country dal»**. Michele:
+*«il concetto è che noi facciamo country dal 2018, questa è la cosa più importante, è il claim
+da mettere sul sito»*. Il footer di 16 pagine dice *«Country live since 2018»* e adesso **è
+coerente**, non più scoperto. E il contatore di «Chi siamo» è passato da 7 a **8 anni**.
 
 **«Fino a 250/300 persone siamo autonomi».** Michele ha sciolto così il conflitto fra il sito
-(250) e il brain (~300). Vale sulla landing e sulla variante `?tipo=sagra`. **`faq.html` dice
-ancora 250** e va allineata quando si tocca quella pagina.
+(250) e il brain (~300). Vale sulla landing e sulla variante `?tipo=sagra`. ✅ **Allineata ovunque il 15/09**: FAQ, moduli e scheda tecnica del cruscotto dicono tutti
+250/300.
 
 **🚫 Le chip del modulo non si rinominano da sole.** Hanno le iniziali maiuscole (`Locali e
 Pub`, `Ranch e Maneggi`…) e il JS le confronta **per stringa esatta** con i valori `chip:`
@@ -275,10 +328,18 @@ al cliente una precisione che **non ha**, e gli faceva fare dodici clic.
 non le ore.»* Il cursore da 1h a 4h chiedeva al cliente di decidere una durata che **è nostra**
 (lo show dura circa due ore). Al suo posto tre voci, nell'ordine della gerarchia:
 **Solo il concerto** (predefinita) · **Concerto e set acustico** · **Tutto il giorno**.
-La chiave verso Formspree si chiama ora `Formato`, non più `Durata`.
+🚨 **Dal 12/09 i tre moduli preventivo non vanno più a Formspree ma a Netlify Forms**
+(`data-netlify="true"`, form `preventivo-sito` · `preventivo-en` · `preventivo-landing`).
+Su Formspree resta **solo la newsletter**, di proposito: il piano Netlify gratuito dà **100
+invii al mese** e le iscrizioni li toglierebbero ai preventivi.
+⚠️ **Il campo si chiama `formato` sul sito e in inglese, ma `servizio` sulla landing** — e
+`ospiti` contro `persone`. Sono tre form separati in Netlify, quindi tre tabelle con schemi
+diversi: chi scrive un'automazione deve saperlo.
 
 **Ordine di spesa → tre voci, e la prima parte da mille.**
-**Intorno ai 1.000 €** (predefinita) · **Arrivo a 2.000 €** · **Oltre 2.000 €**.
+**Intorno ai 1.000 €** (predefinita) · **Arrivo a 1.500 €** · **Oltre 2.000 €**.
+⚠️ Fino al 15/09 questa riga diceva «Arrivo a 2.000 €» e **sbagliava**: in pagina è 1.500 da
+sempre, ed è l'unico valore con cui il vincolo «da 1.500 in su» ha senso.
 La prima voce esiste *per far capire che sotto non si va*: la vecchia scaletta apriva con
 «Fino a 1.000» e lasciava credere il contrario. ⚠️ **Il «Non lo so ancora» non si rimette**:
 chi lo spuntava non dava nessuna informazione, ed era la scelta comoda. Coerente con la
@@ -323,7 +384,7 @@ dopo, e sulla `.nav-cta` un'ombra arancio piena spostata di 3px.
 e sono i file ufficiali arrivati da Michele il 10/09. ⚠️ **Non rimetterli in monocromia**
 (maschera CSS o `brightness(0) invert(1)`): il girasole del Cascinetto e l'oro del Conti
 Thun in silhouette diventano macchie illeggibili. I nomi giusti sono **«Conti Thun»**,
-**«Centro Porsche Brescia»**, **«Pietra Cavalla»** (staccato), **«Il Cascinetto»**.
+**«Centro Porsche Brescia»**, **«Pietracavalla»** (attaccato: il loro sito è `pietracavalla.com`), **«Il Cascinetto»**.
 🚫 I vecchi `Porsche.svg` e `Lombarda-Ceramica-v2.svg` erano **segnaposto scritti in Arial**:
 non riusarli.
 ⚠️ Un `<img>` di un SVG **senza attributi `width`/`height`** dentro un contenitore flex si
@@ -345,7 +406,7 @@ voglio stanarti: dimmi tutto il giorno, e poi io ti dico che ti costa tre-k»*.
 
 Le voci escluse si **spengono ma restano in pagina**: se sparissero, sparirebbe il messaggio.
 Se la scelta di prima diventa illegale, si sposta da sola sulla piu' bassa ammessa.
-⚠️ Le chip del servizio hanno la durata dentro un `<em>`: per Formspree si legge
+⚠️ Le chip del servizio hanno la durata dentro un `<em>`: si legge
 `childNodes[0]`, non `textContent`, se no arriva *«Solo live showcirca due ore»*.
 
 ## 🔧 Come si verifica il lavoro
