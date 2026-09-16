@@ -27,6 +27,9 @@ HJCK brand*.pdf
 _titoli.html
 _diag*.html
 _font*.html
+# Le prove di stile della landing (copie complete della pagina, stile diverso):
+# stessa ragione, restano in locale finche' Michele non ne sceglie una.
+_prova-*.html
 # Font demo "free for personal use" scaricati per provarli in locale:
 # NON vanno online finché non si compra la licenza commerciale.
 _font-prova/

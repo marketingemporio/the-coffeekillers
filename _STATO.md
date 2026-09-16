@@ -1,7 +1,7 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-09-13
+> **Ultimo aggiornamento:** 2026-09-16
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
 > Dal **04/09/2026 è online anche la versione inglese** in `en/`, per chi si connette
@@ -36,7 +36,133 @@
 > l'ombra arancione** che era stata tolta il 10/09. Le card delle informazioni sono passate a
 > **fondo chiaro** e **l'hero è tornato alla foto del live**. Vedi **«LA REVISIONE GRAFICA DEL
 > 13/09»**, subito qui sotto.
+> Il **16/09 la landing ha cambiato pelle**: Michele ha fatto fare fuori una proposta grafica
+> e ne è uscita una **revisione di stile con una palette tutta sua, più contrastata e fuori
+> brand**. È **online**. Il contenuto non è cambiato di una virgola. Vedi **«LA REVISIONE DI
+> STILE DEL 16/09»**, subito qui sotto — e leggila prima di "correggere" i colori di quella
+> pagina, perché sono voluti.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+---
+
+# 🎨 LA REVISIONE DI STILE DEL 16/09/2026
+
+**Riguarda SOLO `musica-country-dal-vivo.html`.** Le altre 16 pagine non sono state toccate.
+
+## Da dove nasce
+
+Michele ha messo nei Download `nuovo design.rtf`: una proposta grafica fatta fare fuori, un
+mockup Tailwind **solo mobile** (440px). Le sue parole: *«vedi proprio il design diverso, l'ho
+fatto fare. Troverai anche dei colori diversi, più contrastati e fuori brand. Non cambiare il
+contenuto — foto, testi, posizioni dei blocchi, bottoni — è proprio una revisione di stile»*.
+
+🔍 **Il mockup è costruito sopra screenshot della nostra landing.** Nelle immagini si vedono la
+barra di Safari e il titolo della pagina in trasparenza sotto quello nuovo. Chi l'ha disegnato
+ha lavorato sulla pagina viva: utile saperlo, perché vuol dire che la struttura era già quella.
+
+## Le due decisioni di Michele
+
+1. **I font restano quelli di casa** — Bonzana, Manrope, LT Cushion. Il mockup usava font di
+   Google (Ultra, Plus Jakarta Sans) e il sito li ha eliminati apposta.
+2. **Si va a tinte piatte**, come il mockup: via la carta sporca. **Gli strappi restano.**
+
+## ⚠️ LA PALETTE DELLA LANDING ORA È DIVERSA DA QUELLA DEL SITO, ED È VOLUTO
+
+**Non è un errore da riallineare al brand book.** È una decisione di Michele per una pagina che
+vive solo dentro le inserzioni ed è `noindex`.
+
+| ruolo | sito (le altre 16 pagine) | landing |
+|---|---|---|
+| fondo scuro | `#49240A` | **`#2B1405`** |
+| panna | `#EDDABD` | **`#F3E5D0`** testo · **`#EFE2CE`** superfici |
+| arancio | `#CD5812` | **`#C74A07`** |
+| tan | `#BD8B65` | **`#C39A6A`** |
+| pieni sul chiaro | — | **`#381A08`** (nuovo) |
+
+Misurato: il corpo sul fondo scuro passa da **9,98:1 a 14,05:1**, il testo sul tan da **4,57 a
+6,76**. 🚫 **L'arancio resta sotto soglia** (3,84:1 contro 4,5): la regola della pastiglia
+marrone, o corpo ≥19px/700, **non cade**. Vale identica a prima.
+
+⚠️ La palette **non era centralizzata**: nel foglio c'erano ~24 colori scritti a mano per ~90
+volte. Sono stati sostituiti con una tabella di corrispondenza, **saltando i commenti** — così
+le misure citate nei commenti storici restano quelle vere di allora e si capisce ancora perché
+una regola è com'è.
+
+## Il primo giro non bastava, e Michele l'ha detto
+
+Dopo la prima passata: *«a me sembra che tu abbia cambiato solo i colori, ma c'era anche un bel
+lavoro di design affinato, e qui non lo vedo»*. **Aveva ragione, e la causa è precisa: il
+mockup era stato letto come codice invece che guardato come immagine.** Leggendo un foglio di
+stile si prendono i colori e i raggi; il carattere di un impaginato — la sua *leggerezza* — si
+vede solo a schermo.
+
+🚨 **Regola che ne esce: un bozzetto si apre in un browser prima di copiarlo.** È la gemella
+della regola già scritta «sulle cose visive si crede allo screenshot, non al DOM».
+
+## Cosa è cambiato davvero, oltre al colore
+
+1. **LA SCALA TIPOGRAFICA** — è il salto più grosso dopo la palette. Il mockup ha titoli
+   *piccoli* (h1 32px, h2 24px); i nostri arrivavano a 64 e 54. Ora **52 e 40**, e la
+   spaziatura fra le lettere scende da `.02` a `.005em`. In compenso **il corpo sale**.
+   Avvicinare le misure fra loro è ciò che rende un impaginato calmo.
+2. **IL VIDEO A TUTTA LARGHEZZA** — nel mockup il clip 9/16 prende tutto lo schermo
+   (`rounded-3xl`); da noi era una colonnina da 330px in mezzo al marrone. Da telefono adesso
+   è il blocco che comanda la pagina.
+3. **BORDI SOTTILI** (2px → 1-1,5px), raggi più generosi (card 16, guscio 18, video 24),
+   **ombre diffuse** al posto di quelle dure. È la differenza fra una scheda e un cartello.
+4. **IL MODULO CAMBIA VOCE**: etichette nel carattere display, voci da scegliere in Manrope
+   600 **non spaziate e non maiuscole**, e le **non selezionate trasparenti col solo bordo**
+   (erano sei pastiglie bianche in fila che rubavano l'occhio a quella scelta).
+5. **CARD più generose e titolo più contenuto**; **numeri più piccoli** e attaccati alla loro
+   pastiglia, che ora è scura **a ogni larghezza** (prima solo sotto i 700px, e sopra c'era
+   marrone nudo sull'arancio obbligato a 19px fissi).
+6. **L'hero sfuma sul colore di pagina** invece di finire con una riga netta.
+
+## 🚫 Cosa del mockup NON è stato preso
+
+- **Le emoji al posto delle icone del brand** nelle card: le nostre sono i file dello studio.
+- **Il logo rifatto a testo** su due righe: abbiamo l'SVG vero.
+- **Le chip col bordo al 30%**: è esattamente il difetto corretto il 13/09 (sembravano
+  disattivate). Tenuto `.42`.
+- **Le due CTA intermedie** in mezzo alla pagina: resta **un solo bottone pieno per schermata**.
+- **I bottoni nel carattere display.** Il mockup li fa così, la regola di casa dice «LT Cushion,
+  mai Bonzana». ⚠️ **Resta aperto**: segnalato a Michele, non deciso.
+
+## ⚠️ Il testo delle chip non è stato toccato
+
+Il JavaScript confronta le chip **per stringa esatta** con i valori `chip:` di `VARIANTI`.
+È cambiato solo come sono disegnate. Verificato: tutte e sei le `?tipo=` lasciano **1 sola chip
+accesa**, e quella giusta.
+
+## ✅ Come è stata verificata
+
+Chrome headless + CDP (Playwright non c'è), a 390×844 e 1440×900, con `?c=` a caso.
+
+- **Corpo identico byte per byte** alla versione precedente: markup, testi e JavaScript non
+  sono cambiati. Confrontato prima di pubblicare.
+- **20 contrasti su 20** sopra soglia, calcolati sul **fondo opaco reale** risalendo gli antenati.
+- **Nessuno scorrimento laterale** a 390 · 768 · 1024 · 1440.
+- **Nessuna immagine deformata**, **nessun errore in console**.
+- **Le sei varianti `?tipo=`**: 1 chip accesa ciascuna, quella dichiarata.
+
+### 🔍 Tre controlli automatici hanno mentito, e vanno ricordati
+
+1. **Le card sembravano sbiadite** scendendo nella pagina: era la comparsa `.rv` colta a metà
+   (transizione 0,7s, attesa 450ms). Il sintomo inganna perché somiglia a «il colore è
+   sbagliato», non a «manca un pezzo». Si scatta con
+   `Emulation.setEmulatedMedia{features:[{name:'prefers-reduced-motion',value:'reduce'}]}`.
+2. **`.v-fatti span` pescava `.strappo-su`**, il bordo strappato, che ha
+   `background-color:inherit`: contrasto 3,84:1 «sotto soglia» invece dei 12,83:1 veri. In
+   queste pagine **gli elementi decorativi sono i primi figli della sezione**.
+3. **Il controllo delle immagini deformate dà falso positivo su ogni `object-fit:cover`**:
+   l'hero risultava «deformato del 65%». Col cover il ritaglio è voluto.
+
+## In locale restano due file, esclusi da git
+
+`_prova-stile-b.html` (la prova) e `_prova-confronto.html` (le due landing affiancate a
+larghezza telefono, con lo scorrimento agganciato). Esclusi con **`_prova-*.html`** in
+`.gitignore`, aggiunto *prima* di crearli — Netlify pubblica la radice del repo. Si aprono con
+`python3 -m http.server 8910` in radice.
 
 ---
 

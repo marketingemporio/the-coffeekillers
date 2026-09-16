@@ -95,6 +95,40 @@ Quindi `consenso.js` fa bene a concedere anche `ad_storage` e `ad_personalizatio
 riquadro e l'informativa a dover cambiare**, perché oggi chiedono solo «cookie di statistica» e
 promettono *«non usiamo cookie per mostrarti pubblicità»*.
 
+## 🎨 DAL 16/09 LA LANDING HA UNA PALETTE SUA, E NON SI "CORREGGE"
+
+`musica-country-dal-vivo.html` è **l'unica pagina fuori dal brand book**, per decisione di
+Michele (16/09): *«i nuovi colori vanno bene, su questa landing teniamo questi»*, e poi
+*«vai online, anche solo i colori hanno più contrasto, e serviva»*. Nasce da una proposta
+grafica che ha fatto fare fuori. È una pagina `noindex` che vive solo dentro le inserzioni.
+
+| | le altre 16 pagine | la landing |
+|---|---|---|
+| fondo scuro | `#49240A` | **`#2B1405`** |
+| panna | `#EDDABD` | **`#F3E5D0`** testo · **`#EFE2CE`** superfici |
+| arancio | `#CD5812` | **`#C74A07`** |
+| tan | `#BD8B65` | **`#C39A6A`** |
+| pieni sul chiaro | — | **`#381A08`** |
+
+🚫 **L'arancio resta sotto soglia anche qui** (3,84:1 contro 4,5): pastiglia marrone o corpo
+≥19px/700, come sempre. Il resto guadagna parecchio: il corpo sul fondo scuro fa **14,05:1**.
+
+Insieme al colore sono cambiati, **solo lì**: tinte piatte (via grana e sporcature, restano
+gli strappi), titoli più piccoli e meno spaziati (h1 64→52, h2 54→40) con il corpo più grande,
+il video a tutta larghezza, bordi sottili, e il modulo con le voci in Manrope e le non
+selezionate trasparenti. **Il contenuto non è cambiato**: testi, foto, blocchi e bottoni sono
+identici, verificati byte per byte prima di pubblicare. Dettagli in `_STATO.md`, sezione
+«LA REVISIONE DI STILE DEL 16/09».
+
+⚠️ **Resta aperto**: il mockup fa i bottoni nel carattere dei titoli, la regola di casa dice
+«LT Cushion, mai Bonzana». Non deciso — segnalato a Michele, non cambiato.
+
+🔑 **E la lezione che è costata un giro intero**: *un bozzetto si apre in un browser prima di
+copiarlo.* Il primo tentativo l'aveva letto come codice e ne aveva preso solo colori e raggi;
+Michele: *«sembra che tu abbia cambiato solo i colori, ma c'era anche un bel lavoro di design
+affinato, e qui non lo vedo»*. Il carattere di un impaginato si vede, non si legge. È la
+gemella della regola «sulle cose visive si crede allo screenshot, non al DOM».
+
 ## ⚠️ I fatti verificati che hanno già fatto sbagliare
 
 Ognuno di questi è costato un rifacimento. Sono controllati, non opinioni.
@@ -107,7 +141,9 @@ cappello da cowboy, camaleonte…). Se «Hot Joe» è marrone e le icone sono 7 
 caffè e microfono, hai aperto quello sbagliato. I file sorgente di logo e icone **sono già
 in `_brand-def/`**: non estrarli a mano da un PDF.
 
-**La palette ha SEI colori, non cinque.** Il sesto è il **tan `#BD8B65`**, che è un **fondo
+**La palette ha SEI colori, non cinque.** ⚠️ Vale per **16 pagine su 17**: dal 16/09
+`musica-country-dal-vivo.html` ha una palette sua, vedi la sezione qui sotto.
+ Il sesto è il **tan `#BD8B65`**, che è un **fondo
 pieno**, non un accento: è il colore che evita di fare tutto marrone o bianco. Fonte dei
 codici: `_brand-def/Palette colori.pdf` (non il brand book, che ha gli stessi colori sfasati
 di un punto per canale per una conversione CMYK diversa).
