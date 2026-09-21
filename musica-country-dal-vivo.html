@@ -1762,8 +1762,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <div class="qf-field">
-              <label class="qf-label" for="f-date">Quando</label>
-              <input class="qf-input" id="f-date" name="data" type="text" placeholder="es. sabato 13 giugno 2027" required />
+              <label class="qf-label" for="f-date">Quando <span class="opt">se lo sai gi&agrave;</span></label>
+              <input class="qf-input" id="f-date" name="data" type="text" placeholder="es. sabato 13 giugno 2027, o &laquo;ancora da decidere&raquo;" />
               <label class="qf-label qf-label--sotto" for="f-orari">Orari indicativi</label>
               <input class="qf-input" id="f-orari" name="orari" type="text" placeholder="es. dalle 21 alle 23" />
               <div class="qf-chips qf-chips--sotto" id="chips-momento" role="group" aria-label="Di giorno o di sera">
@@ -1773,8 +1773,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <div class="qf-field">
-              <label class="qf-label" for="f-location">Dove</label>
-              <input class="qf-input" id="f-location" name="location" type="text" placeholder="Locale e citt&agrave;" required />
+              <label class="qf-label" for="f-location">Dove <span class="opt">anche solo la zona</span></label>
+              <input class="qf-input" id="f-location" name="location" type="text" placeholder="Locale e citt&agrave;, o anche solo la provincia" />
               <div class="qf-chips qf-chips--sotto" id="chips-ambiente" role="group" aria-label="Al chiuso o all&rsquo;aperto">
                 <button type="button" class="qf-chip qf-chip--sm on">Al chiuso</button>
                 <button type="button" class="qf-chip qf-chip--sm">All&rsquo;aperto</button>
@@ -2054,13 +2054,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var campoData = document.getElementById("f-date"), campoDove = document.getElementById("f-location");
 
   document.getElementById("v-avanti").addEventListener("click", function(){
-    /* le due obbligatorie si controllano QUI: se si arrivasse al passo 2 con la
-       data vuota, l'errore comparirebbe su un campo che non si vede piu' */
-    if(!campoData.value.trim()){ campoData.focus(); campoData.reportValidity(); return; }
-    if(!campoDove.value.trim()){ campoDove.focus(); campoDove.reportValidity(); return; }
-    document.getElementById("v-riep").innerHTML =
-      "<b>" + getEvt() + "</b> &middot; " + campoData.value.trim() + " &middot; " + campoDove.value.trim() +
-      " &middot; " + SCALINI[iPax] + " persone &middot; " + getServizio().toLowerCase();
+    /* Data e luogo NON sono piu' obbligatori (21/09). Erano gli unici due sbarramenti
+       del passo 1, e nell'imbuto di prima parte si vedeva il danno: sette persone
+       avevano iniziato a compilare e NESSUNA era arrivata al passo 2. Chi si informa
+       su quanto costa una band spesso non ha ancora una data: chiedergliela prima di
+       dargli un prezzo lo ferma li'. Se le lascia vuote, semplicemente non compaiono
+       nel riepilogo - e Mike le chiede rispondendo. */
+    var pezzi = ["<b>" + getEvt() + "</b>"];
+    var quando = campoData.value.trim(); if(quando) pezzi.push(quando);
+    var dove = campoDove.value.trim();  if(dove)   pezzi.push(dove);
+    pezzi.push(SCALINI[iPax] + " persone");
+    pezzi.push(getServizio().toLowerCase());
+    document.getElementById("v-riep").innerHTML = pezzi.join(" &middot; ");
     fase1.hidden = true; fase2.hidden = false;
     document.getElementById("f-name").focus({preventScroll:true});
     form.scrollIntoView({behavior:"smooth", block:"start"});
