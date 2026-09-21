@@ -116,11 +116,19 @@
     document.getElementById('ck-no').onclick = function () { scrivi('no'); via(); nega(); };
   }
 
+  /* ⚠️ IL RIPRISTINO DELLA SCELTA VA FATTO SUBITO, NON SU DOMContentLoaded.
+     Prima questa funzione intera aspettava il DOM, e quell'attesa arriva DOPO che Tag
+     Manager ha gia' valutato "All Pages": chi aveva gia' accettato si vedeva applicare il
+     consenso troppo tardi, i tag restavano in attesa e non venivano piu' rilasciati.
+     Risultato misurato il 21/09: 1.473 visite dalla campagna e 4 sole sessioni in
+     Analytics. Il consenso e' una chiamata a gtag e non tocca il DOM, quindi puo' - e
+     deve - girare immediatamente. Solo il BANNER ha bisogno del body. */
   function parti() {
     var c = leggi();
     if (c === 'si') { concedi(false); return; }
     if (c === 'no') return;
-    mostra();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mostra);
+    else mostra();
   }
 
   window.ckConsenso = {
@@ -128,6 +136,5 @@
     stato: function () { return leggi() || 'non deciso'; }
   };
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', parti);
-  else parti();
+  parti();
 })();
