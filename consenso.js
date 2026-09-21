@@ -54,7 +54,20 @@
     });
   }
 
-  function concedi() {
+  /* `annuncia` distingue il CLIC VERO dal semplice ricaricare una scelta gia' data, e la
+     differenza conta piu' di quanto sembri.
+
+     Tag Manager, quando "All Pages" scatta e il consenso e' ancora negato, mette il tag IN
+     ATTESA e NON lo rilascia se il consenso arriva un attimo dopo. Percio' i tag vincolati
+     al consenso hanno un secondo attivatore su `consenso_accettato`: e' quello che li
+     sblocca per chi accetta durante la visita.
+
+     Ma chi ha gia' accettato in passato non ne ha bisogno: quando arriva, questo file gira
+     PRIMA di Tag Manager, il consenso risulta gia' concesso e "All Pages" fa scattare i tag
+     da solo. Se in quel caso spingessimo lo stesso l'evento, i tag senza una guardia
+     interna - il tag di configurazione GA4, per esempio - scatterebbero DUE volte e ogni
+     visita di ritorno varrebbe due pagine viste. */
+  function concedi(annuncia) {
     gtag('consent', 'update', {
       ad_storage: 'granted',
       ad_user_data: 'granted',
@@ -63,7 +76,7 @@
       functionality_storage: 'granted',
       personalization_storage: 'granted'
     });
-    window.dataLayer.push({ event: 'consenso_accettato' });
+    if (annuncia) window.dataLayer.push({ event: 'consenso_accettato' });
   }
 
   function via() {
@@ -99,13 +112,13 @@
       "padding:11px 18px;font:600 14px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;\">Solo i necessari</button>" +
       '</div>';
     document.body.appendChild(d);
-    document.getElementById('ck-si').onclick = function () { scrivi('si'); via(); concedi(); };
+    document.getElementById('ck-si').onclick = function () { scrivi('si'); via(); concedi(true); };
     document.getElementById('ck-no').onclick = function () { scrivi('no'); via(); nega(); };
   }
 
   function parti() {
     var c = leggi();
-    if (c === 'si') { concedi(); return; }
+    if (c === 'si') { concedi(false); return; }
     if (c === 'no') return;
     mostra();
   }
