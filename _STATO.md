@@ -1,7 +1,7 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-09-16
+> **Ultimo aggiornamento:** 2026-09-24
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
 > Dal **04/09/2026 è online anche la versione inglese** in `en/`, per chi si connette
@@ -41,7 +41,106 @@
 > brand**. È **online**. Il contenuto non è cambiato di una virgola. Vedi **«LA REVISIONE DI
 > STILE DEL 16/09»**, subito qui sotto — e leggila prima di "correggere" i colori di quella
 > pagina, perché sono voluti.
+> Il **24/09 le due pagine del preventivo** (`preventivo.html` ed `en/quote.html`) **hanno
+> preso lo stile della landing**: stessa palette, stesso modulo, **due passi**. E sono state
+> **accorciate**: il primo campo passa da 1.858px a **348px** dall'alto, cioè da due schermate
+> e mezza di scorrimento a mezza. Via le anticipazioni di prezzo. Vedi **«IL PREVENTIVO COME
+> LA LANDING»**, subito qui sotto.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+---
+
+# 🧾 IL PREVENTIVO COME LA LANDING (24/09/2026)
+
+Riguarda **`preventivo.html`** ed **`en/quote.html`**. Michele: *«nella pagina preventivo del
+sito, puoi rifarmi il blocco preventivo uguale alla landing?»*, poi *«accorcia anche la pagina,
+falla più breve, bisogna arrivare più in fretta al form»* e *«meno distrazioni di copy»*.
+
+## Le tre decisioni prese con lui
+
+1. **Tutta la pagina** prende la palette della landing, non solo il blocco: altrimenti nella
+   stessa schermata ci sarebbero due avori diversi.
+2. **Il modulo va a due passi**, come sulla landing.
+3. **Taglio deciso** dell'introduzione: un titolo, una riga, e il modulo.
+
+## Quanto si è accorciata — misurato, non a occhio
+
+| | prima | dopo |
+|---|---|---|
+| altezza della pagina (390px) | 5.444px | **3.353px** (−38%) |
+| dove comincia il modulo | 1.858px | **348px** |
+| quanto bisogna scorrere per vederlo | 2,20 schermate | **0,41** |
+
+## Cosa è uscito, e perché
+
+Prima del primo campo c'erano, in fila: la riga «Risposta rapida», l'occhiello «Preventivo»,
+il titolo, una presentazione, **tre step numerati** (01 Raccontaci l'evento / 02 Ricevi la
+proposta / 03 Si suona), **tre rassicurazioni**, un **secondo titolo** («Raccontaci la tua
+serata») e una **seconda presentazione quasi identica alla prima**. La stessa promessa —
+«due minuti… proposta, scaletta tipo e cachet personalizzato» — era scritta **tre volte**.
+
+I tre step raccontavano cosa succede **dopo**: chi è arrivato su questa pagina lo vuole già
+fare. Restano il titolo e la riga della landing, parola per parola: *«Due minuti. Lo legge
+Mike, non un robot, e ti rispondiamo con una proposta in qualche giorno.»*
+I contatti non sono stati rimessi sotto il modulo perché **sono già nel footer**.
+
+## 🚫 Via le anticipazioni di prezzo
+
+Michele: *«non dare anticipazioni di prezzo da 1.000 a 2.500 che sono vecchie»*. Tolte la riga
+«Cachet 1.000 € — 2.500 € circa» e le frasi «scaletta tipo e cachet personalizzato» (erano in
+quattro punti, messaggio di conferma compreso).
+⚠️ **Le tre voci di budget dentro il modulo restano**: quelle *chiedono* al cliente, non gli
+*annunciano* un prezzo. È la differenza per cui esistono (decisione del 07/09, corretta il 15/09).
+🚨 **La stessa fascia è ancora pubblicata su altre sei pagine** — `faq.html`, `gallery.html`,
+`date.html` e le tre gemelle inglesi — e in `faq` sta anche nella **meta description** e nel
+**JSON-LD**. Segnalato a Michele il 24/09: **non ancora deciso**. Finché non si decide, il sito
+si contraddice.
+
+## Come è fatto, e cosa NON è cambiato
+
+Il blocco CSS del modulo è **copiato da `musica-country-dal-vivo.html`** e tradotto nei nomi di
+variabile di queste pagine:
+`--carta`→`--beige` · `--scuro2`→`--espresso-2` · `--display`→`--valley` (che `stile-hjck.css`
+rimappa su Bonzana) · `--btn`→`--cushion` · `--testo`→`--sans`.
+⚠️ **`--arancio`→`--ruggine`**: su queste pagine `--arancio` è il **#FA8600 del logo**, che fa
+da testo sui fondi scuri (nav, `.it` nei titoli). Col #C74A07 della landing farebbe 3,66:1.
+⚠️ **Sono due copie, non un foglio condiviso**: se cambia il modulo della landing, va cambiato
+anche qui.
+
+⚠️ **I nomi dei campi NON sono cambiati.** `preventivo-sito` e `preventivo-en` mandano a Netlify
+gli stessi **18 campi** di prima (`ospiti` e `formato`, non `persone` e `servizio`, che sono
+della landing). Verificato in browser prima di pubblicare: chi ha scritto un'automazione non
+deve toccare niente.
+
+## 🐞 Due difetti trovati guardando, non leggendo
+
+1. **Le due tessere «Servizi» erano riquadri VUOTI.** Le regole di `.tlbl`/`.tsub` stavano nel
+   blocco sostituito, e la landing non ce le ha (lì quel campo non esiste). Senza colore
+   proprio ereditavano il **panna della sezione** e finivano avorio su avorio, **1:1**. È lo
+   stesso errore del WhatsApp nel pannello «Ricevuto»: *un contenitore chiaro dentro una
+   sezione scura deve ridichiarare il colore del testo*. Risolto mettendo `color` su
+   `.quote-form` **e** ridichiarando le due etichette.
+2. **Il bottone «Preventivo» della testata aveva ancora l'ombra arancione piena spostata** —
+   esattamente ciò che era stato tolto ovunque il 10/09, ma rimasto in `stile-hjck.css`.
+   ⚠️ **Annullata solo su queste due pagine**, con un override nel `<style>` che sta **dopo**
+   il link al foglio condiviso (gli altri due `<style>` vengono prima e perdono). Quel foglio
+   lo leggono **altre 13 pagine**: cambiarlo le cambierebbe tutte senza che nessuno le abbia
+   guardate. **Da decidere.**
+
+## ✅ Come è stata verificata
+
+Chrome headless + CDP, 390×844 e 1440×900, `?c=` a caso e cache disattivata.
+
+- **16 contrasti su 16** sopra soglia su **tutte e due** le lingue, calcolati sul fondo reale.
+- **Il passo 2 pilotato davvero**: compilati i campi, premuto «Procedi», controllato che il
+  passo 1 si nasconda, che il riepilogo si scriva e che il bottone d'invio resti spento finché
+  non si spunta il consenso. In italiano e in inglese.
+- **I 18 campi del modulo** e il `name` del form verificati **in pagina**, non nel sorgente.
+- Nessuno scorrimento laterale a 390 · 768 · 1024 · 1440, nessuna immagine deformata, nessun
+  errore in console.
+- Il CSS morto rimasto senza markup (`.orna`, `.ph-foot`, `.steps-grid`, `.step-card`,
+  `.assure-row`, `.qf-divider`, `.btn-poster`) è stato **tolto**, controllando che `.btn-dark`
+  — che il pannello «Ricevuto» usa ancora — sopravvivesse alla regola condivisa.
 
 ---
 

@@ -52,15 +52,17 @@
 
 /* ============ TOKENS ============ */
 :root{
-  --espresso:#241005;
-  --espresso-2:#2E1509;
-  --nero:#180A02;
-  --caffe:#49240A;
-  --panna:#FBF5EA;
-  --beige:#EDDABD;
-  --tan:#BD8B65;
+  /* 🅱 la palette della landing (16/09), come sulla pagina italiana (24/09). */
+  --espresso:#2B1405;
+  --espresso-2:#381A08;
+  --nero:#1B0C02;
+  --caffe:#4E2A10;
+  --panna:#FAF3E7;
+  --beige:#EFE2CE;
+  --tan:#C39A6A;
+  /* ⚠️ resta #FA8600: e' l'arancio del LOGO e fa da testo sui fondi scuri. */
   --arancio:#FA8600;
-  --ruggine:#CD5812;
+  --ruggine:#C74A07;
   --azz:#8BAEA4;
   --azz-scuro:#5F837A;
   --azz-testo:#3F5C55;    /* azzurro leggibile per i TESTI su fondo chiaro */
@@ -123,11 +125,11 @@ h1,h2,h3{
   background-color:var(--espresso-2);
   background-image:
     repeating-linear-gradient(90deg,
-      transparent 0 16px, rgba(205,88,18,.5) 16px 23px,
+      transparent 0 16px, rgba(199,74,7,.5) 16px 23px,
       transparent 23px 40px, rgba(251,245,234,.22) 40px 41.5px,
       transparent 41.5px 56px),
     repeating-linear-gradient(0deg,
-      transparent 0 16px, rgba(205,88,18,.5) 16px 23px,
+      transparent 0 16px, rgba(199,74,7,.5) 16px 23px,
       transparent 23px 40px, rgba(251,245,234,.22) 40px 41.5px,
       transparent 41.5px 56px);
 }
@@ -155,7 +157,7 @@ h1,h2,h3{
   position:fixed;top:0;
   background:var(--caffe);            /* stesso marrone della striscia annuncio, come nel riferimento */
   padding-bottom:0;
-  border-bottom:1px solid rgba(237,218,189,.14);
+  border-bottom:1px solid rgba(243,229,208,.14);
   box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
 .nav-in{
@@ -190,7 +192,7 @@ h1,h2,h3{
 .nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .nav-drawer{
-  display:none;background:var(--caffe);border-top:1px solid rgba(237,218,189,.16);
+  display:none;background:var(--caffe);border-top:1px solid rgba(243,229,208,.16);
   padding:10px clamp(20px,5vw,32px) 22px;
 }
 .nav-drawer.open{display:block}
@@ -198,7 +200,7 @@ h1,h2,h3{
 .nav-drawer a{
   display:block;padding:14px 2px;color:var(--beige);text-decoration:none;
   font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;
-  border-bottom:1px solid rgba(237,218,189,.12);
+  border-bottom:1px solid rgba(243,229,208,.12);
 }
 .nav-drawer a[aria-current="page"]{color:var(--arancio)}
 .nav-drawer .dr-soc{display:flex;gap:20px;padding-top:18px}
@@ -212,7 +214,7 @@ h1,h2,h3{
   position:sticky;top:0;
   background:var(--caffe);
   padding-bottom:0;
-  border-bottom:1px solid rgba(237,218,189,.14);
+  border-bottom:1px solid rgba(243,229,208,.14);
 }
 .nav .nav-logo img{height:74px}
 .nav-cta{
@@ -230,6 +232,9 @@ h1,h2,h3{
 
 /* ============ SEZIONI COMUNI ============ */
 .section{position:relative;padding:clamp(72px,9vw,120px) 0}
+/* i due stacchi si sommavano: sopra il modulo c'e' solo il titolo della pagina */
+.contact{padding-top:0}
+.contact .v-form-guscio{margin-top:0}
 .sec-head{
   display:flex;justify-content:space-between;align-items:baseline;
   gap:12px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,44px);
@@ -265,13 +270,13 @@ h1,h2,h3{
   background:var(--beige);color:var(--caffe);
   border:2px solid var(--beige);border-radius:6px;
   padding:10px 30px 12px;
-  box-shadow:inset 0 0 0 2px var(--beige),inset 0 0 0 3px rgba(73,36,10,.55);
+  box-shadow:inset 0 0 0 2px var(--beige),inset 0 0 0 3px rgba(43,20,5,.55);
 }
 .btn-poster::before{content:"★ ";color:var(--ruggine);font-size:.75em}
 .btn-poster::after{content:" ★";color:var(--ruggine);font-size:.75em}
 .btn-poster:hover{
   background:var(--arancio);border-color:var(--arancio);color:var(--espresso);
-  box-shadow:inset 0 0 0 2px var(--arancio),inset 0 0 0 3px rgba(24,10,2,.55);
+  box-shadow:inset 0 0 0 2px var(--arancio),inset 0 0 0 3px rgba(12,5,1,.55);
 }
 .btn-poster:disabled{opacity:.6;cursor:not-allowed}
 .btn-poster.is-sending{cursor:wait}
@@ -282,25 +287,27 @@ h1,h2,h3{
 }
 .btn-dark:hover{background:transparent;color:var(--espresso)}
 /* .btn-dark sulle sezioni scure diventa ghost beige (stile A) */
-.ph .btn-dark{background:transparent;color:var(--beige);border-color:rgba(237,218,189,.7)}
+.ph .btn-dark{background:transparent;color:var(--beige);border-color:rgba(243,229,208,.7)}
 .ph .btn-dark:hover{border-color:var(--beige);background:transparent;color:var(--beige)}
 
 /* ============ PAGE HERO (Preventivo) ============ */
-.ph{background:var(--espresso);padding:clamp(58px,8vw,96px) 0 clamp(64px,8vw,104px);text-align:center}
+/* ⚠️ il fondo scende da 64-104px a 14-22px: fra il sottotitolo e il primo campo
+   c'era mezza schermata di marrone vuoto. */
+.ph{background:var(--espresso);padding:clamp(40px,6vw,72px) 0 clamp(14px,2vw,22px);text-align:center}
 .orna{
   display:flex;align-items:center;justify-content:center;gap:14px;
   color:var(--azz);font-size:12.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
 }
-.orna .ico{width:17px;height:18px}
 .orna-line{width:clamp(28px,6vw,84px);height:1px;background:var(--azz);opacity:.55}
 .ph-eyebrow{
   font-family:var(--serif);font-style:italic;color:var(--arancio);
   font-size:clamp(18px,2.4vw,25px);margin:26px 0 10px;letter-spacing:.01em;
 }
+/* ⚠️ la scala della landing: l'h1 arriva a 52px, non a 96. */
 .ph h1{
   color:var(--panna);
-  font-size:clamp(44px,7.4vw,96px);
-  margin:6px 0 22px;
+  font-size:clamp(32px,5vw,52px);letter-spacing:.005em;
+  margin:0 0 16px;
 }
 .ph h1 .it{color:var(--arancio);font-size:.92em}
 .ph-lead{
@@ -313,7 +320,7 @@ h1,h2,h3{
 .ph-foot{max-width:var(--wrap);margin:clamp(40px,6vw,64px) auto 0;padding:0 clamp(20px,4vw,48px)}
 .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left}
 .step-card{
-  background:rgba(24,10,2,.35);
+  background:rgba(12,5,1,.35);
   border:1px solid rgba(139,174,164,.32);border-radius:12px;
   padding:26px 24px 24px;
 }
@@ -337,165 +344,230 @@ h1,h2,h3{
 @media (min-width:900px){.assure-row .ico{width:17px;height:18px}}
 @media (max-width:860px){.steps-grid{grid-template-columns:1fr}}
 
-/* ============ CONTACT — modulo ============ */
-.contact{background:var(--panna);color:var(--espresso)}
-.contact-head{
-  display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(24px,4vw,56px);
-  align-items:end;margin-bottom:clamp(30px,4vw,44px);
-}
-.contact-head .sec-title{margin-top:14px}
-.contact-head .sec-title .it{color:var(--ruggine)}
-.contact-lead{color:var(--caffe);font-size:clamp(15.5px,1.8vw,18px);max-width:46ch}
-.contact-meta{list-style:none;display:grid;gap:12px;justify-self:end}
-.contact-meta li{display:flex;flex-direction:column}
-.contact-meta .ck{
-  font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--azz-testo);
-}
-.contact-meta b{font-size:15.5px;color:var(--espresso)}
-.contact-meta a{color:inherit;text-decoration:none}
-.contact-meta a:hover{color:var(--ruggine)}
-@media (max-width:820px){
-  .contact-head{grid-template-columns:1fr}
-  .contact-meta{justify-self:start;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));width:100%}
-}
-/* sotto i 560px: contatti su una sola colonna e l'email che va a capo,
-   altrimenti l'indirizzo lungo sfonda la pagina di qualche pixel */
-@media (max-width:560px){
-  .contact-meta{grid-template-columns:1fr}
-  .contact-meta b,.contact-meta a{overflow-wrap:anywhere;word-break:break-word}
-}
-
+/* ============================================================================
+   CONTACT — IL MODULO, UGUALE A QUELLO DELLA LANDING (24/09/2026)
+   ----------------------------------------------------------------------------
+   Michele: «nella pagina preventivo del sito, puoi rifarmi il blocco preventivo
+   uguale alla landing?». Queste regole sono COPIATE da musica-country-dal-vivo.html
+   e tradotte nei nomi di variabile di questa pagina:
+     --carta -> --beige · --scuro2 -> --espresso-2 · --display -> --valley (Bonzana)
+     --btn -> --cushion · --testo -> --sans
+   ⚠️ --arancio -> --ruggine: qui `--arancio` e' il #FA8600 del LOGO, mentre
+      l'arancio della landing (#C74A07) su questa pagina si chiama `--ruggine`.
+   ⚠️ SE CAMBIA IL MODULO DELLA LANDING, CAMBIA ANCHE QUI. Sono due copie, non un
+      foglio condiviso: la landing ha tutto lo stile inline ed e' la fonte.
+   ============================================================================ */
+.contact{background:var(--espresso);color:var(--panna)}
+/* ============================================================================
+   14 · IL MODULO — la scheda crema appoggiata sul fondo scuro, con la cornice
+   della locandina. Classi .qf-* identiche a preventivo.html: stesse chiavi
+   verso Netlify Forms (prima era Formspree, cambiato il 12/09).
+   ============================================================================ */
+.v-form-guscio{max-width:880px;margin:clamp(36px,4.6vw,54px) auto 0}
+/* la trappola anti-spam di Netlify: esiste nel markup e non si vede mai */
+.qf-esca{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* 🐞 IL TESTO INVISIBILE. `color` qui non c'era: sulla landing non serve perche'
+   ogni pezzo del modulo dichiara il suo colore, ma qui le due tessere «Servizi»
+   (.tlbl/.tsub) prendevano il colore dalla sezione — che ora e' PANNA — e finivano
+   avorio su avorio, 1:1. A schermo erano due riquadri vuoti. E' lo stesso errore
+   gia' annotato per il WhatsApp del pannello «Ricevuto»: un contenitore chiaro
+   dentro una sezione scura deve ridichiarare il colore del testo. */
 .quote-form,.qf-success{
-  background:var(--beige);border-radius:14px;
+  background:var(--beige);color:var(--espresso);border-radius:18px;
   padding:clamp(24px,4vw,44px);
-  box-shadow:0 26px 50px -16px rgba(73,36,10,.38);
+  box-shadow:0 26px 60px -26px rgba(0,0,0,.72),0 0 0 1px rgba(43,20,5,.1);
 }
-.qf-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px clamp(20px,3vw,32px)}
+.qf-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px clamp(18px,3vw,30px)}
+@media (max-width:640px){.qf-grid{grid-template-columns:1fr}}
 .qf-field--full{grid-column:1/-1}
-/* ⚠️ 12px era sotto il minimo di 13px che vale su tutto il sito. La
-   spaziatura scende da .18 a .14em cosi' l'etichetta non diventa piu'
-   larga di prima. */
+/* ⚠️ l'etichetta di un campo non e' una "scrittina" decorativa: senza, non si
+   capisce cosa scrivere. Ma non e' piu' sans spaziato a 11px: e' LT Cushion
+   Bold a 15px, cioe' roba della band. */
 .qf-label{
-  display:block;
-  font-size:14px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--caffe);margin-bottom:10px;
+  /* 🅱 B2: l'etichetta passa al carattere DISPLAY (nel bozzetto: font-western).
+     Sembra un dettaglio e invece e' quello che fa leggere il modulo come parte
+     della pagina e non come un modulo incollato dentro. */
+  display:block;font-family:var(--valley);font-weight:400;font-synthesis:none;
+  font-size:15.5px;letter-spacing:.085em;text-transform:uppercase;
+  color:var(--espresso);margin-bottom:12px;
 }
 .qf-label .opt{
-  font-family:var(--cushion);font-weight:500;font-style:italic;text-transform:none;
-  letter-spacing:.03em;font-size:13px;color:var(--azz-testo);margin-left:6px;
+  font-family:"LT Cushion",Georgia,serif;font-weight:500;font-style:italic;
+  text-transform:none;letter-spacing:.01em;font-size:14.5px;color:#6B4426;margin-left:7px;
 }
 .qf-input{
-  width:100%;font-family:var(--sans);font-size:15px;color:var(--espresso);
-  background:var(--panna);border:1.5px solid rgba(73,36,10,.28);border-radius:8px;
-  padding:12px 14px;outline:none;transition:border-color .2s;
+  width:100%;font-family:var(--sans);font-size:16px;color:var(--espresso);
+  background:#FAF3E7;border:1.5px solid rgba(43,20,5,.26);border-radius:12px;
+  padding:14px 15px;outline:none;transition:border-color .2s;
 }
-/* testi-guida: più scuri del tan (che sul fondo panna spariva), ma comunque
-   distinguibili dal testo digitato (var(--espresso), pieno) */
-.qf-input::placeholder{color:rgba(73,36,10,.7);opacity:1}
-.qf-input:focus{border-color:var(--azz-scuro)}
-textarea.qf-input{
-  display:block;min-height:96px;line-height:1.5;resize:vertical;
-}
-
-/* chips a scelta singola */
-.qf-chips{display:flex;flex-wrap:wrap;gap:8px}
-/* ⚠️ Da telefono sei pastiglie di larghezza diversa allineate a sinistra
-   fanno una scaletta storta (stesso difetto corretto sulla landing il
-   10/09). In colonna piena sono voci pari, e il dito le prende tutte.
-   Il gruppo da due voci resta affiancato: ci sta, ed e' una scelta secca. */
+.qf-input::placeholder{color:rgba(43,20,5,.6);opacity:1}
+.qf-input:focus{border-color:var(--ruggine);box-shadow:0 0 0 3px rgba(199,74,7,.18)}
+textarea.qf-input{display:block;min-height:100px;line-height:1.5;resize:vertical}
+.qf-chips{display:flex;flex-wrap:wrap;gap:9px}
+/* ⚠️ Da telefono sei pastiglie di larghezza diversa, allineate a sinistra,
+   fanno una scaletta: cinque righe storte, con una riga da due in mezzo per
+   caso. In colonna piena diventano sei voci pari, e il dito le prende tutte.
+   I due gruppi da due voci restano affiancati: ci stanno, e affiancati si
+   leggono come la scelta secca che sono. */
 @media (max-width:560px){
   .qf-chips{display:grid;grid-template-columns:1fr;gap:10px}
-  #chips-setting{grid-template-columns:1fr 1fr}
+  #chips-momento,#chips-ambiente{grid-template-columns:1fr 1fr}
+}
+.qf-chips--sotto{margin-top:10px}
+.qf-label--sotto{margin-top:18px}
+.qf-chip--sm{font-size:14px;padding:9px 15px 10px;min-height:40px}
+/* le tre voci del servizio portano la durata scritta sotto: e' li' che il
+   cliente capisce cosa sta comprando, senza doverlo chiedere */
+.qf-chips--grandi{gap:11px}
+.qf-chips--grandi .qf-chip{
+  display:flex;flex-direction:column;align-items:flex-start;gap:5px;
+  text-align:left;padding:14px 20px 15px;line-height:1.2;
+}
+/* ⚠️ 13/09: qui c'era opacity:.72 e faceva ~4:1 su 13,5px — sotto soglia. E' lo
+   stesso identico errore gia' corretto sul .ruolo della line-up il 12/09:
+   l'opacity schiarisce il testo insieme al fondo e nessuno la misura mai.
+   Colore esplicito, uno per ciascuno dei due stati. */
+.qf-chips--grandi .qf-chip em{
+  font-family:var(--sans);font-style:normal;font-weight:600;font-size:13.5px;
+  letter-spacing:0;text-transform:none;color:#6B4426;
+}
+.qf-chips--grandi .qf-chip.on em{color:#DCC6A6}
+/* ⚠️ IL VINCOLO: una voce di budget esclusa dal servizio scelto si SPEGNE ma
+   resta li'. Michele, 10/09: "se mi dici tutto il giorno non puoi selezionare
+   1.000 euro... voglio stanarti". Se sparisse, il messaggio sparirebbe con lei. */
+.qf-chip.off{
+  opacity:.34;cursor:not-allowed;text-decoration:line-through;
+  text-decoration-thickness:1.5px;
+}
+.qf-chip.off:hover{border-color:rgba(43,20,5,.28)}
+.qf-spiega{
+  font-family:var(--sans);font-size:14.5px;line-height:1.5;color:#6B4426;
+  margin:-4px 0 12px;max-width:62ch;
 }
 .qf-chip{
-  font-family:var(--valley);font-size:17px;letter-spacing:.05em;cursor:pointer;
-  color:var(--caffe);background:var(--panna);
-  border:1.5px solid rgba(73,36,10,.35);border-radius:99px;
-  padding:7px 18px 8px;transition:background .18s,color .18s,border-color .18s;
+  /* 44px di altezza minima: sotto quella soglia, da telefono, si sbaglia a
+     premere (e le chip sono la prima cosa che si tocca del modulo) */
+  /* 🅱 B2: nel bozzetto le voci sono in carattere da TESTO, peso medio, senza
+     spaziatura fra le lettere: si leggono come scelte, non come insegne. Con
+     LT Cushion 700 spaziato ogni riga del modulo gridava quanto un titolo.
+     ⚠️ Il TESTO non cambia di una virgola: il JS confronta le chip per stringa
+     esatta con i valori `chip:` delle VARIANTI. Cambia solo come sono disegnate. */
+  display:inline-flex;align-items:center;min-height:48px;
+  font-family:var(--sans);font-size:16px;font-weight:600;letter-spacing:0;cursor:pointer;
+  /* 🅱 B2: la voce non scelta e' TRASPARENTE (bozzetto: bg-transparent), cioe' del
+     colore del guscio, e si regge sul solo bordo. Col fondo #FAF3E7 erano sei
+     pastiglie quasi bianche in fila: pesanti, e rubavano l'occhio alla scelta fatta.
+     Il campo di testo invece resta chiaro e incassato: cosi' si distingue "scrivi
+     qui" da "scegli una". Contrasto del testo sul guscio: 8,48:1. */
+  color:#5C3315;background:transparent;
+  /* ⚠️ 13/09: il bordo era rgba(...,.3) su un fondo quasi uguale a quello del
+     guscio: la voce scelta si vedeva benissimo (marrone piena) e le ALTRE
+     sembravano disattivate invece che da toccare. Su un modulo e' il difetto
+     peggiore: spegne le alternative. */
+  /* 🅱 B2: 1,5px e non 2. Il bozzetto ha bordi SOTTILI ovunque: e' la differenza
+     fra una scheda e un cartello. ⚠️ Non si torna a .3 — il 13/09 a quell'opacita'
+     le chip non scelte sembravano disattivate. .42 su questa carta si vede. */
+  border:1.5px solid rgba(43,20,5,.42);border-radius:99px;padding:11px 20px 12px;
+  transition:background .18s,color .18s,border-color .18s;
 }
-.qf-chip--sm{font-size:15px;padding:6px 15px 7px}
-.qf-chip:hover{border-color:var(--caffe)}
-.qf-chip.on{background:var(--espresso);border-color:var(--espresso);color:var(--panna)}
-
-/* stepper ospiti */
+.qf-chip:hover{border-color:var(--espresso);background:rgba(43,20,5,.05)}
+.qf-chip.on{background:var(--espresso-2);border-color:var(--espresso-2);color:var(--panna)}
 .qf-stepper{
-  display:flex;align-items:center;gap:16px;
-  background:var(--panna);border:1.5px solid rgba(73,36,10,.28);border-radius:99px;
-  padding:6px 8px;width:max-content;
+  display:flex;align-items:center;gap:14px;
+  background:#FAF3E7;border:1.5px solid rgba(43,20,5,.26);border-radius:99px;
+  padding:6px 8px;width:max-content;max-width:100%;
 }
 .qf-stepper button{
-  font-family:var(--valley);font-size:22px;line-height:1;cursor:pointer;
-  width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(73,36,10,.35);
-  background:var(--beige);color:var(--caffe);
-  transition:background .18s,color .18s;
+  font-family:var(--cushion);font-size:22px;font-weight:900;line-height:1;cursor:pointer;
+  width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(43,20,5,.3);
+  background:var(--beige);color:var(--espresso);transition:background .18s,color .18s;
 }
-.qf-stepper button:hover{background:var(--espresso);color:var(--panna);border-color:var(--espresso)}
+.qf-stepper button:hover{background:var(--espresso-2);color:var(--panna);border-color:var(--espresso-2)}
 .qf-stepper .val{
-  font-family:var(--valley);font-size:24px;color:var(--espresso);min-width:96px;text-align:center;
-  letter-spacing:.04em;
+  font-family:var(--valley);font-weight:400;font-synthesis:none;font-size:25px;
+  color:var(--espresso);min-width:96px;text-align:center;font-variant-numeric:tabular-nums;
 }
-.qf-stepper .val small{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--azz-testo);margin-left:7px}
-
-/* slider durata */
-
-/* tile servizi */
-.qf-tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:560px}
-.qf-tile{
-  position:relative;display:flex;flex-direction:column;gap:2px;cursor:pointer;
-  background:var(--panna);border:1.5px solid rgba(73,36,10,.28);border-radius:10px;
-  padding:16px 18px;transition:border-color .18s,box-shadow .18s;
+.qf-stepper .val small{
+  font-family:var(--cushion);font-size:13px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:#6B4426;margin-left:7px;
 }
-.qf-tile:hover{border-color:var(--caffe)}
-.qf-tile.on{border-color:var(--espresso);box-shadow:inset 0 0 0 1.5px var(--espresso)}
-.qf-tile input{position:absolute;opacity:0;pointer-events:none}
-.qf-tile .tlbl{font-weight:800;font-size:15px;color:var(--espresso)}
-.qf-tile .tsub{font-family:var(--cushion);font-weight:500;font-style:italic;font-size:13.5px;color:var(--azz-testo)}
-.qf-tile.on .tlbl::after{content:" ★";color:var(--ruggine);font-size:.8em}
+.qf-tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:580px}
 @media (max-width:560px){.qf-tiles{grid-template-columns:1fr}}
+.qf-tile{
+  position:relative;display:flex;flex-direction:column;gap:3px;cursor:pointer;
+  background:#FAF3E7;border:1.5px solid rgba(43,20,5,.26);border-radius:12px;
+  padding:15px 17px;transition:border-color .18s,box-shadow .18s;
+}
+.qf-tile:hover{border-color:var(--espresso)}
+.qf-tile.on{border-color:var(--espresso);box-shadow:inset 0 0 0 2px var(--espresso)}
+.qf-tile input{position:absolute;opacity:0;pointer-events:none}
+/* ⚠️ le etichette delle tessere: la landing non ha questo campo, quindi le sue
+   regole non esistono nel blocco copiato. Vanno ridichiarate qui. */
+.qf-tile .tlbl{font-family:var(--sans);font-weight:700;font-size:16px;color:var(--espresso)}
+.qf-tile .tsub{font-family:var(--sans);font-weight:500;font-size:14px;color:#5C3315}
+.qf-tile.on .tlbl::after{content:" \2713";color:var(--ruggine);font-weight:900}
 
-.qf-divider{grid-column:1/-1;height:1px;background:rgba(73,36,10,.22);margin:6px 0}
-
-/* barra di invio: plinto espresso in fondo alla card beige. Serve perché il
-   bottone poster è crema e sul beige della card spariva; su fondo scuro è la
-   stessa combinazione dell'hero della home. Ospita anche il consenso privacy. */
+/* la fascia d'invio: plinto scuro in fondo alla scheda, col consenso dentro.
+   Il bottone crema sul panna spariva. */
 .qf-submit-row{
-  display:flex;justify-content:space-between;align-items:center;gap:18px clamp(18px,3vw,28px);
-  margin-top:clamp(24px,4vw,34px);flex-wrap:wrap;
-  background:var(--espresso);border-radius:12px;
-  padding:clamp(20px,3vw,26px) clamp(18px,3vw,28px);
-  box-shadow:0 16px 30px -18px rgba(36,16,5,.65);
+  display:flex;justify-content:space-between;align-items:center;gap:18px clamp(18px,3vw,26px);
+  margin-top:clamp(26px,4vw,34px);flex-wrap:wrap;
+  background:var(--espresso-2);border-radius:14px;
+  padding:clamp(20px,3vw,26px) clamp(18px,3vw,26px);
 }
 .qf-consent{display:flex;align-items:flex-start;gap:12px;flex:1 1 300px}
 .qf-consent input{
-  appearance:none;-webkit-appearance:none;
-  flex:none;width:22px;height:22px;margin-top:1px;cursor:pointer;
-  background-color:var(--panna);border:1.5px solid rgba(251,245,234,.55);border-radius:5px;
+  appearance:none;-webkit-appearance:none;flex:none;width:24px;height:24px;
+  margin-top:1px;cursor:pointer;background-color:var(--beige);
+  border:2px solid rgba(243,229,208,.55);border-radius:5px;
   transition:background-color .18s,border-color .18s;
 }
 .qf-consent input:checked{
-  background-color:var(--arancio);border-color:var(--arancio);
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 12.4l4.6 4.6L19 7.2' fill='none' stroke='%23241005' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-  background-repeat:no-repeat;background-position:center;background-size:15px 15px;
+  background-color:var(--ruggine);border-color:var(--ruggine);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 12.4l4.6 4.6L19 7.2' fill='none' stroke='%232B1405' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat:no-repeat;background-position:center;background-size:16px 16px;
 }
 .qf-consent input:focus-visible{outline:2px solid var(--azz);outline-offset:3px}
-.qf-consent label{font-size:13.5px;line-height:1.5;color:var(--beige);cursor:pointer}
+.qf-consent label{font-size:14.5px;line-height:1.5;color:var(--panna);cursor:pointer}
 .qf-consent a{color:var(--azz);text-decoration:underline;text-underline-offset:3px}
-.qf-consent a:hover{color:var(--arancio)}
-
-/* pannello di conferma */
-.qf-success{text-align:center;padding:clamp(40px,6vw,72px) clamp(24px,4vw,44px)}
-.qf-success h3{font-size:clamp(28px,3.6vw,44px);color:var(--espresso)}
-.qf-success h3 .it{color:var(--ruggine)}
-.qf-success p{
-  color:var(--caffe);max-width:52ch;margin:16px auto 28px;
-  font-size:clamp(15px,1.8vw,17px);
+.qf-submit{
+  font-family:var(--cushion);font-weight:900;font-size:17px;letter-spacing:.08em;
+  text-transform:uppercase;cursor:pointer;
+  background:var(--beige);color:var(--espresso);
+  border:2px solid var(--beige);border-radius:14px;padding:16px 28px 17px;
+  transition:background .16s,border-color .16s,color .16s,opacity .2s;
 }
-@media (max-width:720px){
-  .qf-grid{grid-template-columns:1fr}
-  .qf-submit-row{flex-direction:column;align-items:stretch}
-  .qf-submit-row .btn-poster{width:100%;text-align:center}
+.qf-submit:hover:not(:disabled){background:var(--ruggine);border-color:var(--ruggine);color:var(--panna)}
+.qf-submit:disabled{opacity:.55;cursor:not-allowed}
+.qf-success{text-align:center}
+.qf-success h3{
+  font-family:var(--valley);font-weight:400;font-synthesis:none;text-transform:uppercase;
+  font-size:clamp(28px,3.8vw,44px);color:var(--espresso);line-height:1.05;
 }
+.qf-success h3 .acc{color:var(--panna)}
+.qf-success p{color:#5C3315;max-width:50ch;margin:18px auto 26px;font-size:16.5px;line-height:1.6}
+/* i due passi */
+.v-fase[hidden]{display:none!important}
+.v-avanti{
+  display:block;width:100%;margin-top:28px;cursor:pointer;
+  font-family:var(--cushion);font-weight:900;font-size:17px;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--espresso-2);color:var(--panna);
+  border:2px solid var(--espresso-2);border-radius:14px;padding:17px 20px;
+  transition:background .16s,border-color .16s;
+}
+.v-avanti:hover{background:var(--ruggine);border-color:var(--ruggine)}
+.v-indietro{
+  background:none;border:0;cursor:pointer;margin:18px auto 0;display:block;
+  font-family:var(--sans);font-size:14.5px;color:#6B4426;
+  text-decoration:underline;text-underline-offset:3px;
+}
+.v-indietro:hover{color:var(--espresso)}
+.v-riep{
+  font-size:15px;line-height:1.55;color:#5C3315;
+  background:#FAF3E7;border-radius:8px;padding:14px 16px;margin-bottom:24px;
+  border-left:4px solid var(--ruggine);
+}
+.v-riep b{color:var(--espresso)}
 
 /* ============ FOOTER (variante ridotta) ============ */
 .footer{background:var(--nero);position:relative;padding:0 0 40px}
@@ -615,32 +687,38 @@ html.js .stagger.in>*:nth-child(8){transition-delay:.6s}
 </style>
 <link rel="stylesheet" href="../stile-hjck.css" />
 <style>
+/* ⚠️ questo blocco sta DOPO stile-hjck.css apposta: e' l'unico che puo' batterlo.
+   🚫 Via l'ombra arancione piena dal bottone della testata (tolta ovunque il 10/09,
+   rimasta nel foglio condiviso). Annullata solo qui: quel foglio lo leggono altre
+   13 pagine. */
+.nav-cta{box-shadow:none !important}
+.nav-cta:hover{box-shadow:none !important;transform:none}
 /* ===== SELETTORE DI LINGUA (aggiunto con la versione inglese) =====
    Il bottone IT/EN vive nella lista di destra della testata: su mobile quella
    lista mostra solo l'ultimo elemento (il bottone "preventivo"), quindi la
    voce della lingua sparisce da sola e resta quella nel menu a tendina. */
 .nav-lang{
-  border:1px solid rgba(237,218,189,.55);border-radius:6px;
+  border:1px solid rgba(243,229,208,.55);border-radius:6px;
   padding:5px 9px 4px;font-size:11.5px!important;letter-spacing:.16em;
 }
-.nav-lang:hover{background:rgba(237,218,189,.14)}
+.nav-lang:hover{background:rgba(243,229,208,.14)}
 /* strisciolina in basso: appare solo a chi ha il browser nell'altra lingua */
 .lang-bar{
   position:fixed;left:0;right:0;bottom:0;z-index:95;display:none;
-  background:var(--caffe,#49240A);color:var(--panna,#EDDABD);
-  border-top:1px solid rgba(237,218,189,.22);
-  box-shadow:0 -8px 24px rgba(73,36,10,.4);
+  background:var(--caffe,#2B1405);color:var(--panna,#EFE2CE);
+  border-top:1px solid rgba(243,229,208,.22);
+  box-shadow:0 -8px 24px rgba(43,20,5,.4);
   font-family:var(--sans,system-ui,sans-serif);font-size:13.5px;line-height:1.4;
   padding:11px clamp(14px,4vw,28px);
 }
 .lang-bar.on{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
-.lang-bar a{color:var(--arancio,#CD5812);font-weight:800;text-decoration:underline}
-.lang-bar b{color:var(--panna,#EDDABD)}
+.lang-bar a{color:var(--arancio,#C74A07);font-weight:800;text-decoration:underline}
+.lang-bar b{color:var(--panna,#EFE2CE)}
 .lang-bar button{
-  background:none;border:1px solid rgba(237,218,189,.45);border-radius:6px;
+  background:none;border:1px solid rgba(243,229,208,.45);border-radius:6px;
   color:inherit;font:inherit;line-height:1;padding:6px 9px;cursor:pointer;
 }
-.lang-bar button:hover{background:rgba(237,218,189,.14)}
+.lang-bar button:hover{background:rgba(243,229,208,.14)}
 
 /* ---------- IL MODULO, REVISIONE DEL 10/09 --------------------------------
    Le tre voci del servizio portano la durata scritta sotto, e il budget si
@@ -712,59 +790,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </header>
 
 <!-- ==================== PAGE HERO — Come funziona ==================== -->
+<!-- ⚠️ INTRO CONTRATTA AL MINIMO (24/09/2026), come sulla pagina italiana.
+     Prima: "Quick reply", l'occhiello "Quote", il titolo, una presentazione, TRE
+     step numerati, tre rassicurazioni, e un SECONDO titolo con una seconda
+     presentazione quasi identica. La stessa promessa scritta tre volte.
+     🚫 Via anche "around € 1,000 — € 2,500": niente anticipazioni di prezzo. -->
 <section class="ph" id="top">
   <div class="wrap">
-    <div class="orna" aria-hidden="true">
-      <span class="orna-line"></span>
-      <span class="ico i-stella"></span>
-      <span>Quick reply</span>
-      <span class="ico i-stella"></span>
-      <span class="orna-line"></span>
-    </div>
-    <p class="ph-eyebrow">Quote</p>
     <h1>A night <span class="it">with us?</span></h1>
-    <p class="ph-lead">Fill in the form below: it takes two minutes. We reply with an offer, a sample set list and a price tailored to your event.</p>
-  </div>
-  <div class="ph-foot">
-    <div class="steps-grid stagger">
-      <div class="step-card">
-        <span class="st-num">01</span>
-        <h3>Tell us about the event</h3>
-        <p>Type of night, date, place and size of the audience: the more detail you give us, the more precise the quote will be.</p>
-      </div>
-      <div class="step-card">
-        <span class="st-num">02</span>
-        <h3>Get our offer</h3>
-        <p>We reply with the fee, a sample set list and the technical details (PA and lights included up to 250 people).</p>
-      </div>
-      <div class="step-card">
-        <span class="st-num">03</span>
-        <h3>We play</h3>
-        <p>You confirm the date and we take care of the rest: we turn up, set up and get your guests dancing.</p>
-      </div>
-    </div>
-    <div class="assure-row rv">
-      <span><span class="ico i-stella" aria-hidden="true"></span> A fixed set list, about 25 songs</span>
-      <span><span class="ico i-stella" aria-hidden="true"></span> Our own PA up to 250/300 guests</span>
-      <span><span class="ico i-stella" aria-hidden="true"></span> We travel all over Italy and abroad</span>
-    </div>
+    <p class="ph-lead">Two minutes. <b>Mike reads it</b>, not a robot, and we reply
+      with an offer within a few days.</p>
   </div>
 </section>
 
 <!-- ==================== CONTACT — il modulo ==================== -->
 <section class="section contact on-light" id="contact">
   <div class="wrap">
-    <div class="contact-head rv">
-      <div>
-        <h2 class="sec-title">Tell us about your <span class="it">night.</span></h2>
-        <p class="contact-lead">Two minutes, no commitment: we reply with an offer, a sample set list and a price for your event.</p>
-      </div>
-      <ul class="contact-meta">
-        <li><span class="ck">Fee</span><b>around € 1,000 — € 2,500</b></li>
-        <li><span class="ck">Email</span><b><a href="mailto:music@thecoffeekillers.com">music@thecoffeekillers.com</a></b></li>
-        <li><span class="ck">WhatsApp</span><b><a href="tel:+393937011409">+39 393 7011409</a></b></li>
-      </ul>
-    </div>
+    <div class="v-form-guscio rv">
 
     <!-- pannello di conferma (nascosto finché l'invio non riesce) -->
     <div class="qf-success" id="qf-success" hidden>
@@ -782,6 +824,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           data-netlify="true" data-netlify-honeypot="bot-field" novalidate="">
       <input type="hidden" name="form-name" value="preventivo-en" />
       <p class="qf-esca" aria-hidden="true"><label>Do not fill<input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <!-- ---------- STEP 1: the event ---------- -->
+      <div class="v-fase" id="v-fase-1">
       <div class="qf-grid">
 
         <div class="qf-field qf-field--full">
@@ -868,7 +912,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-        <div class="qf-divider"></div>
+      </div>
+        <button type="button" class="v-avanti" id="v-avanti">Proceed &rarr;</button>
+      </div>
+
+      <!-- ---------- STEP 2: who you are ---------- -->
+      <div class="v-fase" id="v-fase-2" hidden>
+        <p class="v-riep" id="v-riep"></p>
+        <div class="qf-grid">
 
         <div class="qf-field">
           <label class="qf-label" for="f-name">Full name</label>
@@ -894,7 +945,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="checkbox" id="f-privacy" name="privacy" required />
           <label for="f-privacy">I have read the <a href="privacy.html">privacy policy</a> and I consent to the processing of my data.</label>
         </div>
-        <button type="submit" class="btn-poster" id="qf-submit" disabled>Send request</button>
+        <button type="submit" class="qf-submit" id="qf-submit" disabled>Send request</button>
+      </div>
+      <button type="button" class="v-indietro" id="v-indietro">&larr; Back to the details</button>
       </div>
 
       <!-- ⚠️ I VALORI DEI CHIP: esistono qui perche' Netlify legge i campi dall'HTML
@@ -907,6 +960,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <input type="hidden" name="budget"      id="h-budget" />
       <input type="hidden" name="consenso"    id="h-consenso" />
     </form>
+    </div>
   </div>
 </section>
 
@@ -1063,6 +1117,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
   scriviPax();
 
+  /* --- THE TWO STEPS (24/09) — same logic as the Italian page. ⚠️ Date and place do
+     NOT block the step: on the landing they were the only two required fields of
+     step 1 and the funnel showed the damage (seven started, none reached step 2).
+     If left empty they simply do not appear in the summary. */
+  var fase1=document.getElementById("v-fase-1"), fase2=document.getElementById("v-fase-2");
+  var campoData=document.getElementById("f-date"), campoDove=document.getElementById("f-location");
+
+  document.getElementById("v-avanti").addEventListener("click",function(){
+    var pezzi=["<b>"+getEvt()+"</b>"];
+    var quando=campoData.value.trim(); if(quando) pezzi.push(quando);
+    var dove=campoDove.value.trim();   if(dove)   pezzi.push(dove);
+    pezzi.push(SCALINI[iPax]+" guests");
+    pezzi.push(getFormato().toLowerCase());
+    document.getElementById("v-riep").innerHTML=pezzi.join(" &middot; ");
+    fase1.hidden=true; fase2.hidden=false;
+    document.getElementById("f-name").focus({preventScroll:true});
+    form.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+
+  document.getElementById("v-indietro").addEventListener("click",function(){
+    fase2.hidden=true; fase1.hidden=false;
+    form.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+
   // — tile servizi (checkbox) —
   document.querySelectorAll(".qf-tile input").forEach(function(cb){
     cb.addEventListener("change",function(){
@@ -1107,8 +1185,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }).then(function(res){
       if(res.ok){
         var dataDetta=(document.getElementById("f-date").value||"").trim();
-        successMsg.textContent="Thank you — we will get back to you with a detailed offer, a sample set list and a price for the date you told us about"
-          +(dataDetta?" ("+dataDetta+")":"")+".";
+        /* 🚫 niente "a sample set list and a price": via le anticipazioni di prezzo
+           (Michele, 24/09). Stessa frase della pagina italiana. */
+        successMsg.textContent="Your request has arrived. Mike reads it and we will reply "
+          +"within a few days with an offer for your event"+(dataDetta?" on "+dataDetta:"")
+          +". Nothing else to do for now.";
         form.hidden=true;
         success.hidden=false;
         window.scrollTo({top:document.getElementById("contact").offsetTop-40,behavior:"smooth"});

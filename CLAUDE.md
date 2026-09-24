@@ -95,14 +95,19 @@ Quindi `consenso.js` fa bene a concedere anche `ad_storage` e `ad_personalizatio
 riquadro e l'informativa a dover cambiare**, perché oggi chiedono solo «cookie di statistica» e
 promettono *«non usiamo cookie per mostrarti pubblicità»*.
 
-## 🎨 DAL 16/09 LA LANDING HA UNA PALETTE SUA, E NON SI "CORREGGE"
+## 🎨 TRE PAGINE HANNO UNA PALETTE LORO, E NON SI "CORREGGONO"
 
-`musica-country-dal-vivo.html` è **l'unica pagina fuori dal brand book**, per decisione di
-Michele (16/09): *«i nuovi colori vanno bene, su questa landing teniamo questi»*, e poi
+Dal **24/09** sono **tre**: `musica-country-dal-vivo.html` (la landing, 16/09) e le due
+pagine del preventivo, `preventivo.html` ed `en/quote.html`. Michele, 24/09: *«nella pagina
+preventivo del sito, puoi rifarmi il blocco preventivo uguale alla landing?»* — e la palette
+va su **tutta** la pagina, se no nella stessa schermata ci sono due avori diversi.
+Le altre **14 pagine restano sul brand book**.
+
+La landing è nata così per decisione di Michele (16/09): *«i nuovi colori vanno bene, su questa landing teniamo questi»*, e poi
 *«vai online, anche solo i colori hanno più contrasto, e serviva»*. Nasce da una proposta
 grafica che ha fatto fare fuori. È una pagina `noindex` che vive solo dentro le inserzioni.
 
-| | le altre 16 pagine | la landing |
+| | le altre 14 pagine | landing e preventivi |
 |---|---|---|
 | fondo scuro | `#49240A` | **`#2B1405`** |
 | panna | `#EDDABD` | **`#F3E5D0`** testo · **`#EFE2CE`** superfici |
@@ -371,6 +376,26 @@ invii al mese** e le iscrizioni li toglierebbero ai preventivi.
 ⚠️ **Il campo si chiama `formato` sul sito e in inglese, ma `servizio` sulla landing** — e
 `ospiti` contro `persone`. Sono tre form separati in Netlify, quindi tre tabelle con schemi
 diversi: chi scrive un'automazione deve saperlo.
+
+**🆕 DAL 24/09 TUTTI E TRE I MODULI SI COMPILANO IN DUE PASSI.**
+Prima l'evento, poi «Procedi →», poi i contatti — con un riepilogo in cima al passo 2.
+Era già così sulla landing; `preventivo.html` ed `en/quote.html` avevano tutto in una
+schermata su due colonne. ⚠️ **Data e luogo NON sbarrano il passaggio**: sulla landing
+erano gli unici due obbligatori del passo 1 e nell'imbuto si vedeva il danno (sette
+persone avevano cominciato, nessuna era arrivata al passo 2). Se restano vuoti, semplicemente
+non compaiono nel riepilogo.
+⚠️ **I nomi dei campi NON sono cambiati**: `preventivo-sito` ed `preventivo-en` mandano a
+Netlify gli stessi 18 campi di prima (`ospiti`/`formato`, non `persone`/`servizio`, che sono
+della landing). Verificato prima di pubblicare: chi ha scritto un'automazione non deve toccare
+niente.
+
+**🚫 NIENTE ANTICIPAZIONI DI PREZZO SULLE DUE PAGINE DEL PREVENTIVO (24/09).**
+Michele: *«non dare anticipazioni di prezzo da 1.000 a 2.500 che sono vecchie»*. Via la riga
+«Cachet 1.000 € — 2.500 € circa» e via «scaletta tipo e cachet personalizzato» dai testi.
+⚠️ **Le tre voci di budget dentro il modulo restano**: quelle *chiedono*, non *annunciano*.
+⚠️ **La stessa fascia è ancora pubblicata su altre 6 pagine** (`faq`, `gallery`, `date` e le
+tre gemelle inglesi, meta description e JSON-LD compresi): segnalato a Michele il 24/09,
+**non ancora deciso** cosa farne.
 
 **Ordine di spesa → tre voci, e la prima parte da mille.**
 **Intorno ai 1.000 €** (predefinita) · **Arrivo a 1.500 €** · **Oltre 2.000 €**.
