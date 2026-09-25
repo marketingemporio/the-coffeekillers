@@ -1,7 +1,7 @@
 # The Coffeekillers — STATO (leggimi per primo)
 
 > Handoff per riprendere il lavoro in una nuova chat / per un collega.
-> **Ultimo aggiornamento:** 2026-09-24
+> **Ultimo aggiornamento:** 2026-09-25
 > **Stato in una riga:** il **sito nuovo è ONLINE** dal 02/09/2026 — la maquette è diventata
 > il sito, il React di prima è in `_parcheggio/`. Vedi **«IL SITO NUOVO È ONLINE»** qui sotto.
 > Dal **04/09/2026 è online anche la versione inglese** in `en/`, per chi si connette
@@ -46,7 +46,57 @@
 > **accorciate**: il primo campo passa da 1.858px a **348px** dall'alto, cioè da due schermate
 > e mezza di scorrimento a mezza. Via le anticipazioni di prezzo. Vedi **«IL PREVENTIVO COME
 > LA LANDING»**, subito qui sotto.
+> Il **25/09 la cartella e il repo sono stati rinominati in `the-coffeekillers-sito`**
+> (Michele: *«così sappiamo di cosa si parla»*, perché accanto c'è `the-coffeekillers-brain`).
+> Vedi **«IL RINOMINO DEL 25/09»** qui sotto: c'è la trappola della memoria di Claude e
+> il controllo su Netlify.
 > Compilato il 2026-06-25 da `README.md` + memoria + stato git reale.
+
+---
+
+# 📁 IL RINOMINO DEL 25/09/2026
+
+Michele: *«vorrei rinominare questa cartella come the-coffeekillers-sito così sappiamo di cosa
+si parla, sia qui su mac che sul repo»*. Accanto c'è `brains/the-coffeekillers-brain/` e i due
+nomi si confondevano di continuo.
+
+| | prima | adesso |
+|---|---|---|
+| cartella sul Mac | `World/siti/the-coffeekillers/` | **`World/siti/the-coffeekillers-sito/`** |
+| repo GitHub | `marketingemporio/the-coffeekillers` | **`marketingemporio/the-coffeekillers-sito`** |
+| progetto Netlify | `thecoffeekillers` | **invariato** (non dipende dal nome del repo) |
+| dominio | `thecoffeekillers.com` | **invariato** |
+
+## ⚠️ La trappola che si perde senza accorgersene: la memoria di Claude
+
+Le note che Claude tiene su questo progetto stanno in una cartella **il cui nome È il
+percorso**: `~/.claude/projects/-Users-michelefrosio-World-siti-the-coffeekillers/`.
+Rinominando solo la cartella del sito, alla sessione dopo Claude avrebbe cercato un nome
+inesistente e sarebbe ripartito **senza memoria**, senza dare nessun errore. Rinominata anche
+quella: **16 note salve**. Vale per qualsiasi cartella di progetto che venga spostata o
+rinominata.
+
+## I riferimenti aggiornati: 15, in 11 file, su quattro repo
+
+`the-coffeekillers-brain` (6 note) · `vault-michele` (`restore-mac.sh`) ·
+`cruscotto-coffeekillers` (3 file) · `hub` (`setup-nuovo-pc.md`). Tutti committati e spinti.
+
+⚠️ **Gli indirizzi GitHub sono stati aggiornati DOPO il rinomino, non prima.** GitHub tiene un
+redirect permanente dal vecchio nome: finché il repo non era rinominato, l'indirizzo vecchio era
+quello *giusto*, e cambiarlo in anticipo sarebbe stato l'unico modo per romperlo.
+
+⚠️ **Una riga storica non si riscrive.** Nel brain, `Sito - Workflow di lavoro.md` diceva «il
+16/06 i path sono passati da `~/Repos/` a `~/World/siti/the-coffeekillers/`»: la sostituzione
+automatica l'aveva riscritta con il nome nuovo, facendo dire alla nota che a giugno la cartella
+si chiamava già così. Rimessa com'era, e il rinomino di oggi è una **riga nuova**.
+
+## ✅ Il controllo che contava: Netlify pubblica ancora?
+
+Il progetto Netlify è agganciato al repo GitHub. GitHub redirige il vecchio nome, quindi «di
+norma» i deploy continuano — ma «di norma» non è «di sicuro», e questo è il sito pubblico della
+band. **Verificato con un push vero** (questo commit) e guardando il sito pubblicato, non per
+deduzione. Se un domani non pubblicasse più: Netlify → Site configuration → Build & deploy →
+**Link to a different repository**.
 
 ---
 
